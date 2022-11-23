@@ -1,7 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [];
+import { LoginComponent } from './login/login.component';
+import { SuperAdminComponent } from './super-admin/super-admin.component';
+import { AdminComponent } from './admin/admin.component';
+import { ManagerComponent } from './manager/manager.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+const routes: Routes = [
+  {path:'',redirectTo:'/login',pathMatch:"full"},
+  {path:'login',component:LoginComponent},
+  {path:'super-admin',component:SuperAdminComponent},
+  {path:'admin',component:AdminComponent},
+  {path:'manager',component:ManagerComponent},
+  {path:'employee',component:EmployeeComponent},
+  {path:'change-password',component:ChangePasswordComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
