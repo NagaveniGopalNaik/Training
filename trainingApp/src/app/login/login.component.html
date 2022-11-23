@@ -1,0 +1,33 @@
+
+<app-login-page-header></app-login-page-header>
+<div class="container">
+    <mat-card class="login-container">
+        <form #loginForm="ngForm" class="login-form" (ngSubmit)="login(loginForm)">
+            <p class="login-head-text">Login</p>
+            <!-- <div class="input-data"> -->
+                <mat-form-field appearance="outline">
+                    <mat-label>Select your Role</mat-label>
+                    <mat-select disableRipple [(ngModel)]="role" name="role">
+                      <mat-option value="superAdmin">Super Admin</mat-option>
+                      <mat-option value="admin">Admin</mat-option>
+                      <mat-option value="manager">Manager</mat-option>
+                      <mat-option value="employee">Employee</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <mat-form-field  appearance="outline">
+                    <mat-label>Employee code</mat-label>
+                    <input type="text" matInput class="login-input" [(ngModel)]="employee_code" name="employee_code">
+                </mat-form-field>
+                <mat-form-field  appearance="outline" class="form-field">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput class="login-input" [(ngModel)]="password" name="password">
+                </mat-form-field>
+                <button mat-raised-button class="login-button" type="submit">Login</button>
+            <!-- </div> -->
+            <!-- <div class="login-button">
+                <img src="../../assets/submit_button.png" alt="login button">
+            </div> -->
+            <p class="forgot-msg" (click)="changePassword()">Forgot password</p>
+        </form>
+    </mat-card>
+</div>
