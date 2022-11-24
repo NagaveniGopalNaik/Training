@@ -22,7 +22,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AddEmployeeHeaderComponent } from './add-employee-header/add-employee-header.component';
 import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
 import { AllEmployeeComponent } from './all-employee/all-employee.component';
-import { AssignEmployeeRoleComponent } from './assign-employee-role/assign-employee-role.component';  
+import { AssignEmployeeRoleComponent } from './assign-employee-role/assign-employee-role.component';
+import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
+import { NotificationAlertMessagesComponent } from './notification-alert-messages/notification-alert-messages.component';  
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,9 @@ import { AssignEmployeeRoleComponent } from './assign-employee-role/assign-emplo
     AddEmployeeHeaderComponent,
     EmployeeRegisterComponent,
     AllEmployeeComponent,
-    AssignEmployeeRoleComponent
+    AssignEmployeeRoleComponent,
+    EmployeeHeaderComponent,
+    NotificationAlertMessagesComponent
 
 
   ],
