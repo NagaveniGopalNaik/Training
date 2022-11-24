@@ -8,35 +8,38 @@
 .container{
     display: flex;
     justify-content: space-around;
-    width: 40%;
+    /* width: 40%; */
     text-align: left;
 }
 .navHeading{
+    
     opacity: 0.5;
     color: #230735;
     font-family: Roboto;
-    font-size: 16px;
+    font-size: 1.8rem;
     letter-spacing: 0;
-    line-height: 21px;
+    line-height: 2.1rem;
     padding: 10px 10px 10px 0px;
 }
 .navContent{
     opacity: 0.4;
     color: #230735;
     font-family: Roboto;
-    font-size: 15px;
+    font-size: 1.8rem;
     font-weight: 900;
     letter-spacing: 0;
-    line-height: 21px;
+    line-height: 2.1rem;
     padding: 10px;
+    cursor: pointer;
 }
 .navEmp{
+    cursor: pointer;
     opacity: 0.5;
     color: #230735;
     font-family: Roboto;
-    font-size: 15px;
     font-weight: 900;
+    font-size: 1.8rem;
     letter-spacing: 0;
-    line-height: 21px;
+    line-height: 2.1rem;
     align-self: center;
 }

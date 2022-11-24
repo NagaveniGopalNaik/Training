@@ -11,14 +11,18 @@ import { SuperAdminComponent } from './super-admin/super-admin.component';
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
 import { EmployeeComponent } from './employee/employee.component';  
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginPageHeaderComponent } from './login-page-header/login-page-header.component';
 import { OtpPageComponent } from './otp-page/otp-page.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TrainingCountComponent } from './training-count/training-count.component';
-import { NavbarComponent } from './navbar/navbar.component';  
+import { NavbarComponent } from './navbar/navbar.component';
+import { AddEmployeeHeaderComponent } from './add-employee-header/add-employee-header.component';
+import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
+import { AllEmployeeComponent } from './all-employee/all-employee.component';
+import { AssignEmployeeRoleComponent } from './assign-employee-role/assign-employee-role.component';  
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,16 +33,17 @@ import { NavbarComponent } from './navbar/navbar.component';
     EmployeeComponent,
     ChangePasswordComponent,
     LoginPageHeaderComponent,
-    OtpPageComponent
-
-
-@NgModule({
-  declarations: [
+    OtpPageComponent,
     AppComponent,
     HeaderComponent,
     FooterComponent,
     TrainingCountComponent,
-    NavbarComponent
+    NavbarComponent,
+    AddEmployeeHeaderComponent,
+    EmployeeRegisterComponent,
+    AllEmployeeComponent,
+    AssignEmployeeRoleComponent
+
 
   ],
   imports: [
@@ -46,7 +51,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

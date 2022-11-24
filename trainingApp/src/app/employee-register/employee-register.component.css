@@ -1,0 +1,71 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.headding{
+    text-align: center;
+    color: #000000;
+    font-family: Inter;
+    font-size: 2.4rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    /* line-height: 3.9rem; */
+}
+
+.register-container{
+    width: 100%;
+    margin:0;
+    
+}
+.close-width{
+    width: 100%;
+    margin: auto;
+}
+.employee-register-form{
+    width: 100%;
+    border: 1px solid red;
+    /* object-fit: cover; */
+
+}
+.register-form{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+.done{
+    padding:0 30px;
+}
+.form-field{
+    /* width: 24.5rem; */
+    width: 100%;
+}
+.add-button{
+   margin-top: -2%; 
+}
+
+.form-input-field{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.store-button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* border: 1px solid red; */
+}
+
+.close-icon{
+    color:rgba(0,0,0,0.5);
+    display: flex;
+    width: 100%;
+    justify-content: right;
+}
+

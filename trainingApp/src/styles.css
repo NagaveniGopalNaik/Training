@@ -6,5 +6,28 @@
 html, body { height: 100%;
 font-size: 62.5%;
 line-height: 62.5%;
+
  }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+
+.otp-dialog-box .mat-dialog-container{
+    width:28vw;
+    
+    height: fit-content;
+    border-radius: 30px;
+}
+
+.employee-register .mat-dialog-container{
+    width:30vw;
+    
+    height: fit-content;
+    border-radius: 10px;
+}
+
+.update-employee-role .mat-dialog-container{
+    width:50vw;
+    
+    height: fit-content;
+    border-radius: 10px;
+}
