@@ -1,0 +1,20 @@
+<form action="" class="login-form">
+    <p class="login-head-text">OTP Generator</p>
+    
+        <mat-form-field  appearance="outline" class="form-field">
+            <mat-label>Employee code</mat-label>
+            <input type="text" matInput class="login-input" [(ngModel)]="employee_code" name="employee_code">
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+            <mat-label>Employee mail id</mat-label>
+            <input type="text" matInput class="login-input" [(ngModel)]="mailId" name="mailId">
+        </mat-form-field>
+        <button mat-raised-button class="login-button" (click)="generateOtp()" [disabled]="disabled">generate OTP</button>
+        <ng-container *ngIf="display" class="otp-field">
+            <mat-form-field  appearance="outline">
+                <mat-label>Enter OTP</mat-label>
+                <input type="text" matInput class="login-input" [(ngModel)]="otp" name="otp">
+            </mat-form-field>
+            <button mat-raised-button class="login-button" (click)="changePassword()" mat-dialog-close>submit</button>
+        </ng-container>
+</form>
