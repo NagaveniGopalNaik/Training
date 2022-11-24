@@ -1,0 +1,34 @@
+.parentContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 2% 15%;
+    background-color: #F1E9EB;
+    
+}
+.main{
+    background-color: #F1E9EB;
+    padding: 0.5% 0%;
+}
+
+.container {
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 6px rgba(94, 107, 131, 0.06);
+    width: 30%;
+    padding:  1rem 0.5rem;
+}
+.count{
+    color: #000000;
+    font-family: Roboto;
+    font-size: 56px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 66px;
+}
+.comment{
+    color: #000000;
+    font-family: Roboto;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 16px;
+}
