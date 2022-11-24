@@ -2,9 +2,10 @@
     display: flex;
     justify-content: space-between;
     margin: 4% 15%;
+    height: 4%;
 }
 #logo{
-    height: 90%;
+    height: 60px;
 }
 .profile{
     display: flex;
@@ -35,5 +36,14 @@ li{
     list-style: none;
     padding: 2px;
     font-size: small;
+    z-index: 1;
+    cursor: pointer;
+    
+    
+}
+.poptions{
+    background-color: #FDF4F6;
+    color:#d92756;
+    padding: 5px;
 }
 

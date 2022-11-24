@@ -18,18 +18,10 @@ import { OtpPageComponent } from './otp-page/otp-page.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TrainingCountComponent } from './training-count/training-count.component';
-import { NavbarComponent } from './navbar/navbar.component';  
-@NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SuperAdminComponent,
-    AdminComponent,
-    ManagerComponent,
-    EmployeeComponent,
-    ChangePasswordComponent,
-    LoginPageHeaderComponent,
-    OtpPageComponent
+import { NavbarComponent } from './navbar/navbar.component';
+import { AddProfileComponent } from './add-profile/add-profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { CreateTrainingComponent } from './create-training/create-training.component';  
 
 
 @NgModule({
@@ -38,7 +30,18 @@ import { NavbarComponent } from './navbar/navbar.component';
     HeaderComponent,
     FooterComponent,
     TrainingCountComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent,
+    SuperAdminComponent,
+    AdminComponent,
+    ManagerComponent,
+    EmployeeComponent,
+    ChangePasswordComponent,
+    LoginPageHeaderComponent,
+    OtpPageComponent,
+    AddProfileComponent,
+    EditProfileComponent,
+    CreateTrainingComponent
 
   ],
   imports: [

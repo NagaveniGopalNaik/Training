@@ -6,14 +6,22 @@ import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { HeaderComponent } from './header/header.component';
+import { AddProfileComponent } from './add-profile/add-profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { CreateTrainingComponent } from './create-training/create-training.component';
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:"full"},
+  {path:'header',component:HeaderComponent},
+  {path:'addProfile',component:AddProfileComponent},
+  {path:'editProfile',component:EditProfileComponent},
   {path:'login',component:LoginComponent},
   {path:'super-admin',component:SuperAdminComponent},
   {path:'admin',component:AdminComponent},
   {path:'manager',component:ManagerComponent},
   {path:'employee',component:EmployeeComponent},
-  {path:'change-password',component:ChangePasswordComponent}
+  {path:'change-password',component:ChangePasswordComponent},
+  {path:'createTraining',component:CreateTrainingComponent}
 ];
 
 @NgModule({

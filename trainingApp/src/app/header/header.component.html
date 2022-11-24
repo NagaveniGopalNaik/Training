@@ -1,23 +1,22 @@
 <div class="header">
     <div class="logo">
-        <img src="/assets/Robosoft_logo_horizontal.png" id="logo"alt="">
+        <img src="/assets/Robosoft_logo_horizontal.png" id="logo" alt="">
     </div>
     <div class="profile">
-        <div class="icon"><mat-icon>notifications</mat-icon></div>
+        <div class="icon">
+            <mat-icon>notifications</mat-icon>
+        </div>
         <div class="pimage">
             <div><img src="/assets/profile.png" id="pimage" alt=""></div>
-            <div><mat-icon (click)="display_p_options()">arrow_drop_down</mat-icon>
-                <div *ngIf="display">
-                    <li >Add profile picture</li>
-                    <li>Edit profile picture</li>
-                    <li>Log Out</li>
+            <div class="display_icon">
+                <mat-icon (click)="display_p_options()" >arrow_drop_down</mat-icon>
+                <div *ngIf="display" class="poptions">
+                    <li (click)="addProfile()">Add profile picture</li>
+                    <li (click)="editProfile()">Edit profile picture</li>
+                    <li  routerLink="/login">Log Out</li>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
-
-
-
-
-

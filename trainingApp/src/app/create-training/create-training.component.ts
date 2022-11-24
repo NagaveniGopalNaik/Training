@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AddProfileComponent } from '../add-profile/add-profile.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-create-training',
+  templateUrl: './create-training.component.html',
+  styleUrls: ['./create-training.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class CreateTrainingComponent implements OnInit {
+  display:any;
   constructor(private dialog:MatDialog) { }
-  display=false;
+
   ngOnInit(): void {
   }
   display_p_options(){

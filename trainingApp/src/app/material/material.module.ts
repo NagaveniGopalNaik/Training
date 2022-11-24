@@ -9,6 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
 
 const materials = [
   MatCardModule,
@@ -19,7 +21,9 @@ const materials = [
   MatIconModule,
   MatInputModule,
   MatTableModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDatepickerModule,
+  MatRadioModule
 
 ]
 
