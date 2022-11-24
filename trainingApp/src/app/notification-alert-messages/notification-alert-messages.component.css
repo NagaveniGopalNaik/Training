@@ -1,0 +1,85 @@
+.navbar-path{
+    background-color: #EEEEEE;
+    color: #909090;
+  font-family: Roboto;
+  font-size: 1.4rem;
+  letter-spacing: 0;
+  line-height: 1.6rem;
+  padding: 1.5% 10%;
+}
+.each-notification-details{
+    width: 80%;
+    margin: auto;
+    margin-top: 2%;
+}
+
+.trianing-name{
+    color: #06235C;
+  font-family: Roboto;
+  font-size: 2.0rem;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 2.4rem;
+}
+.trainer{
+    color: #4C4C4C;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+    line-height: 19px;
+}
+.trainer-name{
+    font-weight: 500;
+}
+.details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.date{
+    margin-top: 3%;
+}
+.tag{
+    color: #A8A8A8;
+    font-family: Roboto;
+    font-size: 1.4rem;
+    letter-spacing: 0.12px;
+    line-height: 2.4rem;
+}
+.data{
+    color: #000000;
+  font-family: Roboto;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.43px;
+  line-height: 1.9rem;
+}
+.training-data-details{
+    margin-top: 3%;
+}
+
+.lighter{
+    font-weight: 400;
+}
+button{
+    border-radius: 4px;
+    color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.32px;
+  line-height: 1.6rem;
+  text-align: center;
+  padding: 1% 2%;
+  margin-top: 3%;
+}
+.accept{
+    
+  background-color: #71AC1B;
+  
+}
+.reject{
+    background-color: #EC2C2C;
+    margin-left: 3%;
+}
