@@ -1,0 +1,11 @@
+.footer{
+    color: #929292;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #929292;
+    font-family: Roboto;
+    font-size: 14px;
+    letter-spacing: 0.32px;
+    line-height: 16px;
+}
