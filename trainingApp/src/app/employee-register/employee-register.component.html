@@ -1,0 +1,35 @@
+<div class="register-container">
+    
+    <p class="close-width"><mat-icon class="close-icon" mat-dialog-close>close</mat-icon></p>
+    <p class="headding">Add Employee</p>
+    <form [formGroup]="employee_register_form" class="register-form" (ngSubmit)="addEmployee()">
+        
+            <div class="form-input-field">
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Employee Id</mat-label>
+                    <input type="text" matInput formControlName="empId" name="empId" class="input-field">
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Employee Name</mat-label>
+                    <input type="text" matInput formControlName="empName" name="empName" class="input-field">
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password" name="password" class="input-field">
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Designation</mat-label>
+                    <input type="text" matInput formControlName="designation" name="designation" class="input-field">
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" name="email" class="input-field">
+                </mat-form-field>
+                <div class="store-button">
+                    <button type="submit" mat-raised-button color="accent" class="register">Register</button>
+                    <button mat-raised-button mat-dialog-close color="accent" class="done">Done</button>
+                </div>
+            </div>
+        
+        </form>
+</div>

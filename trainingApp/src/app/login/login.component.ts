@@ -22,7 +22,7 @@ login(formValue:NgForm){
   console.log(formValue.value);
   
 switch(this.role){
-  case 'superAdmin':this.router.navigate(['/super-admin']);
+  case 'superAdmin':this.router.navigate(['/superAdmin']);
   break;
   case 'admin':this.router.navigate(['/admin']);
   break;

@@ -1,7 +1,8 @@
 .parentContainer {
     display: flex;
     justify-content: space-between;
-    margin: 2% 15%;
+    align-items: center;
+    margin: 1.5% 15%;
     background-color: #F1E9EB;
     
 }
@@ -14,8 +15,9 @@
     border-radius: 4px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px 6px rgba(94, 107, 131, 0.06);
-    width: 30%;
-    padding:  1rem 0.5rem;
+    width: 20%;
+    padding:  2% 10%;
+    padding-left:1rem;
 }
 .count{
     color: #000000;
@@ -24,6 +26,7 @@
     font-weight: 500;
     letter-spacing: 0;
     line-height: 66px;
+    margin-left: 10%;
 }
 .comment{
     color: #000000;
@@ -31,4 +34,5 @@
     font-size: 16px;
     letter-spacing: 0;
     line-height: 16px;
+    margin-left: 10%;
 }
