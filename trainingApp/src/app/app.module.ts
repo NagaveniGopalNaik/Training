@@ -20,7 +20,9 @@ import { FooterComponent } from './footer/footer.component';
 import { TrainingCountComponent } from './training-count/training-count.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddEmployeeHeaderComponent } from './add-employee-header/add-employee-header.component';
-import { EmployeeRegisterComponent } from './employee-register/employee-register.component';  
+import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
+import { AllEmployeeComponent } from './all-employee/all-employee.component';
+import { AssignEmployeeRoleComponent } from './assign-employee-role/assign-employee-role.component';  
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,9 @@ import { EmployeeRegisterComponent } from './employee-register/employee-register
     TrainingCountComponent,
     NavbarComponent,
     AddEmployeeHeaderComponent,
-    EmployeeRegisterComponent
+    EmployeeRegisterComponent,
+    AllEmployeeComponent,
+    AssignEmployeeRoleComponent
 
 
   ],

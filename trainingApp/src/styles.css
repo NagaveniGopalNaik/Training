@@ -24,3 +24,10 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     height: fit-content;
     border-radius: 10px;
 }
+
+.update-employee-role .mat-dialog-container{
+    width:50vw;
+    
+    height: fit-content;
+    border-radius: 10px;
+}
