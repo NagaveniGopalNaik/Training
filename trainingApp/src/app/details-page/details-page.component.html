@@ -1,0 +1,145 @@
+<div class="header">
+    <div class="logo">
+        <img src="/assets/Robosoft_logo_horizontal.png" id="logo" alt="">
+    </div>
+    <div class="profile">
+        <div class="newTraining">
+            <button class="training_button" routerLink="/createTraining">NEW TRAINING</button>
+        </div>
+        <div class="icon">
+            <mat-icon>notifications_none</mat-icon>
+        </div>
+        <div class="pimage">
+            <div><img src="/assets/profile.png" id="pimage" alt=""></div>
+            <div class="display_icon">
+                <mat-icon (click)="display_p_options()">arrow_drop_down</mat-icon>
+                <div *ngIf="display" class="poptions">
+                    <li (click)="addProfile()">Add profile picture</li>
+                    <li (click)="editProfile()">Edit profile picture</li>
+                    <li routerLink="/login">Log Out</li>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="main">
+    <span class="navigation">Home &nbsp;>&nbsp;Training Details</span>
+</div>
+
+
+<div class="empAddDltMain">
+    <mat-card class="each-notification-details">
+        <div class="courseName">
+            <div>
+                <p class="trianing-name">UX/UI Design Process <button mat-raised-button
+                        class="course-button">UPCOMING</button></p>
+                <p class="trainer">Trainer : <span class="trainer-name">George Rehaman</span></p>
+            </div>
+
+            <div class="endsinEdit">
+                <div class="flexEdit">
+                    <div class="endsin">Ends in 4hrs 35mins 20sec</div>
+                    <div class="edit">
+                        <mat-icon>edit_square</mat-icon>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="details">
+            <div class="date">
+                <p class="tag">Date</p>
+                <p class="data">Dec 5th, 2020</p>
+            </div>
+            <div class="date">
+                <p class="tag">Time</p>
+                <p class="data">02:45PM</p>
+            </div>
+            <div class="date">
+                <p class="tag">Duration</p>
+                <p class="data">3 hours 45 mins</p>
+            </div>
+        </div>
+        <div class="training-data-details">
+            <p class="tag">Details</p>
+            <p class="data lighter">
+                Meeting is schedule via zoom call
+            </p>
+            <p class="data lighter">
+                zoom call line: <a>https:Isd.sd asdlidjfsl;dhaks</a>
+            </p>
+            <p class="data lighter">
+                Meeting ID : 12345643245 <br>
+                Password : as57878
+            </p>
+
+        </div>
+    </mat-card>
+    <p class="attendees">Attendees (8) <span class="inviteEmp" routerLink="/inviteEmp">Invite Employees</span></p>
+
+    <div class="parentContainer">
+
+        <div class="container">
+            <div class="profileimg">
+                <img src="/assets/profile.png" alt="" id="profileimg">
+            </div>
+            <div class="empDetails">
+                <div class="empName">Kyung John</div>
+                <div class="empDesignation">Senior Project Manager</div>
+                <div class="empCode">RT00377</div>
+            </div>
+            <div class="addIcon">
+                <mat-icon>add_circle</mat-icon>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="profileimg">
+                <img src="/assets/profile.png" alt="" id="profileimg">
+            </div>
+            <div class="empDetails">
+                <div class="empName">Kyung John</div>
+                <div class="empDesignation">Senior Project Manager</div>
+                <div class="empCode">RT00377</div>
+            </div>
+            <div class="addIcon">
+                <mat-icon>do_not_disturb_on</mat-icon>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="profileimg">
+                <img src="/assets/profile.png" alt="" id="profileimg">
+            </div>
+            <div class="empDetails">
+                <div class="empName">Kyung John</div>
+                <div class="empDesignation">Senior Project Manager</div>
+                <div class="empCode">RT00377</div>
+            </div>
+            <div class="addIcon">
+                <mat-icon>do_not_disturb_on</mat-icon>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="profileimg">
+                <img src="/assets/profile.png" alt="" id="profileimg">
+            </div>
+            <div class="empDetails">
+                <div class="empName">Kyung John</div>
+                <div class="empDesignation">Senior Project Manager</div>
+                <div class="empCode">RT00377</div>
+            </div>
+            <div class="addIcon">
+                <mat-icon>do_not_disturb_on</mat-icon>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<span class="inviteEmp">Invite Employees</span>

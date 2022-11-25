@@ -1,0 +1,146 @@
+.inviteEmpParentMain{
+    /* width: 100%; */
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.inviteEmpMain{
+   width: 50%;
+   background-color: white;
+   
+}
+.inviteReporteesHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inviteReportees {
+    color: #06235C;
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 28px;
+}
+
+.doneButton {
+    border-radius: 4px;
+    background-color: #EC2C59;
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.32px;
+    line-height: 16px;
+    border: none;
+    text-align: center;
+    padding: 2% 7%;
+}
+
+
+.searchbar {
+    margin-top: 5%;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 50%;
+    color: rgba(0, 0, 0, 0.8);
+    font-family: Roboto;
+    font-size: 1.6rem;
+    letter-spacing: 0;
+    line-height: 2.4rem;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid rgba(153, 153, 153, 0.47);
+}
+
+.search-input::placeholder {
+    color: rgba(172, 159, 159, 0.47);
+}
+
+.search-button {
+    border-radius: 4px;
+    background-color: rgba(35, 7, 53, 1);
+    font-family: Roboto;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    line-height: 1.5rem;
+    text-align: center;
+    padding: 12.1px;
+}
+
+.tabHeader,
+.tabContent {
+    display: flex;
+    padding: 3% 0% 3% 0%;
+  
+    
+}
+.tabContent{
+    
+    border-top:1px solid#E0E0E0;
+}
+
+.tabContentParent{
+    overflow-y: auto;
+}
+
+.empCode,
+.empName,
+.empDesignation {
+    color: #A8A8A8;
+    font-family: Roboto;
+    font-size: 14px;
+    letter-spacing: 0.12px;
+    line-height: 24px;
+}
+
+.empCodeval,
+.empNameval,
+.empDesignationval {
+    color: rgba(0, 0, 0, 1);
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.43px;
+   
+    
+}
+
+.empCode,
+.empCodeval {
+    width: 20%;
+}
+
+.empName,
+.empNameval {
+    width: 35%
+}
+
+.empDesignation,
+.empDesignationval {
+    width: 40%;
+}
+
+.removeIcon mat-icon {
+    font-size: 25px;
+    color: white;
+    background-color: #EC2C59;
+    border: none;
+    align-self: center;
+}
+.addIcon{
+    font-size: 25px;
+    color: white;
+    background-color:#54A919;
+    border: none;
+    align-self: center;
+}

@@ -11,6 +11,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const materials = [
   MatCardModule,
@@ -23,7 +24,8 @@ const materials = [
   MatTableModule,
   MatSelectModule,
   MatDatepickerModule,
-  MatRadioModule
+  MatRadioModule,
+  MatNativeDateModule
 
 ]
 

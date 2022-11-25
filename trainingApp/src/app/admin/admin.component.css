@@ -45,6 +45,9 @@ li{
     background-color: #FDF4F6;
     color:#d92756;
     padding: 5px;
+    position:fixed;
+    top: 10%;
+    right: 10%;
 }
 .training_button{
     color: #FFFFFF;
@@ -69,11 +72,11 @@ li{
 .containerEmp{
     display: flex;
     justify-content:space-around;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 .parentContainer{
     width: 80%;
-    height: 20%;
+    /* height: 20%; */
     margin: auto;
     border-radius: 4px;
     background-color: #FFFFFF;
@@ -93,7 +96,7 @@ li{
     line-height: 24px;
 
 }
-.course_status{
+.course_status_completed{
     color: #FFFFFF;
     font-family: Roboto;
     font-size: 12px;
@@ -106,6 +109,47 @@ li{
     border: none;
     align-self: center;
 }
+.course_status_active{
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 12px;
+    border-radius: 4px;
+    background-color: #DEBB32;
+    padding: 3px 12px 3px 12px;
+    border: none;
+    align-self: center;
+    border-radius: 4px;
+  background-color: #71AC1B;
+}
+.course_status_upcoming{
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 12px;
+    border-radius: 4px;
+    background-color: #DE8432;
+    padding: 3px 12px 3px 12px;
+    border: none;
+    align-self: center;
+    border-radius: 4px;
+}
+.limitTime{
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    background-color: #F3F3F3;
+    color: #25040C;
+    font-family: Roboto;
+    font-size: 12px;
+    letter-spacing: 0.37px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+}
+   
 .totalEmpCount{
     color: #230735;
     font-family: Roboto;
@@ -139,6 +183,7 @@ li{
     display: flex;
     justify-content:space-between;
     margin: 3% 3% 0% 3%; 
+    padding-bottom: 3%;
 }
 .containerDetails{
     display: flex;
@@ -202,4 +247,12 @@ li{
     background-color: #EC2C59;
     padding: 8px 10px 8px 10px;
     border: none;
+    cursor: pointer;
+}
+.parentDetailsIcon{
+    position: relative;
+}
+.editDlt{
+    position: absolute;
+  
 }

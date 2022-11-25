@@ -11,7 +11,7 @@ import { SuperAdminComponent } from './super-admin/super-admin.component';
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
 import { EmployeeComponent } from './employee/employee.component';  
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginPageHeaderComponent } from './login-page-header/login-page-header.component';
 import { OtpPageComponent } from './otp-page/otp-page.component';
@@ -23,6 +23,13 @@ import { AddProfileComponent } from './add-profile/add-profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CreateTrainingComponent } from './create-training/create-training.component';  
 
+
+import { AddEmployeeHeaderComponent } from './add-employee-header/add-employee-header.component';
+import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
+import { AllEmployeeComponent } from './all-employee/all-employee.component';
+import { AssignEmployeeRoleComponent } from './assign-employee-role/assign-employee-role.component';
+import { InviteEmpComponent } from './invite-emp/invite-emp.component';
+import { DetailsPageComponent } from './details-page/details-page.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +48,19 @@ import { CreateTrainingComponent } from './create-training/create-training.compo
     OtpPageComponent,
     AddProfileComponent,
     EditProfileComponent,
-    CreateTrainingComponent
+    CreateTrainingComponent,
+   
+    HeaderComponent,
+    FooterComponent,
+    TrainingCountComponent,
+    NavbarComponent,
+    AddEmployeeHeaderComponent,
+    EmployeeRegisterComponent,
+    AllEmployeeComponent,
+    AssignEmployeeRoleComponent,
+    InviteEmpComponent,
+    DetailsPageComponent,
+
 
   ],
   imports: [
@@ -49,7 +68,8 @@ import { CreateTrainingComponent } from './create-training/create-training.compo
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

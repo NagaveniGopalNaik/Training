@@ -1,0 +1,25 @@
+<div class="update-emplouee-details">
+    <p class="close-width"><mat-icon class="close-icon" mat-dialog-close>close</mat-icon></p>
+    <div class="update-heading">Update/Remove Employee details</div>
+    <div class="update-fields">
+        <form class="update-data">
+            <mat-form-field  appearance="outline" class="form-field">
+                <mat-label>Employee code</mat-label>
+                <input type="text" matInput class="login-input" [(ngModel)]="employee_code" name="employee_code">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Select your Role</mat-label>
+                <mat-select disableRipple [(ngModel)]="role" name="role">
+                  <mat-option value="superAdmin">Super Admin</mat-option>
+                  <mat-option value="admin">Admin</mat-option>
+                  <mat-option value="manager">Manager</mat-option>
+                  <mat-option value="employee">Employee</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="update-button"><button mat-fab color="accent" mat-dialog-close><mat-icon class="edit">edit</mat-icon></button>
+                <button mat-fab color="accent"><mat-icon class="edit" mat-dialog-close>delete</mat-icon></button>
+            </div>
+             
+        </form>
+    </div>
+</div>

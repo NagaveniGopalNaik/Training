@@ -4,15 +4,14 @@ import { AddProfileComponent } from '../add-profile/add-profile.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-details-page',
+  templateUrl: './details-page.component.html',
+  styleUrls: ['./details-page.component.css']
 })
-export class AdminComponent implements OnInit {
-  display=false;
-  displayEditDlt=false;
-  constructor(private dialog:MatDialog) { }
+export class DetailsPageComponent implements OnInit {
 
+  constructor(private dialog:MatDialog) { }
+  display=false;
   ngOnInit(): void {
   }
   display_p_options(){
@@ -23,8 +22,5 @@ export class AdminComponent implements OnInit {
   }
   editProfile(){
     this.dialog.open(EditProfileComponent,{height:'40%',width:'40%'});
-  }
-  display_edit_dlt_options(){
-    this.displayEditDlt=true;
   }
 }

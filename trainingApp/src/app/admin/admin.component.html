@@ -6,16 +6,16 @@
         <div class="newTraining">
             <button class="training_button" routerLink="/createTraining">NEW TRAINING</button>
         </div>
-        <div class="icon">
-            <mat-icon>notifications</mat-icon>
-        </div>
+        <!-- <div class="icon">
+            <mat-icon>notifications_none</mat-icon>
+        </div> -->
         <div class="pimage">
             <div><img src="/assets/profile.png" id="pimage" alt=""></div>
             <div class="display_icon">
                 <mat-icon (click)="display_p_options()" >arrow_drop_down</mat-icon>
                 <div *ngIf="display" class="poptions">
-                    <li (click)="addProfile()">Add profile picture</li>
-                    <li (click)="editProfile()">Edit profile picture</li>
+                    <li (click)="addProfile()">Add profile</li>
+                    <li (click)="editProfile()">Edit profile</li>
                     <li  routerLink="/login">Log Out</li>
                 </div>
             </div>
@@ -30,7 +30,7 @@
     <div class="container">
         <div class="containerCourse">
             <div class="course_name">UX/UI Design Process</div>
-            <div ><button class="course_status">Completed</button></div>
+            <div ><button class="course_status_completed">Completed</button></div>
         </div>
         <div class="containerEmp">
             <div class="totalEmpIcon"><mat-icon>groups</mat-icon></div>
@@ -51,8 +51,14 @@
          <div class="duration">Duration<span id="duration">3hrs 45mins</span>
          </div>
          <div class="containerDetails">
-            <div><button class="details">Details</button></div>
-            <div class="detailsIcon"><mat-icon>more_vert</mat-icon></div>
+            <div><button class="details" routerLink="/detailsPage">Details</button></div>
+           <div class="parentDetailsIcon">
+            <div class="detailsIcon" (click)="display_edit_dlt_options()"><mat-icon>more_vert</mat-icon></div>
+            <div class="editDlt" *ngIf="displayEditDlt">
+                <li>Edit</li>
+                <li>Delete</li>
+            </div>
+           </div>
         </div>
      </div>
 
@@ -65,9 +71,49 @@
     <div class="container">
         <div class="containerCourse">
             <div class="course_name">UX/UI Design Process</div>
-            <div ><button class="course_status">Completed</button></div>
+            <div ><button class="course_status_active">Active</button></div>
         </div>
         <div class="containerEmp">
+            <div class="limitTime">Ends in: 2days 3hrs 50mins</div>
+            <div class="totalEmpIcon"><mat-icon>groups</mat-icon></div>
+            <div class="totalEmpCount">87</div>
+        </div>
+    </div>
+
+    <div class="containerTraining">
+        <div class="trainer">Trainer:</div>
+        <div class="trainerName">Trainer Name &nbsp; &nbsp; |</div>
+        <div class="trainer">&nbsp; &nbsp; &nbsp;Training Type:</div>
+        <div class="trainerName">Online</div>
+    </div>
+
+    <div class="containerDate">
+        <div class="start_date">Start Date<span id="date">Dec 5th,2020 at 12:</span></div>
+         <div class="end_date">End Date<span id="date">Dec 5th,2020 at 12:</span></div>
+         <div class="duration">Duration<span id="duration">3hrs 45mins</span>
+         </div>
+         <div class="containerDetails">
+            <div><button class="details">Details</button></div>
+            <div class="parentDetailsIcon">
+                <div class="detailsIcon" (click)="display_edit_dlt_options()"><mat-icon>more_vert</mat-icon></div>
+                <div class="editDlt" *ngIf="displayEditDlt">
+                    <li>Edit</li>
+                    <li>Delete</li>
+                </div>
+               </div>
+        </div>
+     </div>
+
+</div>
+
+<div class="parentContainer">
+    <div class="container">
+        <div class="containerCourse">
+            <div class="course_name">UX/UI Design Process</div>
+            <div ><button class="course_status_upcoming">Upcoming</button></div>
+        </div>
+        <div class="containerEmp">
+            <div class="limitTime">Starts in: 2days 3hrs 50mins</div>
             <div class="totalEmpIcon"><mat-icon>groups</mat-icon></div>
             <div class="totalEmpCount">87</div>
         </div>

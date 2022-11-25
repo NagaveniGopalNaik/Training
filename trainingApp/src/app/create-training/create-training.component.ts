@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProfileComponent } from '../add-profile/add-profile.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import { InviteEmpComponent } from '../invite-emp/invite-emp.component';
 
 @Component({
   selector: 'app-create-training',
