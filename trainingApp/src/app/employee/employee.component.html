@@ -1,107 +1,307 @@
 <app-employee-header></app-employee-header>
-<div class="navbar-path">
-    <div class="details">
-        HOME > Training Details
-    </div>
-    
-</div>
-<div class="profile-page">
-    <div><img src="/assets/profile.png" id="pimage" alt=""></div>
-    <div class="profile-details">
-        <p class="name">Nagaveni</p>
-        <p class="designation">Software Engineer</p>
-        <p class="employeeId">RT0033</p>
-    </div>
-</div>
+<app-training-count></app-training-count>
 <div class="parentContainer">
     <div class="container">
         <div class="navHeading">Training:</div>
-        <div class="navContent">Attended</div>
-        <div class="navContent">Non-Attended</div>
-        
+        <div class="navContent" [class.active-tag]="active" (click)="activeFunction()">Active</div>
+        <div class="navContent" [class.active-tag]="upcoming" (click)="upcomingFunction()">Upcoming</div>
+        <div class="navContent" [class.active-tag]="completed" (click)="completeFunction()">Completed</div>
+    </div>
+    <div class="navEmp">
+        <mat-icon>filter_list</mat-icon>
     </div>
 </div>
+<div class="body">
 
-<div class="employoee-data">
-    <mat-card class="employee-each-data">
-        <table class="table">
-            <tr>
+<div class="employee-course-details" *ngIf="upcoming">
+    <mat-card class="each-notification-details">
+        <div class="course-time">
+            <div class="courseName">
+                <p class="trianing-name">UX/UI Design Process <button mat-raised-button class="course-button">UPCOMING</button></p>
+            <p class="trainer">Trainer : <span class="trainer-name">George Rehaman&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">Online </span></p>
+            </div>
+            <div class="remaining-time-count">
+             <div class="time-div">Starts in: 8 days 4 hrs 35 mins</div>
+            <div class="total-attendies-count">
+                <p class="icon"><mat-icon>group</mat-icon></p>
                 
-                <th>Training Name</th>
-                <th>Date</th>
-                <th>Training Type</th>
-                <th>Reason</th>
-                <!-- <th class="width-5"></th> -->
-            </tr>
-            <tr>
-                <td>
-                    <div class="training-name-details">
-                        <p class="name">UX/UI Design Process</p>
-                        <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
-                    </div>
-                </td>
-                <td > Dec 5,2020</td>
-                <td >Online</td>
-                <td><p class="reason-data">Attended client meeting</p></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="training-name-details">
-                            <p class="name">UX/UI Design Process</p>
-                            <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
-                        </div>
-                    </td>
-                    <td > Dec 5,2020</td>
-                    <td >Online</td>
-                    <td><p class="reason-data">Attended client meeting</p></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="training-name-details">
-                                <p class="name">UX/UI Design Process</p>
-                                <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
-                            </div>
-                        </td>
-                        <td > Dec 5,2020</td>
-                        <td >Online</td>
-                        <td><p class="reason-data">Attended client meeting</p></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="training-name-details">
-                                    <p class="name">UX/UI Design Process</p>
-                                    <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
-                                </div>
-                            </td>
-                            <td > Dec 5,2020</td>
-                            <td >Online</td>
-                            <td><p class="reason-data">Attended client meeting</p></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="training-name-details">
-                                        <p class="name">UX/UI Design Process</p>
-                                        <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
-                                    </div>
-                                </td>
-                                <td > Dec 5,2020</td>
-                                <td >Online</td>
-                                <td><p class="reason-data">Attended client meeting</p></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="training-name-details">
-                                            <p class="name">UX/UI Design Process</p>
-                                            <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
-                                        </div>
-                                    </td>
-                                    <td > Dec 5,2020</td>
-                                    <td >Online</td>
-                                    <td><p class="reason-data">Attended client meeting</p></td>
-                                    </tr>
-         
-        </table>
+                <p class="count">87</p>
+            </div>
+            </div>
+        </div>
+       <div class="course-details">
+        <div class="details">
+            <div class="date">
+                <p class="tag">Date</p>
+                <p class="data">Dec 5th, 2020</p>
+            </div>
+            <div class="date">
+                <p class="tag">Time</p>
+                <p class="data">02:45PM</p>
+            </div>
+            <div class="date">
+                <p class="tag">Duration</p>
+                <p class="data">3 hours 45 mins</p>
+            </div>
+           
+            
+        </div>
+        <div class="reaction-button">
+            <button mat-raised-button class="details-button">DETAILS</button>
+           
+        </div>
+        
+       </div>
+        
     </mat-card>
-   
+
+    <mat-card class="each-notification-details">
+        <div class="course-time">
+            <div class="courseName">
+                <p class="trianing-name">UX/UI Design Process <button mat-raised-button class="course-button">UPCOMING</button></p>
+            <p class="trainer">Trainer : <span class="trainer-name">George Rehaman&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">Online </span></p>
+            </div>
+            <div class="remaining-time-count">
+             <div class="time-div">Starts in: 8 days 4 hrs 35 mins</div>
+            <div class="total-attendies-count">
+                <p class="icon"><mat-icon>group</mat-icon></p>
+                
+                <p class="count">87</p>
+            </div>
+            </div>
+        </div>
+       <div class="course-details">
+        <div class="details">
+            <div class="date">
+                <p class="tag">Date</p>
+                <p class="data">Dec 5th, 2020</p>
+            </div>
+            <div class="date">
+                <p class="tag">Time</p>
+                <p class="data">02:45PM</p>
+            </div>
+            <div class="date">
+                <p class="tag">Duration</p>
+                <p class="data">3 hours 45 mins</p>
+            </div>
+           
+            
+        </div>
+        <div class="reaction-button">
+            <button mat-raised-button class="details-button">DETAILS</button>
+           
+        </div>
+        
+       </div>
+        
+    </mat-card>
+</div>
+<div class="employee-course-details" *ngIf="completed">
+    <mat-card class="each-notification-details">
+        <div class="course-time">
+            <div class="courseName">
+                <p class="trianing-name">UX/UI Design Process <button mat-raised-button class="course-button completed">COMPLETED</button></p>
+            <p class="trainer">Trainer : <span class="trainer-name">George Rehaman&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">Online </span></p>
+            </div>
+            <div class="remaining-time-count position">
+             <!-- <div class="time-div">Ends in: 8 days 4 hrs 35 mins</div> -->
+            <div class="total-attendies-count">
+                <p class="icon"><mat-icon>group</mat-icon></p>
+                
+                <p class="count">87</p>
+            </div>
+            </div>
+        </div>
+       <div class="course-details">
+        <div class="details">
+            <div class="date">
+                <p class="tag">Date</p>
+                <p class="data">Dec 5th, 2020</p>
+            </div>
+            <div class="date">
+                <p class="tag">Time</p>
+                <p class="data">02:45PM</p>
+            </div>
+            <div class="date">
+                <p class="tag">Duration</p>
+                <p class="data">3 hours 45 mins</p>
+            </div>
+           
+            
+        </div>
+        <div class="reaction-button">
+            <button mat-raised-button class="details-button">DETAILS</button>
+            
+        </div>
+        
+       </div>
+        
+    </mat-card>
+
+    <mat-card class="each-notification-details">
+        <div class="course-time">
+            <div class="courseName">
+                <p class="trianing-name">UX/UI Design Process <button mat-raised-button class="course-button completed">COMPLETED</button></p>
+            <p class="trainer">Trainer : <span class="trainer-name">George Rehaman&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">Online </span></p>
+            </div>
+            <div class="remaining-time-count position">
+             <!-- <div class="time-div">Ends in: 8 days 4 hrs 35 mins</div> -->
+            <div class="total-attendies-count">
+                <p class="icon"><mat-icon>group</mat-icon></p>
+                
+                <p class="count">87</p>
+            </div>
+            </div>
+        </div>
+       <div class="course-details">
+        <div class="details">
+            <div class="date">
+                <p class="tag">Date</p>
+                <p class="data">Dec 5th, 2020</p>
+            </div>
+            <div class="date">
+                <p class="tag">Time</p>
+                <p class="data">02:45PM</p>
+            </div>
+            <div class="date">
+                <p class="tag">Duration</p>
+                <p class="data">3 hours 45 mins</p>
+            </div>
+           
+            
+        </div>
+        <div class="reaction-button">
+            <button mat-raised-button class="details-button">DETAILS</button>
+            
+        </div>
+        
+       </div>
+        
+    </mat-card>
+</div>
+<div class="employee-course-details" *ngIf="active">
+    <mat-card class="each-notification-details">
+        <div class="course-time">
+            <div class="courseName">
+                <p class="trianing-name">UX/UI Design Process <button mat-raised-button class="course-button active">ACTIVE</button></p>
+            <p class="trainer">Trainer : <span class="trainer-name">George Rehaman&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">Online </span></p>
+            </div>
+            <div class="remaining-time-count">
+             <div class="time-div">Ends in: 8 days 4 hrs 35 mins</div>
+            <div class="total-attendies-count">
+                <p class="icon"><mat-icon>group</mat-icon></p>
+                
+                <p class="count">87</p>
+            </div>
+            </div>
+        </div>
+       <div class="course-details">
+        <div class="details">
+            <div class="date">
+                <p class="tag">Date</p>
+                <p class="data">Dec 5th, 2020</p>
+            </div>
+            <div class="date">
+                <p class="tag">Time</p>
+                <p class="data">02:45PM</p>
+            </div>
+            <div class="date">
+                <p class="tag">Duration</p>
+                <p class="data">3 hours 45 mins</p>
+            </div>
+           
+            
+        </div>
+        <div class="reaction-button">
+            <button mat-raised-button class="details-button">DETAILS</button>
+           
+        </div>
+        
+       </div>
+        
+    </mat-card>
+
+    <mat-card class="each-notification-details">
+        <div class="course-time">
+            <div class="courseName">
+                <p class="trianing-name">UX/UI Design Process <button mat-raised-button class="course-button active">ACTIVE</button></p>
+            <p class="trainer">Trainer : <span class="trainer-name">George Rehaman&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">Online </span></p>
+            </div>
+            <div class="remaining-time-count">
+             <div class="time-div">Ends in: 8 days 4 hrs 35 mins</div>
+            <div class="total-attendies-count">
+                <p class="icon"><mat-icon>group</mat-icon></p>
+                
+                <p class="count">87</p>
+            </div>
+            </div>
+        </div>
+       <div class="course-details">
+        <div class="details">
+            <div class="date">
+                <p class="tag">Date</p>
+                <p class="data">Dec 5th, 2020</p>
+            </div>
+            <div class="date">
+                <p class="tag">Time</p>
+                <p class="data">02:45PM</p>
+            </div>
+            <div class="date">
+                <p class="tag">Duration</p>
+                <p class="data">3 hours 45 mins</p>
+            </div>
+           
+            
+        </div>
+        <div class="reaction-button">
+            <button mat-raised-button class="details-button">DETAILS</button>
+           
+        </div>
+        
+       </div>
+        
+    </mat-card>
+
+    <mat-card class="each-notification-details">
+        <div class="course-time">
+            <div class="courseName">
+                <p class="trianing-name">UX/UI Design Process <button mat-raised-button class="course-button active">ACTIVE</button></p>
+            <p class="trainer">Trainer : <span class="trainer-name">George Rehaman&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">Online </span></p>
+            </div>
+            <div class="remaining-time-count">
+             <div class="time-div">Ends in: 8 days 4 hrs 35 mins</div>
+            <div class="total-attendies-count">
+                <p class="icon"><mat-icon>group</mat-icon></p>
+                
+                <p class="count">87</p>
+            </div>
+            </div>
+        </div>
+       <div class="course-details">
+        <div class="details">
+            <div class="date">
+                <p class="tag">Date</p>
+                <p class="data">Dec 5th, 2020</p>
+            </div>
+            <div class="date">
+                <p class="tag">Time</p>
+                <p class="data">02:45PM</p>
+            </div>
+            <div class="date">
+                <p class="tag">Duration</p>
+                <p class="data">3 hours 45 mins</p>
+            </div>
+           
+            
+        </div>
+        <div class="reaction-button">
+            <button mat-raised-button class="details-button">DETAILS</button>
+           
+        </div>
+        
+       </div>
+        
+    </mat-card>
+</div>
 </div>
 <app-footer></app-footer>

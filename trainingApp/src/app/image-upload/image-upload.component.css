@@ -1,0 +1,59 @@
+.title{
+    color: #000000;
+    font-family: Inter;
+    font-size: 2.4rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 2.9rem;
+    text-align: center;
+}
+.close-icon{
+    color:rgba(0,0,0,0.5);
+    display: flex;
+    width: 100%;
+    justify-content: right;
+}
+
+.profile-photo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+
+}
+input{
+    width:50%;
+    /* padding: 1%; */
+    margin: auto;
+    margin-top:3%;
+     border: 1px solid rgb(18, 16, 16);
+     font-family: Inter;
+    font-size: 1.6rem;
+    /* font-weight: 500; */
+    letter-spacing: 0;
+    line-height: 1.9rem;
+    text-align: center;
+}
+
+.upload-button{
+    margin-top:5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.upload-button button{
+    cursor: pointer;
+    border-radius: 4px;
+    color:#fff;
+    background-color: #EC2C2C;
+  font-family: Roboto;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.32px;
+  line-height: 1.6rem;
+  text-align: center;
+  padding: 3% 5%;
+  margin-top: 5%;
+}

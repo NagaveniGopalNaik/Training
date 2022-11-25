@@ -8,6 +8,9 @@ import { EmployeeComponent } from './employee/employee.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
 import { NotificationAlertMessagesComponent } from './notification-alert-messages/notification-alert-messages.component';
+import { RejectReasonComponent } from './reject-reason/reject-reason.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
+
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:"full"},
   {path:'login',component:LoginComponent},
@@ -17,7 +20,9 @@ const routes: Routes = [
   {path:'employee',component:EmployeeComponent},
   {path:'change-password',component:ChangePasswordComponent},
   {path:'registerEmployee',component:EmployeeRegisterComponent},
-  {path:'notifications',component:NotificationAlertMessagesComponent}
+  {path:'notifications',component:NotificationAlertMessagesComponent},
+  {path:'reject-reason',component:RejectReasonComponent},
+  {path:'profile',component:ViewProfileComponent}
 ];
 
 @NgModule({
