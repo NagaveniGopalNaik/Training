@@ -32,8 +32,27 @@
     padding: 10px;
     cursor: pointer;
 }
+
+.navSideContent{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.navSideContent mat-icon{
+    color: #080808;
+}
+
+.navEmp{
+    cursor: pointer;
+    opacity: 0.5;
+    color: #230735;
+    font-family: Roboto;
+    font-weight: 900;
+    font-size: 1.8rem;
+
 .all-filter{
     position: relative;
+
     letter-spacing: 0;
     line-height: 2.1rem;
     align-self: center;

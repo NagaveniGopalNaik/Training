@@ -19,18 +19,32 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TrainingCountComponent } from './training-count/training-count.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AddProfileComponent } from './add-profile/add-profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { CreateTrainingComponent } from './create-training/create-training.component';  
+
+
 import { AddEmployeeHeaderComponent } from './add-employee-header/add-employee-header.component';
 import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
 import { AllEmployeeComponent } from './all-employee/all-employee.component';
 import { AssignEmployeeRoleComponent } from './assign-employee-role/assign-employee-role.component';
+
+import { InviteEmpComponent } from './invite-emp/invite-emp.component';
+import { DetailsPageComponent } from './details-page/details-page.component';
+
 import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
 import { NotificationAlertMessagesComponent } from './notification-alert-messages/notification-alert-messages.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { RejectReasonComponent } from './reject-reason/reject-reason.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';  
+
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    TrainingCountComponent,
+    NavbarComponent,
     LoginComponent,
     SuperAdminComponent,
     AdminComponent,
@@ -39,7 +53,10 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
     ChangePasswordComponent,
     LoginPageHeaderComponent,
     OtpPageComponent,
-    AppComponent,
+    AddProfileComponent,
+    EditProfileComponent,
+    CreateTrainingComponent,
+   
     HeaderComponent,
     FooterComponent,
     TrainingCountComponent,
@@ -48,11 +65,16 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
     EmployeeRegisterComponent,
     AllEmployeeComponent,
     AssignEmployeeRoleComponent,
+
+    InviteEmpComponent,
+    DetailsPageComponent,
+
     EmployeeHeaderComponent,
     NotificationAlertMessagesComponent,
     ViewProfileComponent,
     RejectReasonComponent,
     ImageUploadComponent
+
 
 
   ],
