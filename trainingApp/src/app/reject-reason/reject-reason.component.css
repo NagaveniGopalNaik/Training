@@ -1,0 +1,70 @@
+.container{
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.heading{
+    color: rgba(6,35,92,1);
+  font-family: Roboto;
+  font-size: 2.4rem;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 2.8rem;
+}
+.reject-reason-body{
+    width:35%;
+    padding: 2.8%;
+}
+.buttons{
+width: 100%;
+margin: auto;
+display: flex;
+justify-content: right;
+align-items: center;
+}
+
+.button-option{
+    width:15%;
+    margin-top: 3%;
+    font-family: Roboto;
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 0.32px;
+    line-height: 1.6rem;
+    text-align: center;
+    padding: 2% 3%;
+    
+    
+}
+#reject{
+    width: 94%;
+    margin: auto;
+    padding: 3%;
+    color: #000;
+  font-family: Roboto;
+  font-size: 1.4rem;
+  letter-spacing: 0.12px;
+  line-height: 2.4rem;
+    
+}
+#reject:focus{
+    outline: none;
+}
+#reject::-webkit-input-placeholder{
+    color: rgba(168,168,168,1);
+}
+.cancel{
+    background-color: rgba(213,213,213,1);
+    color: rgba(90,90,90,1);
+    margin-right: 5%;
+    
+    
+}
+.send{
+    border-radius: 4px;
+  background-color: rgba(236,44,89,1);
+  color: rgba(255,255,255,1);
+}

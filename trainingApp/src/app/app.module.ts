@@ -24,7 +24,10 @@ import { EmployeeRegisterComponent } from './employee-register/employee-register
 import { AllEmployeeComponent } from './all-employee/all-employee.component';
 import { AssignEmployeeRoleComponent } from './assign-employee-role/assign-employee-role.component';
 import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
-import { NotificationAlertMessagesComponent } from './notification-alert-messages/notification-alert-messages.component';  
+import { NotificationAlertMessagesComponent } from './notification-alert-messages/notification-alert-messages.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { RejectReasonComponent } from './reject-reason/reject-reason.component';
+import { ImageUploadComponent } from './image-upload/image-upload.component';  
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +49,10 @@ import { NotificationAlertMessagesComponent } from './notification-alert-message
     AllEmployeeComponent,
     AssignEmployeeRoleComponent,
     EmployeeHeaderComponent,
-    NotificationAlertMessagesComponent
+    NotificationAlertMessagesComponent,
+    ViewProfileComponent,
+    RejectReasonComponent,
+    ImageUploadComponent
 
 
   ],
@@ -56,7 +62,8 @@ import { NotificationAlertMessagesComponent } from './notification-alert-message
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

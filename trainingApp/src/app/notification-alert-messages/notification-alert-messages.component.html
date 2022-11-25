@@ -1,6 +1,6 @@
 <app-employee-header></app-employee-header>
 <div class="navbar-path">
-    <div class="details">
+    <div class="detail-path">
         HOME > Training Details
     </div>
     
@@ -8,7 +8,7 @@
 <div class="notifications-details">
     <mat-card class="each-notification-details">
         <div class="courseName">
-            <p class="trianing-name">UX/UI Design Process <span class="button">UPCOMING</span></p>
+            <p class="trianing-name">UX/UI Design Process <button mat-raised-button class="course-button">UPCOMING</button></p>
         <p class="trainer">Trainer : <span class="trainer-name">George Rehaman</span></p>
         </div>
         <div class="details">
@@ -45,7 +45,11 @@
         </div>
         <div class="reaction-button">
             <button mat-raised-button class="accept">ACCEPT</button>
-            <button mat-raised-button class="reject">REJECT</button>
+            <button mat-raised-button class="reject" (click)="reject_reason()">REJECT</button>
         </div>
     </mat-card>
+</div>
+<div class="footer">
+
+<app-footer></app-footer>
 </div>

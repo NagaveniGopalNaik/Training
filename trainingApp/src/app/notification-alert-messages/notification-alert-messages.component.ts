@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { RejectReasonComponent } from '../reject-reason/reject-reason.component';
 @Component({
   selector: 'app-notification-alert-messages',
   templateUrl: './notification-alert-messages.component.html',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationAlertMessagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
-
+  reject_reason(){
+this.router.navigate(['/reject-reason']);
+  }
 }

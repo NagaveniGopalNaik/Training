@@ -9,7 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatBadgeModule} from '@angular/material/badge';
 const materials = [
   MatCardModule,
   MatButtonModule,
@@ -19,7 +19,8 @@ const materials = [
   MatIconModule,
   MatInputModule,
   MatTableModule,
-  MatSelectModule
+  MatSelectModule,
+  MatBadgeModule
 
 ]
 
