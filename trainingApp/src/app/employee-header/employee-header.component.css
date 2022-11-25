@@ -1,0 +1,77 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5% 15%;
+    
+}
+#logo{
+    height: 90%;
+}
+.profile{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+}
+#logo{
+    cursor: pointer;
+}
+
+#pimage{
+    height: 50px;
+    border-radius: 50%;
+}
+.pimage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+}
+
+.material-icons{
+   font-size: 35px;
+}
+.pimage .material-icons{
+    font-size: large;
+}
+
+li{
+    list-style: none;
+    padding: 2px;
+    font-size: small;
+}
+.icon{
+    cursor: pointer;
+}
+.arrow-down{
+    cursor: pointer;
+    position: relative;
+}
+.dropdown-option{
+    /* border: 1px solid black; */
+    padding: 0 1%;
+    z-index: 1;
+    position: fixed;
+    top:9%;
+    right: 15%;
+    background-color: white;
+    position: absolute;
+    
+}
+.dropdown-option p{
+    /* width: 30%; */
+    background-color: white;
+    cursor: pointer;
+    padding: 2% 4%;
+}
+.dropdown-option p:hover{
+    background-color: rgba(0,0,0,0.2);
+}
+
+.dropdown{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+

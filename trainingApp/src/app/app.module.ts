@@ -28,8 +28,15 @@ import { AddEmployeeHeaderComponent } from './add-employee-header/add-employee-h
 import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
 import { AllEmployeeComponent } from './all-employee/all-employee.component';
 import { AssignEmployeeRoleComponent } from './assign-employee-role/assign-employee-role.component';
+
 import { InviteEmpComponent } from './invite-emp/invite-emp.component';
 import { DetailsPageComponent } from './details-page/details-page.component';
+
+import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
+import { NotificationAlertMessagesComponent } from './notification-alert-messages/notification-alert-messages.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { RejectReasonComponent } from './reject-reason/reject-reason.component';
+import { ImageUploadComponent } from './image-upload/image-upload.component';  
 
 @NgModule({
   declarations: [
@@ -58,8 +65,16 @@ import { DetailsPageComponent } from './details-page/details-page.component';
     EmployeeRegisterComponent,
     AllEmployeeComponent,
     AssignEmployeeRoleComponent,
+
     InviteEmpComponent,
     DetailsPageComponent,
+
+    EmployeeHeaderComponent,
+    NotificationAlertMessagesComponent,
+    ViewProfileComponent,
+    RejectReasonComponent,
+    ImageUploadComponent
+
 
 
   ],
@@ -69,7 +84,8 @@ import { DetailsPageComponent } from './details-page/details-page.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

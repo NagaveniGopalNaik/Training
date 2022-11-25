@@ -13,8 +13,13 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CreateTrainingComponent } from './create-training/create-training.component';
 
 import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
+
 import { InviteEmpComponent } from './invite-emp/invite-emp.component';
 import { DetailsPageComponent } from './details-page/details-page.component';
+
+import { NotificationAlertMessagesComponent } from './notification-alert-messages/notification-alert-messages.component';
+import { RejectReasonComponent } from './reject-reason/reject-reason.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 
 const routes: Routes = [
@@ -32,8 +37,13 @@ const routes: Routes = [
   {path:'createTraining',component:CreateTrainingComponent},
 
   {path:'registerEmployee',component:EmployeeRegisterComponent},
+
   {path:'inviteEmp',component:InviteEmpComponent},
   {path:'detailsPage',component:DetailsPageComponent}
+
+  {path:'notifications',component:NotificationAlertMessagesComponent},
+  {path:'reject-reason',component:RejectReasonComponent},
+  {path:'profile',component:ViewProfileComponent}
 
 ];
 

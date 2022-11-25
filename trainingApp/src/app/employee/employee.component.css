@@ -1,3 +1,4 @@
+
 .poptions{
     background-color: #FDF4F6;
     color:#d92756;
@@ -161,3 +162,260 @@
     border: none;
     cursor: pointer;
 }
+=======
+.navbar-path{
+    background-color: #EEEEEE;
+    color: #909090;
+  font-family: Roboto;
+  font-size: 1.4rem;
+  letter-spacing: 0;
+  line-height: 1.6rem;
+  padding: 1.5% 15%;
+}
+
+
+.each-notification-details{
+    width: 70%;
+    margin: auto;
+    margin-top: 2%;
+    padding: 0;
+    
+}
+.course-details{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    width: 95%;
+    margin: auto;
+    
+}
+.body{
+    height: 60vh;
+    overflow-y: scroll;
+}
+.body::-webkit-scrollbar{
+    display: none;
+}
+
+
+.trianing-name{
+    color: #06235C;
+  font-family: Roboto;
+  font-size: 2.0rem;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 2.4rem;
+}
+.trainer{
+    color: #4C4C4C;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+    line-height: 19px;
+}
+.trainer-name{
+    font-weight: 500;
+}
+.details{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin:2% 0%;
+}
+.courseName{
+    margin:2%;
+}
+.date{
+    
+    text-align: left;
+    justify-content: left;
+}
+.date{
+    width: 25%;
+    text-align: left;
+}
+.tag{
+    color: #A8A8A8;
+    font-family: Roboto;
+    font-size: 1.4rem;
+    letter-spacing: 0.12px;
+    line-height: 2.4rem;
+}
+.data{
+    color: #000000;
+  font-family: Roboto;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.43px;
+  line-height: 1.9rem;
+}
+
+
+.lighter{
+    font-weight: 400;
+}
+button{
+    border-radius: 4px;
+    color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.32px;
+  line-height: 1.6rem;
+  text-align: center;
+  padding: 1% 2%;
+  margin-top: 3%;
+}
+
+
+.course-button{
+    border-radius: 4px;
+    background-color: rgba(222,132,50,1);
+    color: rgba(255,255,255,1);
+    font-family: Roboto;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 1.2rem;
+    padding: 1% 2%;
+}
+
+.details-button{
+    
+    background-color: rgba(236,44,89,1);
+    padding: 8% 15%;
+    /* margin: 0 0 2% 2%; */
+    color: rgba(255,255,255,1);
+  font-family: Roboto;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.32px;
+  line-height: 1.6rem;
+  text-align: center;
+  }
+
+.reaction-button{
+    width: 20%;
+    text-align: left;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.course-time,.remaining-time-count,.total-attendies-count{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.course-time{
+    width: 97%;
+    
+}
+.remaining-time-count{
+    margin-left: 10px;
+width: 30%;
+justify-content: space-around;
+}
+.position{
+    width: 10%;
+    display: flex;
+    
+}
+.position .total-attendies-count{
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-attendies-count{
+ width: 15%;
+ margin-top: 20px;
+}
+.time-div{
+    width:fit-content;
+    border: 1px solid rgba(221,221,221,1);
+  border-radius: 4px;
+  background-color: rgba(243,243,243,1);
+  color: rgba(37,4,12,1);
+  font-family: Roboto;
+  font-size: 1.4rem;
+  letter-spacing: 0.37px;
+  line-height: 1.6rem;
+  text-align: center;
+  padding: 2% 5%;
+}
+
+.count{
+    color: rgba(35,7,53,1);
+  font-family: Roboto;
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 0.2px;
+  line-height: 1.9rem;
+}
+
+.active{
+    background-color: rgba(113,172,27,1);
+}
+.completed{
+    background-color: rgba(222,187,50,1);
+}
+
+
+/* Navbar */
+
+.parentContainer{
+    border-bottom:  1px solid rgb(39,106,160,0.3);
+    margin: 1% 15%;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.container{
+    display: flex;
+    justify-content: space-around;
+    /* width: 40%; */
+    text-align: left;
+}
+.navHeading{
+    
+    opacity: 0.5;
+    color: #230735;
+    font-family: Roboto;
+    font-size: 1.8rem;
+    letter-spacing: 0;
+    line-height: 2.1rem;
+    padding: 10px 10px 10px 0px;
+}
+.navContent{
+    opacity: 0.4;
+    color: #230735;
+    font-family: Roboto;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 2.1rem;
+    padding: 10px;
+    cursor: pointer;
+}
+.navEmp{
+    cursor: pointer;
+    /* opacity: 0.5; */
+    color: #000;
+    font-family: Roboto;
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: 0;
+    line-height: 2.1rem;
+    align-self: center;
+}
+.active-tag{
+    color:red;
+    border-bottom: 3px solid red;
+    opacity: 1;
+}
+

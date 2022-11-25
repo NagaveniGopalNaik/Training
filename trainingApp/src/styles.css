@@ -49,3 +49,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: fit-content;
     border-radius: 10px;
 }
+
+.mat-badge-medium.mat-badge-above .mat-badge-content {
+    top: -3px;
+}
+
+.image-upload .mat-dialog-container{
+    width:30vw;
+    border-radius: 10px;
+    height: fit-content;
+}
