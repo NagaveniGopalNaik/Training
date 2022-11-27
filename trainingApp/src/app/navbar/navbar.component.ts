@@ -10,6 +10,7 @@ export class NavbarComponent implements OnInit {
   upcoming=false;
   completed=false;
   allEmployees=false;
+  displayFilter=false;
   constructor() { }
 
   ngOnInit(): void {
@@ -40,5 +41,11 @@ export class NavbarComponent implements OnInit {
     this.active=false;
     this.allEmployees=true;
   }
+filter(){
+  this.displayFilter=true;
+}
 
+apply(){
+  this.displayFilter = false;
+}
 }
