@@ -1,168 +1,3 @@
-
-.poptions{
-    background-color: #FDF4F6;
-    color:#d92756;
-    padding: 5px;
-}
-.training_button{
-    color: #FFFFFF;
-  font-family: Roboto;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 0.32px;
-  line-height: 16px;
-  text-align: center;
-  border-radius: 4px;
-  background-color: #230735;
-  border: none;
-  padding:10px 20px;
-
-}
-.containerCourse{
-    display: flex;
-    justify-content: space-around;
-    text-align: flex-start;
-    gap: 1rem;
-}
-.containerEmp{
-    display: flex;
-    justify-content:space-around;
-    gap: 1rem;
-}
-.parentContainer{
-    width: 80%;
-    height: 20%;
-    margin: auto;
-    border-radius: 4px;
-    background-color: #FFFFFF;
-    box-shadow: 0 2px 8px 0 rgba(6,35,92,0.08);
-}
-.container{
-    margin: 3% 3% 0% 3%;
-    display: flex;
-    justify-content: space-between;
-}
-.course_name{
-    color: #06235C;
-    font-family: Roboto;
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 0;
-    line-height: 24px;
-
-}
-.course_status{
-    color: #FFFFFF;
-    font-family: Roboto;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 0;
-    line-height: 12px;
-    border-radius: 4px;
-    background-color: #DEBB32;
-    padding: 3px 12px 3px 12px;
-    border: none;
-    align-self: center;
-}
-.totalEmpCount{
-    color: #230735;
-    font-family: Roboto;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 0.2px;
-    line-height: 19px;
-    padding-top: 5px;
-}
-.totalEmpIcon mat-icon{
-    font-size: 28px;
-}
-.containerTraining{
-    display: flex;
-    margin: 0% 0% 0% 3%;
-}
-.trainer{
-    color: #9e9d9d;
-    font-family: Roboto;
-    font-size: 14px;
-}
-.trainerName{
-    color: #5a5656;
-    font-family: Roboto;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.2px;
-    line-height: 19px;
-}
-.containerDate{
-    display: flex;
-    justify-content:space-between;
-    margin: 3% 3% 0% 3%; 
-}
-.containerDetails{
-    display: flex;
-    justify-content: space-around;
-    gap: 1.5rem;
-}
-.detailsIcon mat-icon{
-    font-size: 23px;
-    align-self: right;
-}
-.start_date{
-    display: flex;
-    flex-direction: column;
-    color: #A8A8A8;
-    font-family: Roboto;
-    font-size: 12px;
-    letter-spacing: 0.12px;
-    line-height: 24px;
-}
-#date{
-    color: black;
-    font-family: Roboto;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.43px;
-}
-.end_date{
-    display: flex;
-    flex-direction: column; 
-    color: #A8A8A8;
-    font-family: Roboto;
-    font-size: 12px;
-    letter-spacing: 0.12px;
-    line-height: 24px;
-}
-.duration{
-    display: flex;
-    flex-direction: column; 
-    color: #A8A8A8;
-    font-family: Roboto;
-    font-size: 12px;
-    letter-spacing: 0.12px;
-    line-height: 24px;
-}
-#duration{
-    color: black;
-    font-family: Roboto;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.43px;
-}
-.details{
-    color: #FFFFFF;
-    font-family: Roboto;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 0.32px;
-    line-height: 16px;
-    text-align: center;
-    border-radius: 4px;
-    background-color: #EC2C59;
-    padding: 8px 10px 8px 10px;
-    border: none;
-    cursor: pointer;
-}
-=======
 .navbar-path{
     background-color: #EEEEEE;
     color: #909090;
@@ -418,4 +253,78 @@ justify-content: space-around;
     border-bottom: 3px solid red;
     opacity: 1;
 }
+.navEmp{
+    position: relative;
+}
 
+/* filter apply part */
+.filter-data{
+    height: fit-content;
+    position: absolute;
+    top:100%;
+    right: 0;
+    width: 30vw;
+    z-index: 2;
+    display: none;
+}
+.filter-apply{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.field{
+    background-color: transparent;
+    width: 100%;
+    margin-right: 5%;
+}
+.start-date{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ input{
+    width: 45%;
+    border:none;
+    border-bottom:1px solid rgba(0,0,0,0.25);
+}
+input:focus{
+    outline: none;
+}
+
+
+   .filter{
+    color: #000000;
+    font-family: Roboto;
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0.43px;
+    line-height: 4.0rem;
+   }
+
+   .apply{
+    border-radius: 4px;
+    background-color: #230735;
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 0.32px;
+    line-height: 1.6rem;
+    text-align: center;
+    padding: 2.5% 4%;
+   }
+   
+   .date-text{
+    color: #000000;
+  font-family: Roboto;
+  font-size: 1.2rem;
+  letter-spacing: 0.32px;
+  line-height: 4.0rem;
+  text-align: left;
+   }
+   .display{
+    display: block;
+   }
+
+  

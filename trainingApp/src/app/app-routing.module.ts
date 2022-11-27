@@ -39,7 +39,7 @@ const routes: Routes = [
   {path:'registerEmployee',component:EmployeeRegisterComponent},
 
   {path:'inviteEmp',component:InviteEmpComponent},
-  {path:'detailsPage',component:DetailsPageComponent}
+  {path:'detailsPage',component:DetailsPageComponent},
 
   {path:'notifications',component:NotificationAlertMessagesComponent},
   {path:'reject-reason',component:RejectReasonComponent},

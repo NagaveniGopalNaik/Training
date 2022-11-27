@@ -9,6 +9,7 @@ export class EmployeeComponent implements OnInit {
 active=true;
 upcoming=false;
 completed=false;
+displayFilter=false;
   constructor() { }
 
   ngOnInit(): void {
@@ -27,6 +28,14 @@ completed=false;
     this.upcoming=false;
     this.completed=true;
     this.active=false;
+  }
+
+  filter(){
+    this.displayFilter=true;
+  }
+  
+  apply(){
+    this.displayFilter = false;
   }
 
 }
