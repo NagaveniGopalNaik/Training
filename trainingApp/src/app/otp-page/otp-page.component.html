@@ -1,20 +1,47 @@
-<form action="" class="login-form">
+<form action="" class="login-form" [formGroup]="otp_data" *ngIf = "otpGenerate" (ngSubmit)="generateOtp()">
     <p class="login-head-text">OTP Generator</p>
     
         <mat-form-field  appearance="outline" class="form-field">
             <mat-label>Employee code</mat-label>
-            <input type="text" matInput class="login-input" [(ngModel)]="employee_code" name="employee_code">
+            <input type="text" matInput class="login-input" formControlName="empId">
         </mat-form-field>
         <mat-form-field  appearance="outline" class="form-field">
             <mat-label>Employee mail id</mat-label>
-            <input type="text" matInput class="login-input" [(ngModel)]="mailId" name="mailId">
+            <input type="text" matInput class="login-input" formControlName="emailId">
         </mat-form-field>
-        <button mat-raised-button class="login-button" (click)="generateOtp()" [disabled]="disabled">Generate OTP</button>
-        <ng-container *ngIf="display" class="otp-field">
-            <mat-form-field  appearance="outline" class="form-field">
-                <mat-label>Enter OTP</mat-label>
-                <input type="text" matInput class="login-input" [(ngModel)]="otp" name="otp">
-            </mat-form-field>
-            <button mat-raised-button class="login-button" (click)="changePassword()" mat-dialog-close>Submit</button>
-        </ng-container>
+        <button mat-raised-button class="login-button">Generate OTP</button>
+    
+</form>
+
+<form action="" class="login-form" [formGroup]="check_otp" *ngIf = "display" (ngSubmit)="changeOtp()">
+    <p class="login-head-text">OTP Varification</p>
+    
+        <mat-form-field  appearance="outline" class="form-field">
+            <mat-label>Employee code</mat-label>
+            <input type="text" matInput class="login-input" formControlName="empId">
+        </mat-form-field>
+        <mat-form-field  appearance="outline" class="form-field">
+            <mat-label>OTP code</mat-label>
+            <input type="number" matInput class="login-input" formControlName="otpCode">
+        </mat-form-field>
+        <button mat-raised-button class="login-button">Verify&nbsp;OTP</button>
+       
+</form>
+
+<form action="" class="login-form" [formGroup]="change_password" *ngIf = "changePassword" (ngSubmit)="changepassword()">
+    <p class="login-head-text">Change Password</p>
+    
+    <mat-form-field  appearance="outline" class="form-field">
+        <mat-label>Employee code</mat-label>
+        <input type="text" matInput class="login-input" formControlName="empId" name="empId" #empId>
+        <mat-hint *ngIf="change_password.get('empId')?.hasError('pattern')">Only Uppercase letter and digits valid</mat-hint>
+    </mat-form-field>
+        <mat-form-field  appearance="outline" class="form-field">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput class="login-input" formControlName="password" name="password">
+            <mat-hint *ngIf="change_password.get('password')?.hasError('pattern')">Password include uppercase,lowercase,digit and special charactor</mat-hint>
+            <mat-hint *ngIf="change_password.get('password')?.hasError('minlength') && change_password.get('password')?.touched && !change_password.get('password')?.hasError('pattern')">Password minimum length 8 charactors</mat-hint>
+        </mat-form-field>
+        <button mat-raised-button class="login-button">Submit</button>
+       
 </form>

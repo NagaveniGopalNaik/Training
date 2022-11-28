@@ -37,6 +37,7 @@ import { NotificationAlertMessagesComponent } from './notification-alert-message
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { RejectReasonComponent } from './reject-reason/reject-reason.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';  
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
     // FontAwesomeModule
   ],
   providers: [],
