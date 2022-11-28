@@ -1,0 +1,219 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 4% 15%;
+    height: 4%;
+}
+
+#logo {
+    height: 60px;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+}
+
+#pimage {
+    height: 50px;
+    border-radius: 50%;
+}
+
+.pimage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+}
+
+.material-icons {
+    font-size: 35px;
+}
+
+.pimage .material-icons {
+    font-size: large;
+}
+
+li {
+    list-style: none;
+    padding: 2px;
+    font-size: small;
+    z-index: 1;
+    cursor: pointer;
+
+
+}
+
+.poptions {
+    background-color: #FDF4F6;
+    color: #d92756;
+    padding: 5px;
+}
+
+.training_button {
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.32px;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #230735;
+    border: none;
+    padding: 10px 20px;
+
+}
+
+hr {
+    margin-bottom: 2rem;
+}
+
+.parentMain {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: auto;
+}
+
+.main {
+    width: 63%;
+}
+
+.sidebar {
+    width: 28%;
+    height: 35%;
+}
+
+#trainingheading {
+    color: #06235C;
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 28px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+}
+
+.parentContainer {
+    margin: 0.5rem 1rem 0.5rem 1rem;
+}
+
+input {
+    width: 95%;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    padding: 9px;
+}
+
+label {
+    color: #373A3C;
+    font-family: Roboto;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 24px;
+}
+
+.choice {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+#attendees {
+    color: #06235C;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 21px;
+}
+
+#noEmpAdded {
+    color: rgb(78, 70, 70);
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    line-height: 24px;
+}
+
+.inviteEmp {
+    color: #EC2C59;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    line-height: 24px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.attendeesContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    padding: 0.5% 2% 0.5% 2%;
+    margin-top: 4%;
+    align-items: center;
+}
+
+.sidebarContainer {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 60vh;
+}
+
+
+#profileimg {
+    height: 50px;
+    border-radius: 50%;
+
+}
+
+.empName {
+    color: #373A3C;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 24px;
+
+}
+
+.empDesignation {
+    color: #373A3C;
+    font-family: Roboto;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 15px;
+}
+
+.empCode {
+    color: #373A3C;
+    font-family: Roboto;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 24px;
+}
+
+.addIcon mat-icon {
+    color: white;
+    background-color: #d92756;
+    font-size: 25px;
+}

@@ -1,0 +1,49 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    margin: 4% 15%;
+    height: 4%;
+}
+#logo{
+    height: 60px;
+}
+.profile{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+}
+
+#pimage{
+    height: 50px;
+    border-radius: 50%;
+}
+.pimage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+}
+
+.pimage .material-icons{
+    font-size: large;
+}
+
+li{
+    list-style: none;
+    padding: 2px;
+    font-size: small;
+    z-index: 1;
+    cursor: pointer;
+    
+    
+}
+.poptions{
+    background-color: #FDF4F6;
+    color:#d92756;
+    padding: 5px;
+    position: fixed;
+    right: 15%;
+    top:35%;
+    z-index: 1;
+}

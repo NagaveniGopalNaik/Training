@@ -9,7 +9,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatNativeDateModule } from '@angular/material/core';
+
 import {MatBadgeModule} from '@angular/material/badge';
+
 const materials = [
   MatCardModule,
   MatButtonModule,
@@ -20,8 +26,12 @@ const materials = [
   MatInputModule,
   MatTableModule,
   MatSelectModule,
-  MatBadgeModule
 
+  MatDatepickerModule,
+  MatRadioModule,
+  MatNativeDateModule,
+
+  MatBadgeModule
 ]
 
 @NgModule({

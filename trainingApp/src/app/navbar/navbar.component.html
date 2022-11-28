@@ -5,17 +5,29 @@
         <div class="navContent" [class.active-tag]="upcoming" (click)="upcomingFunction()">Upcoming</div>
         <div class="navContent" [class.active-tag]="completed" (click)="completeFunction()">Completed</div>
     </div>
+
    <div class="all-filter">
     <div class="navContent" [class.active-tag]="allEmployees" (click)="allEmployeeFunction()">
         <span>All&nbsp;Employee</span>
         
     </div>
-    <mat-icon class="icon">filter_list</mat-icon>
-    <mat-card class="filter-data">
+    <mat-icon class="icon" (click)="filter()">filter_list</mat-icon>
+    <mat-card class="filter-data" [class.display]="displayFilter">
         <div class="filter-apply">
             <p class="filter">Filter</p>
-            <button mat-raised-button class="apply">Apply</button>
+            <button mat-raised-button class="apply" (click)="apply()">Apply</button>
         </div>
+        <p class="date-text">Date</p>
+        <div class="date-picker">
+           
+              <div class="start-date">
+              
+                <input type="text" placeholder="From" onfocus="(this.type='date')" onblur="(this.type='text')">
+                <input type="text" placeholder="To" onfocus="(this.type='date')" onblur="(this.type='text')">
+              </div>
+        </div>
+           
+       
     </mat-card>
    </div>
     
