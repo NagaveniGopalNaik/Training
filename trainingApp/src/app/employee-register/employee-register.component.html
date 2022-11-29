@@ -8,26 +8,32 @@
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Employee Id</mat-label>
                     <input type="text" matInput formControlName="empId" name="empId" class="input-field">
+                    <mat-hint *ngIf="employee_register_form.get('empId')?.hasError('pattern')">Only Uppercase letter and digits valid</mat-hint>
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Employee Name</mat-label>
                     <input type="text" matInput formControlName="empName" name="empName" class="input-field">
+                    <mat-hint *ngIf="employee_register_form.get('empName')?.hasError('pattern')">Not allow digits and special symbols</mat-hint>
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Password</mat-label>
                     <input type="password" matInput formControlName="password" name="password" class="input-field">
+                    <mat-hint *ngIf="employee_register_form.get('password')?.hasError('pattern')">Password include uppercase,lowercase,digit and special charactor</mat-hint>
+                    <mat-hint *ngIf="employee_register_form.get('password')?.hasError('minlength') && employee_register_form.get('password')?.touched && !employee_register_form.get('password')?.hasError('pattern')">Password minimum length 8 charactors</mat-hint>
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Designation</mat-label>
                     <input type="text" matInput formControlName="designation" name="designation" class="input-field">
+                    <mat-hint *ngIf="employee_register_form.get('designation')?.hasError('pattern')">Not allow digits and special symbols</mat-hint>
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Email</mat-label>
                     <input type="email" matInput formControlName="email" name="email" class="input-field">
+                    <mat-hint *ngIf="employee_register_form.get('email')?.invalid && employee_register_form.get('email')?.touched">Email invalid (should contain @ and .)</mat-hint>
                 </mat-form-field>
                 <div class="store-button">
                     <button type="submit" mat-raised-button color="accent" class="register">Register</button>
-                    <button mat-raised-button mat-dialog-close color="accent" class="done">Done</button>
+                    <button mat-raised-button mat-dialog-close color="accent" class="done" (click)="storeServer()">Done</button>
                 </div>
             </div>
         

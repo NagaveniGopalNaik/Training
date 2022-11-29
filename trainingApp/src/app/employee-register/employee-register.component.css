@@ -42,6 +42,7 @@
 .form-field{
     /* width: 24.5rem; */
     width: 100%;
+    margin-bottom:2%;
 }
 .add-button{
    margin-top: -2%; 
