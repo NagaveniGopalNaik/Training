@@ -20,6 +20,8 @@ import { DetailsPageComponent } from './details-page/details-page.component';
 import { NotificationAlertMessagesComponent } from './notification-alert-messages/notification-alert-messages.component';
 import { RejectReasonComponent } from './reject-reason/reject-reason.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { ManagerTrainingDetailsComponent } from './manager-training-details/manager-training-details.component';
+import { InviteReporteesComponent } from './invite-reportees/invite-reportees.component';
 
 
 const routes: Routes = [
@@ -39,7 +41,9 @@ const routes: Routes = [
   {path:'registerEmployee',component:EmployeeRegisterComponent},
 
   {path:'inviteEmp',component:InviteEmpComponent},
-  {path:'detailsPage',component:DetailsPageComponent}
+  {path:'inviteReportees',component:InviteReporteesComponent},
+  {path:'detailsPage',component:DetailsPageComponent},
+  {path:'managerTrainingDetails',component:ManagerTrainingDetailsComponent},
 
   {path:'notifications',component:NotificationAlertMessagesComponent},
   {path:'reject-reason',component:RejectReasonComponent},

@@ -126,6 +126,7 @@ label {
     display: flex;
     justify-content: space-between;
     gap: 2rem;
+    padding-top: 5%;
 }
 
 #attendees {
@@ -172,7 +173,39 @@ label {
     margin-top: 4%;
     align-items: center;
 }
-
+.startdate, .enddate{
+    
+    width: 100%;
+}
+.dates{
+    display: flex;
+    gap: 2%;
+    padding-top: 5%;
+    padding-bottom: 2%;
+    width: 35%;
+    flex-direction: column;
+}
+.timedateContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 122%;
+}
+.timeContainer{
+    display: flex;
+    flex-direction: column;
+    padding-top: 5%;
+}
+.timeDuration{
+    display: flex;
+    gap: 2%;
+}
+.timeWidth{
+    width: 14%;
+    margin-right: 3%;
+}
+/* .chooseMedian{
+    position: relative;
+} */
 .sidebarContainer {
     overflow-x: hidden;
     overflow-y: scroll;
@@ -214,6 +247,8 @@ label {
 
 .addIcon mat-icon {
     color: white;
-    background-color: #d92756;
-    font-size: 25px;
+    background-color: #EC2C59;
+    font-size: 24px;
+    border-radius: 50%;
 }
+

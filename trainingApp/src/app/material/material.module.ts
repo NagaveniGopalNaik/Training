@@ -29,7 +29,7 @@ const materials = [
 
   MatDatepickerModule,
   MatRadioModule,
-  MatNativeDateModule
+  MatNativeDateModule,
 
   MatBadgeModule
 ]

@@ -36,7 +36,10 @@ import { EmployeeHeaderComponent } from './employee-header/employee-header.compo
 import { NotificationAlertMessagesComponent } from './notification-alert-messages/notification-alert-messages.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { RejectReasonComponent } from './reject-reason/reject-reason.component';
-import { ImageUploadComponent } from './image-upload/image-upload.component';  
+import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { ManagerTrainingDetailsComponent } from './manager-training-details/manager-training-details.component';
+import { InviteReporteesComponent } from './invite-reportees/invite-reportees.component';
+import { AdminTrainingDetailsComponent } from './admin-training-details/admin-training-details.component';  
 
 @NgModule({
   declarations: [
@@ -73,7 +76,10 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
     NotificationAlertMessagesComponent,
     ViewProfileComponent,
     RejectReasonComponent,
-    ImageUploadComponent
+    ImageUploadComponent,
+    ManagerTrainingDetailsComponent,
+    InviteReporteesComponent,
+    AdminTrainingDetailsComponent
 
 
 
