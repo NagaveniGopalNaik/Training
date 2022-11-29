@@ -37,7 +37,7 @@ import { NotificationAlertMessagesComponent } from './notification-alert-message
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { RejectReasonComponent } from './reject-reason/reject-reason.component';
 
-import { ImageUploadComponent } from './image-upload/image-upload.component';  
+// import { ImageUploadComponent } from './image-upload/image-upload.component';  
 import { HttpClientModule } from '@angular/common/http';
 
 import { ImageUploadComponent } from './image-upload/image-upload.component';
@@ -45,7 +45,7 @@ import { ManagerTrainingDetailsComponent } from './manager-training-details/mana
 import { InviteReporteesComponent } from './invite-reportees/invite-reportees.component';
 import { AdminTrainingDetailsComponent } from './admin-training-details/admin-training-details.component';  
 
-
+// import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +84,9 @@ import { AdminTrainingDetailsComponent } from './admin-training-details/admin-tr
     ImageUploadComponent,
     ManagerTrainingDetailsComponent,
     InviteReporteesComponent,
-    AdminTrainingDetailsComponent
+    AdminTrainingDetailsComponent,
+
+    // NgxMaterialTimepickerModule
 
 
 
