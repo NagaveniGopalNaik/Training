@@ -41,9 +41,13 @@ const routes: Routes = [
   {path:'registerEmployee',component:EmployeeRegisterComponent},
 
   {path:'inviteEmp',component:InviteEmpComponent},
+
+  {path:'detailsPage',component:DetailsPageComponent},
+
   {path:'inviteReportees',component:InviteReporteesComponent},
   {path:'detailsPage',component:DetailsPageComponent},
   {path:'managerTrainingDetails',component:ManagerTrainingDetailsComponent},
+
 
   {path:'notifications',component:NotificationAlertMessagesComponent},
   {path:'reject-reason',component:RejectReasonComponent},
