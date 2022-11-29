@@ -74,11 +74,12 @@ login(){
 }
 storeToken(token:any){
   console.log(token);
-  
-  let encrypt_token = CryptoJS.AES.encrypt( token, "Token@superAdmin").toString();
-sessionStorage.setItem('token',JSON.stringify(encrypt_token));
+  // 
+  // let encrypt_token = CryptoJS.AES.encrypt( token, "Token@superAdmin").toString();
+sessionStorage.setItem('token',JSON.stringify(token));
 
-console.log(encrypt_token);
+// console.log(encrypt_token);
+
 // let decrypt_token =CryptoJS.AES.decrypt(encrypt_token, "Token@superAdmin").toString(CryptoJS.enc.Utf8);
 // console.log(decrypt_token);
 }
