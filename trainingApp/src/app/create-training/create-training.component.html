@@ -25,7 +25,7 @@
 </div>
 <hr>
 <div class="parentMain">
-    <mat-card class="main">
+    <mat-card class="main" [formGroup]="createTrainingForm">
         <span id="trainingheading">Create New Training</span>
         <div class="parentContainer">
             <div class="inputContainer">
@@ -34,7 +34,7 @@
             </div>
             <div class="inputContainer">
                 <label for="">Trainer Name</label>
-                <input type="text">
+                <input type="text" >
             </div>
             <div class="choice">
                 <mat-radio-group>
@@ -44,13 +44,48 @@
                 </mat-radio-group>
 
             </div>
-            <mat-form-field appearance="fill">
-                <mat-label>Custom calendar header</mat-label>
-                <input matInput [matDatepicker]="picker">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+            <div class="timedateContainer">
+                <div class="dates">
+                    <div><label for="">Start date</label><br>
+                        <input type="date" class="startdate">
+                    </div>
+                    <div>
+                        <label for="">End Date</label><br>
+                        <input type="date" class="enddate">
+                    </div>
+                </div>
+
+            <div class="timeContainer">
+                <div class="inputTime">
+                   <div> <label for="">Start Time</label></div>
+                   <div> <input type="number"min="0" max="12"class="timeWidth" placeholder="HH" >
+                    <input type="time" min="0" max="60"class="timeWidth"placeholder="MM">
+                    <input type="text"  class="timeWidth" placeholder="AM/PM"></div>
+                </div>
+                <div class="inputTime">
+                    <div><label for="">End Time</label></div>
+                    <input type="number"min="0" max="12"class="timeWidth" placeholder="HH">
+                    <input type="time" min="0" max="60"class="timeWidth"placeholder="MM">
+                    <input type="text"  class="timeWidth" placeholder="AM/PM">
+                </div>
+            </div>
+            </div>
+            </div>
+    
+    
+        
+
+        <p>Duration</p>
+        <div class="timeDuration">
+            <input type="number"min="0" max="12"class="timeWidth" placeholder="HH">
+            <input type="time" min="0" max="60"class="timeWidth"placeholder="MM">
+            <input type="text"  class="timeWidth" placeholder="AM/PM">
+
+            <!-- <div class="chooseMedian"*ngIf="median">
+                <p>AM</p>
+                <p>PM</p>
+            </div> -->
+
         </div>
 
     </mat-card>
@@ -80,7 +115,7 @@
                     <mat-icon>do_not_disturb_on</mat-icon>
                 </div>
             </div>
-    
+
             <div class="container">
                 <div class="profileimg">
                     <img src="/assets/profile.png" alt="" id="profileimg">
@@ -94,7 +129,7 @@
                     <mat-icon>do_not_disturb_on</mat-icon>
                 </div>
             </div>
-    
+
             <div class="container">
                 <div class="profileimg">
                     <img src="/assets/profile.png" alt="" id="profileimg">
@@ -214,8 +249,8 @@
                     <mat-icon>do_not_disturb_on</mat-icon>
                 </div>
             </div>
-    
+
         </div>
-        
+
     </mat-card>
 </div>

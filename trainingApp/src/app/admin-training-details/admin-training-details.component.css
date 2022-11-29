@@ -75,7 +75,7 @@ li{
     gap: 1.5rem;
 }
 .parentContainer{
-    width: 70%;
+    width: 80%;
     /* height: 20%; */
     margin: auto;
     border-radius: 4px;
@@ -86,7 +86,6 @@ li{
     margin: 3% 3% 0% 3%;
     display: flex;
     justify-content: space-between;
-    padding-top: 2%;
 }
 .course_name{
     color: #06235C;

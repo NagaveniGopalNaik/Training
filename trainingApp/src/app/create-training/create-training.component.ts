@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProfileComponent } from '../add-profile/add-profile.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
@@ -11,10 +12,15 @@ import { InviteEmpComponent } from '../invite-emp/invite-emp.component';
 })
 export class CreateTrainingComponent implements OnInit {
   display:any;
-  constructor(private dialog:MatDialog) { }
+  constructor(private dialog:MatDialog,private fb:FormBuilder) { }
+  median=false;
+  // createTrainingForm!: FormGroup;
+ createTrainingForm=this.fb.group({
 
+ })
   ngOnInit(): void {
   }
+
   display_p_options(){
     this.display=true;
   }
@@ -24,4 +30,7 @@ export class CreateTrainingComponent implements OnInit {
   editProfile(){
     this.dialog.open(EditProfileComponent,{height:'40%',width:'40%'});
   }
+  // chooseMedian(){
+  //  this.median=true;
+  // }
 }

@@ -26,43 +26,6 @@
 <app-training-count></app-training-count>
 <app-navbar></app-navbar>
 
-<div class="parentContainer">
-    <div class="container">
-        <div class="containerCourse">
-            <div class="course_name">UX/UI Design Process</div>
-            <div ><button class="course_status_completed">Completed</button></div>
-        </div>
-        <div class="containerEmp">
-            <div class="totalEmpIcon"><mat-icon>groups</mat-icon></div>
-            <div class="totalEmpCount">87</div>
-        </div>
-    </div>
-
-    <div class="containerTraining">
-        <div class="trainer">Trainer:</div>
-        <div class="trainerName">Trainer Name &nbsp; &nbsp; |</div>
-        <div class="trainer">&nbsp; &nbsp; &nbsp;Training Type:</div>
-        <div class="trainerName">Online</div>
-    </div>
-
-    <div class="containerDate">
-        <div class="start_date">Start Date<span id="date">Dec 5th,2020 at 12:</span></div>
-         <div class="end_date">End Date<span id="date">Dec 5th,2020 at 12:</span></div>
-         <div class="duration">Duration<span id="duration">3hrs 45mins</span>
-         </div>
-         <div class="containerDetails">
-            <div><button class="details" routerLink="/detailsPage">Details</button></div>
-           <div class="parentDetailsIcon">
-            <div class="detailsIcon" (click)="display_edit_dlt_options()"><mat-icon>more_vert</mat-icon></div>
-            <div class="editDlt" *ngIf="displayEditDlt">
-                <li>Edit</li>
-                <li>Delete</li>
-            </div>
-           </div>
-        </div>
-     </div>
-
-</div>
 
 
 
@@ -93,7 +56,7 @@
          <div class="duration">Duration<span id="duration">3hrs 45mins</span>
          </div>
          <div class="containerDetails">
-            <div><button class="details">Details</button></div>
+            <div><button class="details" routerLink="/detailsPage">Details</button></div>
             <div class="parentDetailsIcon">
                 <div class="detailsIcon" (click)="display_edit_dlt_options()"><mat-icon>more_vert</mat-icon></div>
                 <div class="editDlt" *ngIf="displayEditDlt">
@@ -132,8 +95,45 @@
          <div class="duration">Duration<span id="duration">3hrs 45mins</span>
          </div>
          <div class="containerDetails">
-            <div><button class="details">Details</button></div>
-            <div class="detailsIcon"><mat-icon>more_vert</mat-icon></div>
+            <div><button class="details" routerLink="/detailsPage">Details</button></div>
+            <div class="detailsIcon" (click)="display_edit_dlt_options()"><mat-icon>more_vert</mat-icon></div>
+        </div>
+     </div>
+
+</div>
+<div class="parentContainer">
+    <div class="container">
+        <div class="containerCourse">
+            <div class="course_name">UX/UI Design Process</div>
+            <div ><button class="course_status_completed">Completed</button></div>
+        </div>
+        <div class="containerEmp">
+            <div class="totalEmpIcon"><mat-icon>groups</mat-icon></div>
+            <div class="totalEmpCount">87</div>
+        </div>
+    </div>
+
+    <div class="containerTraining">
+        <div class="trainer">Trainer:</div>
+        <div class="trainerName">Trainer Name &nbsp; &nbsp; |</div>
+        <div class="trainer">&nbsp; &nbsp; &nbsp;Training Type:</div>
+        <div class="trainerName">Online</div>
+    </div>
+
+    <div class="containerDate">
+        <div class="start_date">Start Date<span id="date">Dec 5th,2020 at 12:</span></div>
+         <div class="end_date">End Date<span id="date">Dec 5th,2020 at 12:</span></div>
+         <div class="duration">Duration<span id="duration">3hrs 45mins</span>
+         </div>
+         <div class="containerDetails">
+            <div><button class="details" routerLink="/detailsPage">Details</button></div>
+           <div class="parentDetailsIcon">
+            <div class="detailsIcon" (click)="display_edit_dlt_options()"><mat-icon>more_vert</mat-icon></div>
+            <!-- <div class="editDlt" *ngIf="displayEditDlt">
+                <li>Edit</li>
+                <li>Delete</li>
+            </div> -->
+           </div>
         </div>
      </div>
 
