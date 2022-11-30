@@ -6,14 +6,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  active=true;
+  active=false;
   upcoming=false;
   completed=false;
   allEmployees=false;
   displayFilter=false;
+  activeTag:any;
   constructor() { }
 
   ngOnInit(): void {
+    this.getActive();
+  }
+
+  getActive(){
+  this.activeTag = sessionStorage.getItem('active') || 'active';
+  switch(this.activeTag){
+    case 'active':
+      this.active = true;
+     
+      break;
+      case 'upcoming':
+      
+      this.upcoming = true;
+      
+      break;
+      case 'completed':
+      
+      this.completed = true;
+      
+      break;
+      case 'allEmployees':
+      
+      this.allEmployees = true;
+      break;
+  }
   }
 
   activeFunction(){
@@ -21,18 +47,21 @@ export class NavbarComponent implements OnInit {
     this.completed=false;
     this.active=true;
     this.allEmployees=false;
+    sessionStorage.setItem('active','active');
   }
   upcomingFunction(){
     this.upcoming=true;
     this.completed=false;
     this.active=false;
     this.allEmployees=false;
+    sessionStorage.setItem('active','upcoming');
   }
   completeFunction(){
     this.upcoming=false;
     this.completed=true;
     this.active=false;
     this.allEmployees=false;
+    sessionStorage.setItem('active','completed');
   }
 
   allEmployeeFunction(){
@@ -40,6 +69,7 @@ export class NavbarComponent implements OnInit {
     this.completed=false;
     this.active=false;
     this.allEmployees=true;
+    sessionStorage.setItem('active','allEmployees');
   }
 filter(){
   this.displayFilter=true;
