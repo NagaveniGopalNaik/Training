@@ -51,7 +51,13 @@ storeServer(){
   console.log(this.RegisterData);
   this.superAdmin.registerEmployee(this.RegisterData).subscribe((data)=>{
     console.log(data);
-    alert("Registration successfully");
+    data = JSON.parse(data);
+    // alert(data);
+    
+    data.map((msg:any)=>{
+      alert(msg);
+    })
+    
     
   },(error)=>{
     console.log(error.error);
