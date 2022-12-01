@@ -2,6 +2,7 @@
 <app-training-count></app-training-count>
 <app-navbar></app-navbar>
 {{activeData()}}
+{{getEmployeeData()}}
 <div class="all-employee scroll" *ngIf="allEmployeeData" (scroll)="onScrolling($event)">
     <div class="searchbar" *ngIf = "allEmployee">
         <input type="text" placeholder="Search Employee#, Name, Designation" matInput class="search-input">
@@ -19,7 +20,7 @@
                     <th class="width-10">Active</th>
                     <th class="width-5"></th>
                 </tr>
-                <tr *ngFor = "let employee of allEmployee;index as i">
+                <tr *ngFor = "let employee of employeeDetails;index as i">
                     <td class="width-15">{{employee.empId}}</td>
                     <td class="width-25">{{employee.empName}}</td>
                     <td class="width-25">{{employee.designation}}</td>

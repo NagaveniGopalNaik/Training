@@ -19,10 +19,11 @@ export class SuperAdminComponent implements OnInit {
   employeesList:any;
   activeNavbar='active';
   currentData:any;
+  employeeDetails:any;
   constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService) { }
-  @HostListener('scroll') onScroll(e: Event): void {
-    console.log("scrolling .... ");
- }
+//   @HostListener('scroll') onScroll(e: Event): void {
+//     console.log("scrolling .... ");
+//  }
   ngOnInit(): void {
     this.activeData();
     this.getAllEmployeeDetails();
@@ -46,23 +47,32 @@ export class SuperAdminComponent implements OnInit {
   //   }
   // }
 
+  getEmployeeData(){
+    if(sessionStorage.getItem('allEmployee')){
+      this.employeeDetails = JSON.parse(sessionStorage.getItem('allEmployee') as any);
+    } else {
+      
+    }
+  }
+
 
 
 onScrolling(event:any){
   if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
     console.log(this.currentData.length);
     
-    if(this.currentData.length <10){
-      // alert("All employee data loaded!!")
-    } else {
+    if(this.currentData.length == 10){
       this.getAllEmployeeDetails(); 
-    }
+      
+    } 
   }
 }
 
   getAllEmployeeDetails(){
-   
+  
     let datas = this.allEmployee;
+   
+    
    
     this.superAdmin.AllEmployeeDetails().subscribe((data)=>{
       
@@ -71,19 +81,23 @@ onScrolling(event:any){
       if(keys == '0'){
         sessionStorage.removeItem('page');
       } else {
-        console.log(keys);
+        // console.log(keys);
       // if(data){
         this.allEmployee = this.allEmployee[keys];
         this.currentData  = this.allEmployee;
         if(datas != undefined){
+          console.log(datas);
+          
           this.employeesList = [...datas,...this.allEmployee]
           
         } else{
           this.employeesList = [...this.allEmployee];
         }
-        console.log(this.employeesList);
-        this.allEmployee = this.employeesList;
         
+        // console.log(this.employeesList);
+        this.allEmployee = this.employeesList;
+        this.employeeDetails = this.allEmployee;
+        sessionStorage.setItem('allEmployee',JSON.stringify(this.allEmployee));
       // this.allEmployee = [data,...this.allEmployee];
       // } else{
       //   this.allEmployee = [this.allEmployee];
@@ -107,7 +121,6 @@ this.dialog.open(AssignEmployeeRoleComponent,{panelClass:'update-employee-role'}
   }
 
   
-
   activeData(){
     this.activeNavbar = sessionStorage.getItem('active') || 'active';
     

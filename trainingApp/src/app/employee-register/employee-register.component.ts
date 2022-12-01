@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SuperAdminService } from '../super-admin.service';
-
+import { ErrorMessagesComponent } from '../error-messages/error-messages.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-employee-register',
   templateUrl: './employee-register.component.html',
@@ -10,7 +11,7 @@ import { SuperAdminService } from '../super-admin.service';
 export class EmployeeRegisterComponent implements OnInit {
 employee_register_form !: FormGroup;
 RegisterData:any[]=[];
-  constructor(private superAdmin:SuperAdminService) { }
+  constructor(private superAdmin:SuperAdminService,private dialog:MatDialog) { }
 
   ngOnInit(): void {
   this.registerForm();
@@ -50,17 +51,48 @@ reset(){
 storeServer(){
   console.log(this.RegisterData);
   this.superAdmin.registerEmployee(this.RegisterData).subscribe((data)=>{
-    console.log(data);
+    // this.newUpdate(this.RegisterData);
+console.log(data);
+
     data = JSON.parse(data);
-    // alert(data);
-    
-    data.map((msg:any)=>{
-      alert(msg);
-    })
+    // if(typeof data === 'object'){
+      
+      if(data.length > 1){
+        if(confirm("Some of employee data not able to Register")){
+          sessionStorage.setItem('error',JSON.stringify(data));
+          this.dialog.open(ErrorMessagesComponent,{panelClass:"error-msg"});
+        }
+        
+      } else {
+        data.map((msg:any)=>{
+          alert(msg);
+        });
+      }
+    // } else {
+    //   alert(data);
+    // }
+    sessionStorage.removeItem('page');
+    sessionStorage.removeItem('allEmployee');
     
     
   },(error)=>{
     console.log(error.error);
   })
 }
+
+// newUpdate(data:any){
+//   if(sessionStorage.getItem('allEmployee')){
+//     let allData = JSON.parse(sessionStorage.getItem('allEmployee') as any);
+//     console.log(allData);
+//     let list = [...data,...allData]
+//     sessionStorage.setItem('allEmployee',JSON.stringify(list));
+//   } else {
+//     sessionStorage.setItem('allEmployee',JSON.stringify(data));
+//   }
+  
+
+  
+  
+  
+// }
 }

@@ -59,14 +59,25 @@ update_employee_role!:FormGroup;
     let employeeList = [deleteemployee]
     console.log(employeeList);
     this.superAdmin.deleteEmployee(employeeList).subscribe((data)=>{
+      this.deleteUpdate();
       alert(data);
-      console.log(data);
+      
+    
       
   },(error)=>{
     alert(error.error);
-    console.log(error);
+    // console.log(error);
     
   })
+  
 
+}
+
+deleteUpdate(){
+  // sessionStorage.setItem('page','1');
+  
+  sessionStorage.removeItem('allEmployee');
+  
+  
 }
 }
