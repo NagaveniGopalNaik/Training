@@ -257,3 +257,8 @@ li{
     position: absolute;
   
 }
+
+.search-results {
+    height: 100px;
+    overflow: scroll;
+}

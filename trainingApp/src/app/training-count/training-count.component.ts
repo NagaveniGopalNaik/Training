@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminServiceService } from '../admin-service.service';
 
 @Component({
   selector: 'app-training-count',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./training-count.component.css']
 })
 export class TrainingCountComponent implements OnInit {
-
-  constructor() { }
+  count=0;
+  constructor(private adminService:AdminServiceService) { }
 
   ngOnInit(): void {
+    this.adminService.trainingCount().subscribe(data=>{
+      console.log(data);
+      this.count=JSON.parse(data);
+      
+    })
   }
+
 
 }

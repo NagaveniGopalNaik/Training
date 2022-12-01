@@ -30,10 +30,10 @@
 
 
 
-<div class="parentContainer">
+<div class="parentContainer" *ngFor="let course of courseDetails">
     <div class="container">
         <div class="containerCourse">
-            <div class="course_name">UX/UI Design Process</div>
+            <div class="course_name">{{course.courseName}}</div>
             <div ><button class="course_status_active">Active</button></div>
         </div>
         <div class="containerEmp">
@@ -45,23 +45,23 @@
 
     <div class="containerTraining">
         <div class="trainer">Trainer:</div>
-        <div class="trainerName">Trainer Name &nbsp; &nbsp; |</div>
+        <div class="trainerName">{{course.trainer}}&nbsp; &nbsp; |</div>
         <div class="trainer">&nbsp; &nbsp; &nbsp;Training Type:</div>
-        <div class="trainerName">Online</div>
+        <div class="trainerName">{{course.trainingMode}}</div>
     </div>
 
     <div class="containerDate">
-        <div class="start_date">Start Date<span id="date">Dec 5th,2020 at 12:</span></div>
-         <div class="end_date">End Date<span id="date">Dec 5th,2020 at 12:</span></div>
-         <div class="duration">Duration<span id="duration">3hrs 45mins</span>
+        <div class="start_date">Start Date<span id="date">{{course.startDate |date:'mediumDate'}} at {{course.startTime}}</span></div>
+         <div class="end_date">End Date<span id="date">{{course.endDate | date:'MMM d, y'}} at {{course.endTime}}</span></div>
+         <div class="duration">Duration<span id="duration">{{course.duration }}</span>
          </div>
          <div class="containerDetails">
             <div><button class="details" routerLink="/detailsPage">Details</button></div>
             <div class="parentDetailsIcon">
                 <div class="detailsIcon" (click)="display_edit_dlt_options()"><mat-icon>more_vert</mat-icon></div>
                 <div class="editDlt" *ngIf="displayEditDlt">
-                    <li>Edit</li>
-                    <li>Delete</li>
+                    <li routerLink="/updateTraining" (click)="getUpdateTraining()">Edit</li>
+                   <div> <li><mat-icon>delete</mat-icon>Delete</li></div>
                 </div>
                </div>
         </div>
@@ -69,7 +69,7 @@
 
 </div>
 
-<div class="parentContainer">
+<!-- <div class="parentContainer">
     <div class="container">
         <div class="containerCourse">
             <div class="course_name">UX/UI Design Process</div>
@@ -129,13 +129,11 @@
             <div><button class="details" routerLink="/detailsPage">Details</button></div>
            <div class="parentDetailsIcon">
             <div class="detailsIcon" (click)="display_edit_dlt_options()"><mat-icon>more_vert</mat-icon></div>
-            <!-- <div class="editDlt" *ngIf="displayEditDlt">
-                <li>Edit</li>
-                <li>Delete</li>
-            </div> -->
+
+            </div> 
            </div>
         </div>
      </div>
 
-</div>
+</div> -->
 
