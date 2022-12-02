@@ -47,7 +47,14 @@ update_employee_role!:FormGroup;
   
     
     this.superAdmin.changeRole(this.update_employee_role.value).subscribe((data)=>{
-      alert(data)
+      alert(data);
+      let allData = JSON.parse(sessionStorage.getItem('allEmployee') as any);
+      let object = allData.find((datas:any)=>{
+        return datas.empId == this.update_employee_role.value.empId;
+      });
+      let index = allData.indexOf(object);
+      allData[index].role = this.update_employee_role.value.roleName;
+      sessionStorage.setItem('allEmployee',JSON.stringify(allData));
       
     },(error)=>{
       alert(error.error);
@@ -59,8 +66,15 @@ update_employee_role!:FormGroup;
     let employeeList = [deleteemployee]
     console.log(employeeList);
     this.superAdmin.deleteEmployee(employeeList).subscribe((data)=>{
-      this.deleteUpdate();
+      
       alert(data);
+      let allData = JSON.parse(sessionStorage.getItem('allEmployee') as any);
+      let object = allData.find((datas:any)=>{
+        return datas.empId == this.update_employee_role.value.empId;
+      });
+      let index = allData.indexOf(object);
+      allData.splice(index,1);
+      sessionStorage.setItem('allEmployee',JSON.stringify(allData));
       
     
       
@@ -73,11 +87,5 @@ update_employee_role!:FormGroup;
 
 }
 
-deleteUpdate(){
-  // sessionStorage.setItem('page','1');
-  
-  sessionStorage.removeItem('allEmployee');
-  
-  
-}
+
 }

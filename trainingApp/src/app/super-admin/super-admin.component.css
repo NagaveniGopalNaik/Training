@@ -25,6 +25,9 @@
     z-index: 1; */
     
 }
+.table-div{
+    width: 100%;
+}
 .search-input{
     width:40%;
     color:rgba(0,0,0,0.8);

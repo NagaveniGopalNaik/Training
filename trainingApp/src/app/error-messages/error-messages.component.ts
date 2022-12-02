@@ -11,6 +11,9 @@ error_data : any;
 
   ngOnInit(): void {
     this.error_data = JSON.parse(sessionStorage.getItem('error') as any);
+    console.log(Object.keys(this.error_data));
+    
+
   }
 
 }

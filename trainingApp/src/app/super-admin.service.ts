@@ -72,4 +72,15 @@ token = JSON.parse(sessionStorage.getItem('token') as any);
   
   }
 
+  searchData(data:any){
+    let filter = JSON.parse(sessionStorage.getItem('filter')|| '1') ;
+    sessionStorage.setItem('filter',JSON.stringify(filter));
+ console.log(filter);
+ 
+    return this.http.get(`${API_URL}/employees/search`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('searchKey',data).set('page',filter).set('limit',10)
+    ,responseType:'text'
+  })
+  }
+
 }

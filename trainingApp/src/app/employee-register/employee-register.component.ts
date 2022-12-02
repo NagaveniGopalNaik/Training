@@ -58,6 +58,7 @@ console.log(data);
     // if(typeof data === 'object'){
       
       if(data.length > 1){
+
         if(confirm("Some of employee data not able to Register")){
           sessionStorage.setItem('error',JSON.stringify(data));
           this.dialog.open(ErrorMessagesComponent,{panelClass:"error-msg"});
@@ -65,14 +66,27 @@ console.log(data);
         
       } else {
         data.map((msg:any)=>{
-          alert(msg);
+          alert(msg['reason']);
+          if(msg['empId']){
+            let object = this.RegisterData.find((data)=>{
+              return data['empId'] == msg['empId'];
+            });
+            let index = this.RegisterData.indexOf(object);
+            this.RegisterData.splice(index,1);
+            
+            
+          }
+          if(sessionStorage.getItem('allEmployee')){
+            let allData = JSON.parse(sessionStorage.getItem('allEmployee') as any);
+            console.log(allData);
+            
+            let updateData = [...this.RegisterData, ...allData];
+            sessionStorage.setItem('allEmployee',JSON.stringify(updateData));
+          }
+
         });
       }
-    // } else {
-    //   alert(data);
-    // }
-    sessionStorage.removeItem('page');
-    sessionStorage.removeItem('allEmployee');
+    
     
     
   },(error)=>{

@@ -70,6 +70,7 @@ export class NavbarComponent implements OnInit {
     this.active=false;
     this.allEmployees=true;
     sessionStorage.setItem('active','allEmployees');
+    sessionStorage.setItem('flag','false');
   }
 filter(){
   this.displayFilter=true;
