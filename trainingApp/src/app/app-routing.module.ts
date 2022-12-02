@@ -22,7 +22,11 @@ import { RejectReasonComponent } from './reject-reason/reject-reason.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { ManagerTrainingDetailsComponent } from './manager-training-details/manager-training-details.component';
 import { InviteReporteesComponent } from './invite-reportees/invite-reportees.component';
+
 import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';
+
+import { UpdateTrainingComponent } from './update-training/update-training.component';
+
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:"full"},
@@ -37,6 +41,7 @@ const routes: Routes = [
   {path:'change-password',component:ChangePasswordComponent},
 
   {path:'createTraining',component:CreateTrainingComponent},
+  {path:'updateTraining',component:UpdateTrainingComponent},
 
   {path:'registerEmployee',component:EmployeeRegisterComponent},
 

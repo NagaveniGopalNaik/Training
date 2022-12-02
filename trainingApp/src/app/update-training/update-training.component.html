@@ -1,0 +1,256 @@
+<div class="header">
+    <div class="logo">
+        <img src="/assets/Robosoft_logo_horizontal.png" id="logo" alt="">
+    </div>
+    <div class="profile">
+        <div class="newTraining">
+            <button class="training_button">NEW TRAINING</button>
+        </div>
+        <div class="icon">
+            <mat-icon>notifications</mat-icon>
+        </div>
+        <div class="pimage">
+            <div><img src="/assets/profile.png" id="pimage" alt=""></div>
+            <div class="display_icon">
+                <mat-icon (click)="display_p_options()">arrow_drop_down</mat-icon>
+                <div *ngIf="display" class="poptions">
+                    <li (click)="addProfile()">Add profile picture</li>
+                    <li (click)="editProfile()">Edit profile picture</li>
+                    <li routerLink="/login">Log Out</li>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<hr>
+<div class="parentMain">
+    <mat-card class="main">
+        <span id="trainingheading">Update Training</span>
+        <form class="parentContainer" [formGroup]="updateTrainingForm">
+            <div class="inputContainer">
+                <label for="">Training Title</label>
+                <input type="text" formControlName="courseName" >
+            </div>
+            <div class="inputContainer">
+                <label for="">Trainer Name</label>
+                <input type="text"  formControlName="trainer" >
+            </div>
+            <div class="choice">
+                <mat-radio-group  formControlName="trainingMode" >
+                    <mat-radio-button value="Online sessions">Online Sessions</mat-radio-button>
+                    <mat-radio-button value="Off-site">Off-site</mat-radio-button>
+                    <mat-radio-button value="At Office">At Office</mat-radio-button>
+                </mat-radio-group>
+
+            </div>
+            <div class="timedateContainer">
+                <div class="dates">
+                    <div><label for="">Start date</label><br>
+                        <input type="date" class="startdate"  formControlName="startDate" >
+                    </div>
+                    <div>
+                        <label for="">End Date</label><br>
+                        <input type="date" class="enddate"  formControlName="endDate" >
+                    </div>
+                </div>
+
+                <div class="timeContainer">
+                    <div class="inputTime">
+                        <div> <label for="">Start Time</label></div>
+                        <div> <input type="number" min="0" max="12" class="timeWidth" placeholder="HH"  formControlName="startTime_hrs" >
+                            <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"  formControlName="startTime_mins" >
+                            <input type="text" class="timeWidth" placeholder="AM/PM"  formControlName="startTime_median" >
+                        </div>
+                    </div>
+                    <div class="inputTime">
+                        <div><label for="">End Time</label></div>
+                        <input type="number" min="0" max="12" class="timeWidth" placeholder="HH"  formControlName="endTime_hrs" >
+                        <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"  formControlName="endTime_mins" >
+                        <input type="text" class="timeWidth" placeholder="AM/PM"  formControlName="endTime_median" >
+                    </div>
+                </div>
+            </div>
+            <p>Duration</p>
+            <div class="timeDuration">
+                <input type="number" min="0" max="12" class="timeWidth" placeholder="HH"  formControlName="durationTime_hrs" >
+                <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"  formControlName="durationTime_mins" >
+                <input type="number" class="timeWidth" placeholder="SS"  formControlName="durationTime_seconds" >
+            </div>
+
+
+            <div class="meetingStatus">
+                <input type="textarea"  formControlName="meetingInfo"  >
+            </div>
+            <div class="buttons">
+                <button class="cancelbtn" (click)="cancelForm">CANCEL</button>
+                <button class="createbtn" (click)="updateEvent()">UPDATE EVENT</button>
+            </div>
+        </form>
+
+    </mat-card>
+    <!-- <mat-card class="sidebar">
+        <div><span id="attendees">Attendees</span></div>
+        <div id="noEmpAdded">No employees added yet</div>
+        <div class="inviteEmp" (click)="inviteEmp()">Invite Employees</div>
+    </mat-card> -->
+
+    <mat-card class="sidebar">
+        <div class="attendeesContainer">
+            <div><span id="attendees">Attendees</span></div>
+            <div class="inviteEmp" routerLink="/inviteEmp">Invite Employees</div>
+        </div>
+
+        <div class="sidebarContainer">
+            <div class="container">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">Kyung John</div>
+                    <div class="empDesignation">Senior Project Manager</div>
+                    <div class="empCode">RT00377</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">Kyung John</div>
+                    <div class="empDesignation">Senior Project Manager</div>
+                    <div class="empCode">RT00377</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">Kyung John</div>
+                    <div class="empDesignation">Senior Project Manager</div>
+                    <div class="empCode">RT00377</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">Kyung John</div>
+                    <div class="empDesignation">Senior Project Manager</div>
+                    <div class="empCode">RT00377</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+            <div class="container">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">Kyung John</div>
+                    <div class="empDesignation">Senior Project Manager</div>
+                    <div class="empCode">RT00377</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+            <div class="container">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">Kyung John</div>
+                    <div class="empDesignation">Senior Project Manager</div>
+                    <div class="empCode">RT00377</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+            <div class="container">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">Kyung John</div>
+                    <div class="empDesignation">Senior Project Manager</div>
+                    <div class="empCode">RT00377</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+            <div class="container">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">Kyung John</div>
+                    <div class="empDesignation">Senior Project Manager</div>
+                    <div class="empCode">RT00377</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+            <div class="container">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">Kyung John</div>
+                    <div class="empDesignation">Senior Project Manager</div>
+                    <div class="empCode">RT00377</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+            <div class="container">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">Kyung John</div>
+                    <div class="empDesignation">Senior Project Manager</div>
+                    <div class="empCode">RT00377</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+            <div class="container">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">Kyung John</div>
+                    <div class="empDesignation">Senior Project Manager</div>
+                    <div class="empCode">RT00377</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+
+        </div>
+
+    </mat-card>
+</div>

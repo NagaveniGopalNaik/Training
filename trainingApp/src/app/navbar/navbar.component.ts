@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminServiceService } from '../admin-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +10,16 @@ export class NavbarComponent implements OnInit {
   active=false;
   upcoming=false;
   completed=false;
+  count=0;
   allEmployees=false;
   displayFilter=false;
+
   activeTag:any;
-  constructor() { }
+    constructor( private adminService: AdminServiceService) { }
 
   ngOnInit(): void {
-    this.getActive();
+   this.getActive();
+
   }
 
   getActive(){
@@ -40,7 +44,8 @@ export class NavbarComponent implements OnInit {
       this.allEmployees = true;
       break;
   }
-  }
+
+
 
   activeFunction(){
     this.upcoming=false;

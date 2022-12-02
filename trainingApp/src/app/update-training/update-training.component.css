@@ -57,8 +57,6 @@ li {
     font-family: Roboto;
     font-size: 12px;
     font-weight: bold;
-    letter-spacing: 0.32px;
-    line-height: 16px;
     text-align: center;
     border-radius: 4px;
     background-color: #230735;
@@ -74,8 +72,8 @@ hr {
 .parentMain {
     display: flex;
     justify-content: space-between;
+    gap: 1.5rem;
     width: 70%;
-    gap:1.5rem;
     margin: auto;
 }
 
@@ -93,8 +91,6 @@ hr {
     font-family: Roboto;
     font-size: 22px;
     font-weight: 900;
-    letter-spacing: 0;
-    line-height: 28px;
 }
 
 .inputContainer {
@@ -119,17 +115,24 @@ label {
     color: #373A3C;
     font-family: Roboto;
     font-size: 14px;
-    letter-spacing: 0;
-    line-height: 24px;
 }
 
-.choice {
+/* .choice {
     display: flex;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 5rem;
     padding-top: 5%;
 }
-
+.choice mat-radio-label-content {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    user-select: auto;
+    display: inline-block;
+    order: 0;
+    line-height: inherit;
+    padding-left: 8px;
+    padding-right: 30px;
+} */
 #attendees {
     color: #06235C;
     font-family: Roboto;
@@ -177,7 +180,7 @@ label {
 
 .startdate,
 .enddate {
-    width: 120%;
+    width: 100%;
 }
 
 .dates {
@@ -282,12 +285,5 @@ label {
 
 
 input[type=number]::-webkit-inner-spin-button {
-/* -webkit-appearance:block; */
 opacity: 1;
-}
-
-@media screen and( max-width:980px){
-    .startdate,.enddate{
-        width: 90%;
-    }
 }
