@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { environment } from 'src/environments/environment';
+const API_URL = environment.API_URL;
 @Injectable({
   providedIn: 'root',
 })
@@ -17,23 +18,23 @@ export class ServerService {
 
   loginData(data: any): Observable<any> {
     return this.httpClient.post(
-      'https://training-management-app.herokuapp.com/authenticate',
+      `${API_URL}/authenticate`,
       data,
       { responseType: "text" }
     );
   }
 
   getOtp(data:any):Observable<any>{
-    return this.httpClient.put('https://training-management-app.herokuapp.com/employee/otpMail',data,
+    return this.httpClient.put(`${API_URL}/employee/otpMail`,data,
     { responseType: "text" })
   }
 
   checkOtp(data:any):Observable<any>{
-    return this.httpClient.put('https://training-management-app.herokuapp.com/employee/checkCode',data, { responseType:'text'});
+    return this.httpClient.put(`${API_URL}/employee/checkCode`,data, { responseType:'text'});
   }
 
   changePassword(data:any):Observable<any>{
-    return this.httpClient.put('https://training-management-app.herokuapp.com/employee/changePassword',
+    return this.httpClient.put(`${API_URL}/employee/changePassword`,
     data,
      { responseType:'text'});
   }

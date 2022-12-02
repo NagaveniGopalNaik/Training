@@ -90,7 +90,11 @@
 }
 
 .tabContentParent{
-    overflow-y: auto;
+    overflow-y: scroll;
+    height: 30vh;
+}
+.tabContentParent::-webkit-scrollbar{
+    display: none;
 }
 
 .empCode,
