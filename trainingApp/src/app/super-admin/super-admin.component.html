@@ -2,11 +2,13 @@
 <app-training-count></app-training-count>
 <app-navbar></app-navbar>
 {{activeData()}}
-<div class="all-employee scroll" *ngIf="allEmployeeData" (scroll)="onScrolling($event)">
-    <div class="searchbar" *ngIf = "allEmployee">
-        <input type="text" placeholder="Search Employee#, Name, Designation" matInput class="search-input">
-        <button class="search-button" mat-raised-button>SEARCH</button>
-    </div>
+{{getEmployeeData()}}
+{{searchEmployee()}}
+<div class="all-employee scroll" *ngIf="allEmployeeData && allData" (scroll)="onScrolling($event)">
+    <form class="searchbar" *ngIf = "allEmployee">
+        <input type="text" placeholder="Search Employee#, Name, Designation" [(ngModel)]="searchData" name="searchData" matInput class="search-input">
+        <button class="search-button" mat-raised-button (click)="searchDatas()">SEARCH</button>
+    </form>
     <div class="employoee-data" *ngIf = "allEmployee">
         <mat-card id="table" class="employee-each-data">
             <table class="table">
@@ -19,21 +21,59 @@
                     <th class="width-10">Active</th>
                     <th class="width-5"></th>
                 </tr>
-                <tr *ngFor = "let employee of allEmployee;index as i">
-                    <td class="width-15">{{employee.empId}}</td>
-                    <td class="width-25">{{employee.empName}}</td>
-                    <td class="width-25">{{employee.designation}}</td>
-                    <td class="width-10">{{employee.attendedCount}}</td>
-                    <td class="width-10">{{employee.upcomingCount}}</td>
-                    <td class="width-10">{{employee.activeCount}}</td>
-                    <td class="width-5" (click)="employee_data_edit(employee)"><mat-icon class="move-next-icon">keyboard_arrow_right</mat-icon></td>
-                </tr>
+                    <tr *ngFor = "let employee of employeeDetails;index as i">
+                        <td class="width-15">{{employee.empId}}</td>
+                        <td class="width-25">{{employee.empName}}</td>
+                        <td class="width-25">{{employee.designation}}</td>
+                        <td class="width-10">{{employee.attendedCount || 0}}</td>
+                        <td class="width-10">{{employee.upcomingCount || 0}}</td>
+                        <td class="width-10">{{employee.activeCount || 0}}</td>
+                        <td class="width-5" (click)="employee_data_edit(employee)"><mat-icon class="move-next-icon">keyboard_arrow_right</mat-icon></td>
+                    </tr>
                
             </table>
+            
         </mat-card>
        
     </div>
 </div>
+
+<div class="all-employee scroll" *ngIf="allEmployeeData && filter" (scroll)="onScrollingSearch($event)">
+    <form class="searchbar" *ngIf = "allEmployee">
+        <input type="text" placeholder="Search Employee#, Name, Designation" [(ngModel)]="searchData" name="searchData" matInput class="search-input">
+        <button class="search-button" mat-raised-button (click)="searchDatas()">SEARCH</button>
+    </form>
+    <div class="employoee-data" *ngIf = "allEmployee">
+        <div *ngIf="search_list.length<1" class="no-data">No Data</div>
+        <mat-card id="table" class="employee-each-data">
+            <table class="table" *ngIf="search_list.length>0">
+                <tr>
+                    <th class="width-15">Employee#</th>
+                    <th class="width-25">Name</th>
+                    <th class="width-25">Designation</th>
+                    <th class="width-10">Attended</th>
+                    <th class="width-10">Upcoming</th>
+                    <th class="width-10">Active</th>
+                    <th class="width-5"></th>
+                </tr>
+                    <tr *ngFor = "let employee of search_list;index as i">
+                        <td class="width-15">{{employee.empId}}</td>
+                        <td class="width-25">{{employee.empName}}</td>
+                        <td class="width-25">{{employee.designation}}</td>
+                        <td class="width-10">{{employee.attendedCount || 0}}</td>
+                        <td class="width-10">{{employee.upcomingCount || 0}}</td>
+                        <td class="width-10">{{employee.activeCount || 0}}</td>
+                        <td class="width-5" (click)="employee_data_edit(employee)"><mat-icon class="move-next-icon">keyboard_arrow_right</mat-icon></td>
+                    </tr>
+               
+            </table>
+            
+        </mat-card>
+       
+    </div>
+</div>
+
+
 <div class="all-employee scroll" *ngIf="active">
     <div class="employee-course-details">
         <mat-card class="each-notification-details">

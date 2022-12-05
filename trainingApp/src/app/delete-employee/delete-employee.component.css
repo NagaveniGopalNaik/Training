@@ -1,4 +1,5 @@
 .inviteEmpParentMain{
+    /* width: 100%; */
     background-color: black;
     display: flex;
     justify-content: center;
@@ -79,7 +80,6 @@
 .tabHeader,
 .tabContent {
     display: flex;
-
     padding: 3% 0% 3% 0%;
   
     
@@ -87,13 +87,14 @@
 .tabContent{
     
     border-top:1px solid #E0E0E0;
-    padding: 3% 0% 3% 0%;   
-    border-bottom:1px solid#E0E0E0;
-
 }
-.contentScroll{
+
+.tabContentParent{
     overflow-y: scroll;
-    height: 40vh;
+    height: 30vh;
+}
+.tabContentParent::-webkit-scrollbar{
+    display: none;
 }
 
 .empCode,
@@ -137,7 +138,7 @@
     font-size: 24px;
     border-radius: 50%;
     color: white;
-    background-color: #EC2C59;
+    background-color: #54A919;
     border: none;
     align-self: center;
 }
@@ -145,7 +146,7 @@
     font-size: 24px;
     border-radius: 50%;
     color: white;
-    background-color:#54A919;
+    background-color:#EC2C59;
     border: none;
     align-self: center;
 }
