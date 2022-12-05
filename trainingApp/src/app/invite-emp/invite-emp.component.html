@@ -1,8 +1,10 @@
+{{getAllEmployee()}}
+
 <div class="inviteEmpParentMain">
     <mat-card class="inviteEmpMain">
         <div class="inviteReporteesHeader">
             <p class="inviteReportees">Invite Employees</p>
-            <button class="doneButton"routerLink="/createTraining">DONE</button>
+            <button class="doneButton"(click)="done()">DONE</button>
         </div>
         
         
@@ -18,15 +20,19 @@
             <!-- <div class="addRemoveIcon">add_circle</div> -->
         </div>
         
-        <div class="tabContentParent">
-            <div class="tabContent">
-                <div class="empCodeval">RT00378</div>
-                <div class="empNameval">Xyz</div>
-                <div class="empDesignationval">Senior Developer</div>
-                <div class="removeIcon"><mat-icon> do_not_disturb_on</mat-icon></div>
-            </div>
-            
-            <div class="tabContent">
+        <div class="contentScroll">
+            <div class="tabContentParent" *ngFor="let empDetail of allEmployee;index as i">
+                <div class="tabContent">
+                    <div class="empCodeval">{{empDetail.empId}}</div>
+                    <div class="empNameval">{{empDetail.empName}}</div>
+                    <div class="empDesignationval">{{empDetail.designation}}</div>
+                    <div class="removeIcon" *ngIf="empDetail.invited==false" (click)="toggleRemove(empDetail.empId)"><mat-icon> do_not_disturb_on</mat-icon></div>
+                    <div class="addIcon" *ngIf="empDetail.invited==true" (click)="toggleAdd(empDetail.empId)"><mat-icon>add_circle</mat-icon></div>
+                </div>
+                
+        </div>
+        
+            <!-- <div class="tabContent">
                 <div class="empCodeval">RT00378</div>
                 <div class="empNameval">Xyz</div>
                 <div class="empDesignationval">Senior Developer</div>
@@ -45,7 +51,7 @@
                 <div class="empNameval">Xyz</div>
                 <div class="empDesignationval">Senior Developer</div>
                 <div class="addIcon"><mat-icon> add_circle</mat-icon></div>
-            </div>
+            </div> -->
         
         </div>
     </mat-card>
