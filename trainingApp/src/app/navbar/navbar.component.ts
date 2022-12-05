@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
   }
 }
 
-
+  
 
   activeFunction(){
     this.upcoming=false;

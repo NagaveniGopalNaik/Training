@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { AdminServiceService } from '../admin-service.service';
 import { AssignEmployeeRoleComponent } from '../assign-employee-role/assign-employee-role.component';
 import { ServerService } from '../server.service';
 import { SuperAdminService } from '../super-admin.service';
@@ -27,15 +28,19 @@ export class SuperAdminComponent implements OnInit {
   allData=true;
   search_data:any;
   search_list:any;
+  previousData:any[]=[];
+  course:any;
+  course_list:any[]=[];
   
-  
-  constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService) { }
+  constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService,private admin:AdminServiceService) { }
 //   @HostListener('scroll') onScroll(e: Event): void {
 //     console.log("scrolling .... ");
 //  }
   ngOnInit(): void {
     this.activeData();
     this.getAllEmployeeDetails();
+    this.courseDetail();
+    
     // this.superAdmin.courseDetails().subscribe((data)=>{
     //   console.log(data);
       
@@ -44,6 +49,26 @@ export class SuperAdminComponent implements OnInit {
       
     // })
     
+  }
+
+  courseDetail(){
+    this.admin.showCourses().subscribe((data:any)=>{
+      console.log(data);
+      this.course = JSON.parse(data);
+      let key = Number(Object.keys(this.course));
+      this.course_list = this.course[key];
+      console.log(this.course_list);
+      let date = new Date();
+      console.log(date);
+      for(let data of this.course_list){
+        let date = data.startDate;
+        console.log(date);
+        
+      }
+      
+      
+      
+    })
   }
 
  
@@ -59,7 +84,7 @@ export class SuperAdminComponent implements OnInit {
   // }
 
   searchDatas(){
-    let datas = this.search_data;
+    // this.previousData = [];
     console.log(this.searchData);
     
     this.superAdmin.searchData(this.searchData).subscribe((data)=>{
@@ -68,19 +93,19 @@ export class SuperAdminComponent implements OnInit {
       this.search_data = JSON.parse(this.search_data);
       let datacount = Object.keys(this.search_data)[0];
       this.search_data = this.search_data[datacount];
-      if(datas != undefined  ){
-        if(datas.length == 10){
-          console.log(datas);
-        this.search_list = [...datas,...this.search_data];
+      // if(this.previousData.length > 0  ){
+        if(this.previousData.length == 10){
+          console.log(this.previousData);
+        this.search_list = [...this.previousData,...this.search_data];
         } else {
           this.search_list = [...this.search_data];
           
         }
-      } else{
-        console.log("empty data");
-        this.search_list = [...this.search_data];
+      // } else{
+      //   console.log("empty data");
+      //   this.search_list = [...this.search_data];
         
-      }
+      // }
       sessionStorage.setItem('searchEmployee',JSON.stringify(this.search_list));
       sessionStorage.setItem('flag','true');
       this.searchData ='';
@@ -119,6 +144,12 @@ export class SuperAdminComponent implements OnInit {
     }
   
   }
+
+  removeFilter(){
+    sessionStorage.removeItem('filter');
+    // debugger;
+    this.previousData = [];
+  }
   searchEmployee(){
     if(sessionStorage.getItem('searchEmployee')){
       this.search_list = JSON.parse(sessionStorage.getItem('searchEmployee') as any);
@@ -155,6 +186,7 @@ onScrollingSearch(event:any){
       console.log(page);
       
       sessionStorage.setItem('filter',JSON.stringify(page))
+      this.previousData = this.search_data;
       this.searchDatas();
     } else{
       sessionStorage.removeItem('filter');

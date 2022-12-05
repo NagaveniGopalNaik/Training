@@ -82,6 +82,7 @@ export class AdminServiceService {
       return this.httpClient.get(this.url+'completed', {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.course).set('limit',10)
       ,responseType:'text'
     });
+    
     }
   }
 

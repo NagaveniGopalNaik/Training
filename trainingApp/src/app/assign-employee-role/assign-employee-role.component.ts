@@ -94,8 +94,6 @@ update_employee_role!:FormGroup;
       console.log(index1);
       
       allDatas.splice(index1,1);
-      console.log(allDatas);
-      
       sessionStorage.setItem('searchEmployee',JSON.stringify(allDatas));
       
       
