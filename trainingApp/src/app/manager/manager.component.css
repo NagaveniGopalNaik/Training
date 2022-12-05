@@ -50,12 +50,15 @@ li{
 
 
 
-.parentContainer{
+.parentnavContainer{
     border-bottom:  1px solid rgb(39,106,160,0.3);
     margin: 1% 15%;
     display: flex;
     justify-content: space-between;
     text-align: center;
+}
+.allReportees{
+    align-self: center;
 }
 .container{
     display: flex;
@@ -104,7 +107,7 @@ li{
 }
 .all-filter{
     position: relative;
-
+    padding-top: 5%;
     letter-spacing: 0;
     line-height: 2.1rem;
     align-self: center;
@@ -117,9 +120,6 @@ li{
 .icon{
     color:#000;
     margin-left: 15px;
-    
-    
-    /* opacity: 1; */
 }
 
 .active-tag{
@@ -213,15 +213,16 @@ li{
     justify-content:space-around;
     gap: 1.5rem;
 }
-.parentManagerContainer{
+.parentContainer{
     width: 70%;
     /* height: 20%; */
     margin: auto;
+    flex-direction: column;
     border-radius: 4px;
     background-color: #FFFFFF;
     box-shadow: 0 2px 8px 0 rgba(6,35,92,0.08);
 }
-.containerManager{
+.container{
     margin: 3% 3% 0% 3%;
     display: flex;
     justify-content: space-between;
@@ -257,7 +258,6 @@ li{
     letter-spacing: 0;
     line-height: 12px;
     border-radius: 4px;
-    background-color: #DEBB32;
     padding: 3px 12px 3px 12px;
     border: none;
     align-self: center;
@@ -395,4 +395,9 @@ li{
 .editDlt{
     position: absolute;
   
+}
+
+.search-results {
+    height: 100px;
+    overflow: scroll;
 }

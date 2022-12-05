@@ -44,11 +44,12 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { ManagerTrainingDetailsComponent } from './manager-training-details/manager-training-details.component';
 import { InviteReporteesComponent } from './invite-reportees/invite-reportees.component';
 
-import { AdminTrainingDetailsComponent } from './admin-training-details/admin-training-details.component';
+// import { AdminTrainingDetailsComponent } from './admin-training-details/admin-training-details.component';
 import { ErrorMessagesComponent } from './error-messages/error-messages.component';
 import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';  
 
-import { UpdateTrainingComponent } from './update-training/update-training.component';  
+import { UpdateTrainingComponent } from './update-training/update-training.component';
+import { DateChangePipe } from './date.pipe';  
 
 
 // import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
@@ -91,12 +92,13 @@ import { UpdateTrainingComponent } from './update-training/update-training.compo
     ManagerTrainingDetailsComponent,
     InviteReporteesComponent,
 
-    AdminTrainingDetailsComponent,
+    // AdminTrainingDetailsComponent,
     ErrorMessagesComponent,
     DeleteEmployeeComponent,
 
 // AdminTrainingDetailsComponent,
     UpdateTrainingComponent,
+ DateChangePipe,
 
 
     // NgxMaterialTimepickerModule

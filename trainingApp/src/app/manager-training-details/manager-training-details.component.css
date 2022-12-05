@@ -132,7 +132,7 @@ li {
     margin: 2%;
     display: flex;
     justify-content: space-between;
-    padding-top: 2%;
+    margin-top: 4%;
 
 }
 
@@ -195,7 +195,7 @@ button {
     margin-left: 3%;
 }
 
-.course-button {
+.active_course-button, .upcoming_course-button, .completed_course-button{
     border-radius: 4px;
     background-color: rgba(222, 132, 50, 1);
     color: rgba(255, 255, 255, 1);
@@ -206,6 +206,15 @@ button {
     line-height: 1.2rem;
     padding: 0.5% 1%;
     margin-left: 2%;
+}
+.active_course-button{
+    background-color: #71AC1B;
+}
+.upcoming_course-button{
+    background-color: #DE8432;
+}
+.completed_course-button{
+    background-color: #DEBB32;
 }
 
 .attendees {
@@ -238,7 +247,7 @@ button {
     border: 1px solid #D5D5D5;
     border-radius: 4px;
     background-color: #FFFFFF;
-    padding: 0.5% 2% 0.5% 2%;
+    padding: 0% 1% 0% 1%;
     align-items: center;
 }
 
@@ -276,6 +285,7 @@ button {
 
 .parentContainer {
     display: flex;
+    flex-direction: column;
     gap: 1.5rem;
     flex-wrap: wrap;
 }
@@ -318,5 +328,8 @@ button {
     text-align: center;
     padding: 0.5rem 2rem 0.5rem 2rem;
 }
-
-
+.contentContainer {
+    display: flex;
+    gap: 1.6rem;
+    margin-top: 2%;
+}

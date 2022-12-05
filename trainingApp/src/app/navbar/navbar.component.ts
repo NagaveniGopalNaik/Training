@@ -44,8 +44,9 @@ export class NavbarComponent implements OnInit {
       this.allEmployees = true;
       break;
   }
+}
 
-  }
+  
 
   activeFunction(){
     this.upcoming=false;
@@ -53,6 +54,7 @@ export class NavbarComponent implements OnInit {
     this.active=true;
     this.allEmployees=false;
     sessionStorage.setItem('active','active');
+    // window.location.reload();
   }
   upcomingFunction(){
     this.upcoming=true;
@@ -60,6 +62,7 @@ export class NavbarComponent implements OnInit {
     this.active=false;
     this.allEmployees=false;
     sessionStorage.setItem('active','upcoming');
+    // window.location.reload();
   }
   completeFunction(){
     this.upcoming=false;
@@ -67,6 +70,7 @@ export class NavbarComponent implements OnInit {
     this.active=false;
     this.allEmployees=false;
     sessionStorage.setItem('active','completed');
+    // window.location.reload();
   }
 
   allEmployeeFunction(){
