@@ -29,19 +29,19 @@
 
 
 <div class="empAddDltMain">
-    <mat-card class="each-notification-details">
+    <mat-card class="each-notification-details" *ngIf="displayActive">
         <div class="courseName">
             <div>
-                <p class="trianing-name">UX/UI Design Process<button mat-raised-button
-                    class="course-button">UPCOMING</button></p>
-                <p class="trainer">Trainer : <span class="trainer-name">George Rehaman</span></p>
+                <p class="trianing-name">{{details.courseName}}<button mat-raised-button
+                    class="active_course-button">{{details.completionStatus | uppercase}}</button></p>
+                <p class="trainer">Trainer : <span class="trainer-name">{{details.trainer}}</span></p>
             </div>
 
             <div class="endsinEdit">
                 <div class="flexEdit">
-                    <div class="endsin">Ends in 4hrs 35mins 20sec</div>
+                    <div class="endsin">Ends in{{details.startDate-details.endDate}}</div>
                     <!-- <div class="edit">
-                        <mat-icon>edit_square</mat-icon>
+                        <mat-icon routerLink="/updateTraining">edit_square</mat-icon>
                     </div> -->
                 </div>
             </div>
@@ -51,95 +51,208 @@
         <div class="details">
             <div class="date">
                 <p class="tag">Start Date</p>
-                <p class="data">Dec 5th, 2020</p>
+                <p class="data">{{details.startDate | date:'mediumDate'}}</p>
             </div>
             <div class="date">
                 <p class="tag">End Date</p>
-                <p class="data">02:45PM</p>
+                <p class="data">{{details.endDate | date:'mediumDate'}}</p>
             </div>
             <div class="date">
                 <p class="tag">Duration</p>
-                <p class="data">3 hours 45 mins</p>
+                <p class="data">{{details.duration}}</p>
             </div>
         </div>
         <div class="training-data-details">
             <p class="tag">Details</p>
             <p class="data lighter">
-                Meeting is schedule via zoom call
+                <!-- Meeting is schedule via zoom call -->
+                {{details.meetingInfo}}
             </p>
-            <p class="data lighter">
+            <!-- <p class="data lighter">
                 zoom call line: <a>https:Isd.sd asdlidjfsl;dhaks</a>
             </p>
             <p class="data lighter">
                 Meeting ID : 12345643245 <br>
                 Password : as57878
-            </p>
+            </p> -->
 
         </div>
     </mat-card>
-    <p class="attendees">Reportees (8) <span class="inviteEmp" routerLink="/inviteReportees">Invite Reportees</span></p>
+    <div class="parentContainer" *ngIf="displayActive">
+        <div> <p class="attendees"><span *ngIf="attendees.length>=1"> Attendees ({{attendees.length}})&nbsp;</span> <span class="inviteEmp" routerLink="/inviteEmp">&nbsp;Invite Employees</span></p></div>
+        <div class="contentContainer">
+         <div class="container" *ngFor="let attendee of attendees">
+             <div class="profileimg">
+                 <img src="/assets/profile.png" alt="" id="profileimg">
+             </div>
+             <div class="empDetails">
+                 <div class="empName">{{attendee.empName}}</div>
+                 <div class="empDesignation">{{attendee.designation}}</div>
+                 <div class="empCode">{{attendee.empId}}</div>
+             </div>
+             <div class="addIcon">
+                 <mat-icon>do_not_disturb_on</mat-icon>
+             </div>
+        </div>
+         </div>
+     </div>
+    
 
-    <div class="parentContainer">
+    <mat-card class="each-notification-details" *ngIf="displayUpcoming">
+        <div class="courseName">
+            <div>
+                <p class="trianing-name">{{details.courseName}}<button mat-raised-button
+                    class="upcoming_course-button">{{details.completionStatus | uppercase}}</button></p>
+                <p class="trainer">Trainer : <span class="trainer-name">{{details.trainer}}</span></p>
+            </div>
 
-        <div class="container">
-            <div class="profileimg">
-                <img src="/assets/profile.png" alt="" id="profileimg">
+            <div class="endsinEdit">
+                <div class="flexEdit">
+                    <div class="endsin">Starts in: in{{details.startDate-details.endDate}}</div>
+                    <!-- <div class="edit">
+                        <mat-icon routerLink="/updateTraining">edit_square</mat-icon>
+                    </div> -->
+                </div>
             </div>
-            <div class="empDetails">
-                <div class="empName">Kyung John</div>
-                <div class="empDesignation">Senior Project Manager</div>
-                <div class="empCode">RT00377</div>
+
+
+        </div>
+        <div class="details">
+            <div class="date">
+                <p class="tag">Start Date</p>
+                <p class="data">{{details.startDate | date:'mediumDate'}}</p>
             </div>
-            <div class="addIcon">
-                <mat-icon>do_not_disturb_on</mat-icon>
+            <div class="date">
+                <p class="tag">End Date</p>
+                <p class="data">{{details.endDate | date:'mediumDate'}}</p>
+            </div>
+            <div class="date">
+                <p class="tag">Duration</p>
+                <p class="data">{{details.duration}}</p>
             </div>
         </div>
+        <div class="training-data-details">
+            <p class="tag">Details</p>
+            <p class="data lighter">
+                <!-- Meeting is schedule via zoom call -->
+                {{details.meetingInfo}}
+            </p>
+            <!-- <p class="data lighter">
+                zoom call line: <a>https:Isd.sd asdlidjfsl;dhaks</a>
+            </p>
+            <p class="data lighter">
+                Meeting ID : 12345643245 <br>
+                Password : as57878
+            </p> -->
 
+        </div>
+    </mat-card>
 
-        <div class="container">
-            <div class="profileimg">
-                <img src="/assets/profile.png" alt="" id="profileimg">
-            </div>
-            <div class="empDetails">
-                <div class="empName">Kyung John</div>
-                <div class="empDesignation">Senior Project Manager</div>
-                <div class="empCode">RT00377</div>
-            </div>
-            <div class="addIcon">
-                <mat-icon>do_not_disturb_on</mat-icon>
+  
+        <div class="parentContainer" *ngIf="displayUpcoming">
+           <div> <p class="attendees"><span  *ngIf="attendees.length>1"> Attendees ({{attendees.length}})&nbsp; </span><span class="inviteEmp" routerLink="/inviteEmp">Invite Employees</span></p></div>
+           <div class="contentContainer">
+            <div class="container" *ngFor="let attendee of attendees">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">{{attendee.empName}}</div>
+                    <div class="empDesignation">{{attendee.designation}}</div>
+                    <div class="empCode">{{attendee.empId}}</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon> do_not_disturb_on</mat-icon>
+                </div>
+           </div>
             </div>
         </div>
+   
 
 
-        <div class="container">
-            <div class="profileimg">
-                <img src="/assets/profile.png" alt="" id="profileimg">
+   
+    <mat-card class="each-notification-details" *ngIf="displayCompleted">
+        <div class="courseName">
+            <div>
+                <p class="trianing-name">{{details.courseName}}<button mat-raised-button
+                    class="completed_course-button">{{details.completionStatus | uppercase}}</button></p>
+                <p class="trainer">Trainer : <span class="trainer-name">{{details.trainer}}</span></p>
             </div>
-            <div class="empDetails">
-                <div class="empName">Kyung John</div>
-                <div class="empDesignation">Senior Project Manager</div>
-                <div class="empCode">RT00377</div>
+
+            <div class="endsinEdit">
+                <div class="flexEdit">
+                    <!-- <div class="endsin">Ends in{{details.startDate-details.endDate}}</div> -->
+                    <!-- <div class="edit">
+                        <mat-icon routerLink="/updateTraining">edit_square</mat-icon>
+                    </div> -->
+                </div>
             </div>
-            <div class="addIcon">
-                <mat-icon>do_not_disturb_on</mat-icon>
+
+
+        </div>
+        <div class="details">
+            <div class="date">
+                <p class="tag">Start Date</p>
+                <p class="data">{{details.startDate | date:'mediumDate'}}</p>
+            </div>
+            <div class="date">
+                <p class="tag">End Date</p>
+                <p class="data">{{details.endDate | date:'mediumDate'}}</p>
+            </div>
+            <div class="date">
+                <p class="tag">Duration</p>
+                <p class="data">{{details.duration}}</p>
             </div>
         </div>
+        <div class="training-data-details">
+            <p class="tag">Details</p>
+            <p class="data lighter">
+                <!-- Meeting is schedule via zoom call -->
+                {{details.meetingInfo}}
+            </p>
+            <!-- <p class="data lighter">
+                zoom call line: <a>https:Isd.sd asdlidjfsl;dhaks</a>
+            </p>
+            <p class="data lighter">
+                Meeting ID : 12345643245 <br>
+                Password : as57878
+            </p> -->
 
-        <div class="container">
-            <div class="profileimg">
-                <img src="/assets/profile.png" alt="" id="profileimg">
-            </div>
-            <div class="empDetails">
-                <div class="empName">Kyung John</div>
-                <div class="empDesignation">Senior Project Manager</div>
-                <div class="empCode">RT00377</div>
-            </div>
-            <div class="addIcon">
-                <mat-icon>do_not_disturb_on</mat-icon>
-            </div>
         </div>
+    </mat-card>
 
-    </div>
-</div>
+    <div class="parentContainer" *ngIf="displayCompleted">
+        <div> <p class="attendees" *ngIf="attendees.length>=1">Attendees ({{attendees.length}})</p></div>
+        <div class="contentContainer">
+         <div class="container" *ngFor="let attendee of attendees">
+             <div class="profileimg">
+                 <img src="/assets/profile.png" alt="" id="profileimg">
+             </div>
+             <div class="empDetails">
+                 <div class="empName">{{attendee.empName}}</div>
+                 <div class="empDesignation">{{attendee.designation}}</div>
+                 <div class="empCode">{{attendee.empId}}</div>
+             </div>
+             <!-- <div class="addIcon">
+                 <mat-icon> do_not_disturb_on</mat-icon>
+             </div> -->
+        </div>
+         </div>
+     </div>
 
-<span class="inviteEmp" routerLink="/inviteReportees">Invite Reportees</span>
+     <div class="parentContainer" *ngIf="displayCompleted">
+        <div> <p class="attendees"><span *ngIf="nonAttendees.length >= 1">Non Attendees (8)</span> </p></div>
+        <div class="contentContainer">
+         <div class="container" *ngFor="let nonAttendee of nonAttendees">
+             <div class="profileimg">
+                 <img src="/assets/profile.png" alt="" id="profileimg">
+             </div>
+             <div class="empDetails">
+                 <div class="empName">{{nonAttendee.empName}}</div>
+                 <div class="empDesignation">{{nonAttendee.designation}}</div>
+                 <div class="empCode">{{nonAttendee.empId}}</div>
+             </div>
+        </div>
+         </div>
+     </div>
+    

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { environment } from 'src/environments/environment';
+const API_URL=environment.API_URL;
 @Injectable({
   providedIn: 'root',
 })
@@ -17,7 +18,7 @@ export class ServerService {
 
   loginData(data: any): Observable<any> {
     return this.httpClient.post(
-      'https://training-management-app.herokuapp.com/authenticate',
+      `${API_URL}/authenticate`,
       data,
       { responseType: "text" }
     );
