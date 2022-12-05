@@ -61,28 +61,35 @@ export class SuperAdminComponent implements OnInit {
   searchDatas(){
     let datas = this.search_data;
     console.log(this.searchData);
+    
     this.superAdmin.searchData(this.searchData).subscribe((data)=>{
       console.log(data);
       this.search_data=data;
       this.search_data = JSON.parse(this.search_data);
       let datacount = Object.keys(this.search_data)[0];
       this.search_data = this.search_data[datacount];
-      if(datas.length == 10){
-        console.log(datas);
+      if(datas != undefined  ){
+        if(datas.length == 10){
+          console.log(datas);
         this.search_list = [...datas,...this.search_data];
-
-        
+        } else {
+          this.search_list = [...this.search_data];
+          
+        }
       } else{
         console.log("empty data");
         this.search_list = [...this.search_data];
         
       }
-
+      sessionStorage.setItem('searchEmployee',JSON.stringify(this.search_list));
       sessionStorage.setItem('flag','true');
       this.searchData ='';
 
       
+    },(error)=>{
+      alert(error.error);
     })
+    
     
   }
 
@@ -110,6 +117,12 @@ export class SuperAdminComponent implements OnInit {
     //     this.getAllEmployeeDetails();
     //   }
     }
+  
+  }
+  searchEmployee(){
+    if(sessionStorage.getItem('searchEmployee')){
+      this.search_list = JSON.parse(sessionStorage.getItem('searchEmployee') as any);
+    }
     
   }
 
@@ -122,16 +135,16 @@ onScrolling(event:any){
     if(this.currentData.length == 10 || this.currentData.length==0){
       this.getAllEmployeeDetails(); 
     }
-    if(this.search_data.length == 10){
-      let page = JSON.parse(sessionStorage.getItem('filter') as any);
-      page = page + 1;
-      console.log(page);
+  //   if(this.search_data.length == 10){
+  //     let page = JSON.parse(sessionStorage.getItem('filter') as any);
+  //     page = page + 1;
+  //     console.log(page);
       
-      sessionStorage.setItem('filter',JSON.stringify(page))
-      this.searchDatas();
-    } else{
-      sessionStorage.setItem('filter','1')
-    }
+  //     sessionStorage.setItem('filter',JSON.stringify(page))
+  //     this.searchDatas();
+  //   } else{
+  //     sessionStorage.setItem('filter','1')
+  //   }
   }
 }
 onScrollingSearch(event:any){

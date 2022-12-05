@@ -1,8 +1,8 @@
 <div class="inviteEmpParentMain">
     <mat-card class="inviteEmpMain">
         <div class="inviteReporteesHeader">
-            <p class="inviteReportees">Invite Employees</p>
-            <button class="doneButton"routerLink="/createTraining">DONE</button>
+            <p class="inviteReportees">Delete Employees</p>
+            <button class="doneButton" (click)="submitData()" >DONE</button>
         </div>
         
         
@@ -18,60 +18,16 @@
             <!-- <div class="addRemoveIcon">add_circle</div> -->
         </div>
         
-        <div class="tabContentParent">
-            <div class="tabContent">
-                <div class="empCodeval">RT00378</div>
-                <div class="empNameval">Xyz</div>
-                <div class="empDesignationval">Senior Developer</div>
-                <div class="removeIcon"><mat-icon> do_not_disturb_on</mat-icon></div>
+        <div class="tabContentParent"  (scroll)="onScrolling($event)">
+            <div class="tabContent" *ngFor = "let employee of allEmployee;index as i">
+                <div class="empCodeval">{{employee.empId}}</div>
+                <div class="empNameval">{{employee.empName}}</div>
+                <div class="empDesignationval">{{employee.designation}}</div>
+                <div class="removeIcon" *ngIf="employee.remove == false" (click)="removeItem(employee)"><mat-icon> do_not_disturb_on</mat-icon></div>
+                <div *ngIf = "employee.remove == true" class="addIcon" (click)="notremove(employee)"><mat-icon> add_circle</mat-icon></div>
             </div>
             
-            <div class="tabContent">
-                <div class="empCodeval">RT00378</div>
-                <div class="empNameval">Xyz</div>
-                <div class="empDesignationval">Senior Developer</div>
-                <div class="addIcon"><mat-icon> add_circle</mat-icon></div>
-            </div>
-        
-            <div class="tabContent">
-                <div class="empCodeval">RT00378</div>
-                <div class="empNameval">Xyz</div>
-                <div class="empDesignationval">Senior Developer</div>
-                <div class="addIcon"><mat-icon> add_circle</mat-icon></div>
-            </div>
-            <div class="tabContent">
-                <div class="empCodeval">RT00378</div>
-                <div class="empNameval">Xyz</div>
-                <div class="empDesignationval">Senior Developer</div>
-                <div class="addIcon"><mat-icon> add_circle</mat-icon></div>
-            </div>
-        
-            <div class="tabContent">
-                <div class="empCodeval">RT00378</div>
-                <div class="empNameval">Xyz</div>
-                <div class="empDesignationval">Senior Developer</div>
-                <div class="addIcon"><mat-icon> add_circle</mat-icon></div>
-            </div>
-            <div class="tabContent">
-                <div class="empCodeval">RT00378</div>
-                <div class="empNameval">Xyz</div>
-                <div class="empDesignationval">Senior Developer</div>
-                <div class="addIcon"><mat-icon> add_circle</mat-icon></div>
-            </div>
-        
-            <div class="tabContent">
-                <div class="empCodeval">RT00378</div>
-                <div class="empNameval">Xyz</div>
-                <div class="empDesignationval">Senior Developer</div>
-                <div class="addIcon"><mat-icon> add_circle</mat-icon></div>
-            </div>
-            
-            <div class="tabContent">
-                <div class="empCodeval">RT00378</div>
-                <div class="empNameval">Xyz</div>
-                <div class="empDesignationval">Senior Developer</div>
-                <div class="addIcon"><mat-icon> add_circle</mat-icon></div>
-            </div>
+           
         
         </div>
     </mat-card>

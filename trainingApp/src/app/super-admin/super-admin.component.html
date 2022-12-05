@@ -3,6 +3,7 @@
 <app-navbar></app-navbar>
 {{activeData()}}
 {{getEmployeeData()}}
+{{searchEmployee()}}
 <div class="all-employee scroll" *ngIf="allEmployeeData && allData" (scroll)="onScrolling($event)">
     <form class="searchbar" *ngIf = "allEmployee">
         <input type="text" placeholder="Search Employee#, Name, Designation" [(ngModel)]="searchData" name="searchData" matInput class="search-input">
@@ -43,8 +44,9 @@
         <button class="search-button" mat-raised-button (click)="searchDatas()">SEARCH</button>
     </form>
     <div class="employoee-data" *ngIf = "allEmployee">
+        <div *ngIf="search_list.length<1" class="no-data">No Data</div>
         <mat-card id="table" class="employee-each-data">
-            <table class="table">
+            <table class="table" *ngIf="search_list.length>0">
                 <tr>
                     <th class="width-15">Employee#</th>
                     <th class="width-25">Name</th>

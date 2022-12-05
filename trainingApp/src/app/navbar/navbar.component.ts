@@ -76,6 +76,7 @@ export class NavbarComponent implements OnInit {
     this.allEmployees=true;
     sessionStorage.setItem('active','allEmployees');
     sessionStorage.setItem('flag','false');
+    // sessionStorage.setItem('page','1');
   }
 filter(){
   this.displayFilter=true;

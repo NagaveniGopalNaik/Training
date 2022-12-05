@@ -55,7 +55,17 @@ update_employee_role!:FormGroup;
       let index = allData.indexOf(object);
       allData[index].role = this.update_employee_role.value.roleName;
       sessionStorage.setItem('allEmployee',JSON.stringify(allData));
+
+      let allsearchData = JSON.parse(sessionStorage.getItem('searchEmployee') as any);
+      let object1 = allsearchData.find((datas:any)=>{
+        return datas.empId == this.update_employee_role.value.empId;
+      });
+     if(object1 != undefined){
+      let index1 = allsearchData.indexOf(object1);
+      allsearchData[index1].role = this.update_employee_role.value.roleName;
+      sessionStorage.setItem('searchEmployee',JSON.stringify(allsearchData));
       
+     }
     },(error)=>{
       alert(error.error);
     })
@@ -75,6 +85,19 @@ update_employee_role!:FormGroup;
       let index = allData.indexOf(object);
       allData.splice(index,1);
       sessionStorage.setItem('allEmployee',JSON.stringify(allData));
+
+      let allDatas = JSON.parse(sessionStorage.getItem('searchEmployee') as any);
+      let object1 = allDatas.find((datas:any)=>{
+        return datas.empId == this.update_employee_role.value.empId;
+      });
+      let index1 = allDatas.indexOf(object1);
+      console.log(index1);
+      
+      allDatas.splice(index1,1);
+      console.log(allDatas);
+      
+      sessionStorage.setItem('searchEmployee',JSON.stringify(allDatas));
+      
       
     
       
