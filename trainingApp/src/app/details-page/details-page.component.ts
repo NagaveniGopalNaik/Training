@@ -62,11 +62,14 @@ export class DetailsPageComponent implements OnInit {
         data=>{
           console.log(data);
           this.nonAttendeesData=data;
-          this.nonAttendeesData=JSON.parse(this.nonAttendeesData);
-          const arraynonAttendees = Object.keys(this.nonAttendeesData)[0];
-          this.nonAttendeesData=this.nonAttendeesData[arraynonAttendees]
-          this.nonAttendees=this.nonAttendeesData;
-          console.log(this.nonAttendees);
+          if(typeof this.nonAttendeesData == 'object'){
+            this.nonAttendeesData=JSON.parse(this.nonAttendeesData);
+            const arraynonAttendees = Object.keys(this.nonAttendeesData)[0];
+            this.nonAttendeesData=this.nonAttendeesData[arraynonAttendees]
+            this.nonAttendees=this.nonAttendeesData;
+            console.log(this.nonAttendees);
+          }
+        
           
         }
       )
@@ -76,11 +79,14 @@ export class DetailsPageComponent implements OnInit {
     this.adminService.getAttendees().subscribe(data=>{
       console.log(data);
       this.attendeesData=data;
-      this.attendeesData=JSON.parse(this.attendeesData);
+      if(typeof this.attendeesData == 'object'){
+        this.attendeesData=JSON.parse(this.attendeesData);
       const arrayAttendees = Object.keys(this.attendeesData)[0];
       this.attendeesData=this.attendeesData[arrayAttendees]
       this.attendees=this.attendeesData;
       console.log(this.attendees);
+      }
+      
       
     })
   }

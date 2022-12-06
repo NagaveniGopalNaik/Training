@@ -290,7 +290,7 @@ button{
 }
 .remaining-time-count{
     margin-left: 10px;
-width: 35%;
+/* width: fit-content; */
 justify-content: space-around;
 }
 .position{
@@ -299,7 +299,7 @@ justify-content: space-around;
     
 }
 .position .total-attendies-count{
-    width: 40%;
+    /* width: 40%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -307,11 +307,14 @@ justify-content: space-around;
 
 .total-attendies-count{
  width: fit-content;
+ align-self:flex-end;
  margin-top: 20px;
  /* border: 1px solid black; */
 }
 .time-div{
-    width:fit-content;
+    width:20em;
+    
+     display: block;
     border: 1px solid rgba(221,221,221,1);
   border-radius: 4px;
   background-color: rgba(243,243,243,1);
@@ -322,6 +325,7 @@ justify-content: space-around;
   line-height: 1.6rem;
   text-align: center;
   padding: 2% 5%;
+  margin-right: 5%;
 }
 
 .count{
