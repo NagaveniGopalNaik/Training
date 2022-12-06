@@ -206,7 +206,7 @@
     justify-content: left;
 }
 .date{
-    width: 25%;
+    width: 30%;
     text-align: left;
 }
 .tag{
@@ -224,6 +224,7 @@
   letter-spacing: 0.43px;
   line-height: 1.9rem;
 }
+
 
 
 .lighter{
@@ -289,7 +290,7 @@ button{
 }
 .remaining-time-count{
     margin-left: 10px;
-width: 30%;
+width: 35%;
 justify-content: space-around;
 }
 .position{
@@ -305,7 +306,7 @@ justify-content: space-around;
 }
 
 .total-attendies-count{
- width: 20%;
+ width: fit-content;
  margin-top: 20px;
  /* border: 1px solid black; */
 }
@@ -330,6 +331,7 @@ justify-content: space-around;
   font-weight: bold;
   letter-spacing: 0.2px;
   line-height: 1.9rem;
+  margin-left: 15%;
 }
 
 .active{
@@ -467,4 +469,7 @@ input:focus{
    }
 
   
+   /* course details style */
+
+   
 

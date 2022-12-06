@@ -49,7 +49,8 @@ import { ErrorMessagesComponent } from './error-messages/error-messages.componen
 import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';  
 
 import { UpdateTrainingComponent } from './update-training/update-training.component';
-import { DateChangePipe } from './date.pipe';  
+import { DateChangePipe,DurationPipe,TimePipe,EndsInPipe} from './date.pipe';
+import { CourseDetailsComponent } from './course-details/course-details.component';  
 
 
 // import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
@@ -99,6 +100,12 @@ import { DateChangePipe } from './date.pipe';
 // AdminTrainingDetailsComponent,
     UpdateTrainingComponent,
  DateChangePipe,
+ TimePipe,
+ DurationPipe,
+ EndsInPipe,
+ CourseDetailsComponent
+ 
+
 
 
     // NgxMaterialTimepickerModule

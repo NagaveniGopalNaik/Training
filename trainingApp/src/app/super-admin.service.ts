@@ -83,4 +83,10 @@ token = JSON.parse(sessionStorage.getItem('token') as any);
   })
   }
 
+  getCourseAcceptCount(data:any){
+    return this.http.get(`${API_URL}/employee/count/acceptedInvites/${data}`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',responseType:'text'
+  });
+  }
+
 }
