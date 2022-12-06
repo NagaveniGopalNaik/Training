@@ -28,6 +28,7 @@ export class ManagerComponent implements OnInit {
   course_status_upcoming='course_status_upcoming';
   course_status_completed='course_status_completed'
   ngOnInit(): void {
+    
     this.allCourses();
   }
 

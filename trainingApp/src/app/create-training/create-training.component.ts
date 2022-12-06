@@ -42,6 +42,9 @@ export class CreateTrainingComponent implements OnInit {
       'durationTime_seconds':new FormControl(''),
       'meetingInfo': new FormControl('')
     })
+    sessionStorage.setItem('refForm',JSON.stringify(this.createTrainingForm));
+    
+    
   }
   createEvent() {
     let startTime_hrs=String(this.createTrainingForm.get('startTime_hrs')?.value)
@@ -102,6 +105,8 @@ export class CreateTrainingComponent implements OnInit {
     },(error)=>{
       alert(error.error)
     })
+
+ 
 
 
     // this.createTrainingForm.reset();

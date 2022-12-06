@@ -27,16 +27,24 @@ export class AdminComponent implements OnInit {
   course_status_active='course_status_active';
   course_status_upcoming='course_status_upcoming';
   course_status_completed='course_status_completed';
+  disedit:any;
+  course_list:any;
   constructor(private dialog: MatDialog, private adminService: AdminServiceService,private router:Router) { }
   // this.tag=sessionStorage.getItem('active');
   ngOnInit(): void {
       this.adminService.showCourses().subscribe(data => {
         console.log(data);
         this.courseDetails = JSON.parse(data);
+        
       
         const arrayCourseDetails = Object.keys(this.courseDetails)[0];
         this.courseDetails = this.courseDetails[arrayCourseDetails]
         console.log(this.courseDetails);
+        for(let show of this.courseDetails){
+          show.block=false;
+        }
+        console.log(this.courseDetails);
+
         console.log(this.courseDetails[0].completionStatus);
         
         if(this.courseDetails[0].completionStatus=='active'){
@@ -53,6 +61,8 @@ export class AdminComponent implements OnInit {
       
       })
     
+    
+
 
 
   //   if(this.tag=='active'){
@@ -86,11 +96,18 @@ export class AdminComponent implements OnInit {
   // })
   // }
 }
+// getCourse(){
+//   if(sessionStorage.getItem('courseDetails')){
+//     this.course_list = JSON.parse(sessionStorage.getItem('courseDetails') || '[]');
+//   }
+// }
 
 navigateToDetails(data:any){
   sessionStorage.setItem('course_details',JSON.stringify(data));
   console.log(data);
   this.router.navigate(['/detailsPage']);
+  
+  // this.router.navigate(['/updateTraining']);
 }
 
   display_p_options() {
@@ -102,8 +119,12 @@ navigateToDetails(data:any){
   editProfile() {
     this.dialog.open(EditProfileComponent, { height: '40%', width: '40%' });
   }
-  display_edit_dlt_options() {
-    this.displayEditDlt = true;
+  display_edit_dlt_options(data:any) {
+    // data.block='true';
+    console.log(data);
+    data.block = true;
+    
+    // this.disedit='true';
   }
   getUpdateTraining() {
 
