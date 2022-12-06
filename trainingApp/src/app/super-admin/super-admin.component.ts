@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AdminServiceService } from '../admin-service.service';
 import { AssignEmployeeRoleComponent } from '../assign-employee-role/assign-employee-role.component';
 import { ServerService } from '../server.service';
@@ -31,8 +32,8 @@ export class SuperAdminComponent implements OnInit {
   previousData:any[]=[];
   course:any;
   course_list:any[]=[];
-  
-  constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService,private admin:AdminServiceService) { }
+  date:any;
+  constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService,private admin:AdminServiceService,private router:Router) { }
 //   @HostListener('scroll') onScroll(e: Event): void {
 //     console.log("scrolling .... ");
 //  }
@@ -61,10 +62,30 @@ export class SuperAdminComponent implements OnInit {
       let date = new Date();
       console.log(date);
       for(let data of this.course_list){
-        let date = data.startDate;
-        console.log(date);
+        console.log(data.courseId);
+        data.employee_count = 0;
+        
+        this.superAdmin.getCourseAcceptCount(data.courseId).subscribe((datas:any)=>{
+          
+          // console.log(datas);
+          // let value = JSON.parse( datas);
+          // console.log(typeof value);
+          
+          
+          let count = JSON.parse(datas);
+          data.employee_count = count;
+          // console.log(typeof count);
+          
+          // console.log(data.employee_count);
+          
+        },(error)=>{
+          // console.log(error);
+          data.employee_count = 0;
+        })
         
       }
+      console.log(this.course_list);
+      
       
       
       
@@ -82,7 +103,11 @@ export class SuperAdminComponent implements OnInit {
   //     console.log("End");
   //   }
   // }
-
+  courseDetailNavigate(data:any){
+    sessionStorage.setItem('course_details',JSON.stringify(data));
+    this.router.navigate(['/detailsPage']);
+    
+  }
   searchDatas(){
     // this.previousData = [];
     console.log(this.searchData);
@@ -117,7 +142,7 @@ export class SuperAdminComponent implements OnInit {
     
     
   }
-
+ 
   getEmployeeData(){
     if(sessionStorage.getItem('flag')){
       let result = JSON.parse(sessionStorage.getItem('flag') as any);

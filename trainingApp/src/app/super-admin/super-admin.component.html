@@ -4,6 +4,7 @@
 {{activeData()}}
 {{getEmployeeData()}}
 {{searchEmployee()}}
+
 <div class="all-employee scroll" *ngIf="allEmployeeData && allData" (scroll)="onScrolling($event)">
     <form class="searchbar" *ngIf = "allEmployee">
         <input type="text" placeholder="Search Employee#, Name, Designation" [(ngModel)]="searchData" name="searchData" matInput class="search-input">
@@ -80,37 +81,41 @@
             <div class="course-time">
                 <div class="courseName">
                     <p class="trianing-name">{{courseData.courseName}}<button mat-raised-button class="course-button active">ACTIVE</button></p>
-                <p class="trainer">Trainer : <span class="trainer-name">{{courseData.trainer}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">{{courseData.trainingMode}}</span></p>
+                <p class="trainer">Trainer : <span class="trainer-name">{{courseData.trainer}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">{{courseData.trainingMode}}</span>
+                </p>
                 </div>
                 <div class="remaining-time-count">
-                 <div class="time-div">Ends in: 8 days 4 hrs 35 mins</div>
+                 <div class="time-div"*ngIf="courseData.endDate!=null">Ends in: {{date | endsIn:courseData.endDate:courseData.endTime}}</div>
+                 <div class="time-div" *ngIf="courseData.endDate==null">End date will be anounced soon...</div>
                 <div class="total-attendies-count">
-                    <p class="icon"><mat-icon>group</mat-icon></p>
+                    <p class="icon"><mat-icon>groups</mat-icon></p>
                     
-                    <p class="count">87</p>
+                    <p class="count">{{courseData.employee_count}}</p>
                 </div>
                 </div>
             </div>
            <div class="course-details">
             <div class="details">
                 <div class="date">
-                    <p class="tag">Date</p>
+                    <p class="tag">Start Date</p>
                     <!-- <p class="data">{{courseData.startDate | date}}</p> -->
-                    <p class="data">{{courseData.startDate | date:'MMM'}}&nbsp;{{courseData.startDate | dateChange:'dd' }},&nbsp;{{courseData.startDate | date:'YYYY'}}</p>
+                    <p class="data">{{courseData.startDate | date:'MMM'}}&nbsp;{{courseData.startDate | dateChange }},&nbsp;{{courseData.startDate | date:'YYYY'}} at <span>{{courseData.startTime | time}}</span></p>
                 </div>
-                <div class="date">
-                    <p class="tag">Time</p>
-                    <p class="data">02:45PM</p>
+                <div class="date" >
+                    <p class="tag">End Date</p>
+                    <p class="data" *ngIf ="courseData.endDate">{{courseData.endDate | date:'MMM'}}&nbsp;{{courseData.endDate | dateChange:'dd' }},&nbsp;{{courseData.endDate | date:'YYYY'}} at <span>{{courseData.endTime | time}}</span></p>
+                    <p class="data" *ngIf = "courseData.endDate == null">&nbsp;-</p>
                 </div>
                 <div class="date">
                     <p class="tag">Duration</p>
-                    <p class="data">3 hours 45 mins</p>
+                    <p class="data">{{courseData.duration | duration}}</p>
+                    <p class="data" *ngIf = "courseData.duration == null">&nbsp;-</p>
                 </div>
                
                 
             </div>
             <div class="reaction-button">
-                <button mat-raised-button class="details-button">DETAILS</button>
+                <button mat-raised-button class="details-button" (click)="courseDetailNavigate(courseData)">DETAILS</button>
                
             </div>
             

@@ -26,7 +26,7 @@ import { InviteReporteesComponent } from './invite-reportees/invite-reportees.co
 import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';
 
 import { UpdateTrainingComponent } from './update-training/update-training.component';
-
+import { CourseDetailsComponent } from './course-details/course-details.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:"full"},
@@ -48,7 +48,7 @@ const routes: Routes = [
   {path:'inviteEmp',component:InviteEmpComponent},
 
   {path:'detailsPage',component:DetailsPageComponent},
-
+ {path:'course-details',component:CourseDetailsComponent},
   {path:'inviteReportees',component:InviteReporteesComponent},
   {path:'detailsPage',component:DetailsPageComponent},
   {path:'managerTrainingDetails',component:ManagerTrainingDetailsComponent},
