@@ -242,7 +242,8 @@ button {
 .container {
     display: flex;
     justify-content: space-around;
-    width: 32%;
+    flex-wrap: wrap;
+    width: 278px;
     box-sizing: border-box;
     border: 1px solid #D5D5D5;
     border-radius: 4px;
@@ -287,6 +288,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    
     flex-wrap: wrap;
 }
 
@@ -295,7 +297,7 @@ button {
     margin: auto;
 }
 
-.addIcon mat-icon {
+.addIcon mat-icon,.removeIcon mat-icon  {
     font-size: 24px;
     color: white;
     background-color: #EC2C59;
@@ -332,6 +334,8 @@ button {
     display: flex;
     gap: 1.6rem;
     margin-top: 2%;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 

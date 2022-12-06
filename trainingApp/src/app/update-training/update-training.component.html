@@ -34,13 +34,13 @@
             </div>
             <div class="inputContainer">
                 <label for="">Trainer Name</label>
-                <input type="text"  formControlName="trainer" >
+                <input type="text" formControlName="trainer" >
             </div>
             <div class="choice">
                 <mat-radio-group  formControlName="trainingMode" >
-                    <mat-radio-button value="Online sessions">Online Sessions</mat-radio-button>
-                    <mat-radio-button value="Off-site">Off-site</mat-radio-button>
-                    <mat-radio-button value="At Office">At Office</mat-radio-button>
+                    <mat-radio-button value="Online sessions" [checked]="trainingModes=='Online sessions'">Online Sessions</mat-radio-button>
+                    <mat-radio-button value="Off-site" [checked]="trainingModes=='Off-site'">Off-site</mat-radio-button>
+                    <mat-radio-button value="At Office" [checked]="trainingModes=='At Office'">At Office</mat-radio-button>
                 </mat-radio-group>
 
             </div>

@@ -1,6 +1,7 @@
+<!-- {{getAttendees()}} -->
 <div class="header">
     <div class="logo">
-        <img src="/assets/Robosoft_logo_horizontal.png" id="logo" alt="">
+        <img src="/assets/Robosoft_logo_horizontal.png" routerLink="/admin"id="logo" alt="">
     </div>
     <div class="profile">
         <div class="newTraining">
@@ -41,7 +42,7 @@
                 <div class="flexEdit">
                     <div class="endsin">Ends in{{details.startDate-details.endDate}}</div>
                     <div class="edit">
-                        <mat-icon routerLink="/updateTraining">edit_square</mat-icon>
+                        <mat-icon (click)="editTraining()">edit_square</mat-icon>
                     </div>
                 </div>
             </div>
@@ -79,7 +80,7 @@
         </div>
     </mat-card>
     <div class="parentContainer" *ngIf="displayActive">
-        <div> <p class="attendees"><span *ngIf="attendees.length>=1"> Attendees ({{attendees.length}})&nbsp;</span> <span class="inviteEmp" routerLink="/inviteEmp">&nbsp;Invite Employees</span></p></div>
+        <div> <p class="attendees"><span *ngIf="attendees.length>=1"> Attendees ({{attendees.length}})&nbsp;</span> <span class="inviteEmp" *ngIf="trainingMode=='Online sessions'"routerLink="/inviteEmp">&nbsp;Invite Employees</span></p></div>
         <div class="contentContainer">
          <div class="container" *ngFor="let attendee of attendees">
              <div class="profileimg">
@@ -91,7 +92,7 @@
                  <div class="empCode">{{attendee.empId}}</div>
              </div>
              <div class="addIcon">
-                 <mat-icon>do_not_disturb_on</mat-icon>
+                 <mat-icon (click)="deleteEmployees(attendee.empId)">do_not_disturb_on</mat-icon>
              </div>
         </div>
          </div>
@@ -161,8 +162,8 @@
                     <div class="empDesignation">{{attendee.designation}}</div>
                     <div class="empCode">{{attendee.empId}}</div>
                 </div>
-                <div class="addIcon">
-                    <mat-icon> do_not_disturb_on</mat-icon>
+                <div class="removeIcon" >
+                    <mat-icon (click)="deleteEmployees(attendee.empId)"> do_not_disturb_on</mat-icon>
                 </div>
            </div>
             </div>

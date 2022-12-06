@@ -26,8 +26,8 @@
                     <div class="empCodeval">{{empDetail.empId}}</div>
                     <div class="empNameval">{{empDetail.empName}}</div>
                     <div class="empDesignationval">{{empDetail.designation}}</div>
-                    <div class="removeIcon" *ngIf="empDetail.invited==false" (click)="toggleRemove(empDetail.empId)"><mat-icon> do_not_disturb_on</mat-icon></div>
-                    <div class="addIcon" *ngIf="empDetail.invited==true" (click)="toggleAdd(empDetail.empId)"><mat-icon>add_circle</mat-icon></div>
+                    <div class="addIcon" *ngIf="empDetail.invited==false" (click)="toggleRemove(empDetail.empId)"><mat-icon> add_circle</mat-icon></div>
+                    <div class="removeIcon" *ngIf="empDetail.invited==true" (click)="toggleAdd(empDetail.empId)"><mat-icon>do_not_disturb_on</mat-icon></div>
                 </div>
                 
         </div>

@@ -27,21 +27,22 @@ export class NavbarComponent implements OnInit {
   switch(this.activeTag){
     case 'active':
       this.active = true;
-     
+     this.adminService.data = 'active';
       break;
       case 'upcoming':
       
       this.upcoming = true;
-      
+      this.adminService.data = 'upcoming';
       break;
       case 'completed':
       
       this.completed = true;
-      
+      this.adminService.data = 'completed';
       break;
       case 'allEmployees':
       
       this.allEmployees = true;
+     
       break;
   }
 }

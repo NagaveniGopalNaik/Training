@@ -23,12 +23,14 @@ export class AdminServiceService {
   deleteInviteEmpUrl=`${API_URL}/deleteInvite/`
   attendeesURL=`${API_URL}/attendees/`;
   nonAttendeesURL=`${API_URL}/nonAttendees/`;
+  data='active';
   token = JSON.parse(sessionStorage.getItem('token') as any);
 
   getDetailsId(){
     this.courseDetails=sessionStorage.getItem('course_details');
     this.courseDetails=JSON.parse(this.courseDetails);
     this.details_id = this.courseDetails.courseId;
+    
     // this.completionStatus=this.courseDetails.completionStatus;
     // if(this.completionStatus=='completed'){
     //   this.display=true;
@@ -69,7 +71,9 @@ export class AdminServiceService {
     this.course=this.course+1; 
     this.activeTag=sessionStorage.getItem('active');
     // console.log(typeof this.activeTag);
-    
+    // return this.httpClient.get(this.url+`${this.data}`, {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',1).set('limit',10)
+    //   ,responseType:'text'
+    // });
     if(this.activeTag=='active'){
       return this.httpClient.get(this.url+'active', {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.course).set('limit',10)
       ,responseType:'text'
@@ -146,17 +150,18 @@ export class AdminServiceService {
   responseType:'text'});
   }
   inviteEmployees(body:any){
-    return this.httpClient.post(this.inviteEmpUrl+this.details_id,
-    body,
-     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
-
-    });
-  }
-  deleteEmployees(body:any){
+    console.log(body);
     return this.httpClient.put(this.deleteInviteEmpUrl+this.details_id,
       body,
        {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
   
       });
+  }
+  deleteEmployees(body:any){
+      return this.httpClient.post(this.inviteEmpUrl+this.details_id,
+        body,
+         {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
+    
+        });
   }
 }

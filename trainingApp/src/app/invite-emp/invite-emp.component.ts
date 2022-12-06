@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminServiceService } from '../admin-service.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class InviteEmpComponent implements OnInit {
  arrayAdd:any[]=[];
   allEmployee:any;
   
-  constructor(private adminService: AdminServiceService) { }
+  constructor(private adminService: AdminServiceService,private router:Router) { }
 
   ngOnInit(): void {
     this.adminService.getEmployeesToInvite().subscribe(data => {
@@ -88,7 +89,6 @@ export class InviteEmpComponent implements OnInit {
   inviteEmployees(empId: any) {
     this.adminService.inviteEmployees(this.arrayAdd).subscribe(data => {
       console.log(data);
-
     })
   }
   deleteEmployees(empId:any) {
@@ -99,7 +99,8 @@ export class InviteEmpComponent implements OnInit {
   }
 
   done(){
-    this.inviteEmployees(this.empId);
-    this.deleteEmployees(this.empId);
+    this.inviteEmployees(this.arrayAdd);
+    this.deleteEmployees(this.arrayRemove);
+    this.router.navigate(['/detailsPage'])
   }
 }
