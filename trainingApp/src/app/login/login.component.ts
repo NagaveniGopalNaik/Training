@@ -19,6 +19,7 @@ token:any;
 
   ngOnInit(): void {
     this.initForm();
+    sessionStorage.setItem('active','active');
     // sessionStorage.setItem('dialog',JSON.stringify(false));
   }
 
@@ -37,6 +38,8 @@ login(){
   if(this.loginForm.valid){
     this.server.loginData(this.loginForm.value).subscribe((data)=>{
       this.empData = JSON.parse(data);
+      sessionStorage.setItem('login',JSON.stringify(this.empData));
+      sessionStorage.setItem('course-page','1');
       console.log(this.empData.jwtToken);
       
       // if(this.empData.employee){

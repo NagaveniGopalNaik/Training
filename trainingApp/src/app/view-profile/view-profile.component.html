@@ -1,3 +1,5 @@
+{{getProfile()}}
+
 <app-employee-header></app-employee-header>
 <div class="navbar-path">
     <div class="details">
@@ -5,103 +7,51 @@
     </div>
     
 </div>
-<div class="profile-page">
-    <div><img src="/assets/profile.png" id="pimage" alt=""></div>
-    <div class="profile-details">
-        <p class="name">Nagaveni</p>
-        <p class="designation">Software Engineer</p>
-        <p class="employeeId">RT0033</p>
+<div class="body-div">
+    <div class="profile-page">
+        <div><img [src]="loginData.profilePic" id="pimage" alt=""></div>
+        <div class="profile-details">
+            <p class="name">{{loginData.empName}}</p>
+            <p class="designation">{{loginData.designation}}</p>
+            <p class="employeeId">{{loginData.empId}}</p>
+        </div>
     </div>
-</div>
-<div class="parentContainer">
-    <div class="container">
-        <div class="navHeading">Training:</div>
-        <div class="navContent">Attended</div>
-        <div class="navContent">Non-Attended</div>
-        
+    <div class="parentContainer">
+        <div class="container">
+            <div class="navHeading">Training:</div>
+            <div class="navContent" [class.active]="attendedData" (click)="attended()">Attended</div>
+            <div class="navContent" [class.active]="nonAttendedData" (click)="nonAttended()">Non-Attended</div>
+            
+        </div>
     </div>
-</div>
-
-<div class="employoee-data">
-    <mat-card class="employee-each-data">
-        <table class="table">
-            <tr>
-                
-                <th>Training Name</th>
-                <th>Date</th>
-                <th>Training Type</th>
-                <th>Reason</th>
-                <!-- <th class="width-5"></th> -->
-            </tr>
-            <tr>
-                <td>
-                    <div class="training-name-details">
-                        <p class="name">UX/UI Design Process</p>
-                        <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
-                    </div>
-                </td>
-                <td > Dec 5,2020</td>
-                <td >Online</td>
-                <td><p class="reason-data">Attended client meeting</p></td>
+    
+    <div class="employoee-data">
+        <mat-card class="employee-each-data">
+            <table class="table" *ngFor="let course of courseDetails">
+                <tr>
+                    
+                    <th>Training Name</th>
+                    <th>Date</th>
+                    <th>Training Type</th>
+                    <th *ngIf="course.reason">Reason</th>
+                    <!-- <th class="width-5"></th> -->
                 </tr>
                 <tr>
                     <td>
                         <div class="training-name-details">
-                            <p class="name">UX/UI Design Process</p>
-                            <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
+                            <p class="name">{{course.courseName}}</p>
+                            <p class="trainer">Trainer : <span class="name">{{course.trainer}}</span></p>
                         </div>
                     </td>
-                    <td > Dec 5,2020</td>
+                    <td >{{course.startDate | date}}</td>
                     <td >Online</td>
-                    <td><p class="reason-data">Attended client meeting</p></td>
+                    <td *ngIf="course.reason"><p class="reason-data">{{course.reason}}</p></td>
                     </tr>
-                    <tr>
-                        <td>
-                            <div class="training-name-details">
-                                <p class="name">UX/UI Design Process</p>
-                                <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
-                            </div>
-                        </td>
-                        <td > Dec 5,2020</td>
-                        <td >Online</td>
-                        <td><p class="reason-data">Attended client meeting</p></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="training-name-details">
-                                    <p class="name">UX/UI Design Process</p>
-                                    <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
-                                </div>
-                            </td>
-                            <td > Dec 5,2020</td>
-                            <td >Online</td>
-                            <td><p class="reason-data">Attended client meeting</p></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="training-name-details">
-                                        <p class="name">UX/UI Design Process</p>
-                                        <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
-                                    </div>
-                                </td>
-                                <td > Dec 5,2020</td>
-                                <td >Online</td>
-                                <td><p class="reason-data">Attended client meeting</p></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="training-name-details">
-                                            <p class="name">UX/UI Design Process</p>
-                                            <p class="trainer">Trainer : <span class="name">George Rhaman</span></p>
-                                        </div>
-                                    </td>
-                                    <td > Dec 5,2020</td>
-                                    <td >Online</td>
-                                    <td><p class="reason-data">Attended client meeting</p></td>
-                                    </tr>
-         
-        </table>
-    </mat-card>
-   
+                    
+             
+            </table>
+        </mat-card>
+       
+    </div>
 </div>
 <app-footer></app-footer>

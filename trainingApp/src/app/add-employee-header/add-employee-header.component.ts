@@ -12,9 +12,12 @@ import { Router } from '@angular/router';
 })
 export class AddEmployeeHeaderComponent implements OnInit {
 hiddenOption=false;
+
   constructor(private dialog:MatDialog,private router:Router) { }
 
   ngOnInit(): void {
+    
+    
   }
   addNewEmployee(){
     this.hiddenOption = true;

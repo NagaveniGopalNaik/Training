@@ -106,7 +106,7 @@ export class EndsInPipe implements PipeTransform {
    let today = new Date();
    let times = today.getTime();
    let present = currentTime - times;
-   let day = Number((present / 86400000).toFixed(0))+1;
+   let day = Number((present / 86400000).toFixed(0));
    let hour = ((present% 86400000)/3600000).toFixed(0);
    let minute = (((present% 86400000)%3600000)/60000).toFixed(0)
 
@@ -114,6 +114,7 @@ export class EndsInPipe implements PipeTransform {
    
 
     return String(day)+" days "+hour+" hours "+minute+" mins";
+    // return date;
     // return date;
 
   }

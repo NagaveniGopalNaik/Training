@@ -33,11 +33,13 @@ export class SuperAdminComponent implements OnInit {
   course:any;
   course_list:any[]=[];
   date:any;
+  display=true;
   constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService,private admin:AdminServiceService,private router:Router) { }
 //   @HostListener('scroll') onScroll(e: Event): void {
 //     console.log("scrolling .... ");
 //  }
   ngOnInit(): void {
+    
     this.activeData();
     this.getAllEmployeeDetails();
     this.courseDetail();
@@ -51,16 +53,44 @@ export class SuperAdminComponent implements OnInit {
     // })
     
   }
-
+  statusCheck(){
+    let nav_status = sessionStorage.getItem('status') || 'true';
+    let filter_status = sessionStorage.getItem('filterCourse') || 'false';
+    if(filter_status == 'true'){
+        let course = JSON.parse(sessionStorage.getItem('filter-course-list') as any);
+        
+        
+        
+        
+        this.course_list = course;
+        
+        
+    }else{
+      if(nav_status == 'true'){
+        this.courseDetail();
+      }
+    }
+    
+    let display = sessionStorage.getItem('active');
+    if(display == 'allEmployees'){
+      this.display = false;
+    } else {
+      this.display = true;
+    }
+  }
+ 
   courseDetail(){
-    this.admin.showCourses().subscribe((data:any)=>{
+    sessionStorage.setItem('status','false');
+    this.superAdmin.courseDetails().subscribe((data:any)=>{
       console.log(data);
-      this.course = JSON.parse(data);
+
+      
+      this.course = JSON.parse(data) as any;
+      // this.course = data;
       let key = Number(Object.keys(this.course));
       this.course_list = this.course[key];
       console.log(this.course_list);
-      let date = new Date();
-      console.log(date);
+
       for(let data of this.course_list){
         console.log(data.courseId);
         data.employee_count = 0;
@@ -84,12 +114,13 @@ export class SuperAdminComponent implements OnInit {
         })
         
       }
-      console.log(this.course_list);
+      // console.log(this.course_list);
       
       
       
       
     })
+    
   }
 
  
