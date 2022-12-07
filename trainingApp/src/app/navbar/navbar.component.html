@@ -13,7 +13,7 @@
     </div>
 
     <mat-icon class="icon" (click)="filter()">filter_list</mat-icon>
-    <mat-card class="filter-data" [class.display]="displayFilter">
+    <mat-card class="filter-data" [class.display]="displayFilter" [formGroup]="filterForm">
 
         <div class="filter-apply">
             <p class="filter">Filter</p>
@@ -25,8 +25,8 @@
            
               <div class="start-date">
               
-                <input type="text" placeholder="From" onfocus="(this.type='date')" onblur="(this.type='text')">
-                <input type="text" placeholder="To" onfocus="(this.type='date')" onblur="(this.type='text')">
+                <input type="text" placeholder="From" onfocus="(this.type='date')" onblur="(this.type='text')" formControlName="downDate" name="downDate">
+                <input type="text" placeholder="To" onfocus="(this.type='date')" onblur="(this.type='text')" formControlName="topDate" name="topDate">
               </div>
         </div>
            

@@ -9,7 +9,7 @@ const API_URL = environment.API_URL;
   providedIn: 'root'
 })
 export class SuperAdminService {
-course=0;
+course = 1;
 employee = 0;
 
 token = JSON.parse(sessionStorage.getItem('token') as any);
@@ -51,9 +51,13 @@ token = JSON.parse(sessionStorage.getItem('token') as any);
   
 
   courseDetails():Observable<any>{
-    this.course =this.course + 1;
-    return this.http.get(`${API_URL}/company/courses/completed`,
-    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('page',this.course).set('limit',10)
+    let page = sessionStorage.getItem('course-page') || '1';
+    let activeTag =sessionStorage.getItem('active');
+    console.log(this.course);
+    
+    
+    return this.http.get(`${API_URL}/company/courses/${activeTag}`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('page',page).set('limit',10)
     ,responseType:'text'
   });
   }
@@ -85,6 +89,39 @@ token = JSON.parse(sessionStorage.getItem('token') as any);
 
   getCourseAcceptCount(data:any){
     return this.http.get(`${API_URL}/employee/count/acceptedInvites/${data}`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',responseType:'text'
+  });
+  }
+
+  filterCourse(data:any){
+    let activeData = sessionStorage.getItem('active') as any;
+    console.log(activeData);
+    
+    sessionStorage.setItem('filterCourse','true');
+    return this.http.get(`${API_URL}/course/filter`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('completionStatus',activeData).set('downDate',data.downDate).set('topDate',data.topDate).set('page',1).set('limit',10),responseType:'text'
+  });
+  }
+
+  imageUpload(data:any){
+    console.log(data);
+    let formData = new FormData();
+    formData.set('file',data);
+    
+    return this.http.put(`${API_URL}/employee/uploadProfilePhoto`,formData,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+  })
+  }
+
+  getAttendedCourse(){
+    let active = sessionStorage.getItem('employee-nav') || 'attendedCourse';
+    return this.http.get(`${API_URL}/employee/${active}`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('page',1).set('limit',10),responseType:'text'
+  });
+  }
+
+  notificationCount(){
+    return this.http.get(`${API_URL}/employee/notification/count`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',responseType:'text'
   });
   }
