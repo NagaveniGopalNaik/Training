@@ -151,7 +151,7 @@
 
   
         <div class="parentContainer" *ngIf="displayUpcoming">
-           <div> <p class="attendees"><span  *ngIf="attendees.length>1"> Attendees ({{attendees.length}})&nbsp; </span><span class="inviteEmp" routerLink="/inviteEmp">Invite Employees</span></p></div>
+           <div> <p class="attendees"><span  *ngIf="attendees.length>=1"> Attendees ({{attendees.length}})&nbsp; </span><span class="inviteEmp" routerLink="/inviteEmp">Invite Employees</span></p></div>
            <div class="contentContainer">
             <div class="container" *ngFor="let attendee of attendees">
                 <div class="profileimg">
@@ -183,9 +183,9 @@
             <div class="endsinEdit">
                 <div class="flexEdit">
                     <!-- <div class="endsin">Ends in{{details.startDate-details.endDate}}</div> -->
-                    <div class="edit">
+                    <!-- <div class="edit">
                         <mat-icon routerLink="/updateTraining">edit_square</mat-icon>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

@@ -85,8 +85,12 @@ export class DetailsPageComponent implements OnInit {
       this.attendeesData=this.attendeesData[arrayAttendees]
       this.attendees=this.attendeesData;
       console.log(this.attendees);
+
+      // sessionStorage.setItem('attendees',JSON.stringify(this.attendees));
+
       }
       
+
       
     })
   }

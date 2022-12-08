@@ -40,7 +40,7 @@
                 <mat-radio-group  formControlName="trainingMode" >
                     <mat-radio-button value="Online sessions" [checked]="trainingModes=='Online sessions'">Online Sessions</mat-radio-button>
                     <mat-radio-button value="Off-site" [checked]="trainingModes=='Off-site'">Off-site</mat-radio-button>
-                    <mat-radio-button value="At Office" [checked]="trainingModes=='At Office'">At Office</mat-radio-button>
+                    <mat-radio-button value="At office" [checked]="trainingModes=='At office'">At Office</mat-radio-button>
                 </mat-radio-group>
 
             </div>
@@ -80,7 +80,7 @@
 
 
             <div class="meetingStatus">
-                <input type="textarea"  formControlName="meetingInfo"  >
+                <ckeditor [editor]="Editor"  formControlName="meetingInfo" data=""></ckeditor>
             </div>
             <div class="buttons">
                 <button class="cancelbtn" (click)="cancelForm">CANCEL</button>
@@ -89,20 +89,34 @@
         </form>
 
     </mat-card>
-    <!-- <mat-card class="sidebar">
+    <mat-card class="sidebar" *ngIf="attendees==null">
         <div><span id="attendees">Attendees</span></div>
         <div id="noEmpAdded">No employees added yet</div>
-        <div class="inviteEmp" (click)="inviteEmp()">Invite Employees</div>
-    </mat-card> -->
+        <div class="inviteEmp" routerLink="/inviteEmp" *ngIf="((courseDetails.completionStatus=='active')  && (courseDetails.trainingMode=='Online sessions')) || courseDetails.completionStatus=='upcoming'">Invite Employees</div>
+    </mat-card>
 
-    <mat-card class="sidebar">
+    <mat-card class="sidebar " *ngIf="attendees">
         <div class="attendeesContainer">
             <div><span id="attendees">Attendees</span></div>
             <div class="inviteEmp" routerLink="/inviteEmp">Invite Employees</div>
         </div>
 
         <div class="sidebarContainer">
-            <div class="container">
+            <div class="container" *ngFor="let attendee of attendees">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">{{attendee.empName}}</div>
+                    <div class="empDesignation">{{attendee.designation}}</div>
+                    <div class="empCode">{{attendee.empId}}</div>
+                </div>
+                <div class="addIcon">
+                    <mat-icon>do_not_disturb_on</mat-icon>
+                </div>
+            </div>
+
+            <!-- <div class="container">
                 <div class="profileimg">
                     <img src="/assets/profile.png" alt="" id="profileimg">
                 </div>
@@ -130,20 +144,6 @@
                 </div>
             </div>
 
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-
 
             <div class="container">
                 <div class="profileimg">
@@ -248,7 +248,7 @@
                 <div class="addIcon">
                     <mat-icon>do_not_disturb_on</mat-icon>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 

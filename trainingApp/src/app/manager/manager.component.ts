@@ -33,7 +33,7 @@ export class ManagerComponent implements OnInit {
   }
 
   allCourses(){
-    this.adminService.showCourses().subscribe(data => {
+    this.adminService.showCoursesToManager().subscribe(data => {
       console.log(data);
       this.courseDetails = JSON.parse(data);
 

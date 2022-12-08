@@ -29,13 +29,13 @@ export class AdminComponent implements OnInit {
   course_status_completed='course_status_completed';
   disedit:any;
   course_list:any;
+  deleteCourseArray:any[]=[];
   constructor(private dialog: MatDialog, private adminService: AdminServiceService,private router:Router) { }
   // this.tag=sessionStorage.getItem('active');
   ngOnInit(): void {
       this.adminService.showCourses().subscribe(data => {
         console.log(data);
         this.courseDetails = JSON.parse(data);
-        
       
         const arrayCourseDetails = Object.keys(this.courseDetails)[0];
         this.courseDetails = this.courseDetails[arrayCourseDetails]
@@ -60,9 +60,10 @@ export class AdminComponent implements OnInit {
         }
       
       })
+      this.deleteCourseArray=this.courseDetails.courseId;
+    //  sessionStorage.setItem('deleteCourseArray',JSON.stringify(this.deleteCourseArray));
     
     
-
 
 
   //   if(this.tag=='active'){
@@ -96,11 +97,7 @@ export class AdminComponent implements OnInit {
   // })
   // }
 }
-// getCourse(){
-//   if(sessionStorage.getItem('courseDetails')){
-//     this.course_list = JSON.parse(sessionStorage.getItem('courseDetails') || '[]');
-//   }
-// }
+
 
 navigateToDetails(data:any){
   sessionStorage.setItem('course_details',JSON.stringify(data));
@@ -126,8 +123,12 @@ navigateToDetails(data:any){
     
     // this.disedit='true';
   }
-  getUpdateTraining() {
-
-  }
+deleteCourse(){
+  this.adminService.deleteCourse(this.deleteCourseArray).subscribe(data=>{
+    console.log(data);
+    
+  })
+  
+}
 
 }

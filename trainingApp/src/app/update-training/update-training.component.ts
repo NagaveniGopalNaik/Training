@@ -4,6 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddProfileComponent } from '../add-profile/add-profile.component';
 import { AdminServiceService } from '../admin-service.service';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 @Component({
   selector: 'app-update-training',
@@ -13,6 +16,7 @@ import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 export class UpdateTrainingComponent implements OnInit {
   updateTrainingForm!: FormGroup;
   display = false;
+  public Editor = ClassicEditor;
   body: any;
   courseDetails: any;
   updateTrainer: any;
@@ -26,10 +30,29 @@ export class UpdateTrainingComponent implements OnInit {
   splitDurationmins: any;
   splitDurationsecs: any;
 trainingModes:any;
+attendeesData:any;
+attendees:any;
+endTime:any;
 
   constructor(private dialog: MatDialog, private adminService: AdminServiceService) { }
 
   ngOnInit(): void {
+
+    // this.attendees=JSON.parse(sessionStorage.getItem('attendees') as any);
+    // console.log(this.attendees);
+    this.adminService.getAttendees().subscribe(data=>{
+      this.attendeesData=data;
+      console.log(this.attendeesData);
+      
+      this.attendeesData = JSON.parse(this.attendeesData);
+      if(typeof this.attendeesData == 'object'){
+      const arrayAttendees = Object.keys(this.attendeesData)[0];
+      this.attendeesData=this.attendeesData[arrayAttendees]
+      this.attendees=this.attendeesData;
+      }
+    })
+    
+
 
     this.courseDetails = JSON.parse(sessionStorage.getItem('course_details') as any);
     console.log(this.courseDetails);
@@ -37,6 +60,8 @@ trainingModes:any;
     let start_time = this.courseDetails.startTime.split(':');
     console.log(start_time[0]);
     this.trainingModes=this.courseDetails.trainingMode;
+    console.log(this.trainingModes);
+    
     this.startTimehrs = Number(start_time[0]);
     if (this.startTimehrs > 12) {
       this.startTimehrs = (this.startTimehrs - 12);
@@ -44,6 +69,8 @@ trainingModes:any;
     } else {
       this.startTimehrs = (this.startTimehrs);
       this.startTimeMedian = 'am';
+    }if(this.startTimehrs<10){
+      this.startTimehrs='0'+this.startTimehrs
     }
     this.startTimemins = Number(start_time[1]);
     if (this.startTimemins < 10) {
@@ -60,15 +87,22 @@ trainingModes:any;
     }
     else {
       this.endTimemedian = 'am';
+    }if(this.endTimehrs<10){
+      this.endTimehrs='0'+this.endTimehrs;
+    }
+    if (this.endTimehrs < 10) {
+      this.endTimemins = '0' + (this.endTimemins);
     }
     this.endTimemins = Number(end_time[1]);
     if (this.endTimemins < 10) {
       this.endTimemins = '0' + (this.endTimemins);
     }
-    let splitDuration = this.courseDetails.duration.split(':');
+    if(this.courseDetails.duration){
+      let splitDuration = this.courseDetails.duration.split(':');
     this.splitDurationhrs=Number(splitDuration[0]);
     this.splitDurationmins=Number(splitDuration[1]);
     this.splitDurationsecs=Number(splitDuration[2]);
+    }
     if(this.splitDurationhrs< 10){
       this.splitDurationhrs='0'+ this.splitDurationhrs
     }else if(this.splitDurationmins< 10){
@@ -146,32 +180,38 @@ trainingModes:any;
     }
     let endTime = null;
     if (endTime_hrs != '0' && endTime_mins != '0') {
-      endTime = endTime_hrs + ":" + endTime_mins + ":" + "00";
+      this.endTime = endTime_hrs + ":" + endTime_mins + ":" + "00";
       console.log(startTime);
-      console.log(endTime);
+      console.log(this.endTime);
     }
     else {
-      endTime = null;
+      this.endTime = null;
     }
 
 
 
     console.log(this.updateTrainingForm.value);
+console.log(this.updateTrainingForm.get('trainingMode')?.value);
 
     this.body = {
+      courseId:(this.courseDetails.courseId),
+      completionStatus:(this.courseDetails.completionStatus),
       courseName: (this.updateTrainingForm.get('courseName')?.value),
       trainer: (this.updateTrainingForm.get('trainer')?.value),
-      trainingMode: (this.updateTrainingForm.get('trainingMode')?.value),
+      trainingMode: (this.updateTrainingForm.get('trainingMode')?.value) || (this.courseDetails.trainingMode),
       startDate: (this.updateTrainingForm.get('startDate')?.value),
       endDate: (this.updateTrainingForm.get('endDate')?.value),
       startTime: startTime,
-      endTime: endTime,
+      endTime: this.endTime,
       meetingInfo: (this.updateTrainingForm.get('meetingInfo')?.value),
     }
-    // this.adminService.updateEvent(this.body).subscribe(data=>{
-    //   alert(data);
-    //   this.cancelForm();
-    // })
+    console.log(this.body);
+    this.adminService.updateEvent(this.body).subscribe(data=>{
+      alert(data);
+     
+      
+      // this.cancelForm();
+    })
 
 
     // this.updateTrainingForm.reset();

@@ -66,3 +66,17 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     border-radius: 10px;
     height: fit-content;
 }
+.choices .mat-radio-outer-circle {
+    height: 15px;
+    width: 15px;
+}
+.choices .mat-radio-inner-circle {
+    height: 15px;
+    width: 15px;
+}
+ .choices .mat-radio-button.mat-accent .mat-radio-inner-circle{
+    background-color: #070707;
+}
+.choices .mat-radio-label-content{
+    padding-bottom: 6px;
+}
