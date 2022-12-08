@@ -32,6 +32,7 @@ export class SuperAdminComponent implements OnInit {
   previousData:any[]=[];
   course:any;
   course_list:any[]=[];
+  display_course_list:any;
   date:any;
   display=true;
   constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService,private admin:AdminServiceService,private router:Router) { }
@@ -52,6 +53,9 @@ export class SuperAdminComponent implements OnInit {
       
     // })
     
+  }
+  displayCourse(){
+    this.display_course_list = JSON.parse(sessionStorage.getItem('courseDetails') || '[]');
   }
   statusCheck(){
     let nav_status = sessionStorage.getItem('status') || 'true';
@@ -85,15 +89,18 @@ export class SuperAdminComponent implements OnInit {
       console.log(data);
 
       
+     if(data[0]=='{'){
       this.course = JSON.parse(data) as any;
       // this.course = data;
       let key = Number(Object.keys(this.course));
       this.course_list = this.course[key];
       console.log(this.course_list);
+     }
 
       for(let data of this.course_list){
         console.log(data.courseId);
         data.employee_count = 0;
+        data.dropdown = false;
         
         this.superAdmin.getCourseAcceptCount(data.courseId).subscribe((datas:any)=>{
           
@@ -114,7 +121,10 @@ export class SuperAdminComponent implements OnInit {
         })
         
       }
-      // console.log(this.course_list);
+     
+      
+      sessionStorage.setItem('courseDetails',JSON.stringify(this.course_list));
+      console.log(this.course_list);
       
       
       
@@ -138,6 +148,24 @@ export class SuperAdminComponent implements OnInit {
     sessionStorage.setItem('course_details',JSON.stringify(data));
     this.router.navigate(['/detailsPage']);
     
+  }
+  displayDropdown(courseData:any){
+   console.log(courseData);
+   
+    courseData.dropdown = !courseData.dropdown;
+    console.log(courseData.dropdown);
+    
+    let allData = JSON.parse(sessionStorage.getItem('courseDetails') as any);
+    let object = allData.find((eachObject:any)=>{
+      return eachObject.courseId == courseData.courseId;
+    });
+    if(object != undefined){
+      let index = allData.indexOf(object);
+      allData[index]= courseData;
+     
+      
+      sessionStorage.setItem('courseDetails',JSON.stringify(allData));
+    }
   }
   searchDatas(){
     // this.previousData = [];

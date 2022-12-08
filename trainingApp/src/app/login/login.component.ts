@@ -41,27 +41,11 @@ login(){
       sessionStorage.setItem('login',JSON.stringify(this.empData));
       sessionStorage.setItem('course-page','1');
       console.log(this.empData.jwtToken);
-      
-      // if(this.empData.employee){
+
         this.token = this.empData.jwtToken;
         this.storeToken(this.token);
-      // let   encrypt_token = CryptoJS.AES.encrypt(token,'Token@superAdmin');
-        
-        
-      // sessionStorage.setItem('token',JSON.stringify(encrypt_token));
-        let role = this.empData.employee['roles'][0].roleName;
+        this.router.navigate(['/dashboard'])
       
-        switch(role){
-           case 'super_admin':this.router.navigate(['/superAdmin']);
-           break;
-           case 'admin':this.router.navigate(['/admin']);
-           break;
-           case 'manager':this.router.navigate(['/manager']);
-           break;
-           case 'employee':this.router.navigate(['/employee']);
-         }
-     
-     
      
       },(error)=>{
         alert(error.error);

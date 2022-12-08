@@ -13,6 +13,23 @@
     /* line-height: 3.9rem; */
 }
 
+.select-form{
+    width: 100%;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.select-button{
+    padding: 0 5%;
+}
+.headding-text{
+    line-height: 3.5rem;
+}
+.right{
+    margin-left: 5em;
+}
+
 .register-container{
     width: 100%;
     margin:0;
@@ -36,8 +53,14 @@
     align-items: center;
 
 }
+.uploadDone{
+    padding:0 1em;
+    width: fit-content;
+    margin: auto;
+    margin-top: 3%;
+}
 .done{
-    padding:0 30px;
+    padding:0 1em;
 }
 .form-field{
     /* width: 24.5rem; */
@@ -55,13 +78,26 @@
     align-items: center;
     flex-wrap: wrap;
 }
-.store-button{
+.store-button,.done-button{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     /* border: 1px solid red; */
 }
+.done-button{
+    justify-content: right;
+}
+.input-fields{
+ width: fit-content;
+ margin: auto;
+ margin-top: 3%;
+ margin-bottom: 3%;
+ /* border: 1px solid black;
+  */
+  background-color: antiquewhite;
+}
+
 
 .close-icon{
     color:rgba(0,0,0,0.5);
