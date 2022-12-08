@@ -30,6 +30,6 @@ hiddenOption=false;
   delete(){
     this.hiddenOption = false;
     this.router.navigate(['/delete-multi-employee'])
-    // this.dialog.open(DeleteEmployeeComponent,{panelClass: 'delete-employee'});
+   
   }
 }

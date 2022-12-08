@@ -11,6 +11,11 @@ const API_URL = environment.API_URL;
 export class SuperAdminService {
 course = 1;
 employee = 0;
+appendingUrl:any;
+appendingUrlCompany:any='/company/trainings/count/';
+appendingUrlEmployee:any='/employee/employee/course/count/';
+appendingUrlManager:any='/manager/assignedCourses/count/';
+// employeeId:any;
 
 token = JSON.parse(sessionStorage.getItem('token') as any);
   constructor(private http:HttpClient) { }
@@ -124,6 +129,37 @@ token = JSON.parse(sessionStorage.getItem('token') as any);
     return this.http.get(`${API_URL}/employee/notification/count`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',responseType:'text'
   });
+  }
+
+  // course count for Admin and super admin
+getTrainingCountUrl(role:any){
+  if(role =='super_admin' || 'admin'){
+    this.appendingUrl = '/company/trainings/count/';
+  } else if(role='employee'){
+    
+    this.appendingUrl = '/employee/employee/course/count/';
+  } else{
+    this.appendingUrl = '/manager/assignedCourses/count/'
+
+  }
+}
+  activeCount(role:any){
+    this.getTrainingCountUrl(role);
+    
+    return this.http.get(`${API_URL}${this.appendingUrl}active`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+ })
+  }
+  upcomingCount(role:any){
+      this.getTrainingCountUrl(role);
+    return this.http.get(`${API_URL}${this.appendingUrl}upcoming`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+ })
+  }
+  completedCount(role:any){
+    return this.http.get(`${API_URL}${this.appendingUrl}completed`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+ })
   }
 
 }

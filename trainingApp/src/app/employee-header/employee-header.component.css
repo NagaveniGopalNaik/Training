@@ -11,7 +11,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 2rem;
+    gap: 3em;
 }
 #logo{
     cursor: pointer;
@@ -48,31 +48,79 @@ li{
     cursor: pointer;
     position: relative;
 }
-.dropdown-option{
-    /* border: 1px solid black; */
-    padding: 0 1%;
-    z-index: 1;
-    position: fixed;
-    top:9%;
-    right: 15%;
-    background-color: white;
-    position: absolute;
-    
-}
-.dropdown-option p{
-    /* width: 30%; */
-    background-color: white;
-    cursor: pointer;
-    padding: 2% 4%;
-}
-.dropdown-option p:hover{
-    background-color: rgba(0,0,0,0.2);
-}
 
-.dropdown{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.training_button , .new-employee{
+    color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.32px;
+  line-height: 1.6rem;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #230735;
+  border: none;
+  padding:10px 20px;
+
 }
+.new-employee{
+    position: relative;
+}
+/* .new-employee{
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: rgba(35,7,53,1);
+    color: rgba(255,255,255,1);
+    font-family: Roboto;
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 0.32px;
+    line-height: 1.6rem;
+    padding: 8% 10%;
+    box-shadow: none;
+    
+  } */
+  .add-new-employee{
+      margin-right: 18%;
+      margin-left: -10%;
+      position: relative;
+  }
+  .dropdown-option p{
+      /* width: 30%; */
+      background-color: white;
+      cursor: pointer;
+      padding: 2% 4%;
+  }
+  
+  .dropdown-option p:hover{
+      background-color: rgba(0,0,0,0.2);
+  }
+  
+  .dropdown{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+  }
+  
+  .dropdown-option, .dropdown-option1{
+      padding: 0 1%;
+      z-index: 1;
+      position: fixed;
+      top:5em;
+      background-color: white;
+      position: absolute;
+      box-shadow: 0 2px 8px 0 rgba(6,35,92,0.08);
+      
+  }
+  .dropdown-option{
+    right: 15%;
+  }
+ 
+  .button-notification{
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      /* gap:1em; */
+  }
 
