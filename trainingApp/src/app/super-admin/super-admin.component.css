@@ -151,6 +151,7 @@
     margin: auto;
     margin-top: 0.5%;
     padding: 0;
+    position: relative;
     
 }
 .course-details{
@@ -471,8 +472,51 @@ input:focus{
    .display{
     display: block;
    }
+/* .more-icon{
+    position: relative;
+} */
+.display-operation{
+    padding: 0 1%;
+    z-index: 1;
+    position: fixed;
+    top:90%;
+    right: 4.5%;
+    background-color: white;
+    position: absolute; 
+    padding: 1%;
+    /* border: 1px solid black; */
+    /* box-shadow: 0 4px 8px 6px rgba(94,107,131,0.06); */
+}
+.dropdownData{
+  color: rgba(0,0,0,1);
+  font-family: Roboto;
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.43px;
+  cursor: pointer;
+  display: flex;
+  /* justify-content: left; */
+  align-items:center ;
+  gap:4%;
+  /* line-height: 4.0rem; */
+}
+.dropdownData p{
+    margin: 0;
+}
+.border{
+    position: relative;
+}
+.edit{
+    position: absolute;
+    left: 30%;
+    bottom: 10%;
+    font-size: 2.0rem;
+    
+}
+.dropdownData .mat-icon{
+    padding-top: 5%;
+}
 
-  
    /* course details style */
 
    

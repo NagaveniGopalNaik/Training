@@ -34,7 +34,7 @@ const routes: Routes = [
   {path:'addProfile',component:AddProfileComponent},
   {path:'editProfile',component:EditProfileComponent},
   {path:'login',component:LoginComponent},
-  {path:'superAdmin',component:SuperAdminComponent},
+  {path:'dashboard',component:SuperAdminComponent},
   {path:'admin',component:AdminComponent},
   {path:'manager',component:ManagerComponent},
   {path:'employee',component:EmployeeComponent},

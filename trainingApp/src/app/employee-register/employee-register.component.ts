@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { SuperAdminService } from '../super-admin.service';
 import { ErrorMessagesComponent } from '../error-messages/error-messages.component';
 import { MatDialog } from '@angular/material/dialog';
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-employee-register',
   templateUrl: './employee-register.component.html',
@@ -11,6 +12,10 @@ import { MatDialog } from '@angular/material/dialog';
 export class EmployeeRegisterComponent implements OnInit {
 employee_register_form !: FormGroup;
 RegisterData:any[]=[];
+excelData:any;
+uploadData=false;
+formData=false;
+select=true;
   constructor(private superAdmin:SuperAdminService,private dialog:MatDialog) { }
 
   ngOnInit(): void {
@@ -47,51 +52,82 @@ reset(){
 });
 
 }
+readExcel(event:any){
+let file = event.target.files[0];
+let fileReader = new FileReader();
+fileReader.readAsBinaryString(file);
+fileReader.onload=(e)=>{
+  var dataList = XLSX.read(fileReader.result,{type:'binary'});
+  var sheetName = dataList.SheetNames;
+  this.RegisterData = XLSX.utils.sheet_to_json(dataList.Sheets[sheetName[0]]);
+  console.log(this.RegisterData);
+  
+}
+
+}
+
+upload(){
+this.uploadData = true;
+this.formData = false;
+this.select = false;
+}
+
+form(){
+this.formData = true;
+this.uploadData = false;
+this.select = false;
+}
 
 storeServer(){
-  console.log(this.RegisterData);
-  this.superAdmin.registerEmployee(this.RegisterData).subscribe((data)=>{
-    // this.newUpdate(this.RegisterData);
-console.log(data);
-
-    data = JSON.parse(data);
-    // if(typeof data === 'object'){
-      
-      if(data.length > 1){
-
-        if(confirm("Some of employee data not able to Register")){
-          sessionStorage.setItem('error',JSON.stringify(data));
-          this.dialog.open(ErrorMessagesComponent,{panelClass:"error-msg"});
-        }
+  
+  if(this.RegisterData.length > 0){
+    console.log(this.RegisterData);
+    this.superAdmin.registerEmployee(this.RegisterData).subscribe((data)=>{
+      // this.newUpdate(this.RegisterData);
+  console.log(data);
+  
+      data = JSON.parse(data);
+      // if(typeof data === 'object'){
         
-      } else {
-        data.map((msg:any)=>{
-          alert(msg['reason']);
-          if(msg['empId']){
-            let object = this.RegisterData.find((data)=>{
-              return data['empId'] == msg['empId'];
-            });
-            let index = this.RegisterData.indexOf(object);
-            this.RegisterData.splice(index,1);
-            
-            
+        if(data.length > 1){
+  
+          if(confirm("Some of employee data not able to Register")){
+            sessionStorage.setItem('error',JSON.stringify(data));
+            this.dialog.open(ErrorMessagesComponent,{panelClass:"error-msg"});
           }
-          if(sessionStorage.getItem('allEmployee')){
-            let allData = JSON.parse(sessionStorage.getItem('allEmployee') as any);
-            console.log(allData);
-            
-            let updateData = [...this.RegisterData, ...allData];
-            sessionStorage.setItem('allEmployee',JSON.stringify(updateData));
-          }
+          
+        } else {
+          data.map((msg:any)=>{
+            alert(msg['reason']);
+            if(msg['empId']){
+              let object = this.RegisterData.find((data)=>{
+                return data['empId'] == msg['empId'];
+              });
+              let index = this.RegisterData.indexOf(object);
+              this.RegisterData.splice(index,1);
+              
+              
+            }
+            if(sessionStorage.getItem('allEmployee')){
+              let allData = JSON.parse(sessionStorage.getItem('allEmployee') as any);
+              console.log(allData);
+              
+              let updateData = [...this.RegisterData, ...allData];
+              sessionStorage.setItem('allEmployee',JSON.stringify(updateData));
+            }
+  
+          });
+        }
+      
+      
+      
+    },(error)=>{
+      console.log(error.error);
+    })
 
-        });
-      }
-    
-    
-    
-  },(error)=>{
-    console.log(error.error);
-  })
+  } else {
+    alert('Please upload minimum one employee data')
+  }
 }
 
 // newUpdate(data:any){

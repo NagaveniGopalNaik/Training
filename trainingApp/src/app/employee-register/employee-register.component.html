@@ -1,7 +1,17 @@
-<div class="register-container">
+<div class="register-container" *ngIf="select">
+    <p class="close-width"><mat-icon class="close-icon" mat-dialog-close>close</mat-icon></p>
+    <p class="headding headding-text">Select Employee Register throught the upload file or form</p>
+    <div class="select-form">
+        <button type="submit" mat-raised-button color="accent" (click)="upload()" class="select-button">Upload file</button>
+        <button type="submit" mat-raised-button color="accent" (click)="form()" class="select-button right">Form field</button>
+    </div>
+</div>
+
+
+<div class="register-container" *ngIf="formData">
     
     <p class="close-width"><mat-icon class="close-icon" mat-dialog-close>close</mat-icon></p>
-    <p class="headding">Add Employee</p>
+    <p class="headding">Employee Register</p>
     <form [formGroup]="employee_register_form" class="register-form" (ngSubmit)="addEmployee()">
         
             <div class="form-input-field">
@@ -32,10 +42,25 @@
                     <mat-hint *ngIf="employee_register_form.get('email')?.invalid && employee_register_form.get('email')?.touched">Email invalid (should contain @ and .)</mat-hint>
                 </mat-form-field>
                 <div class="store-button">
-                    <button type="submit" mat-raised-button color="accent" class="register">Register</button>
+                    <button type="submit" mat-raised-button color="accent" class="register" [disabled]="employee_register_form.invalid">Register</button>
                     <button mat-raised-button mat-dialog-close color="accent" class="done" (click)="storeServer()">Done</button>
                 </div>
             </div>
         
         </form>
+</div>
+<div class="register-container" *ngIf="uploadData">
+    <p class="close-width"><mat-icon class="close-icon" mat-dialog-close>close</mat-icon></p>
+    <p class="headding">Employee Register</p>
+    <form class="register-form">
+       
+            <div class="done-button">
+                <input type="file" (change)="readExcel($event)" class="input-fields">
+            </div>
+        
+        
+    </form>
+   <div class="done-button">
+    <button mat-raised-button mat-dialog-close color="accent" class="uploadDone" (click)="storeServer()">Done</button>
+   </div>
 </div>
