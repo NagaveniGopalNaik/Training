@@ -101,12 +101,13 @@ export class EndsInPipe implements PipeTransform {
    if(time != null){
      time = String(time.split('-'));
    }
-   let currentDate = new Date(JSON.parse(date[0]),JSON.parse(date[1])-1,JSON.parse(date[2]),JSON.parse(time[0]),JSON.parse(time[1]));
-   let currentTime = currentDate.getTime();
    let today = new Date();
+   let currentDate = new Date(JSON.parse(date[0] || today.getFullYear()),JSON.parse(date[1] || today.getMonth())-1,JSON.parse(date[2] || today.getDate()),JSON.parse(time[0] || String(today.getHours())),JSON.parse(time[1] || String(today.getMinutes())));
+   let currentTime = currentDate.getTime();
+ 
    let times = today.getTime();
    let present = currentTime - times;
-   let day = Number((present / 86400000).toFixed(0))+1;
+   let day = Number((present / 86400000).toFixed(0));
    let hour = ((present% 86400000)/3600000).toFixed(0);
    let minute = (((present% 86400000)%3600000)/60000).toFixed(0)
 
@@ -114,6 +115,8 @@ export class EndsInPipe implements PipeTransform {
    
 
     return String(day)+" days "+hour+" hours "+minute+" mins";
+    // return currentDate.getFullYear();
+    // return date;
     // return date;
 
   }

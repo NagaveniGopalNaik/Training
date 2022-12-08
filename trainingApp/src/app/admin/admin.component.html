@@ -60,11 +60,7 @@
          <div class="containerDetails">
             <div><button class="details" (click)="navigateToDetails(course)">Details</button></div>
             <div class="parentDetailsIcon">
-                <div class="detailsIcon" (click)="display_edit_dlt_options(course)"  *ngIf="course.block==true"><mat-icon>more_vert</mat-icon></div>
-                <div class="editDlt">
-                    <!-- <div class="editDlt" *ngIf="disedit"> -->
-                    <li routerLink="/updateTraining">Edit</li>
-                   <div> <li (click)="deleteCourse()"><mat-icon>delete</mat-icon>Delete</li></div>
+
                 </div>
                </div>
         </div>

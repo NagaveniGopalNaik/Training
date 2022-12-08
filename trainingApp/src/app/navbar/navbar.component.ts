@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { AdminServiceService } from '../admin-service.service';
+import { SuperAdminService } from '../super-admin.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,12 +15,17 @@ export class NavbarComponent implements OnInit {
   count=0;
   allEmployees=false;
   displayFilter=false;
-
+filterForm!:FormGroup;
   activeTag:any;
-    constructor( private adminService: AdminServiceService) { }
+    constructor( private adminService: AdminServiceService,private superAdmin:SuperAdminService) { }
 
   ngOnInit(): void {
    this.getActive();
+   this.filterForm = new FormGroup({
+     'downDate':new FormControl(),
+     'topDate':new FormControl()
+   })
+
 
   }
 
@@ -55,6 +62,8 @@ export class NavbarComponent implements OnInit {
     this.active=true;
     this.allEmployees=false;
     sessionStorage.setItem('active','active');
+    sessionStorage.setItem('status','true');
+    sessionStorage.setItem('filterCourse','false');
     // window.location.reload();
   }
   upcomingFunction(){
@@ -63,6 +72,8 @@ export class NavbarComponent implements OnInit {
     this.active=false;
     this.allEmployees=false;
     sessionStorage.setItem('active','upcoming');
+    sessionStorage.setItem('status','true');
+    sessionStorage.setItem('filterCourse','false');
     // window.location.reload();
   }
   completeFunction(){
@@ -71,6 +82,8 @@ export class NavbarComponent implements OnInit {
     this.active=false;
     this.allEmployees=false;
     sessionStorage.setItem('active','completed');
+    sessionStorage.setItem('status','true');
+    sessionStorage.setItem('filterCourse','false');
     // window.location.reload();
   }
 
@@ -81,6 +94,7 @@ export class NavbarComponent implements OnInit {
     this.allEmployees=true;
     sessionStorage.setItem('active','allEmployees');
     sessionStorage.setItem('flag','false');
+    sessionStorage.setItem('status','true');
     // sessionStorage.setItem('page','1');
   }
 filter(){
@@ -89,5 +103,32 @@ filter(){
 
 apply(){
   this.displayFilter = false;
+  console.log(this.filterForm.value);
+  this.superAdmin.filterCourse(this.filterForm.value).subscribe(data=>{
+   
+    let filter_course = JSON.parse(data) || data;
+    let key = Number(Object.keys(filter_course)[0]);
+    filter_course = filter_course[key];
+    
+    
+    for(let count of filter_course){
+      count.employee_count = 0;
+      this.superAdmin.getCourseAcceptCount(count.courseId).subscribe((data)=>{
+      count.employee_count = JSON.parse(data);
+      })
+    }
+    
+    
+    sessionStorage.setItem('filter-course-list',JSON.stringify(filter_course));
+    
+  },(error)=>{
+    alert(error);
+    
+    
+  });
+  this.clear();
+}
+clear(){
+  this.filterForm.reset();
 }
 }

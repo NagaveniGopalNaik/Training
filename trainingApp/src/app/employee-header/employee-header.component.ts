@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Route, Router } from '@angular/router';
 import { ImageUploadComponent } from '../image-upload/image-upload.component';
+import { SuperAdminService } from '../super-admin.service';
 @Component({
   selector: 'app-employee-header',
   templateUrl: './employee-header.component.html',
@@ -10,12 +11,33 @@ import { ImageUploadComponent } from '../image-upload/image-upload.component';
 export class EmployeeHeaderComponent implements OnInit {
 hidden=false;
 hiddenOption=false;
-  constructor(private router:Router, private dialog:MatDialog) { }
+loginData:any;
+notificationCount:any;
+  constructor(private router:Router, private dialog:MatDialog,private superAdmin:SuperAdminService) { }
 
   ngOnInit(): void {
+  this.alertMsg();
+  }
+
+  alertMsg(){
+    this.superAdmin.notificationCount().subscribe(data=>{
+      this.notificationCount = data;
+      if(Number(this.notificationCount)<1){
+        this.hidden = true;
+      }
+    },(error)=>{
+      alert(error.error);
+    })
+  }
+  getProfile(){
+    this.loginData = JSON.parse(sessionStorage.getItem('login') as any);
+    this.loginData = this.loginData['employee'].profilePic;
   }
   notification(){
-this.router.navigate(['/notifications'])
+    if(Number(this.notificationCount)>0){
+      this.router.navigate(['/notifications'])
+    }
+
   }
 
   back(){
@@ -36,6 +58,8 @@ this.router.navigate(['/employee']);
   }
   logout(){
     this.hiddenOption=false;
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('login');
     this.router.navigate(['/login']);
   }
 

@@ -6,6 +6,6 @@
     <div class="profile-photo">
         <input type="file" (change)="onFileSelected($event)">
     </div>
-    <button mat-dialog-close mat-raised-button>Upload</button>
+    <button mat-dialog-close mat-raised-button (click)="uploadImage()">Upload</button>
 </div>
 </div>
