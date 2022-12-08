@@ -6,6 +6,10 @@ import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { InviteEmpComponent } from '../invite-emp/invite-emp.component';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { AdminServiceService } from '../admin-service.service';
+import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { text } from '@fortawesome/fontawesome-svg-core';
+
 
 @Component({
   selector: 'app-create-training',
@@ -18,7 +22,8 @@ export class CreateTrainingComponent implements OnInit {
   median = false;
   body: any;
   createTrainingForm!: FormGroup;
-
+  public Editor = ClassicEditor;
+  endTime:any;
   ngOnInit(): void {
     this.createForm()
   }
@@ -26,14 +31,14 @@ export class CreateTrainingComponent implements OnInit {
 
   createForm() {
     this.createTrainingForm = new FormGroup({
-      'courseName': new FormControl('', [Validators.required]),
-      'trainer': new FormControl('',),
+      'courseName': new FormControl('', [Validators.required , Validators.pattern(/^[A-Za-z\s]+$/)]),
+      'trainer': new FormControl('', [Validators.required , Validators.pattern(/^[A-Za-z\s]+$/)]),
       'trainingMode': new FormControl(''),
-      'startDate': new FormControl('', [Validators.required]),
+      'startDate': new FormControl(''),
       'endDate': new FormControl(''),
-      'startTime_hrs':new FormControl('', [Validators.required]),
-      'startTime_mins':new FormControl('', [Validators.required]),
-      'startTime_median':new FormControl('', [Validators.required]),
+      'startTime_hrs':new FormControl(''),
+      'startTime_mins':new FormControl(''),
+      'startTime_median':new FormControl(''),
       'endTime_hrs':new FormControl(''),
       'endTime_mins':new FormControl(''),
       'endTime_median':new FormControl(''),
@@ -42,7 +47,7 @@ export class CreateTrainingComponent implements OnInit {
       'durationTime_seconds':new FormControl(''),
       'meetingInfo': new FormControl('')
     })
-    sessionStorage.setItem('refForm',JSON.stringify(this.createTrainingForm));
+    // sessionStorage.setItem('refForm',JSON.stringify(this.createTrainingForm));
     
     
   }
@@ -76,14 +81,14 @@ export class CreateTrainingComponent implements OnInit {
     if(endmedian=="pm"){
       endTime_hrs=String(Number(endTime_hrs)+12);
     }
-    let endTime = null;
+   
     if(endTime_hrs!='0' && endTime_mins!='0'){
-      endTime=endTime_hrs+":"+endTime_mins+":"+"00";
+      this.endTime=endTime_hrs+":"+endTime_mins+":"+"00";
     console.log(startTime);
-    console.log(endTime);
+    console.log(this.endTime);
     }
     else{
-      endTime=null;
+      this.endTime=null;
     }
     
 
@@ -96,13 +101,21 @@ export class CreateTrainingComponent implements OnInit {
       startDate: (this.createTrainingForm.get('startDate')?.value),
       endDate: (this.createTrainingForm.get('endDate')?.value),
       startTime: startTime,
-      endTime: endTime,
+      endTime: this.endTime,
       meetingInfo: (this.createTrainingForm.get('meetingInfo')?.value),
     }
+    // this.adminService.createEvent(this.body).subscribe((data)=>{
+    //   this.cancelForm();
+    //   console.log(data);
+      
+    //   alert(data);
+    // },(error)=>{
+     
+    //   alert(error.error);
+    // })
     this.adminService.createEvent(this.body).subscribe(data=>{
       alert(data);
-      this.cancelForm();
-    },(error)=>{
+    },error=>{
       alert(error.error)
     })
 

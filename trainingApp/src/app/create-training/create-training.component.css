@@ -119,8 +119,6 @@ label {
     color: #373A3C;
     font-family: Roboto;
     font-size: 14px;
-    letter-spacing: 0;
-    line-height: 24px;
 }
 
 .choice {
@@ -177,7 +175,7 @@ label {
 
 .startdate,
 .enddate {
-    width: 120%;
+    /* width: 120%; */
 }
 
 .dates {
@@ -185,14 +183,14 @@ label {
     gap: 2%;
     padding-top: 5%;
     padding-bottom: 2%;
-    width: 35%;
+    width: 45%;
     flex-direction: column;
 }
 
 .timedateContainer {
     display: flex;
     justify-content: space-between;
-    width: 122%;
+    /* width: 122%; */
 }
 
 .timeContainer {
@@ -211,9 +209,7 @@ label {
     margin-right: 3%;
 }
 
-.meetingStatus input {
-    box-sizing: border-box;
-    min-height: 10rem;
+.meetingStatus {
     margin-top: 3%;
 }
 
@@ -279,15 +275,32 @@ label {
     border-radius: 50%;
 }
 
+.is-invalid{
+    border:red 1px solid;
+}
+.error, .smalltxt{
+    color: red;
+}
 
+.mat-radio-button {
+    display: inline-block;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+    margin-right: 40px;
+}
+ 
 
 input[type=number]::-webkit-inner-spin-button {
 /* -webkit-appearance:block; */
 opacity: 1;
 }
-
+@media screen and( max-width:1100px){
+    .dates{
+        width: 30%;
+    }
+}
 @media screen and( max-width:980px){
-    .startdate,.enddate{
-        width: 90%;
+    .dates{
+        width: 20%;
     }
 }

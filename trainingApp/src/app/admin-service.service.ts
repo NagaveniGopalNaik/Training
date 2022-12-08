@@ -15,6 +15,7 @@ export class AdminServiceService {
   activeTag:any;
   trainingCountUrl=`${API_URL}/company/trainings/count/`
   url=`${API_URL}/company/courses/`;
+  ManagerUrl=`${API_URL}`
   courseDetails:any;
   details_id:any;
   detailsURL=`${API_URL}/employee/courseDetails/`;
@@ -23,11 +24,14 @@ export class AdminServiceService {
   deleteInviteEmpUrl=`${API_URL}/deleteInvite/`
   attendeesURL=`${API_URL}/attendees/`;
   nonAttendeesURL=`${API_URL}/nonAttendees/`;
+  deleteCourseURL=`${API_URL}/admin/delete/course/`
   data='active';
   token = JSON.parse(sessionStorage.getItem('token') as any);
+  deleteCourseArray:any;
 
   getDetailsId(){
     this.courseDetails=sessionStorage.getItem('course_details');
+    this.deleteCourseArray=sessionStorage.getItem(JSON.parse('deleteCourseArray'));
     this.courseDetails=JSON.parse(this.courseDetails);
     this.details_id = this.courseDetails.courseId;
     
@@ -89,6 +93,28 @@ export class AdminServiceService {
     
     }
   }
+  showCoursesToManager(){
+    this.course=this.course+1; 
+    this.activeTag=sessionStorage.getItem('active');
+    // console.log(typeof this.activeTag);
+    // return this.httpClient.get(this.url+`${this.data}`, {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',1).set('limit',10)
+    //   ,responseType:'text'
+    // });
+    if(this.activeTag=='active'){
+      return this.httpClient.get(this.ManagerUrl+'active', {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.course).set('limit',10)
+      ,responseType:'text'
+    });
+    }else if(this.activeTag=='upcoming'){
+      return this.httpClient.get(this.ManagerUrl+'upcoming', {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.course).set('limit',10)
+      ,responseType:'text'
+    });
+    }else{
+      return this.httpClient.get(this.ManagerUrl+'completed', {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.course).set('limit',10)
+      ,responseType:'text'
+    });
+    
+    }
+  }
 
   // showActiveCourses(){
   //   this.course=this.course+1; 
@@ -134,8 +160,8 @@ export class AdminServiceService {
   }
   
  
-  updateEvent(){
-    return this.httpClient.patch(`${API_URL}/admin/update/course`,
+  updateEvent(body:any){
+    return this.httpClient.put(`${API_URL}/admin/update/course`,body,
 
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
 
@@ -165,4 +191,11 @@ export class AdminServiceService {
     
         });
   }
+deleteCourse(body:any){
+  return this.httpClient.delete(this.deleteCourseURL+this.details_id,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
+    
+  }
+    )
+}
 }

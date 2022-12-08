@@ -214,9 +214,7 @@ label {
     margin-right: 3%;
 }
 
-.meetingStatus input {
-    box-sizing: border-box;
-    min-height: 10rem;
+.meetingStatus {
     margin-top: 3%;
 }
 
@@ -246,12 +244,14 @@ label {
 .sidebarContainer {
     overflow-x: hidden;
     overflow-y: scroll;
-    height: 72vh;
+    max-height: 72vh;
 }
+
 #profileimg {
     height: 50px;
     border-radius: 50%;
 }
+
 .empName {
     color: #373A3C;
     font-family: Roboto;
@@ -285,5 +285,5 @@ label {
 
 
 input[type=number]::-webkit-inner-spin-button {
-opacity: 1;
+    opacity: 1;
 }

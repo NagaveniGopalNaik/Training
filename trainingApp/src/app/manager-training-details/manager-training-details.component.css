@@ -242,7 +242,7 @@ button {
 .container {
     display: flex;
     justify-content: space-around;
-    width: 32%;
+    width: 278px;
     box-sizing: border-box;
     border: 1px solid #D5D5D5;
     border-radius: 4px;
@@ -332,4 +332,6 @@ button {
     display: flex;
     gap: 1.6rem;
     margin-top: 2%;
+    width: 100%;
+    flex-wrap: wrap;
 }

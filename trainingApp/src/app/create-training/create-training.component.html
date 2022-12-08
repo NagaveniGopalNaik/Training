@@ -3,9 +3,9 @@
         <img src="/assets/Robosoft_logo_horizontal.png" id="logo" alt="">
     </div>
     <div class="profile">
-        <div class="newTraining">
+        <!-- <div class="newTraining">
             <button class="training_button">NEW TRAINING</button>
-        </div>
+        </div> -->
         <div class="icon">
             <mat-icon>notifications</mat-icon>
         </div>
@@ -30,17 +30,25 @@
         <form class="parentContainer" [formGroup]="createTrainingForm">
             <div class="inputContainer">
                 <label for="">Training Title</label>
-                <input type="text" formControlName="courseName">
+                <input type="text" [class.is-invalid]="createTrainingForm.get('courseName')?.invalid && createTrainingForm.get('courseName')?.touched"  formControlName="courseName">
+                <div *ngIf="createTrainingForm.get('courseName')?.invalid && createTrainingForm.get('courseName')?.touched" class="small">
+                    <small *ngIf="createTrainingForm.get('courseName')?.errors?.['required']" class="smalltxt">Course name is required</small>
+                    <small *ngIf="createTrainingForm.get('courseName')?.errors?.['pattern']" class="smalltxt">Course name must contain only characters</small>
+                  </div>
             </div>
             <div class="inputContainer">
                 <label for="">Trainer Name</label>
-                <input type="text" formControlName="trainer">
+                <input type="text" [class.is-invalid]="createTrainingForm.get('trainer')?.invalid && createTrainingForm.get('trainer')?.touched"  formControlName="trainer">
+                <div *ngIf="createTrainingForm.get('trainer')?.invalid && createTrainingForm.get('trainer')?.touched" class="small">
+                    <small *ngIf="createTrainingForm.get('trainer')?.errors?.['required']" class="smalltxt">Trainer name is required</small>
+                    <small *ngIf="createTrainingForm.get('trainer')?.errors?.['pattern']" class="smalltxt">Trainer name must contain only characters</small>
+                  </div>
             </div>
             <div class="choice">
                 <mat-radio-group formControlName="trainingMode">
-                    <mat-radio-button value="Online sessions">Online Sessions</mat-radio-button>
-                    <mat-radio-button value="Off-site">Off-site</mat-radio-button>
-                    <mat-radio-button value="At Office">At Office</mat-radio-button>
+                    <mat-radio-button class="choices" value="Online sessions">Online Sessions</mat-radio-button>
+                    <mat-radio-button class="choices" value="Off-site">Off-site</mat-radio-button>
+                    <mat-radio-button class="choices" value="At Office">At Office</mat-radio-button>
                 </mat-radio-group>
 
             </div>
@@ -86,7 +94,8 @@
             </div> -->
 
             <div class="meetingStatus">
-                <input type="textarea" formControlName="meetingInfo">
+                <!-- <input type="textarea" formControlName="meetingInfo"> -->
+                <ckeditor [editor]="Editor"  formControlName="meetingInfo" data=""></ckeditor>
             </div>
             <div class="buttons">
                 <button class="cancelbtn" (click)="cancelForm()">CANCEL</button>
@@ -95,13 +104,13 @@
         </form>
 
     </mat-card>
-    <!-- <mat-card class="sidebar">
+    <mat-card class="sidebar">
         <div><span id="attendees">Attendees</span></div>
         <div id="noEmpAdded">No employees added yet</div>
-        <div class="inviteEmp" (click)="inviteEmp()">Invite Employees</div>
-    </mat-card> -->
+        <div class="inviteEmp" >Invite Employees</div>
+    </mat-card>
 
-    <mat-card class="sidebar">
+    <!-- <mat-card class="sidebar">
         <div class="attendeesContainer">
             <div><span id="attendees">Attendees</span></div>
             <div class="inviteEmp" routerLink="/inviteEmp">Invite Employees</div>
@@ -258,5 +267,5 @@
 
         </div>
 
-    </mat-card>
+    </mat-card> -->
 </div>
