@@ -3,10 +3,9 @@
 <app-navbar></app-navbar>
 {{activeData()}}
 {{displayCourse()}}
-<!-- {{getEmployeeData()}} -->
+{{getEmployeeData()}}
 <!-- {{searchEmployee()}} -->
 {{statusCheck()}}
-<!--
 <div class="all-employee scroll" *ngIf="allEmployeeData && allData" (scroll)="onScrolling($event)">
     <form class="searchbar" *ngIf = "allEmployee">
         <input type="text" placeholder="Search Employee#, Name, Designation" [(ngModel)]="searchData" name="searchData" matInput class="search-input">
@@ -41,7 +40,7 @@
     </div>
 </div>
 
-<div class="all-employee scroll" *ngIf="allEmployeeData && filter" (scroll)="onScrollingSearch($event)">
+<!-- <div class="all-employee scroll" *ngIf="allEmployeeData && filter" (scroll)="onScrollingSearch($event)">
     <form class="searchbar" *ngIf = "allEmployee">
         <input type="text" placeholder="Search Employee#, Name, Designation" [(ngModel)]="searchData" name="searchData" matInput class="search-input" (click)="removeFilter()">
         <button class="search-button" mat-raised-button (click)="searchDatas()">SEARCH</button>
@@ -74,9 +73,9 @@
         </mat-card>
        
     </div>
-</div>
+</div> -->
 
--->
+
 <div class="all-employee scroll" *ngIf="display">
     <div class="employee-course-details">
         <mat-card class="each-notification-details"  *ngFor="let courseData of display_course_list">
