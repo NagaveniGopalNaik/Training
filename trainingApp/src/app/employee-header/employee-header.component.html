@@ -20,7 +20,7 @@
          
                 </div>
             </div>
-            <div class="icon" *ngIf="role=='admin'|| role=='manager' || role=='employee'" (click)="notification()"><mat-icon [matBadge]="notificationCount" [matBadgeHidden]="hidden"  matBadgeColor="warn">notifications_none</mat-icon></div>
+            <div class="icon" *ngIf="role=='admin'|| role=='manager' || role=='employee'" (click)="notification()"><mat-icon [matBadge]="notificationCount" [matBadgeHidden]="hidden || role=='admin' || role == 'manager'"  matBadgeColor="warn">notifications_none</mat-icon></div>
            
         </div>
         <div class="pimage">

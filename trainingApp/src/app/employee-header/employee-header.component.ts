@@ -24,15 +24,15 @@ loginRole:any;
   ngOnInit(): void {
   let value = JSON.parse(sessionStorage.getItem('login') as any);
   this.loginRole =value['employee'].roles[0].roleName;
-  console.log(this.loginRole);
   
-  this.alertMsg();
+  
+ 
   
 
   }
 
   alertMsg(){
-    if(this.role != 'super_admin'){
+    
       this.superAdmin.notificationCount().subscribe(data=>{
         this.notificationCount = data;
         if(Number(this.notificationCount)<1){
@@ -41,12 +41,20 @@ loginRole:any;
       },(error)=>{
         alert(error.error);
       })
-    }
+    
   }
   getProfile(){
     this.loginData = JSON.parse(sessionStorage.getItem('login') as any);
     this.profile = (this.loginData['employee'].profilePic || '/assets/profile.png');
     this.role = this.loginData['employee'].roles[0].roleName;
+    let change = sessionStorage.getItem('changeEmployeeRole') || 'true';
+    if(change == 'true'){
+      this.alertMsg();
+    }
+    
+    // if(this.loginRole =='employee'){
+    //   this.alertMsg();
+    //  }
     
   }
   notification(){
@@ -93,7 +101,8 @@ this.router.navigate(['/dashboard']);
    
   }
   roleChange(){
-    sessionStorage.setItem('previousRole',this.role);
+    if(this.loginRole !='super_admin'){
+      sessionStorage.setItem('previousRole',this.role);
     this.loginState=!this.loginState;
     let role:any;
     if(this.loginState == true){
@@ -107,9 +116,11 @@ this.router.navigate(['/dashboard']);
     
     this.loginData['employee'].roles[0].roleName = role;
     
-    
+    sessionStorage.setItem('changeEmployeeRole','true');
     sessionStorage.setItem('login',JSON.stringify(this.loginData));
 
+
+    }
   }
 
   

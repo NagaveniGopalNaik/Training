@@ -42,8 +42,8 @@ export class SuperAdminComponent implements OnInit {
   ngOnInit(): void {
     
     this.activeData();
-    this.getAllEmployeeDetails();
-    this.courseDetail();
+    // this.getAllEmployeeDetails();
+    // this.courseDetail();
     
     // this.superAdmin.courseDetails().subscribe((data)=>{
     //   console.log(data);

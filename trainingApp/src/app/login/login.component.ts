@@ -5,6 +5,7 @@ import { OtpPageComponent } from '../otp-page/otp-page.component';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ServerService } from '../server.service';
 import * as CryptoJS from 'crypto-js';
+import { SuperAdminService } from '../super-admin.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +16,7 @@ role='';
 loginForm!:FormGroup;
 empData:any;
 token:any;
-  constructor(private router:Router,private dialog:MatDialog,private server:ServerService) { }
+  constructor(private router:Router,private dialog:MatDialog,private server:ServerService,private superAdmin:SuperAdminService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -39,11 +40,13 @@ login(){
     this.server.loginData(this.loginForm.value).subscribe((data)=>{
       this.empData = JSON.parse(data);
       sessionStorage.setItem('login',JSON.stringify(this.empData));
+      
       sessionStorage.setItem('course-page','1');
       console.log(this.empData.jwtToken);
 
         this.token = this.empData.jwtToken;
-        this.storeToken(this.token);
+        sessionStorage.setItem('token',JSON.stringify(this.token));
+       
         this.router.navigate(['/dashboard'])
       
      
@@ -59,19 +62,7 @@ login(){
 
 
 }
-storeToken(token:any){
-  console.log(token);
 
-  // 
-  // let encrypt_token = CryptoJS.AES.encrypt( token, "Token@superAdmin").toString();
-sessionStorage.setItem('token',JSON.stringify(token));
-
-// console.log(encrypt_token);
-
-
-// let decrypt_token =CryptoJS.AES.decrypt(encrypt_token, "Token@superAdmin").toString(CryptoJS.enc.Utf8);
-// console.log(decrypt_token);
-}
 changePassword(){
   
   let dialogRef = this.dialog.open(OtpPageComponent,{panelClass:"otp-dialog-box"});
