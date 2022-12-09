@@ -1,12 +1,12 @@
 <app-employee-header></app-employee-header>
  <app-training-count></app-training-count>
 <app-navbar></app-navbar>
-<!--{{activeData()}}
+{{activeData()}}
 {{displayCourse()}}
-{{getEmployeeData()}}
-{{searchEmployee()}}
+<!-- {{getEmployeeData()}} -->
+<!-- {{searchEmployee()}} -->
 {{statusCheck()}}
-
+<!--
 <div class="all-employee scroll" *ngIf="allEmployeeData && allData" (scroll)="onScrolling($event)">
     <form class="searchbar" *ngIf = "allEmployee">
         <input type="text" placeholder="Search Employee#, Name, Designation" [(ngModel)]="searchData" name="searchData" matInput class="search-input">
@@ -76,7 +76,7 @@
     </div>
 </div>
 
-
+-->
 <div class="all-employee scroll" *ngIf="display">
     <div class="employee-course-details">
         <mat-card class="each-notification-details"  *ngFor="let courseData of display_course_list">
@@ -120,7 +120,7 @@
             <div class="reaction-button">
                 <button mat-raised-button class="details-button" (click)="courseDetailNavigate(courseData)">DETAILS</button>
                 <div class="more">
-                    <div class="more-icon" (click)="displayDropdown(courseData)" *ngIf="courseData.completionStatus=='upcoming' || (courseData.completionStatus=='active' && courseData.trainingMode=='Online sessions')"><mat-icon class="more-vert-icon">more_vert</mat-icon></div>
+                    <div class="more-icon" (click)="displayDropdown(courseData)" *ngIf="(courseData.completionStatus=='upcoming' || (courseData.completionStatus=='active' && courseData.trainingMode=='Online sessions')) && role == 'admin'"><mat-icon class="more-vert-icon">more_vert</mat-icon></div>
                     <mat-card class="display-operation" *ngIf="courseData.dropdown == true">
                         <div class="dropdownData" *ngIf="courseData.completionStatus=='upcoming'">
                             <p><mat-icon>perm_identity</mat-icon></p>
@@ -150,4 +150,4 @@
 </div>
 
 
-<app-footer></app-footer> -->
+<app-footer></app-footer>

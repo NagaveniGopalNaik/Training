@@ -35,6 +35,7 @@ export class SuperAdminComponent implements OnInit {
   display_course_list:any;
   date:any;
   display=true;
+  role:any;
   constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService,private admin:AdminServiceService,private router:Router) { }
 //   @HostListener('scroll') onScroll(e: Event): void {
 //     console.log("scrolling .... ");
@@ -43,7 +44,7 @@ export class SuperAdminComponent implements OnInit {
     
     this.activeData();
     // this.getAllEmployeeDetails();
-    // this.courseDetail();
+    this.courseDetail();
     
     // this.superAdmin.courseDetails().subscribe((data)=>{
     //   console.log(data);
@@ -58,6 +59,8 @@ export class SuperAdminComponent implements OnInit {
     this.display_course_list = JSON.parse(sessionStorage.getItem('courseDetails') || '[]');
   }
   statusCheck(){
+    this.role = this.superAdmin.getLoginRole();
+    this.role = this.superAdmin.loginRole;
     let nav_status = sessionStorage.getItem('status') || 'true';
     let filter_status = sessionStorage.getItem('filterCourse') || 'false';
     if(filter_status == 'true'){
@@ -70,7 +73,8 @@ export class SuperAdminComponent implements OnInit {
         
         
     }else{
-      if(nav_status == 'true'){
+      let courseUpdate = sessionStorage.getItem('courseUpdate') || 'false';
+      if(nav_status == 'true' || courseUpdate == 'true'){
         this.courseDetail();
       }
     }
@@ -81,10 +85,12 @@ export class SuperAdminComponent implements OnInit {
     } else {
       this.display = true;
     }
+
   }
  
   courseDetail(){
     sessionStorage.setItem('status','false');
+    sessionStorage.setItem('courseUpdate','false');
     this.superAdmin.courseDetails().subscribe((data:any)=>{
       console.log(data);
 
@@ -95,6 +101,12 @@ export class SuperAdminComponent implements OnInit {
       let key = Number(Object.keys(this.course));
       this.course_list = this.course[key];
       console.log(this.course_list);
+     } else {
+       let changeRole = sessionStorage.getItem('courseUpdate');
+       
+       this.course_list = [];
+       
+       
      }
 
       for(let data of this.course_list){

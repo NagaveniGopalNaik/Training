@@ -38,12 +38,9 @@ loginRole:any;
  this.role = this.superAdmin.loginRole;
 
  
- let notification = sessionStorage.getItem('notificationUpdate') || 'false';
-    if(this.loginRole == 'employee' || (this.role == 'employee' && notification == 'true')){
-      // debugger;
-      this.hidden = false;
-      console.log(this.loginRole);
-      console.log(this.role);
+ let notification = sessionStorage.getItem('notificationUpdate') || 'true';
+    if((this.loginRole == 'employee' || this.role == 'employee') && notification == 'true'){
+      
       
       
       
@@ -52,9 +49,11 @@ loginRole:any;
         this.notificationCount = data;
         if(Number(this.notificationCount)<1){
           this.hidden = true;
+        } else {
+          this.hidden = false;
         }
       },(error)=>{
-        alert(error.error);
+        // alert(error.error);
       })
       sessionStorage.setItem('notificationUpdate','false');
     }
@@ -138,6 +137,7 @@ this.router.navigate(['/dashboard']);
     this.loginData['employee'].roles[0].roleName = role;
     
     sessionStorage.setItem('changeEmployeeRole','false');
+    sessionStorage.setItem('courseUpdate','true');
     
     sessionStorage.setItem('login',JSON.stringify(this.loginData));
 

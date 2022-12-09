@@ -13,10 +13,7 @@ course = 1;
 employee = 0;
 appendingUrl:any;
 token = JSON.parse(sessionStorage.getItem('token') as any);
-// appendingUrlCompany:any='/company/trainings/count/';
-// appendingUrlEmployee:any='/employee/employee/course/count/';
-// appendingUrlManager:any='/manager/assignedCourses/count/';
-// employeeId:any;
+courseUrl:any;
 loginRole:any;
 
 
@@ -54,16 +51,26 @@ loginRole:any;
   })
   }
 
+  getCourseUpdates(){
+    this.getLoginRole();
+    if(this.loginRole == 'employee'){
+      this.courseUrl = '/employee/acceptedCourses/filter/';
+    } else if(this.loginRole == 'manager'){
+      this.courseUrl = '/manager/assignedCourses/'
+    }else{
+      this.courseUrl = '/company/courses/'
+    }
 
+  }
   
 
   courseDetails():Observable<any>{
     let page = sessionStorage.getItem('course-page') || '1';
     let activeTag =sessionStorage.getItem('active');
     console.log(this.course);
-    
-    
-    return this.http.get(`${API_URL}/company/courses/${activeTag}`,
+    this.getCourseUpdates();
+    this.getToken();
+    return this.http.get(`${API_URL}${this.courseUrl}${activeTag}`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('page',page).set('limit',10)
     ,responseType:'text'
   });
@@ -159,12 +166,15 @@ getTrainingCountUrl(){
  
   
 }
+getToken(){
+  this.token = JSON.parse(sessionStorage.getItem('token') as any);
+}
   activeCount(){
-    this.token = JSON.parse(sessionStorage.getItem('token') as any);
     
+    this.getToken();
     
     this.getTrainingCountUrl();
-    console.log(this.loginRole);
+    // console.log(this.loginRole);
     
     return this.http.get(`${API_URL}`+this.appendingUrl+'active',
         {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
