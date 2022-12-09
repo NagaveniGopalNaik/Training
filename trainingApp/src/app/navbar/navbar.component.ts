@@ -52,6 +52,7 @@ filterForm!:FormGroup;
       case 'allEmployees':
       if(this.role != 'employee'){
         this.allEmployees = true;
+        this.active = false;
       } else {
         this.active = true;
       }

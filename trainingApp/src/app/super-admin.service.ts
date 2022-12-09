@@ -143,20 +143,20 @@ loginRole:any;
   // course count for Admin and super admin
 getTrainingCountUrl(){
   this.getLoginRole();
- 
-  
   if(this.loginRole =='super_admin' || this.loginRole == 'admin'){
     this.appendingUrl = '/company/trainings/count/';
-    sessionStorage.setItem('changeEmployeeRole','false');
+    
   } else if(this.loginRole=='employee'){
     
     this.appendingUrl = '/employee/course/count/';
-    sessionStorage.setItem('changeEmployeeRole','false');
+    
   } else{
     this.appendingUrl = '/manager/assignedCourses/count/';
-    sessionStorage.setItem('changeEmployeeRole','false');
+    
+    
 
   }
+ 
   
 }
   activeCount(){
@@ -164,6 +164,8 @@ getTrainingCountUrl(){
     
     
     this.getTrainingCountUrl();
+    console.log(this.loginRole);
+    
     return this.http.get(`${API_URL}`+this.appendingUrl+'active',
         {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
      })

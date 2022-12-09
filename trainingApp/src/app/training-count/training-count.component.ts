@@ -22,16 +22,13 @@ export class TrainingCountComponent implements OnInit {
   getRole(){
     
    
-   
-
+    let changeRoleStatus = sessionStorage.getItem('changeEmployeeRole') || 'true';
+    console.log(changeRoleStatus);
     
- 
-
-    let changeRoleStatus = sessionStorage.getItem('changeEmployeeRole') || 'false';
   
     
-    if(changeRoleStatus == 'true'){
-      
+    if(changeRoleStatus == 'false'){
+      // debugger;
       this.courseCountUrl();
        
         
@@ -73,6 +70,7 @@ export class TrainingCountComponent implements OnInit {
       console.log(error);
       
     })
+    sessionStorage.setItem('changeEmployeeRole','true');
     
   }
 

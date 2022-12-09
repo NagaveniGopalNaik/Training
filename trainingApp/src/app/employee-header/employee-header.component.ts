@@ -24,7 +24,9 @@ loginRole:any;
   ngOnInit(): void {
   let value = JSON.parse(sessionStorage.getItem('login') as any);
   this.loginRole =value['employee'].roles[0].roleName;
-  
+  // if(this.role == 'employee'){
+    this.alertMsg();
+  // }
   
  
   
@@ -32,7 +34,20 @@ loginRole:any;
   }
 
   alertMsg(){
-    
+    this.superAdmin.getLoginRole();
+ this.role = this.superAdmin.loginRole;
+
+ 
+ let notification = sessionStorage.getItem('notificationUpdate') || 'false';
+    if(this.loginRole == 'employee' || (this.role == 'employee' && notification == 'true')){
+      // debugger;
+      this.hidden = false;
+      console.log(this.loginRole);
+      console.log(this.role);
+      
+      
+      
+      
       this.superAdmin.notificationCount().subscribe(data=>{
         this.notificationCount = data;
         if(Number(this.notificationCount)<1){
@@ -41,20 +56,23 @@ loginRole:any;
       },(error)=>{
         alert(error.error);
       })
+      sessionStorage.setItem('notificationUpdate','false');
+    }
+      
     
   }
   getProfile(){
     this.loginData = JSON.parse(sessionStorage.getItem('login') as any);
     this.profile = (this.loginData['employee'].profilePic || '/assets/profile.png');
     this.role = this.loginData['employee'].roles[0].roleName;
-    let change = sessionStorage.getItem('changeEmployeeRole') || 'true';
-    if(change == 'true'){
-      this.alertMsg();
-    }
+    console.log(this.role);
     
-    // if(this.loginRole =='employee'){
-    //   this.alertMsg();
-    //  }
+    this.superAdmin.getLoginRole();
+    
+      this.alertMsg();
+    
+   
+   
     
   }
   notification(){
@@ -107,16 +125,20 @@ this.router.navigate(['/dashboard']);
     let role:any;
     if(this.loginState == true){
       role = 'employee';
+      console.log(role);
+      sessionStorage.setItem('notificationUpdate','true');
+      // sessionStorage.setItem('changeEmployeeRole','false');
     } else {
       role = this.loginRole;
       console.log(role);
-      
+      // sessionStorage.setItem('changeEmployeeRole','true');
       
     }
     
     this.loginData['employee'].roles[0].roleName = role;
     
-    sessionStorage.setItem('changeEmployeeRole','true');
+    sessionStorage.setItem('changeEmployeeRole','false');
+    
     sessionStorage.setItem('login',JSON.stringify(this.loginData));
 
 
