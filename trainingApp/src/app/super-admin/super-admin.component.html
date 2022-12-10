@@ -40,13 +40,13 @@
     </div>
 </div>
 
-<!-- <div class="all-employee scroll" *ngIf="allEmployeeData && filter" (scroll)="onScrollingSearch($event)">
+<div class="all-employee scroll" *ngIf="allEmployeeData && filter" (scroll)="onScrollingSearch($event)">
     <form class="searchbar" *ngIf = "allEmployee">
         <input type="text" placeholder="Search Employee#, Name, Designation" [(ngModel)]="searchData" name="searchData" matInput class="search-input" (click)="removeFilter()">
         <button class="search-button" mat-raised-button (click)="searchDatas()">SEARCH</button>
     </form>
     <div class="employoee-data" *ngIf = "allEmployee">
-        <div *ngIf="search_list.length<1" class="no-data">No Data</div>
+        <div *ngIf="search_list.length < 1" class="no-data">No Data</div>
         <mat-card id="table" class="employee-each-data">
             <table class="table" *ngIf="search_list.length>0">
                 <tr>
@@ -73,7 +73,7 @@
         </mat-card>
        
     </div>
-</div> -->
+</div> 
 
 
 <div class="all-employee scroll" *ngIf="display">
@@ -117,7 +117,7 @@
                 
             </div>
             <div class="reaction-button">
-                <button mat-raised-button class="details-button" (click)="courseDetailNavigate(courseData)">DETAILS</button>
+                <div mat-raised-button class="details-button" (click)=" courseDetailNavigate(courseData)">DETAILS</div>
                 <div class="more">
                     <div class="more-icon" (click)="displayDropdown(courseData)" *ngIf="(courseData.completionStatus=='upcoming' || (courseData.completionStatus=='active' && courseData.trainingMode=='Online sessions')) && role == 'admin'"><mat-icon class="more-vert-icon">more_vert</mat-icon></div>
                     <mat-card class="display-operation" *ngIf="courseData.dropdown == true">

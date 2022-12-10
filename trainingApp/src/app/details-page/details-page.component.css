@@ -195,6 +195,7 @@ button {
     margin-left: 3%;
 }
 
+
 .active_course-button, .upcoming_course-button, .completed_course-button{
     border-radius: 4px;
     background-color: rgba(222, 132, 50, 1);
@@ -204,8 +205,8 @@ button {
     font-weight: bold;
     letter-spacing: 0;
     line-height: 1.2rem;
-    padding: 0.5% 1%;
-    margin-left: 2%;
+    padding: 2% 3%;
+    margin-left: 6%;
 }
 .active_course-button{
     background-color: #71AC1B;
@@ -241,19 +242,37 @@ button {
 
 .container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
-    width: 278px;
+    width: 32%;
     box-sizing: border-box;
     border: 1px solid #D5D5D5;
     border-radius: 4px;
     background-color: #FFFFFF;
-    padding: 0% 1% 0% 1%;
+    padding: 1%;
     align-items: center;
+    gap:2em;
+}
+
+.border{
+    position: relative;
+}
+.edit-icon{
+    position: absolute;
+    left: 48%;
+    bottom: 15%;
+    font-size: 2.8rem;
+    
+}
+
+.profile-details{
+    display: flex;
+    justify-content: flex-start;
+    gap:2em;
 }
 
 #profileimg {
-    height: 40px;
+    height: 4.8em;
     border-radius: 50%;
 
 }
@@ -261,28 +280,21 @@ button {
 .empName {
     color: #373A3C;
     font-family: Roboto;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: bold;
     letter-spacing: 0;
-    line-height: 24px;
+    line-height: 2.4rem;
 
 }
 
-.empDesignation {
+.empDesignation , .empCode{
     color: #373A3C;
     font-family: Roboto;
-    font-size: 12px;
+    font-size: 1.2rem;
     letter-spacing: 0;
-    line-height: 24px;
+    line-height: 2.4rem;
 }
 
-.empCode {
-    color: #373A3C;
-    font-family: Roboto;
-    font-size: 12px;
-    letter-spacing: 0;
-    line-height: 24px;
-}
 
 .parentContainer {
     display: flex;
@@ -290,6 +302,11 @@ button {
     gap: 1.5rem;
     
     flex-wrap: wrap;
+}
+.completed-container{
+    justify-content: flex-start;
+    align-items: center;
+    
 }
 
 .empAddDltMain {
@@ -307,6 +324,7 @@ button {
 .edit mat-icon {
     background-color: white;
     color: #EC2C59;
+    cursor: pointer;
 
 }
 

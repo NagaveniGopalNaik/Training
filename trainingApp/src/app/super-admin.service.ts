@@ -12,13 +12,17 @@ export class SuperAdminService {
 course = 1;
 employee = 0;
 appendingUrl:any;
-token = JSON.parse(sessionStorage.getItem('token') as any);
+token :any;
 courseUrl:any;
 loginRole:any;
 
 
   constructor(private http:HttpClient) { }
 
+
+  getToken(){
+    this.token = JSON.parse(sessionStorage.getItem('token') as any);
+  }
   registerEmployee(data:any):Observable<any>{
     // this.token = JSON.parse(sessionStorage.getItem('token') as any);
     
@@ -79,6 +83,7 @@ loginRole:any;
   
 
   AllEmployeeDetails():Observable<any>{
+    this.getToken();
     let page = JSON.parse(sessionStorage.getItem('page')|| '0') ;
     page = page + 1;
     sessionStorage.setItem('page',page);
@@ -91,6 +96,7 @@ loginRole:any;
   }
 
   searchData(data:any){
+    this.getToken();
     let filter = JSON.parse(sessionStorage.getItem('filter')|| '1') ;
     sessionStorage.setItem('filter',JSON.stringify(filter));
  console.log(filter);
@@ -166,9 +172,7 @@ getTrainingCountUrl(){
  
   
 }
-getToken(){
-  this.token = JSON.parse(sessionStorage.getItem('token') as any);
-}
+
   activeCount(){
     
     this.getToken();

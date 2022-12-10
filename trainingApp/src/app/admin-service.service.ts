@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { SuperAdminService } from './super-admin.service';
 const API_URL=environment.API_URL;
 @Injectable({
   providedIn: 'root'
@@ -31,19 +32,17 @@ export class AdminServiceService {
 
   getDetailsId(){
     this.courseDetails=sessionStorage.getItem('course_details');
-    this.deleteCourseArray=sessionStorage.getItem(JSON.parse('deleteCourseArray'));
+    
+    
+    // this.deleteCourseArray=sessionStorage.getItem(JSON.parse('deleteCourseArray'));
     this.courseDetails=JSON.parse(this.courseDetails);
     this.details_id = this.courseDetails.courseId;
     
-    // this.completionStatus=this.courseDetails.completionStatus;
-    // if(this.completionStatus=='completed'){
-    //   this.display=true;
-    // }
   }
   
  
   
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private superAdmin:SuperAdminService) { }
   createEvent(body:any){
     console.log(body);
     
@@ -135,6 +134,7 @@ export class AdminServiceService {
   //   });
   // }
   courseDetailsFn(){
+    this.superAdmin.getToken();
     this.getDetailsId();
     console.log(this.details_id);
     
@@ -143,19 +143,24 @@ export class AdminServiceService {
     })
   }
   getAttendees(){
+    this.superAdmin.getToken();
+    this.token = this.superAdmin.token;
+   console.log(this.token);
+   
+    
     this.getDetailsId();
-    console.log(this.details_id);
-    this.attendees=this.attendees+1;
+  
+    // this.attendees=this.attendees+1;
     return this.httpClient.get(this.attendeesURL+this.details_id,
       {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),
-      params:new HttpParams().set('page',this.attendees).set('limit',10),
+      params:new HttpParams().set('page',1).set('limit',10),
     responseType:'text'});
   }
   getNonAttendees(){
     this.getDetailsId();
     console.log(this.details_id);
     this.nonAttendees=this.nonAttendees+1;
-    return this.httpClient.get(this.nonAttendeesURL+this.details_id,{headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.attendees).set('limit',10),
+    return this.httpClient.get(this.nonAttendeesURL+this.details_id,{headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',1).set('limit',10),
     responseType:'text'});
   }
   
@@ -177,7 +182,10 @@ export class AdminServiceService {
   responseType:'text'});
   }
   inviteEmployees(body:any){
-    console.log(body);
+    this.superAdmin.getToken();
+    this.token = this.superAdmin.token;
+    console.log(this.token);
+    
     return this.httpClient.put(this.deleteInviteEmpUrl+this.details_id,
       body,
        {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
@@ -185,6 +193,8 @@ export class AdminServiceService {
       });
   }
   deleteEmployees(body:any){
+    this.superAdmin.getToken();
+    this.token = this.superAdmin.token;
       return this.httpClient.post(this.inviteEmpUrl+this.details_id,
         body,
          {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
@@ -192,6 +202,8 @@ export class AdminServiceService {
         });
   }
 deleteCourse(body:any){
+  this.superAdmin.getToken();
+    this.token = this.superAdmin.token;
   return this.httpClient.delete(this.deleteCourseURL+this.details_id,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
     

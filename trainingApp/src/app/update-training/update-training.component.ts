@@ -6,6 +6,7 @@ import { AdminServiceService } from '../admin-service.service';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -34,7 +35,7 @@ attendeesData:any;
 attendees:any;
 endTime:any;
 
-  constructor(private dialog: MatDialog, private adminService: AdminServiceService) { }
+  constructor(private dialog: MatDialog, private adminService: AdminServiceService,private router : Router) { }
 
   ngOnInit(): void {
 
@@ -208,7 +209,8 @@ console.log(this.updateTrainingForm.get('trainingMode')?.value);
     console.log(this.body);
     this.adminService.updateEvent(this.body).subscribe(data=>{
       alert(data);
-     
+      
+     this.router.navigate(['/detailsPage']);
       
       // this.cancelForm();
     })

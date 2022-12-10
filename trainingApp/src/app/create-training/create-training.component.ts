@@ -106,7 +106,7 @@ export class CreateTrainingComponent implements OnInit {
     }
     // this.adminService.createEvent(this.body).subscribe((data)=>{
     //   this.cancelForm();
-    //   console.log(data);
+      // console.log(data);
       
     //   alert(data);
     // },(error)=>{
@@ -114,9 +114,9 @@ export class CreateTrainingComponent implements OnInit {
     //   alert(error.error);
     // })
     this.adminService.createEvent(this.body).subscribe(data=>{
-      alert(data);
+     alert(data);
     },error=>{
-      alert(error.error)
+      alert("Course created successfully");
     })
 
  

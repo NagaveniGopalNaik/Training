@@ -30,6 +30,13 @@ export class DetailsPageComponent implements OnInit {
   meetingInfo:any;
   ngOnInit(): void {
     this.getAttendees();
+    this.courseDetail();
+    
+   
+  }
+
+  courseDetail(){
+    
     this.adminService.courseDetailsFn().subscribe(data=>{
       console.log(data);
       this.coursedata=data;
@@ -62,36 +69,20 @@ export class DetailsPageComponent implements OnInit {
         data=>{
           console.log(data);
           this.nonAttendeesData=data;
-          if(typeof this.nonAttendeesData == 'object'){
+          if(this.nonAttendeesData[0] == '{'){
             this.nonAttendeesData=JSON.parse(this.nonAttendeesData);
             const arraynonAttendees = Object.keys(this.nonAttendeesData)[0];
             this.nonAttendeesData=this.nonAttendeesData[arraynonAttendees]
             this.nonAttendees=this.nonAttendeesData;
             console.log(this.nonAttendees);
+          } else {
+            this.nonAttendees = [];
           }
         
           
         }
       )
      
-    })
-    
-    this.adminService.getAttendees().subscribe(data=>{
-      console.log(data);
-      this.attendeesData=data;
-      if(typeof this.attendeesData == 'object'){
-        this.attendeesData=JSON.parse(this.attendeesData);
-      const arrayAttendees = Object.keys(this.attendeesData)[0];
-      this.attendeesData=this.attendeesData[arrayAttendees]
-      this.attendees=this.attendeesData;
-      console.log(this.attendees);
-
-      // sessionStorage.setItem('attendees',JSON.stringify(this.attendees));
-
-      }
-      
-
-      
     })
   }
   // getAllEmployee(){
@@ -129,6 +120,26 @@ export class DetailsPageComponent implements OnInit {
     })
   }
   getAttendees(){
+
+    this.adminService.getAttendees().subscribe(data=>{
+      console.log(data);
+      this.attendeesData=data;
+      if(this.attendeesData[0] == '{'){ 
+        this.attendeesData=JSON.parse(this.attendeesData);
+      const arrayAttendees = Object.keys(this.attendeesData)[0];
+      this.attendeesData=this.attendeesData[arrayAttendees]
+      this.attendees=this.attendeesData;
+      console.log(this.attendees);
+
+      // sessionStorage.setItem('attendees',JSON.stringify(this.attendees));
+
+      } else {
+        this.attendees = [];
+      }
+      
+
+      
+    })
     
   }
   display_p_options(){

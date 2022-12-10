@@ -23,7 +23,7 @@ export class TrainingCountComponent implements OnInit {
     
    
     let changeRoleStatus = sessionStorage.getItem('changeEmployeeRole') || 'true';
-    console.log(changeRoleStatus);
+  
     
   
     

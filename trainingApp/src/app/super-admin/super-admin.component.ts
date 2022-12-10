@@ -43,8 +43,8 @@ export class SuperAdminComponent implements OnInit {
   ngOnInit(): void {
     
     this.activeData();
-    // this.getAllEmployeeDetails();
-    this.courseDetail();
+    this.getAllEmployeeDetails();
+    // this.courseDetail();
     
     // this.superAdmin.courseDetails().subscribe((data)=>{
     //   console.log(data);
@@ -87,12 +87,19 @@ export class SuperAdminComponent implements OnInit {
     }
 
   }
+
+  courseDetailNavigate(data:any){
+    
+    sessionStorage.setItem('course_details',JSON.stringify(data));
+    this.router.navigate(['/detailsPage']);
+    
+  }
  
   courseDetail(){
     sessionStorage.setItem('status','false');
     sessionStorage.setItem('courseUpdate','false');
     this.superAdmin.courseDetails().subscribe((data:any)=>{
-      console.log(data);
+      // console.log(data);
 
       
      if(data[0]=='{'){
@@ -101,8 +108,11 @@ export class SuperAdminComponent implements OnInit {
       let key = Number(Object.keys(this.course));
       this.course_list = this.course[key];
       console.log(this.course_list);
+      
+      
      } else {
        let changeRole = sessionStorage.getItem('courseUpdate');
+       console.log(data);
        
        this.course_list = [];
        
@@ -116,7 +126,7 @@ export class SuperAdminComponent implements OnInit {
         
         this.superAdmin.getCourseAcceptCount(data.courseId).subscribe((datas:any)=>{
           
-          // console.log(datas);
+          console.log(datas);
           // let value = JSON.parse( datas);
           // console.log(typeof value);
           
@@ -129,7 +139,7 @@ export class SuperAdminComponent implements OnInit {
           
         },(error)=>{
           // console.log(error);
-          data.employee_count = 0;
+          // data.employee_count = 0;
         })
         
       }
@@ -156,11 +166,7 @@ export class SuperAdminComponent implements OnInit {
   //     console.log("End");
   //   }
   // }
-  courseDetailNavigate(data:any){
-    sessionStorage.setItem('course_details',JSON.stringify(data));
-    this.router.navigate(['/detailsPage']);
-    
-  }
+ 
   displayDropdown(courseData:any){
    console.log(courseData);
    
@@ -299,6 +305,8 @@ onScrollingSearch(event:any){
     this.superAdmin.AllEmployeeDetails().subscribe((data)=>{
       
       this.allEmployee = JSON.parse(data);
+      console.log(this.allEmployee);
+      
       let keys = Object.keys(this.allEmployee)[0];
       if(keys == '0'){
         sessionStorage.removeItem('page');
@@ -367,13 +375,23 @@ this.dialog.open(AssignEmployeeRoleComponent,{panelClass:'update-employee-role'}
         this.allEmployeeData = false;
         break;
         case 'allEmployees':
+          this.superAdmin.getLoginRole();
+      this.role = this.superAdmin.loginRole;
+      if(this.role == 'employee'){
+      sessionStorage.setItem('active','active');
+      }else{
         this.active = false;
         this.upcoming = false;
         this.completed = false;
         this.allEmployeeData = true;
+      }
+            
+          
+        
         break;
     }
-    
+
+   
   }
 
  

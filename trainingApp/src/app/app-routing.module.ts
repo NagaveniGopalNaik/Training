@@ -50,7 +50,7 @@ const routes: Routes = [
   {path:'detailsPage',component:DetailsPageComponent},
  {path:'course-details',component:CourseDetailsComponent},
   {path:'inviteReportees',component:InviteReporteesComponent},
-  {path:'detailsPage',component:DetailsPageComponent},
+  // {path:'detailsPage',component:DetailsPageComponent},
   {path:'managerTrainingDetails',component:ManagerTrainingDetailsComponent},
 
 
