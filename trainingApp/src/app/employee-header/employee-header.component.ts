@@ -109,11 +109,11 @@ this.router.navigate(['/dashboard']);
     
   }
   register(){
-    this.hiddenOption = false;
+    this.hiddenOption1 = false;
     this.dialog.open(EmployeeRegisterComponent,{panelClass: 'employee-register'});
   }
   delete(){
-    this.hiddenOption = false;
+    this.hiddenOption1 = false;
     this.router.navigate(['/delete-multi-employee'])
    
   }

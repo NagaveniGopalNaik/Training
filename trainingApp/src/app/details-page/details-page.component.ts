@@ -20,6 +20,7 @@ export class DetailsPageComponent implements OnInit {
   nonAttendees:any;
   nonAttendeesData:any;
   completionStatus:any;
+  blank='';
   constructor(private dialog:MatDialog,private adminService:AdminServiceService,private router:Router,private superAdmin:SuperAdminService) { }
   displayCompleted=false;
   displayUpcoming=false;

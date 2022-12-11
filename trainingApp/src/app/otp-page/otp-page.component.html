@@ -13,18 +13,39 @@
     
 </form>
 
-<form action="" class="login-form" [formGroup]="check_otp" *ngIf = "display" (ngSubmit)="changeOtp()">
+<form action="" class="login-form" [formGroup]="check_otp" *ngIf = "display" (ngSubmit)="checkOtp()">
     <p class="login-head-text">OTP Verification</p>
     
         <mat-form-field  appearance="outline" class="form-field">
             <mat-label>Employee code</mat-label>
-            <input type="text" matInput class="login-input" formControlName="empId">
+            <input type="text" matInput class="login-input" formControlName="empId" readonly>
+        </mat-form-field>
+        <div class="otp-div">
+        <mat-form-field  appearance="outline" class="form-field">
+            
+                <input type="text" matInput class="login-input" formControlName="otpCode">
+                
         </mat-form-field>
         <mat-form-field  appearance="outline" class="form-field">
-            <mat-label>OTP code</mat-label>
-            <input type="number" matInput class="login-input" formControlName="otpCode">
+        
+                <input type="text" matInput class="login-input" formControlName="otpCode1">
+                
         </mat-form-field>
-        <button mat-raised-button class="login-button">Verify&nbsp;OTP</button>
+        <mat-form-field  appearance="outline" class="form-field">
+        
+                <input type="text" matInput class="login-input" formControlName="otpCode2">
+                
+        </mat-form-field>
+        <mat-form-field  appearance="outline" class="form-field">
+        
+                <input type="text" matInput class="login-input" formControlName="otpCode3">
+                
+        </mat-form-field>
+    </div>
+    <mat-hint *ngIf="check_otp.get('otpCode')?.hasError('pattern') || check_otp.get('otpCode1')?.hasError('pattern') || check_otp.get('otpCode2')?.hasError('pattern') || check_otp.get('otpCode3')?.hasError('pattern')">Only allow Number</mat-hint>
+        
+
+        <button mat-raised-button class="login-button" [disabled]="check_otp.invalid">Verify&nbsp;OTP</button>
        
 </form>
 

@@ -10,7 +10,7 @@
     <mat-card class="each-notification-details">
         <div class="courseName">
             <div>
-                <p class="trianing-name">{{details.courseName}}<button mat-raised-button
+                <p class="trianing-name">{{details.courseName || blank}}<button mat-raised-button
                     class="active_course-button" [class.active_course-button]="details.completionStatus=='active'" [class.upcoming_course-button]="details.completionStatus=='upcoming'" [class.completed_course-button]="details.completionStatus == 'completed'">{{details.completionStatus | uppercase}}</button></p>
                 <p class="trainer">Trainer :
                      <span class="trainer-name">{{details.trainer}}</span>

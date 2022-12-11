@@ -8,7 +8,7 @@
 </div>
 <div class="body-div">
     <div class="profile-page">
-        <div><img [src]="loginData.profilePic" id="pimage" alt=""></div>
+        <div><img [src]="profilePic" id="pimage" alt="" (click)="zoomImage()"></div>
         <div class="profile-details">
             <p class="name">{{loginData.empName}}</p>
             <p class="designation">{{loginData.designation}}</p>

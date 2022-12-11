@@ -15,6 +15,7 @@ appendingUrl:any;
 token :any;
 courseUrl:any;
 loginRole:any;
+loginData:any;
 
 
   constructor(private http:HttpClient) { }
@@ -150,8 +151,8 @@ loginRole:any;
   }
 
   getLoginRole(){
-    let loginData = JSON.parse(sessionStorage.getItem('login') as any);
-    this.loginRole = loginData['employee'].roles[0].roleName;
+    this.loginData = JSON.parse(sessionStorage.getItem('login') as any);
+    this.loginRole = this.loginData['employee'].roles[0].roleName;
     // console.log(this.role);
   }
 

@@ -36,6 +36,7 @@ export class SuperAdminComponent implements OnInit {
   date:any;
   display=true;
   role:any;
+  empCount:any[]=[];
   constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService,private admin:AdminServiceService,private router:Router) { }
 //   @HostListener('scroll') onScroll(e: Event): void {
 //     console.log("scrolling .... ");
@@ -119,6 +120,7 @@ export class SuperAdminComponent implements OnInit {
        
        
      }
+     
 
       for(let data of this.course_list){
         console.log(data.courseId);
@@ -134,16 +136,11 @@ export class SuperAdminComponent implements OnInit {
           // debugger;
           let count = JSON.parse(datas);
           data.employee_count = count;
+          this.empCount.push(data.employee_count);
           // console.log(data);
           
-          let object = this.course_list.find((details)=>{
-            return details.courseId = data.courseId;
-          })
-          if(object != undefined){
-            let index = this.course_list.indexOf(object);
-            this.course_list[index]=data;
-          }
-          sessionStorage.setItem('courseDetails',JSON.stringify(this.course_list));
+          
+          
           // console.log(typeof count);
           
           // console.log(data.employee_count);
@@ -154,13 +151,19 @@ export class SuperAdminComponent implements OnInit {
         })
         
       }
+      
+      console.log(this.empCount);
+      for(let i=0 ;i<this.empCount.length;i++){
+        this.course_list[i].employee_count = this.empCount[i];
+      }
+      
      
       
       
      
       console.log(this.course_list);
-      
-      
+      sessionStorage.setItem('courseDetails',JSON.stringify(this.course_list));
+      this.empCount = [];
       
       
     })

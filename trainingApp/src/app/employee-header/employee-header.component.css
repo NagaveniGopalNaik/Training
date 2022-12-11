@@ -80,7 +80,7 @@ li{
       padding: 2% 4%;
   }
   
-  .dropdown-option p:hover, .active{
+  .dropdown-option p:hover,.dropdown-option1 p:hover, .active{
     /* padding: 2% 4%;
     margin: 0; */
     width: 100%;
@@ -104,6 +104,9 @@ li{
       position: absolute;
       box-shadow: 0 2px 8px 0 rgba(6,35,92,0.08);
       
+  }
+  .dropdown-option1 p{
+    cursor: pointer;
   }
   .dropdown-option{
     right: 15%;
