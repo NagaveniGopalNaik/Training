@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { OtpPageComponent } from '../otp-page/otp-page.component';
@@ -6,11 +6,13 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ServerService } from '../server.service';
 import * as CryptoJS from 'crypto-js';
 import { SuperAdminService } from '../super-admin.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 role='';
 loginForm!:FormGroup;
@@ -21,6 +23,7 @@ token:any;
   ngOnInit(): void {
     this.initForm();
     sessionStorage.setItem('active','active');
+
     // sessionStorage.setItem('dialog',JSON.stringify(false));
   }
 
@@ -34,13 +37,16 @@ token:any;
     ])
     })
   }
+ 
 login(){
   console.log(this.loginForm.value);
   if(this.loginForm.valid){
     this.server.loginData(this.loginForm.value).subscribe((data)=>{
       this.empData = JSON.parse(data);
       sessionStorage.setItem('login',JSON.stringify(this.empData));
-      
+      let role = this.empData['employee'].roles[0].roleName;
+
+      sessionStorage.setItem('previousRole',JSON.stringify(role));
       sessionStorage.setItem('course-page','1');
       console.log(this.empData.jwtToken);
 

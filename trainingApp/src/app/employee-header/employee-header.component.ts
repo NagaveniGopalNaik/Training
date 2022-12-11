@@ -22,6 +22,7 @@ loginRole:any;
   constructor(private router:Router, private dialog:MatDialog,private superAdmin:SuperAdminService) { }
 
   ngOnInit(): void {
+    sessionStorage.setItem('notificationUpdate','true');
   let value = JSON.parse(sessionStorage.getItem('login') as any);
   this.loginRole =value['employee'].roles[0].roleName;
   // if(this.role == 'employee'){
@@ -99,8 +100,7 @@ this.router.navigate(['/dashboard']);
   }
   logout(){
     this.hiddenOption=false;
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('login');
+    sessionStorage.clear();
     this.router.navigate(['/login']);
   }
 
@@ -118,8 +118,10 @@ this.router.navigate(['/dashboard']);
    
   }
   roleChange(){
+   if(this.router.url != '/profile'){
+    this.loginRole = JSON.parse(sessionStorage.getItem('previousRole') as any);
     if(this.loginRole !='super_admin'){
-      sessionStorage.setItem('previousRole',this.role);
+      // sessionStorage.setItem('previousRole',this.role);
     this.loginState=!this.loginState;
     let role:any;
     if(this.loginState == true){
@@ -143,7 +145,13 @@ this.router.navigate(['/dashboard']);
 
 
     }
+  } else {
+    sessionStorage.setItem('notificationUpdate','true');
+    
+   
+    
   }
+   }
 
   
 }

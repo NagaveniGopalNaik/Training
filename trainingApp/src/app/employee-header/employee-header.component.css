@@ -18,6 +18,7 @@
 }
 
 #pimage{
+    cursor: pointer;
     height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -66,20 +67,7 @@ li{
 .new-employee{
     position: relative;
 }
-/* .new-employee{
-    cursor: pointer;
-    border-radius: 4px;
-    background-color: rgba(35,7,53,1);
-    color: rgba(255,255,255,1);
-    font-family: Roboto;
-    font-size: 1.4rem;
-    font-weight: bold;
-    letter-spacing: 0.32px;
-    line-height: 1.6rem;
-    padding: 8% 10%;
-    box-shadow: none;
-    
-  } */
+
   .add-new-employee{
       margin-right: 18%;
       margin-left: -10%;
@@ -92,8 +80,12 @@ li{
       padding: 2% 4%;
   }
   
-  .dropdown-option p:hover{
-      background-color: rgba(0,0,0,0.2);
+  .dropdown-option p:hover, .active{
+    /* padding: 2% 4%;
+    margin: 0; */
+    width: 100%;
+    color:white;
+    background-color: rgba(0,0,0,0.2);
   }
   
   .dropdown{

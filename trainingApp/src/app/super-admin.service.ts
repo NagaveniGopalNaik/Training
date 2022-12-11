@@ -108,6 +108,7 @@ loginRole:any;
   }
 
   getCourseAcceptCount(data:any){
+    this.getToken();
     return this.http.get(`${API_URL}/employee/count/acceptedInvites/${data}`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',responseType:'text'
   });
@@ -134,6 +135,7 @@ loginRole:any;
   }
 
   getAttendedCourse(){
+    this.getToken();
     let active = sessionStorage.getItem('employee-nav') || 'attendedCourse';
     return this.http.get(`${API_URL}/employee/${active}`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('page',1).set('limit',10),responseType:'text'

@@ -125,11 +125,11 @@
                             <p><mat-icon>perm_identity</mat-icon></p>
                             <p>Assign&nbsp;Manager</p>
                         </div>
-                        <div class="dropdownData">
+                        <div class="dropdownData" (click)="updatePage(courseData)">
                             <p><mat-icon class="border">check_box_outline_blank<mat-icon class="edit">edit</mat-icon></mat-icon></p>
                             <p>Edit</p>
                         </div>
-                        <div class="dropdownData" *ngIf="courseData.completionStatus=='upcoming'">
+                        <div class="dropdownData" *ngIf="courseData.completionStatus=='upcoming'" (click)="deleteCourse(courseData)">
                             <p><mat-icon>delete_outline</mat-icon></p>
                             <p>Delete</p>
                         </div>

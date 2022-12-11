@@ -188,7 +188,7 @@ export class AdminServiceService {
     
     return this.httpClient.put(this.deleteInviteEmpUrl+this.details_id,
       body,
-       {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
+       {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
   
       });
   }
@@ -197,15 +197,17 @@ export class AdminServiceService {
     this.token = this.superAdmin.token;
       return this.httpClient.post(this.inviteEmpUrl+this.details_id,
         body,
-         {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
+         {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
     
         });
   }
 deleteCourse(body:any){
   this.superAdmin.getToken();
+  this.token = this.superAdmin.token;
+  this.superAdmin.getToken();
     this.token = this.superAdmin.token;
-  return this.httpClient.delete(this.deleteCourseURL+this.details_id,
-    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
+  return this.httpClient.delete(`${API_URL}/admin/delete/course/${body}`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
     
   }
     )

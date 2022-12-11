@@ -80,3 +80,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 .choices .mat-radio-label-content{
     padding-bottom: 6px;
 }
+
+.mat-hint{
+    color:red;
+}

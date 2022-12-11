@@ -28,8 +28,8 @@
             <div class="dropdown">
                 <div class="arrow-down" (click)="displayOption()"><mat-icon>arrow_drop_down</mat-icon></div>
                 <div class="dropdown-option" *ngIf="hiddenOption">
-                    <p (click)="addPhoto()">Add&nbsp;photo</p>
-                    <p (click)="viewProfile()">View&nbsp;profile </p>
+                    <p (click)="addPhoto()" *ngIf="role=='employee'">Add&nbsp;photo</p>
+                    <p (click)="viewProfile()" *ngIf="role == 'employee'">View&nbsp;profile </p>
                     <p (click)="logout()">Log&nbsp;Out</p>
                 </div>
             </div>

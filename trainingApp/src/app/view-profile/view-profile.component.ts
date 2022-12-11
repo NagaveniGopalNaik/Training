@@ -14,6 +14,7 @@ attendedData=true;
 nonAttendedData=false;
 courseDetails:any;
   ngOnInit(): void {
+    // sessionStorage.setItem('notificationUpdate','true');
     this.getCourseDetails();
   }
   notification(){
@@ -29,22 +30,27 @@ courseDetails:any;
         this.nonAttendedData = false;
         sessionStorage.setItem('employee-nav','attendedCourse');
         this.getCourseDetails();
+      
       }
       nonAttended(){
         this.attendedData = false;
         this.nonAttendedData = true;
         sessionStorage.setItem('employee-nav','nonAttendedCourse');
         this.getCourseDetails();
+        
       }
 
       getCourseDetails(){
         this.superAdmin.getAttendedCourse().subscribe(data=>{
           console.log(data);
-          this.courseDetails = JSON.parse(data);
-          let key = Object.keys(this.courseDetails)[0];
-          this.courseDetails = this.courseDetails[key];
-
-          
+          this.courseDetails = data;
+          if(this.courseDetails[0] == '{'){
+            this.courseDetails = JSON.parse(data);
+            let key = Object.keys(this.courseDetails)[0];
+            this.courseDetails = this.courseDetails[key];
+          } else {
+            this.courseDetails = [];
+          }
         },(error)=>{
           alert(error.error);
         })

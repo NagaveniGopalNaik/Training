@@ -44,7 +44,7 @@ export class SuperAdminComponent implements OnInit {
     
     this.activeData();
     this.getAllEmployeeDetails();
-    // this.courseDetail();
+    this.courseDetail();
     
     // this.superAdmin.courseDetails().subscribe((data)=>{
     //   console.log(data);
@@ -96,6 +96,7 @@ export class SuperAdminComponent implements OnInit {
   }
  
   courseDetail(){
+    // debugger;
     sessionStorage.setItem('status','false');
     sessionStorage.setItem('courseUpdate','false');
     this.superAdmin.courseDetails().subscribe((data:any)=>{
@@ -130,22 +131,33 @@ export class SuperAdminComponent implements OnInit {
           // let value = JSON.parse( datas);
           // console.log(typeof value);
           
-          
+          // debugger;
           let count = JSON.parse(datas);
           data.employee_count = count;
+          // console.log(data);
+          
+          let object = this.course_list.find((details)=>{
+            return details.courseId = data.courseId;
+          })
+          if(object != undefined){
+            let index = this.course_list.indexOf(object);
+            this.course_list[index]=data;
+          }
+          sessionStorage.setItem('courseDetails',JSON.stringify(this.course_list));
           // console.log(typeof count);
           
           // console.log(data.employee_count);
           
         },(error)=>{
           // console.log(error);
-          // data.employee_count = 0;
+          data.employee_count = 0;
         })
         
       }
      
       
-      sessionStorage.setItem('courseDetails',JSON.stringify(this.course_list));
+      
+     
       console.log(this.course_list);
       
       
@@ -392,6 +404,36 @@ this.dialog.open(AssignEmployeeRoleComponent,{panelClass:'update-employee-role'}
     }
 
    
+  }
+
+  updatePage(data:any){
+    
+    sessionStorage.setItem('course_details',JSON.stringify(data));
+     
+    this.admin.courseDetailsFn().subscribe(data=>{
+      
+      let coursedata=data;
+      coursedata = JSON.parse(coursedata);
+      
+      
+      sessionStorage.setItem('course_details',JSON.stringify(coursedata));
+      // sessionStorage.setItem('trainingMode',JSON.stringify(coursedata.trainingMode));
+      
+  
+     
+
+      
+     
+    })
+    this.router.navigate(['/updateTraining']);
+  }
+
+  deleteCourse(courseData:any){
+    let deleteCourseId = courseData.courseId;
+    this.admin.deleteCourse(deleteCourseId).subscribe((data)=>{
+      alert(data);
+      this.courseDetail();
+    })
   }
 
  
