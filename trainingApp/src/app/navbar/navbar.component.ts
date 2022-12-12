@@ -129,7 +129,7 @@ apply(){
     // }
     
     
-    sessionStorage.setItem('filter-course-list',JSON.stringify(filter_course));
+    sessionStorage.setItem('courseDetails',JSON.stringify(filter_course));
     
    }
    

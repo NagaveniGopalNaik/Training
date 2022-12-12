@@ -70,7 +70,8 @@ loginData:any;
   
 
   courseDetails():Observable<any>{
-    let page = sessionStorage.getItem('course-page') || '1';
+    let page = sessionStorage.getItem('coursePageNo') || '1';
+    alert(page);
     let activeTag =sessionStorage.getItem('active');
     console.log(this.course);
     this.getCourseUpdates();

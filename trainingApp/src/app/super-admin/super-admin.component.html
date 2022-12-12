@@ -85,7 +85,7 @@
 </div> -->
 
 
-<div class="all-employee scroll" *ngIf="display">
+<div class="all-employee scroll" *ngIf="display" (scroll)="onScrollCourseData($event)">
     <div class="employee-course-details">
         <mat-card class="each-notification-details"  *ngFor="let courseData of display_course_list">
             <div class="course-time">

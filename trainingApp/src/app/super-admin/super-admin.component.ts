@@ -21,7 +21,7 @@ export class SuperAdminComponent implements OnInit {
   allEmployee :any;
   employeesList:any;
   activeNavbar='active';
-  currentData:any;
+  currentData:any[]=[];
   employeeDetails:any;
   datas:any;
   searchData:any;
@@ -64,6 +64,7 @@ export class SuperAdminComponent implements OnInit {
     this.display_course_list = JSON.parse(sessionStorage.getItem('courseDetails') || '[]');
   }
   statusCheck(){
+    
     this.role = this.superAdmin.getLoginRole();
     this.role = this.superAdmin.loginRole;
     let nav_status = sessionStorage.getItem('status') || 'true';
@@ -99,15 +100,24 @@ export class SuperAdminComponent implements OnInit {
     this.router.navigate(['/detailsPage']);
     
   }
+  onScrollCourseData(event){
+    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+      // alert("you are in bottom");
+      let course = JSON.parse(sessionStorage.getItem('coursePageNo') || '1');
+      course+=1;
+      this.courseDetail();
+    }
+  
+  }
  
   courseDetail(){
-    // debugger;
+    
     sessionStorage.setItem('status','false');
     sessionStorage.setItem('courseUpdate','false');
     this.superAdmin.courseDetails().subscribe((data:any)=>{
       // console.log(data);
 
-      
+      // debugger;
      if(data[0]=='{'){
       this.course = JSON.parse(data) as any;
       // this.course = data;
@@ -303,6 +313,7 @@ onScrolling(event:any){
   //   }
   }
 }
+
 onScrollingSearch(event:any){
   if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
     if(this.search_data.length == 10){
