@@ -6,45 +6,40 @@
     
 </div>
 <div class="notifications-details">
-    <mat-card class="each-notification-details">
+    <mat-card class="each-notification-details" *ngFor="let notification of notificationDetails">
         <div class="courseName">
-            <p class="trianing-name">UX/UI Design Process <button mat-raised-button class="course-button">UPCOMING</button></p>
-        <p class="trainer">Trainer : <span class="trainer-name">George Rehaman</span></p>
+            <p class="trianing-name">{{notification.courseName}} <button mat-raised-button class="course-button" [class.active]="notification.completionStatus == 'active'" [class.upcoming]="notification.completionStatus == 'upcoming'">{{notification.completionStatus | uppercase}}</button></p>
+        <p class="trainer">Trainer : <span class="trainer-name">{{notification.trainer}}</span></p>
         </div>
         <div class="details">
             <div class="date">
                 <p class="tag">Date</p>
-                <p class="data">Dec 5th, 2020</p>
+                <p class="data">{{notification.startDate | date}}</p>
             </div>
             <div class="date">
                 <p class="tag">Time</p>
-                <p class="data">02:45PM</p>
+                <p class="data">{{notification.startTime | time}}</p>
             </div>
             <div class="date">
                 <p class="tag">Duration</p>
-                <p class="data">3 hours 45 mins</p>
+                <p class="data">{{notification.duration}}</p>
+                <p class="data" *ngIf="notification.duration == null"><b>-</b></p>
             </div>
             <div class="date">
                 <p class="tag">Training type</p>
-                <p class="data">Online</p>
+                <p class="data">{{notification.trainingMode}}</p>
             </div>
         </div>
         <div class="training-data-details">
             <p class="tag">Details</p>
-            <p class="data lighter">
-                Meeting is schedule via zoom call
-            </p>
-            <p class="data lighter">
-                zoom call line: <a>https:Isd.sd asdlidjfsl;dhaks</a>
-            </p>
-            <p class="data lighter">
-                Meeting ID : 12345643245 <br>
-                Password : as57878
-            </p>
+            <div class="data lighter" [innerHTML]="notification.meetingInfo">
+               
+            </div>
+           
             
         </div>
         <div class="reaction-button">
-            <button mat-raised-button class="accept">ACCEPT</button>
+            <button mat-raised-button class="accept" (click)="accept(notification)">ACCEPT</button>
             <button mat-raised-button class="reject" (click)="reject_reason()">REJECT</button>
         </div>
     </mat-card>

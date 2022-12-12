@@ -24,7 +24,7 @@ export class ManagerTrainingDetailsComponent implements OnInit {
   displayActive=false;
   coursedata:any;
   ngOnInit(): void {
-    this.adminService.courseDetailsFn().subscribe(data=>{
+    this.adminService.courseDetailsFn('data').subscribe(data=>{
       console.log(data);
       this.coursedata=data;
       this.coursedata = JSON.parse(this.coursedata);

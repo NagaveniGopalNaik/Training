@@ -115,21 +115,26 @@ apply(){
   this.displayFilter = false;
   console.log(this.filterForm.value);
   this.superAdmin.filterCourse(this.filterForm.value).subscribe(data=>{
-   
-    let filter_course = JSON.parse(data) || data;
-    let key = Number(Object.keys(filter_course)[0]);
-    filter_course = filter_course[key];
+   let fetchData = data;
+   if(fetchData[0] == '{'){
+    fetchData = JSON.parse(fetchData) || data;
+    let key = Number(Object.keys(fetchData)[0]);
+    let filter_course = fetchData[key];
+    console.log(filter_course);
     
     
-    for(let count of filter_course){
-      count.employee_count = 0;
-      this.superAdmin.getCourseAcceptCount(count.courseId).subscribe((data)=>{
-      count.employee_count = JSON.parse(data);
-      })
-    }
+    // for(let count of filter_course){
+    //   count.employee_count = 0;
+    //   this.superAdmin.getCourseAcceptCount(count.courseId).subscribe((data)=>{
+    //   count.employee_count = JSON.parse(data);
+    //   })
+    // }
     
     
     sessionStorage.setItem('filter-course-list',JSON.stringify(filter_course));
+    
+   }
+   
     
   },(error)=>{
     alert(error);

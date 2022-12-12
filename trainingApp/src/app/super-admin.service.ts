@@ -143,9 +143,17 @@ loginData:any;
   });
   }
 
+  notification(){
+    this.getToken();
+    return this.http.get(`${API_URL}/employee/notifications`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('page',1).set('limit',10),responseType:'text'
+  });
+  }
+
   notificationCount(){
     sessionStorage.setItem('changeEmployeeRole','false');
     return this.http.get(`${API_URL}/employee/notification/count`,
+    // return this.http.get(`${API_URL}/employee/notifications`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',responseType:'text'
   });
   }

@@ -25,9 +25,9 @@ loginRole:any;
     sessionStorage.setItem('notificationUpdate','true');
   let value = JSON.parse(sessionStorage.getItem('login') as any);
   this.loginRole =value['employee'].roles[0].roleName;
-  // if(this.role == 'employee'){
+
     this.alertMsg();
-  // }
+  
   
  
   
@@ -48,6 +48,13 @@ loginRole:any;
       
       this.superAdmin.notificationCount().subscribe(data=>{
         this.notificationCount = data;
+        // if(this.notificationCount[0] == '{'){
+        //   this.notificationCount = JSON.parse(this.notificationCount);
+        //   let key = Number(Object.keys(this.notificationCount));
+        //   this.notificationCount = key;
+        // }
+        console.log(this.notificationCount);
+        
         if(Number(this.notificationCount)<1){
           this.hidden = true;
         } else {
@@ -65,8 +72,6 @@ loginRole:any;
     this.loginData = JSON.parse(sessionStorage.getItem('login') as any);
     this.profile = (this.loginData['employee'].profilePic || '/assets/profile.png');
     this.role = this.loginData['employee'].roles[0].roleName;
-    console.log(this.role);
-    
     this.superAdmin.getLoginRole();
     
       this.alertMsg();
@@ -76,9 +81,10 @@ loginRole:any;
     
   }
   notification(){
-    if(Number(this.notificationCount)>0){
-      this.router.navigate(['/notifications'])
-    }
+    
+      this.router.navigate(['/notifications']);
+      this.notificationCount = 0;
+    
 
   }
 

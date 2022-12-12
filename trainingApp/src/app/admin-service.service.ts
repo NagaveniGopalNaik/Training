@@ -133,12 +133,12 @@ export class AdminServiceService {
   //   ,responseType:'text'
   //   });
   // }
-  courseDetailsFn(){
+  courseDetailsFn(data:any){
     this.superAdmin.getToken();
-    this.getDetailsId();
-    console.log(this.details_id);
+    // this.getDetailsId();
+    // console.log(this.details_id);
     
-    return this.httpClient.get(this.detailsURL+this.details_id,{headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),
+    return this.httpClient.get(this.detailsURL+data,{headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),
     responseType:'text'
     })
   }

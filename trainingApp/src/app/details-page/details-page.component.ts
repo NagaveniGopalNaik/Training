@@ -39,8 +39,9 @@ export class DetailsPageComponent implements OnInit {
   }
 
   courseDetail(){
-    
-    this.adminService.courseDetailsFn().subscribe(data=>{
+    this.adminService.getDetailsId();
+    let courseId = this.adminService.details_id;
+    this.adminService.courseDetailsFn(courseId).subscribe(data=>{
       console.log(data);
       this.coursedata=data;
       this.coursedata = JSON.parse(this.coursedata);

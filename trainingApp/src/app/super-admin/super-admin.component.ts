@@ -154,12 +154,8 @@ export class SuperAdminComponent implements OnInit {
       
       console.log(this.empCount);
       for(let i=0 ;i<this.empCount.length;i++){
-        this.course_list[i].employee_count = this.empCount[i];
+        this.course_list[i].employee_count = this.empCount[i] || 0;
       }
-      
-     
-      
-      
      
       console.log(this.course_list);
       sessionStorage.setItem('courseDetails',JSON.stringify(this.course_list));
@@ -278,7 +274,9 @@ export class SuperAdminComponent implements OnInit {
 
 onScrolling(event:any){
   if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
-    console.log(this.currentData.length);
+    // console.log(this.currentData.length);
+    // console.log(event.target.offsetHeight);
+    
     let page = sessionStorage.getItem('page')
     if(this.currentData.length == 10 || this.currentData.length==0){
       this.getAllEmployeeDetails(); 
@@ -410,10 +408,10 @@ this.dialog.open(AssignEmployeeRoleComponent,{panelClass:'update-employee-role'}
   }
 
   updatePage(data:any){
-    
+    let courseId = data.courseId;
     sessionStorage.setItem('course_details',JSON.stringify(data));
      
-    this.admin.courseDetailsFn().subscribe(data=>{
+    this.admin.courseDetailsFn(courseId).subscribe(data=>{
       
       let coursedata=data;
       coursedata = JSON.parse(coursedata);

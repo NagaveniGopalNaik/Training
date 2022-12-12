@@ -107,4 +107,14 @@ button{
 }
 .notifications-details{
     height: 71vh;
+    overflow-y: scroll;
+}
+.notifications-details::-webkit-scrollbar{
+    display: none;
+}
+.active{
+    background-color: rgba(113,172,27,1);
+}
+.upcoming{
+    background-color: rgba(222,132,50,1);
 }
