@@ -1,0 +1,16 @@
+
+<div class="notification-div">
+    <!-- <p class="close-width"><mat-icon class="close-icon" mat-dialog-close>close</mat-icon></p> -->
+<div class="note-data">
+    <p class="text">You have {{key}} notifications</p>
+    <p class="text point" mat-dialog-close (click)="clearNotification()">Clear All</p>
+</div>
+<p class="headding">You have been invited to the following courses: </p>
+<div class="list">
+    
+    <ul *ngFor= "let notification of notificationList;index as i">
+        <li (click)="viewDetails(notification)" mat-dialog-close><b>{{notification.courseName | titlecase}}</b> </li>
+    </ul>
+</div>
+  <p class="close-width" mat-dialog-close><button mat-raised-button>Close</button></p>
+</div>

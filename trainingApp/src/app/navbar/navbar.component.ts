@@ -50,12 +50,10 @@ filterForm!:FormGroup;
       this.adminService.data = 'completed';
       break;
       case 'allEmployees':
-      if(this.role != 'employee'){
+      
         this.allEmployees = true;
         this.active = false;
-      } else {
-        this.active = true;
-      }
+      
      
      
       break;

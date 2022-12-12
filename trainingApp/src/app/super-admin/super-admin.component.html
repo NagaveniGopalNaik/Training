@@ -6,7 +6,7 @@
 {{getEmployeeData()}}
 <!-- {{searchEmployee()}} -->
 {{statusCheck()}}
-<div class="all-employee scroll" *ngIf="allEmployeeData && allData" (scroll)="onScrolling($event)">
+<div class="all-employee scroll" *ngIf="allEmployeeData && allData && role!='employee'" (scroll)="onScrolling($event)">
     <form class="searchbar" *ngIf = "allEmployee">
         <input type="text" placeholder="Search Employee#, Name, Designation" [(ngModel)]="searchData" name="searchData" matInput class="search-input">
         <button class="search-button" mat-raised-button (click)="searchDatas()">SEARCH</button>
@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<div class="all-employee scroll" *ngIf="allEmployeeData && filter" (scroll)="onScrollingSearch($event)">
+<div class="all-employee scroll" *ngIf="allEmployeeData && filter && role!='employee'" (scroll)="onScrollingSearch($event)">
     <form class="searchbar" *ngIf = "allEmployee">
         <input type="text" placeholder="Search Employee#, Name, Designation" [(ngModel)]="searchData" name="searchData" matInput class="search-input" (click)="removeFilter()">
         <button class="search-button" mat-raised-button (click)="searchDatas()">SEARCH</button>
@@ -74,6 +74,15 @@
        
     </div>
 </div> 
+
+
+
+
+<!-- invites list -->
+<!-- <div class="all-employee" *ngIf="invites_list!=null && role='employee'">
+    
+   
+</div> -->
 
 
 <div class="all-employee scroll" *ngIf="display">
@@ -147,6 +156,82 @@
        
     </div>
 </div>
+
+
+
+<div class="all-employee scroll" *ngIf="display==false && role == 'employee'">
+    <div class="employee-course-details">
+        <mat-card class="each-notification-details"  *ngFor="let courseData of notificationDetails">
+            <div class="course-time">
+                <div class="courseName">
+                    <p class="trianing-name">{{courseData.courseName}}<button mat-raised-button class="course-button active" *ngIf="courseData.completionStatus=='active'">ACTIVE</button> <button mat-raised-button class="course-button" *ngIf="courseData.completionStatus=='upcoming'">UPCOMING</button><button mat-raised-button class="course-button completed" *ngIf="courseData.completionStatus=='completed'">COMPLETED</button></p>
+                <p class="trainer">Trainer : <span class="trainer-name">{{courseData.trainer}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">{{courseData.trainingMode}}</span>
+                </p>
+                </div>
+                <div class="remaining-time-count">
+                 <div class="time-div"*ngIf="courseData.endDate!=null && courseData.completionStatus=='active'">Ends in: {{date | endsIn:courseData.endDate:courseData.endTime}}</div>
+                 <div class="time-div"*ngIf="courseData.completionStatus=='upcoming'">Starts in: {{date | endsIn:courseData.startDate:courseData.startTime}}</div>
+                 <div class="time-div" *ngIf="courseData.endDate==null && courseData.completionStatus=='active'">End date will be anounced soon...</div>
+                <!-- <div class="total-attendies-count">
+                    <p class="icon"><mat-icon>groups</mat-icon></p>
+                    
+                    <p class="count">{{courseData.employee_count}}</p>
+                </div> -->
+                </div>
+            </div>
+           <div class="course-details">
+            <div class="details">
+                <div class="date">
+                    <p class="tag">Start Date</p>
+                    
+                    <p class="data">{{courseData.startDate | date:'MMM'}}&nbsp;{{courseData.startDate | dateChange }},&nbsp;{{courseData.startDate | date:'YYYY'}} at <span>{{courseData.startTime | time}}</span></p>
+                </div>
+                <div class="date" >
+                    <p class="tag">End Date</p>
+                    <p class="data" *ngIf ="courseData.endDate">{{courseData.endDate | date:'MMM'}}&nbsp;{{courseData.endDate | dateChange:'dd' }},&nbsp;{{courseData.endDate | date:'YYYY'}} at <span>{{courseData.endTime | time}}</span></p>
+                    <p class="data" *ngIf = "courseData.endDate == null">&nbsp;-</p>
+                </div>
+                <div class="date">
+                    <p class="tag">Duration</p>
+                    <p class="data">{{courseData.duration | duration}}</p>
+                    <p class="data" *ngIf = "courseData.duration == null">&nbsp;-</p>
+                </div>
+               
+                
+            </div>
+            <div class="reaction-button">
+                <div mat-raised-button class="details-button" (click)=" inviteDetails(courseData)">DETAILS</div>
+                <div class="more">
+                    <div class="more-icon" (click)="displayDropdown(courseData)" *ngIf="(courseData.completionStatus=='upcoming' || (courseData.completionStatus=='active' && courseData.trainingMode=='Online sessions')) && role == 'admin'"><mat-icon class="more-vert-icon">more_vert</mat-icon></div>
+                    <mat-card class="display-operation" *ngIf="courseData.dropdown == true">
+                        <div class="dropdownData" *ngIf="courseData.completionStatus=='upcoming'">
+                            <p><mat-icon>perm_identity</mat-icon></p>
+                            <p>Assign&nbsp;Manager</p>
+                        </div>
+                        <div class="dropdownData" (click)="updatePage(courseData)">
+                            <p><mat-icon class="border">check_box_outline_blank<mat-icon class="edit">edit</mat-icon></mat-icon></p>
+                            <p>Edit</p>
+                        </div>
+                        <div class="dropdownData" *ngIf="courseData.completionStatus=='upcoming'" (click)="deleteCourse(courseData)">
+                            <p><mat-icon>delete_outline</mat-icon></p>
+                            <p>Delete</p>
+                        </div>
+                       
+                        
+                    </mat-card>
+                </div>
+               
+            </div>
+            
+           </div>
+            
+        </mat-card>
+    
+       
+    </div>
+</div>
+
+
 
 
 <app-footer></app-footer>

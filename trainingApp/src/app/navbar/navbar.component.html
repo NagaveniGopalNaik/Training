@@ -10,9 +10,10 @@
     </div>
 
    <div class="all-filter">
-    <div class="navContent" [class.active-tag]="allEmployees && role != 'employee'" (click)="allEmployeeFunction()">
+    <div class="navContent" [class.active-tag]="allEmployees" (click)="allEmployeeFunction()">
         <span  *ngIf="role=='admin' || role=='super_admin'">All&nbsp;Employee</span>
         <span *ngIf="role=='manager'">All&nbsp;Reportees</span>
+        <span *ngIf="role=='employee'">Invites</span>
         
     </div>
    

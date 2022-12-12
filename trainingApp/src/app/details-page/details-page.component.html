@@ -44,7 +44,7 @@
             </div>
             <div class="date">
                 <p class="tag">Duration</p>
-                <p class="data">{{details.duration}}</p>
+                <p class="data">{{details.duration | duration}}</p>
                 <p class="data" *ngIf="details.duration == null"><b>-</b></p>
             </div>
             <div class="date" *ngIf="details.completionStatus== 'upcoming' && details.trainingMode=='Online sessions'">

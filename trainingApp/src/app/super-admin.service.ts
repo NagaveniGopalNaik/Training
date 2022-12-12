@@ -145,6 +145,13 @@ loginData:any;
 
   notification(){
     this.getToken();
+    return this.http.get(`${API_URL}/employee/invites`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('page',1).set('limit',10),responseType:'text'
+  });
+  }
+
+  notificationList(){
+    this.getToken();
     return this.http.get(`${API_URL}/employee/notifications`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('page',1).set('limit',10),responseType:'text'
   });
@@ -208,5 +215,61 @@ getTrainingCountUrl(){
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
  })
   }
+
+//   acceptInvite(data:any){
+//     console.log(data);
+    
+// this.getToken();
+// console.log(this.token);
+
+// return this.http.put(`${API_URL}/employee/acceptInvite/${String(data)}`,
+// {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+// })
+//   }
+
+  acceptInvite(data:any):Observable<any>{
+    console.log(this.token);
+    
+    return this.http.put(`${API_URL}/employee/acceptInvite/${String(data)}`,data,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+  })
+  }
+
+  rejectInvite(data:any):Observable<any>{
+    let invites = JSON.parse(sessionStorage.getItem('invites-details') as any);
+    let inviteId=invites.inviteId;
+
+    
+    return this.http.put(`${API_URL}/employee/rejectInvite/${inviteId}`,data,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+  })
+  }
+
+  notificationCountUpdate(){
+    let invites = JSON.parse(sessionStorage.getItem('invites-details') as any);
+    let inviteId=invites.inviteId;
+
+    return this.http.put(`${API_URL}/employee/reduceNotificationCount/${inviteId}`,inviteId,
+        {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+     })
+  }
+
+  notificationAlert(){
+    this.getToken();
+    
+    this.getTrainingCountUrl();
+    // console.log(this.loginRole);
+    
+    return this.http.get(`${API_URL}/employee/clearNotification`,
+        {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+     })
+  }
+
+  clearNotification(){
+    return this.http.put(`${API_URL}/employee/clearNotification`,'data',
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+ })
+  }
+ 
 
 }

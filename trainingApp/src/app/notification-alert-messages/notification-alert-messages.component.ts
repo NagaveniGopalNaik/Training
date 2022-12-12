@@ -11,56 +11,31 @@ import { SuperAdminService } from '../super-admin.service';
 export class NotificationAlertMessagesComponent implements OnInit {
 notificationList:any;
 notificationDetails:any[]=[];
+notification:any;
   constructor(private router:Router,private superAdmin:SuperAdminService,private adminService:AdminServiceService) { }
 
   ngOnInit(): void {
+    
     this.getNotificationMsg();
 
   }
 
   getNotificationMsg(){
-    this.superAdmin.notification().subscribe((data)=>{
+    this.notification = JSON.parse(sessionStorage.getItem('invites-details') as any);
+    this.adminService.courseDetailsFn(this.notification.courseId).subscribe((data)=>{
       console.log(data);
-      let getData = data
-       if(getData[0] == '{'){
-          getData = JSON.parse(getData);
-          let key = Number(Object.keys(getData));
-          this.notificationList = getData[key] || [];
-          // sessionStorage.setItem('notification_details',JSON.stringify(this.notificationList));
-        }
-        for(let notification of this.notificationList){
-          
-          
-          
-          
-          
-          this.adminService.courseDetailsFn(notification.courseId).subscribe((data)=>{
-            console.log(data);
-            
-          let details = data;
-          if(details[0] == '{'){
-            details = JSON.parse(details);
-          //  if(details['meetingInfo'] != null){
-          //   details['meetingInfo'] = JSON.parse(details['meetingInfo']) || {};
-          //  }
-            
-            
-            this.notificationDetails.push(details);
-            console.log(this.notificationDetails);
-            // if(details.meetingInfo != null){
-            //   details.meetingInfo = JSON.parse(details.meetingInfo);
-            // }
-            
-          } else{
-            alert(data);
-          }
-          })
-        }
-        
-
       
-    },(error)=>{
-      alert(error.error);
+    let details = data;
+    if(details[0] == '{'){
+      details = JSON.parse(details);
+      
+      this.notificationDetails.push(details);
+      console.log(this.notificationDetails);
+     
+      
+    } else{
+      alert(data);
+    }
     })
   }
   reject_reason(){
@@ -68,14 +43,23 @@ this.router.navigate(['/reject-reason']);
   }
 
   accept(data:any){
-    let object = this.notificationList.find((notification)=>{
-      return notification.courseId == data.courseId;
-    })
-    if(object != null){
-      let index = this.notificationList.indexOf(object);
-      let notificationId = this.notificationList[index].inviteId;
-      console.log(notificationId);
+    
+      this.superAdmin.acceptInvite(this.notification.inviteId).subscribe({
+        next:(data)=>{
+          alert(data);
+          
+         
+        
+  
+        },
+        error:(error)=>{
+          alert(error.error)
+        },
+        complete : () =>{
+          this.router.navigate(['/dashboard']);
+        }
+      })
       
-    }
+    
   }
 }

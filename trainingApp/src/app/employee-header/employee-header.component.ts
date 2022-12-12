@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
 import { Route, Router } from '@angular/router';
 import { EmployeeRegisterComponent } from '../employee-register/employee-register.component';
 import { ImageUploadComponent } from '../image-upload/image-upload.component';
 import { SuperAdminService } from '../super-admin.service';
+import { NotificationListComponent } from '../notification-list/notification-list.component';
 @Component({
   selector: 'app-employee-header',
   templateUrl: './employee-header.component.html',
@@ -75,6 +76,9 @@ loginRole:any;
     this.superAdmin.getLoginRole();
     
       this.alertMsg();
+      if(this.router.url == '/notification'){
+        this.hidden = true;
+      }
     
    
    
@@ -82,8 +86,10 @@ loginRole:any;
   }
   notification(){
     
-      this.router.navigate(['/notifications']);
-      this.notificationCount = 0;
+      
+      if(this.notificationCount > 0){
+        this.dialog.open(NotificationListComponent,{panelClass:'notification-list'});
+      }
     
 
   }
@@ -134,6 +140,8 @@ this.router.navigate(['/dashboard']);
       role = 'employee';
       console.log(role);
       sessionStorage.setItem('notificationUpdate','true');
+      // sessionStorage.setItem('active','active');
+    
       // sessionStorage.setItem('changeEmployeeRole','false');
     } else {
       role = this.loginRole;
@@ -151,11 +159,6 @@ this.router.navigate(['/dashboard']);
 
 
     }
-  } else {
-    sessionStorage.setItem('notificationUpdate','true');
-    
-   
-    
   }
    }
 

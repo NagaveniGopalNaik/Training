@@ -52,7 +52,8 @@ import { DeleteEmployeeComponent } from './delete-employee/delete-employee.compo
 import { UpdateTrainingComponent } from './update-training/update-training.component';
 import { DateChangePipe,DurationPipe,TimePipe,EndsInPipe} from './date.pipe';
 import { CourseDetailsComponent } from './course-details/course-details.component';
-import { ProfileZoomComponent } from './profile-zoom/profile-zoom.component';  
+import { ProfileZoomComponent } from './profile-zoom/profile-zoom.component';
+import { NotificationListComponent } from './notification-list/notification-list.component';  
 
 
 // import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
@@ -106,7 +107,8 @@ import { ProfileZoomComponent } from './profile-zoom/profile-zoom.component';
  DurationPipe,
  EndsInPipe,
  CourseDetailsComponent,
- ProfileZoomComponent
+ ProfileZoomComponent,
+ NotificationListComponent
  
 
 

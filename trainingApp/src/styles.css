@@ -57,6 +57,13 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     border-radius: 10px;
 }
 
+.notification-list .mat-dialog-container{
+    width:40vw;
+    
+    height: fit-content;
+    border-radius: 10px;
+}
+
 .profile-zoom .mat-dialog-container{
     width:40vw;
     background-color: transparent !important;

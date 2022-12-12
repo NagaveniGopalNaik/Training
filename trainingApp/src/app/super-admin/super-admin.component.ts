@@ -37,6 +37,8 @@ export class SuperAdminComponent implements OnInit {
   display=true;
   role:any;
   empCount:any[]=[];
+  invites_list:any[]=[];
+  notificationDetails:any[]=[];
   constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService,private admin:AdminServiceService,private router:Router) { }
 //   @HostListener('scroll') onScroll(e: Event): void {
 //     console.log("scrolling .... ");
@@ -46,6 +48,8 @@ export class SuperAdminComponent implements OnInit {
     this.activeData();
     this.getAllEmployeeDetails();
     this.courseDetail();
+    this.invites();
+    
     
     // this.superAdmin.courseDetails().subscribe((data)=>{
     //   console.log(data);
@@ -153,8 +157,10 @@ export class SuperAdminComponent implements OnInit {
       }
       
       console.log(this.empCount);
-      for(let i=0 ;i<this.empCount.length;i++){
-        this.course_list[i].employee_count = this.empCount[i] || 0;
+      if(typeof this.course_list == 'object'){
+        for(let i=0 ;i<this.empCount.length;i++){
+          // this.course_list[i].employee_count = this.empCount[i];
+        }
       }
      
       console.log(this.course_list);
@@ -255,6 +261,10 @@ export class SuperAdminComponent implements OnInit {
     //     this.getAllEmployeeDetails();
     //   }
     }
+    this.superAdmin.getLoginRole();
+    this.role = this.superAdmin.loginRole;
+    
+    
   
   }
 
@@ -390,14 +400,17 @@ this.dialog.open(AssignEmployeeRoleComponent,{panelClass:'update-employee-role'}
         case 'allEmployees':
           this.superAdmin.getLoginRole();
       this.role = this.superAdmin.loginRole;
-      if(this.role == 'employee'){
-      sessionStorage.setItem('active','active');
-      }else{
+      // if(this.role == 'employee'){
+      //   this.active = true;
+      //   this.upcoming = false;
+      //   this.completed = false;
+      //   this.allEmployeeData = false;
+      // }else{
         this.active = false;
         this.upcoming = false;
         this.completed = false;
         this.allEmployeeData = true;
-      }
+      // }
             
           
         
@@ -435,6 +448,56 @@ this.dialog.open(AssignEmployeeRoleComponent,{panelClass:'update-employee-role'}
       alert(data);
       this.courseDetail();
     })
+  }
+
+  invites(){
+    this.superAdmin.notification().subscribe((data)=>{
+   
+   
+      this.invites_list = JSON.parse(data || '[]');
+      let key = Object.keys(this.invites_list)[0];
+      this.invites_list = this.invites_list[key];
+      console.log(this.invites_list);
+      for(let notification of this.invites_list){
+          
+          
+          
+          
+          
+        this.admin.courseDetailsFn(notification.courseId).subscribe((data)=>{
+          console.log(data);
+          
+        let details = data;
+        if(details[0] == '{'){
+          details = JSON.parse(details);
+          
+          this.notificationDetails.push(details);
+          console.log(this.notificationDetails);
+         
+          
+        } else{
+          alert(data);
+        }
+        })
+      }
+      if(this.invites_list.length == 0){
+        this.notificationDetails = [];
+      }
+    
+    
+      
+    })
+  }
+
+  inviteDetails(invite:any){
+    let data = this.invites_list.find((eachData)=>{
+      return invite.courseId = eachData.courseId;
+    })
+    console.log(data);
+    
+    sessionStorage.setItem('invites-details',JSON.stringify(data));
+    this.router.navigate(['/notifications']);
+    
   }
 
  
