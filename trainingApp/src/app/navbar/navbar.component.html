@@ -1,3 +1,6 @@
+
+
+{{getActive()}}
 <div class="parentContainer">
     <div class="container">
         <div class="navHeading">Training:</div>
@@ -7,10 +10,12 @@
     </div>
 
    <div class="all-filter">
-    <div class="navContent" [class.active-tag]="allEmployees" (click)="allEmployeeFunction()">
-        <span>All&nbsp;Employee</span>
+    <div class="navContent" [class.active-tag]="allEmployees && role != 'employee'" (click)="allEmployeeFunction()">
+        <span  *ngIf="role=='admin' || role=='super_admin'">All&nbsp;Employee</span>
+        <span *ngIf="role=='manager'">All&nbsp;Reportees</span>
         
     </div>
+   
 
     <mat-icon class="icon" (click)="filter()">filter_list</mat-icon>
     <mat-card class="filter-data" [class.display]="displayFilter" [formGroup]="filterForm">

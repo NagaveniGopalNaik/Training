@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from '../admin-service.service';
+import { SuperAdminService } from '../super-admin.service';
 
 @Component({
   selector: 'app-training-count',
@@ -7,27 +8,70 @@ import { AdminServiceService } from '../admin-service.service';
   styleUrls: ['./training-count.component.css']
 })
 export class TrainingCountComponent implements OnInit {
-  activeCount=0;
-  upcomingCount=0;
-  completedCount=0;
-  constructor(private adminService:AdminServiceService) { }
+  activeCount:any=0;
+  upcomingCount:any=0;
+  completedCount:any=0;
+  role:any;
+  constructor(private superAdmin:SuperAdminService) { }
 
   ngOnInit(): void {
-    this.adminService.activeCount().subscribe(data=>{
-      console.log(data);
-      this.activeCount=JSON.parse(data);
+    this.getRole();
+
+    this.courseCountUrl();
+  }
+  getRole(){
+    
+   
+    let changeRoleStatus = sessionStorage.getItem('changeEmployeeRole') || 'true';
+  
+    
+  
+    
+    if(changeRoleStatus == 'false'){
+      // debugger;
+      this.courseCountUrl();
+       
+        
+
+    }
+    
+    
+
+    
+    
+    
+
+  }
+
+  courseCountUrl(){
+    this.superAdmin.activeCount().subscribe((data)=>{
+      
+      this.activeCount = data;
+      
+    },(error)=>{
+      console.log(error);
+      
+    });
+
+    this.superAdmin.upcomingCount().subscribe((data)=>{
+      
+      this.upcomingCount = data;
+      
+    },(error)=>{
+      console.log(error);
       
     })
-    this.adminService.upcomingCount().subscribe(data=>{
-      console.log(data);
-      this.upcomingCount=JSON.parse(data);
+   
+    this.superAdmin.completedCount().subscribe((data)=>{
+      
+      this.completedCount = data;
+      
+    },(error)=>{
+      console.log(error);
       
     })
-    this.adminService.completedCount().subscribe(data=>{
-      console.log(data);
-      this.completedCount=JSON.parse(data);
-      
-    })
+    sessionStorage.setItem('changeEmployeeRole','true');
+    
   }
 
 

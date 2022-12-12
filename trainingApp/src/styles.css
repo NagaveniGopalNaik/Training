@@ -57,6 +57,14 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     border-radius: 10px;
 }
 
+.profile-zoom .mat-dialog-container{
+    width:40vw;
+    background-color: transparent !important;
+    box-shadow: none;
+    height: fit-content;
+    border-radius: 10px;
+}
+
 .mat-badge-medium.mat-badge-above .mat-badge-content {
     top: -3px;
 }
@@ -79,4 +87,8 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 }
 .choices .mat-radio-label-content{
     padding-bottom: 6px;
+}
+
+.mat-hint{
+    color:red;
 }

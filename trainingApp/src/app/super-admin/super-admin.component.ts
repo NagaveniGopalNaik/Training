@@ -35,6 +35,8 @@ export class SuperAdminComponent implements OnInit {
   display_course_list:any;
   date:any;
   display=true;
+  role:any;
+  empCount:any[]=[];
   constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService,private admin:AdminServiceService,private router:Router) { }
 //   @HostListener('scroll') onScroll(e: Event): void {
 //     console.log("scrolling .... ");
@@ -58,6 +60,8 @@ export class SuperAdminComponent implements OnInit {
     this.display_course_list = JSON.parse(sessionStorage.getItem('courseDetails') || '[]');
   }
   statusCheck(){
+    this.role = this.superAdmin.getLoginRole();
+    this.role = this.superAdmin.loginRole;
     let nav_status = sessionStorage.getItem('status') || 'true';
     let filter_status = sessionStorage.getItem('filterCourse') || 'false';
     if(filter_status == 'true'){
@@ -70,7 +74,8 @@ export class SuperAdminComponent implements OnInit {
         
         
     }else{
-      if(nav_status == 'true'){
+      let courseUpdate = sessionStorage.getItem('courseUpdate') || 'false';
+      if(nav_status == 'true' || courseUpdate == 'true'){
         this.courseDetail();
       }
     }
@@ -81,12 +86,22 @@ export class SuperAdminComponent implements OnInit {
     } else {
       this.display = true;
     }
+
+  }
+
+  courseDetailNavigate(data:any){
+    
+    sessionStorage.setItem('course_details',JSON.stringify(data));
+    this.router.navigate(['/detailsPage']);
+    
   }
  
   courseDetail(){
+    // debugger;
     sessionStorage.setItem('status','false');
+    sessionStorage.setItem('courseUpdate','false');
     this.superAdmin.courseDetails().subscribe((data:any)=>{
-      console.log(data);
+      // console.log(data);
 
       
      if(data[0]=='{'){
@@ -95,7 +110,17 @@ export class SuperAdminComponent implements OnInit {
       let key = Number(Object.keys(this.course));
       this.course_list = this.course[key];
       console.log(this.course_list);
+      
+      
+     } else {
+       let changeRole = sessionStorage.getItem('courseUpdate');
+       console.log(data);
+       
+       this.course_list = [];
+       
+       
      }
+     
 
       for(let data of this.course_list){
         console.log(data.courseId);
@@ -104,13 +129,18 @@ export class SuperAdminComponent implements OnInit {
         
         this.superAdmin.getCourseAcceptCount(data.courseId).subscribe((datas:any)=>{
           
-          // console.log(datas);
+          console.log(datas);
           // let value = JSON.parse( datas);
           // console.log(typeof value);
           
-          
+          // debugger;
           let count = JSON.parse(datas);
           data.employee_count = count;
+          this.empCount.push(data.employee_count);
+          // console.log(data);
+          
+          
+          
           // console.log(typeof count);
           
           // console.log(data.employee_count);
@@ -121,12 +151,19 @@ export class SuperAdminComponent implements OnInit {
         })
         
       }
+      
+      console.log(this.empCount);
+      for(let i=0 ;i<this.empCount.length;i++){
+        this.course_list[i].employee_count = this.empCount[i];
+      }
+      
      
       
-      sessionStorage.setItem('courseDetails',JSON.stringify(this.course_list));
+      
+     
       console.log(this.course_list);
-      
-      
+      sessionStorage.setItem('courseDetails',JSON.stringify(this.course_list));
+      this.empCount = [];
       
       
     })
@@ -144,11 +181,7 @@ export class SuperAdminComponent implements OnInit {
   //     console.log("End");
   //   }
   // }
-  courseDetailNavigate(data:any){
-    sessionStorage.setItem('course_details',JSON.stringify(data));
-    this.router.navigate(['/detailsPage']);
-    
-  }
+ 
   displayDropdown(courseData:any){
    console.log(courseData);
    
@@ -287,6 +320,8 @@ onScrollingSearch(event:any){
     this.superAdmin.AllEmployeeDetails().subscribe((data)=>{
       
       this.allEmployee = JSON.parse(data);
+      console.log(this.allEmployee);
+      
       let keys = Object.keys(this.allEmployee)[0];
       if(keys == '0'){
         sessionStorage.removeItem('page');
@@ -355,13 +390,53 @@ this.dialog.open(AssignEmployeeRoleComponent,{panelClass:'update-employee-role'}
         this.allEmployeeData = false;
         break;
         case 'allEmployees':
+          this.superAdmin.getLoginRole();
+      this.role = this.superAdmin.loginRole;
+      if(this.role == 'employee'){
+      sessionStorage.setItem('active','active');
+      }else{
         this.active = false;
         this.upcoming = false;
         this.completed = false;
         this.allEmployeeData = true;
+      }
+            
+          
+        
         break;
     }
+
+   
+  }
+
+  updatePage(data:any){
     
+    sessionStorage.setItem('course_details',JSON.stringify(data));
+     
+    this.admin.courseDetailsFn().subscribe(data=>{
+      
+      let coursedata=data;
+      coursedata = JSON.parse(coursedata);
+      
+      
+      sessionStorage.setItem('course_details',JSON.stringify(coursedata));
+      // sessionStorage.setItem('trainingMode',JSON.stringify(coursedata.trainingMode));
+      
+  
+     
+
+      
+     
+    })
+    this.router.navigate(['/updateTraining']);
+  }
+
+  deleteCourse(courseData:any){
+    let deleteCourseId = courseData.courseId;
+    this.admin.deleteCourse(deleteCourseId).subscribe((data)=>{
+      alert(data);
+      this.courseDetail();
+    })
   }
 
  

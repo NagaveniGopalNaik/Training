@@ -37,20 +37,21 @@ export class TimePipe implements PipeTransform {
   transform(value: string, ...args: unknown[]): unknown {
     const data = value.split(':');
     let hour = '';
-    let median='';
+    let meridian='';
     let time = '';
    if(Number(data[0]) > 12 ){
      let value = Number(data[0])-12;
      hour = String(value);
-     median = 'PM';
+     meridian = 'pm';
    } else{
      hour = data[0];
+     meridian = 'am'
    }
 
    if(hour[0] == '0'){
      hour = hour[1];
    }
-   time = hour+":"+data[1]+" "+median;
+   time = hour+":"+data[1]+" "+meridian;
     return time;
 
   }

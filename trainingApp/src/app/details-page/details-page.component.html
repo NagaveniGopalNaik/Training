@@ -1,48 +1,31 @@
 <!-- {{getAttendees()}} -->
-<div class="header">
-    <div class="logo">
-        <img src="/assets/Robosoft_logo_horizontal.png" routerLink="/admin"id="logo" alt="">
-    </div>
-    <div class="profile">
-        <div class="newTraining">
-            <button class="training_button" routerLink="/createTraining">NEW TRAINING</button>
-        </div>
-        <div class="icon">
-            <mat-icon>notifications_none</mat-icon>
-        </div>
-        <div class="pimage">
-            <div><img src="/assets/profile.png" id="pimage" alt=""></div>
-            <div class="display_icon">
-                <mat-icon (click)="display_p_options()">arrow_drop_down</mat-icon>
-                <div *ngIf="display" class="poptions">
-                    <li (click)="addProfile()">Add profile picture</li>
-                    <li (click)="editProfile()">Edit profile picture</li>
-                    <li routerLink="/login">Log Out</li>
-                </div>
-            </div>
 
-        </div>
-    </div>
-</div>
-<div class="main">
+<app-employee-header></app-employee-header>
+ <div class="main">
     <span class="navigation">Home &nbsp;>&nbsp;Training Details</span>
 </div>
 
 
 <div class="empAddDltMain">
-    <mat-card class="each-notification-details" *ngIf="displayActive">
+    <mat-card class="each-notification-details">
         <div class="courseName">
             <div>
-                <p class="trianing-name">{{details.courseName}}<button mat-raised-button
-                    class="active_course-button">{{details.completionStatus | uppercase}}</button></p>
-                <p class="trainer">Trainer : <span class="trainer-name">{{details.trainer}}</span></p>
+                <p class="trianing-name">{{details.courseName || blank}}<button mat-raised-button
+                    class="active_course-button" [class.active_course-button]="details.completionStatus=='active'" [class.upcoming_course-button]="details.completionStatus=='upcoming'" [class.completed_course-button]="details.completionStatus == 'completed'">{{details.completionStatus | uppercase}}</button></p>
+                <p class="trainer">Trainer :
+                     <span class="trainer-name">{{details.trainer}}</span>
+                    <span class="trainer" *ngIf="(!(details.completionStatus== 'upcoming' && details.trainingMode=='Online sessions'))">&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;Training Type :
+                         <span class="trainer-name">{{details.trainingMode}}</span>
+                    </span>
+                </p>
             </div>
 
             <div class="endsinEdit">
                 <div class="flexEdit">
-                    <div class="endsin">Ends in{{details.startDate-details.endDate}}</div>
-                    <div class="edit">
-                        <mat-icon (click)="editTraining()">edit_square</mat-icon>
+                    <div class="endsin" *ngIf="details.completionStatus=='active'">Ends in : {{details.endDate | endsIn:details.endDate:details.endTime}}</div>
+                    <div class="endsin" *ngIf="details.completionStatus=='upcoming'">Starts in : {{details.startDate | endsIn:details.startDate:details.startTime}}</div>
+                    <div class="edit" routerLink="/updateTraining">
+                        <mat-icon class="border">check_box_outline_blank<mat-icon class="edit-icon">edit</mat-icon></mat-icon>
                     </div>
                 </div>
             </div>
@@ -52,108 +35,38 @@
         <div class="details">
             <div class="date">
                 <p class="tag">Start Date</p>
-                <p class="data">{{details.startDate | date:'mediumDate'}}</p>
+                <p class="data">{{details.startDate | date:'MMM'}}&nbsp;{{details.startDate | dateChange }},&nbsp;{{details.startDate | date:'YYYY'}} at <span>{{details.startTime | time}}</span></p>
             </div>
             <div class="date">
                 <p class="tag">End Date</p>
-                <p class="data">{{details.endDate | date:'mediumDate'}}</p>
+                <p class="data">{{details.endDate | date:'MMM'}}&nbsp;{{details.endDate | dateChange }},&nbsp;{{details.endDate | date:'YYYY'}} at <span>{{details.endTime | time}}</span></p>
+                <p class="data" *ngIf="details.endDate == null"><b>-</b></p>
             </div>
             <div class="date">
                 <p class="tag">Duration</p>
                 <p class="data">{{details.duration}}</p>
+                <p class="data" *ngIf="details.duration == null"><b>-</b></p>
+            </div>
+            <div class="date" *ngIf="details.completionStatus== 'upcoming' && details.trainingMode=='Online sessions'">
+                <p class="tag">Training Type</p>
+                <p class="data">{{details.trainingMode}}</p>
             </div>
         </div>
         <div class="training-data-details">
             <p class="tag">Details</p>
             <p class="data lighter">
-                <!-- Meeting is schedule via zoom call -->
+                 <!-- Meeting is schedule via zoom call  -->
                 {{details.meetingInfo}}
             </p>
-            <!-- <p class="data lighter">
-                zoom call line: <a>https:Isd.sd asdlidjfsl;dhaks</a>
-            </p>
-            <p class="data lighter">
-                Meeting ID : 12345643245 <br>
-                Password : as57878
-            </p> -->
+          
 
-        </div>
-    </mat-card>
-    <div class="parentContainer" *ngIf="displayActive">
-        <div> <p class="attendees"><span *ngIf="attendees.length>=1"> Attendees ({{attendees.length}})&nbsp;</span> <span class="inviteEmp" *ngIf="trainingMode=='Online sessions'"routerLink="/inviteEmp">&nbsp;Invite Employees</span></p></div>
-        <div class="contentContainer">
+      </div>
+    </mat-card>  
+    <div class="parentContainer" >
+        <div> <p class="attendees"><span *ngIf="attendees.length>=1"> Attendees ({{attendees.length}})&nbsp;</span> <span class="inviteEmp" *ngIf="(completionStatus=='active' && trainingMode=='Online sessions') || completionStatus=='upcoming'"routerLink="/inviteEmp">&nbsp;Invite Employees</span></p></div>
+        <div class="contentContainer" *ngIf="attendees.length>=1">
          <div class="container" *ngFor="let attendee of attendees">
-             <div class="profileimg">
-                 <img src="/assets/profile.png" alt="" id="profileimg">
-             </div>
-             <div class="empDetails">
-                 <div class="empName">{{attendee.empName}}</div>
-                 <div class="empDesignation">{{attendee.designation}}</div>
-                 <div class="empCode">{{attendee.empId}}</div>
-             </div>
-             <div class="addIcon">
-                 <mat-icon (click)="deleteEmployees(attendee.empId)">do_not_disturb_on</mat-icon>
-             </div>
-        </div>
-         </div>
-     </div>
-    
-
-    <mat-card class="each-notification-details" *ngIf="displayUpcoming">
-        <div class="courseName">
-            <div>
-                <p class="trianing-name">{{details.courseName}}<button mat-raised-button
-                    class="upcoming_course-button">{{details.completionStatus | uppercase}}</button></p>
-                <p class="trainer">Trainer : <span class="trainer-name">{{details.trainer}}</span></p>
-            </div>
-
-            <div class="endsinEdit">
-                <div class="flexEdit">
-                    <div class="endsin">Starts in: in{{details.startDate-details.endDate}}</div>
-                    <div class="edit">
-                        <mat-icon routerLink="/updateTraining">edit_square</mat-icon>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="details">
-            <div class="date">
-                <p class="tag">Start Date</p>
-                <p class="data">{{details.startDate | date:'mediumDate'}}</p>
-            </div>
-            <div class="date">
-                <p class="tag">End Date</p>
-                <p class="data">{{details.endDate | date:'mediumDate'}}</p>
-            </div>
-            <div class="date">
-                <p class="tag">Duration</p>
-                <p class="data">{{details.duration}}</p>
-            </div>
-        </div>
-        <div class="training-data-details">
-            <p class="tag">Details</p>
-            <p class="data lighter">
-                <!-- Meeting is schedule via zoom call -->
-                {{details.meetingInfo}}
-            </p>
-            <!-- <p class="data lighter">
-                zoom call line: <a>https:Isd.sd asdlidjfsl;dhaks</a>
-            </p>
-            <p class="data lighter">
-                Meeting ID : 12345643245 <br>
-                Password : as57878
-            </p> -->
-
-        </div>
-    </mat-card>
-
-  
-        <div class="parentContainer" *ngIf="displayUpcoming">
-           <div> <p class="attendees"><span  *ngIf="attendees.length>=1"> Attendees ({{attendees.length}})&nbsp; </span><span class="inviteEmp" routerLink="/inviteEmp">Invite Employees</span></p></div>
-           <div class="contentContainer">
-            <div class="container" *ngFor="let attendee of attendees">
+            <div class="profile-details">
                 <div class="profileimg">
                     <img src="/assets/profile.png" alt="" id="profileimg">
                 </div>
@@ -162,100 +75,31 @@
                     <div class="empDesignation">{{attendee.designation}}</div>
                     <div class="empCode">{{attendee.empId}}</div>
                 </div>
-                <div class="removeIcon" >
-                    <mat-icon (click)="deleteEmployees(attendee.empId)"> do_not_disturb_on</mat-icon>
-                </div>
-           </div>
             </div>
-        </div>
-   
-
-
-   
-    <mat-card class="each-notification-details" *ngIf="displayCompleted">
-        <div class="courseName">
-            <div>
-                <p class="trianing-name">{{details.courseName}}<button mat-raised-button
-                    class="completed_course-button">{{details.completionStatus | uppercase}}</button></p>
-                <p class="trainer">Trainer : <span class="trainer-name">{{details.trainer}}</span></p>
-            </div>
-
-            <div class="endsinEdit">
-                <div class="flexEdit">
-                    <!-- <div class="endsin">Ends in{{details.startDate-details.endDate}}</div> -->
-                    <!-- <div class="edit">
-                        <mat-icon routerLink="/updateTraining">edit_square</mat-icon>
-                    </div> -->
-                </div>
-            </div>
-
-
-        </div>
-        <div class="details">
-            <div class="date">
-                <p class="tag">Start Date</p>
-                <p class="data">{{details.startDate | date:'mediumDate'}}</p>
-            </div>
-            <div class="date">
-                <p class="tag">End Date</p>
-                <p class="data">{{details.endDate | date:'mediumDate'}}</p>
-            </div>
-            <div class="date">
-                <p class="tag">Duration</p>
-                <p class="data">{{details.duration}}</p>
-            </div>
-        </div>
-        <div class="training-data-details">
-            <p class="tag">Details</p>
-            <p class="data lighter">
-                <!-- Meeting is schedule via zoom call -->
-                {{details.meetingInfo}}
-            </p>
-            <!-- <p class="data lighter">
-                zoom call line: <a>https:Isd.sd asdlidjfsl;dhaks</a>
-            </p>
-            <p class="data lighter">
-                Meeting ID : 12345643245 <br>
-                Password : as57878
-            </p> -->
-
-        </div>
-    </mat-card>
-
-    <div class="parentContainer" *ngIf="displayCompleted">
-        <div> <p class="attendees" *ngIf="attendees.length>=1">Attendees ({{attendees.length}})</p></div>
-        <div class="contentContainer">
-         <div class="container" *ngFor="let attendee of attendees">
-             <div class="profileimg">
-                 <img src="/assets/profile.png" alt="" id="profileimg">
+             <div class="addIcon">
+                 <mat-icon (click)="deleteEmployees(attendee.empId)" *ngIf="details.completionStatus != 'completed'">do_not_disturb_on</mat-icon>
              </div>
-             <div class="empDetails">
-                 <div class="empName">{{attendee.empName}}</div>
-                 <div class="empDesignation">{{attendee.designation}}</div>
-                 <div class="empCode">{{attendee.empId}}</div>
-             </div>
-             <!-- <div class="addIcon">
-                 <mat-icon> do_not_disturb_on</mat-icon>
-             </div> -->
         </div>
          </div>
      </div>
-
-     <div class="parentContainer" *ngIf="displayCompleted">
-        <div> <p class="attendees"><span *ngIf="nonAttendees.length >= 1">Non Attendees (8)</span> </p></div>
-        <div class="contentContainer">
+   
+     <div class="parentContainer">
+        <div> <p class="attendees"><span *ngIf="(nonAttendees.length >= 1 && details.completionStatus == 'completed')">Non Attendees ({{nonAttendees.length}})</span> </p></div>
+        <div class="contentContainer"  *ngIf="(nonAttendees.length >= 1 && details.completionStatus == 'completed')">
          <div class="container" *ngFor="let nonAttendee of nonAttendees">
-             <div class="profileimg">
-                 <img src="/assets/profile.png" alt="" id="profileimg">
-             </div>
-             <div class="empDetails">
-                 <div class="empName">{{nonAttendee.empName}}</div>
-                 <div class="empDesignation">{{nonAttendee.designation}}</div>
-                 <div class="empCode">{{nonAttendee.empId}}</div>
+             <div class="profile-details">
+                <div class="profileimg">
+                    <img src="/assets/profile.png" alt="" id="profileimg">
+                </div>
+                <div class="empDetails">
+                    <div class="empName">{{nonAttendee.empName}}</div>
+                    <div class="empDesignation">{{nonAttendee.designation}}</div>
+                    <div class="empCode">{{nonAttendee.empId}}</div>
+                </div>
              </div>
         </div>
          </div>
-     </div>
+     </div> 
     
     
         

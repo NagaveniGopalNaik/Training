@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
   displayFilter=false;
 filterForm!:FormGroup;
   activeTag:any;
+  role:any;
     constructor( private adminService: AdminServiceService,private superAdmin:SuperAdminService) { }
 
   ngOnInit(): void {
@@ -30,6 +31,8 @@ filterForm!:FormGroup;
   }
 
   getActive(){
+    this.superAdmin.getLoginRole();
+    this.role = this.superAdmin.loginRole;
   this.activeTag = sessionStorage.getItem('active') || 'active';
   switch(this.activeTag){
     case 'active':
@@ -47,8 +50,13 @@ filterForm!:FormGroup;
       this.adminService.data = 'completed';
       break;
       case 'allEmployees':
-      
-      this.allEmployees = true;
+      if(this.role != 'employee'){
+        this.allEmployees = true;
+        this.active = false;
+      } else {
+        this.active = true;
+      }
+     
      
       break;
   }
@@ -92,7 +100,9 @@ filterForm!:FormGroup;
     this.completed=false;
     this.active=false;
     this.allEmployees=true;
-    sessionStorage.setItem('active','allEmployees');
+    
+      sessionStorage.setItem('active','allEmployees');
+    
     sessionStorage.setItem('flag','false');
     sessionStorage.setItem('status','true');
     // sessionStorage.setItem('page','1');

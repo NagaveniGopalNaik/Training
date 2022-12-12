@@ -58,6 +58,18 @@
     width: 80%;
     margin: auto;
 }
+.otp-div{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.otp-div .form-field{
+    width: 20%;
+    border-radius: 4px;
+
+}
 .otp-field{
     
     display: flex;

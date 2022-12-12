@@ -1,0 +1,13 @@
+.image{
+    width: 100%;
+    margin: auto;
+    height: 70vh;
+   
+}
+
+img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: 2px solid white;
+}

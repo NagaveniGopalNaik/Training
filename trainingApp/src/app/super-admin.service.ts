@@ -11,10 +11,19 @@ const API_URL = environment.API_URL;
 export class SuperAdminService {
 course = 1;
 employee = 0;
+appendingUrl:any;
+token :any;
+courseUrl:any;
+loginRole:any;
+loginData:any;
 
-token = JSON.parse(sessionStorage.getItem('token') as any);
+
   constructor(private http:HttpClient) { }
 
+
+  getToken(){
+    this.token = JSON.parse(sessionStorage.getItem('token') as any);
+  }
   registerEmployee(data:any):Observable<any>{
     // this.token = JSON.parse(sessionStorage.getItem('token') as any);
     
@@ -47,16 +56,26 @@ token = JSON.parse(sessionStorage.getItem('token') as any);
   })
   }
 
+  getCourseUpdates(){
+    this.getLoginRole();
+    if(this.loginRole == 'employee'){
+      this.courseUrl = '/employee/acceptedCourses/filter/';
+    } else if(this.loginRole == 'manager'){
+      this.courseUrl = '/manager/assignedCourses/'
+    }else{
+      this.courseUrl = '/company/courses/'
+    }
 
+  }
   
 
   courseDetails():Observable<any>{
     let page = sessionStorage.getItem('course-page') || '1';
     let activeTag =sessionStorage.getItem('active');
     console.log(this.course);
-    
-    
-    return this.http.get(`${API_URL}/company/courses/${activeTag}`,
+    this.getCourseUpdates();
+    this.getToken();
+    return this.http.get(`${API_URL}${this.courseUrl}${activeTag}`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('page',page).set('limit',10)
     ,responseType:'text'
   });
@@ -65,6 +84,7 @@ token = JSON.parse(sessionStorage.getItem('token') as any);
   
 
   AllEmployeeDetails():Observable<any>{
+    this.getToken();
     let page = JSON.parse(sessionStorage.getItem('page')|| '0') ;
     page = page + 1;
     sessionStorage.setItem('page',page);
@@ -77,6 +97,7 @@ token = JSON.parse(sessionStorage.getItem('token') as any);
   }
 
   searchData(data:any){
+    this.getToken();
     let filter = JSON.parse(sessionStorage.getItem('filter')|| '1') ;
     sessionStorage.setItem('filter',JSON.stringify(filter));
  console.log(filter);
@@ -88,6 +109,7 @@ token = JSON.parse(sessionStorage.getItem('token') as any);
   }
 
   getCourseAcceptCount(data:any){
+    this.getToken();
     return this.http.get(`${API_URL}/employee/count/acceptedInvites/${data}`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',responseType:'text'
   });
@@ -114,6 +136,7 @@ token = JSON.parse(sessionStorage.getItem('token') as any);
   }
 
   getAttendedCourse(){
+    this.getToken();
     let active = sessionStorage.getItem('employee-nav') || 'attendedCourse';
     return this.http.get(`${API_URL}/employee/${active}`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('page',1).set('limit',10),responseType:'text'
@@ -121,9 +144,61 @@ token = JSON.parse(sessionStorage.getItem('token') as any);
   }
 
   notificationCount(){
+    sessionStorage.setItem('changeEmployeeRole','false');
     return this.http.get(`${API_URL}/employee/notification/count`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',responseType:'text'
   });
+  }
+
+  getLoginRole(){
+    this.loginData = JSON.parse(sessionStorage.getItem('login') as any);
+    this.loginRole = this.loginData['employee'].roles[0].roleName;
+    // console.log(this.role);
+  }
+
+  // course count for Admin and super admin
+getTrainingCountUrl(){
+  this.getLoginRole();
+  if(this.loginRole =='super_admin' || this.loginRole == 'admin'){
+    this.appendingUrl = '/company/trainings/count/';
+    
+  } else if(this.loginRole=='employee'){
+    
+    this.appendingUrl = '/employee/course/count/';
+    
+  } else{
+    this.appendingUrl = '/manager/assignedCourses/count/';
+    
+    
+
+  }
+ 
+  
+}
+
+  activeCount(){
+    
+    this.getToken();
+    
+    this.getTrainingCountUrl();
+    // console.log(this.loginRole);
+    
+    return this.http.get(`${API_URL}`+this.appendingUrl+'active',
+        {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+     })
+    
+  }
+  upcomingCount(){
+      this.getTrainingCountUrl();
+    return this.http.get(`${API_URL}${this.appendingUrl}upcoming`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+ })
+  }
+  completedCount(){
+    this.getTrainingCountUrl();
+    return this.http.get(`${API_URL}${this.appendingUrl}completed`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text'
+ })
   }
 
 }

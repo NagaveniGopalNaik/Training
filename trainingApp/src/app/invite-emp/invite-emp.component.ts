@@ -89,11 +89,13 @@ export class InviteEmpComponent implements OnInit {
   inviteEmployees(empId: any) {
     this.adminService.inviteEmployees(this.arrayAdd).subscribe(data => {
       console.log(data);
+      alert(data);
     })
   }
   deleteEmployees(empId:any) {
     this.adminService.deleteEmployees(this.arrayRemove).subscribe(data => {
       console.log(data);
+      alert(data);
 
     })
   }
