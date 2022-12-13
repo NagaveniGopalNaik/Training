@@ -1,0 +1,40 @@
+<div class="inviteEmpParentMain">
+    <mat-card class="inviteEmpMain">
+        <div class="inviteReporteesHeader">
+            <p class="inviteReportees" (click)="back()">Assign Reportees</p>
+            <button class="doneButton" (click)="assignReportees()">DONE</button>
+        </div>
+        
+        
+        <div class="searchbar">
+            <input type="text" placeholder="Search Employee#, Name, Designation" matInput class="search-input">
+            <div class="search-button" mat-raised-button>SEARCH</div>
+        </div>
+        
+        <div class="tabHeader">
+            <div class="empCode">Employee#</div>
+            <div class="empName">Name</div>
+            <div class="empDesignation">Designation</div>
+            <!-- <div class="empDesignation">Slect Manager</div>
+            <div class="empDesignation">Assign Reportees</div> -->
+            <!-- <div class="addRemoveIcon">add_circle</div> -->
+        </div>
+        
+       <div class="scroll">
+        <div class="tabContentParent" *ngFor="let employee of employeeData;index as i">
+            <div class="tabContent">
+                <div class="empCodeval">{{employee.empId}}</div>
+                <div class="empNameval">{{employee.empName}}</div>
+                <div class="empDesignationval">{{employee.designation}}</div>
+                <div class="removeIcon" *ngIf="employee.status == false"><mat-icon (click)="addReportees(employee)"> add_circle</mat-icon></div>
+                <div class="removeIcon selected" *ngIf="employee.status == true" (click)="removeSelect(employee)"><mat-icon >do_not_disturb_on</mat-icon></div>
+                
+               
+            </div>
+            
+            
+        
+        </div>
+       </div>
+    </mat-card>
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AddProfileComponent } from '../add-profile/add-profile.component';
+// import { AddProfileComponent } from '../add-profile/add-profile.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { InviteEmpComponent } from '../invite-emp/invite-emp.component';
 import { FormControl, NgForm, Validators } from '@angular/forms';
@@ -130,12 +130,12 @@ export class CreateTrainingComponent implements OnInit {
   display_p_options() {
     this.display = true;
   }
-  addProfile() {
-    this.dialog.open(AddProfileComponent, { height: '40%', width: '40%' });
-  }
-  editProfile() {
-    this.dialog.open(EditProfileComponent, { height: '40%', width: '40%' });
-  }
+  // addProfile() {
+  //   this.dialog.open(AddProfileComponent, { height: '40%', width: '40%' });
+  // }
+  // editProfile() {
+  //   this.dialog.open(EditProfileComponent, { height: '40%', width: '40%' });
+  // }
   // chooseMedian(){
   //  this.median=true;
   // }

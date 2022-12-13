@@ -90,6 +90,7 @@ loginRole:any;
       if(this.notificationCount > 0){
         this.dialog.open(NotificationListComponent,{panelClass:'notification-list'});
       }
+      this.alertMsg();
     
 
   }

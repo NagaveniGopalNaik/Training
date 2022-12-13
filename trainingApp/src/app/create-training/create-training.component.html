@@ -1,48 +1,34 @@
-<div class="header">
-    <div class="logo">
-        <img src="/assets/Robosoft_logo_horizontal.png" id="logo" alt="">
-    </div>
-    <div class="profile">
-        <!-- <div class="newTraining">
-            <button class="training_button">NEW TRAINING</button>
-        </div> -->
-        <div class="icon">
-            <mat-icon>notifications</mat-icon>
-        </div>
-        <div class="pimage">
-            <div><img src="/assets/profile.png" id="pimage" alt=""></div>
-            <div class="display_icon">
-                <mat-icon (click)="display_p_options()">arrow_drop_down</mat-icon>
-                <div *ngIf="display" class="poptions">
-                    <li (click)="addProfile()">Add profile picture</li>
-                    <li (click)="editProfile()">Edit profile picture</li>
-                    <li routerLink="/login">Log Out</li>
-                </div>
-            </div>
+<app-employee-header></app-employee-header>
 
-        </div>
-    </div>
-</div>
-<hr>
 <div class="parentMain">
     <mat-card class="main">
         <span id="trainingheading">Create New Training</span>
         <form class="parentContainer" [formGroup]="createTrainingForm">
             <div class="inputContainer">
                 <label for="">Training Title</label>
-                <input type="text" [class.is-invalid]="createTrainingForm.get('courseName')?.invalid && createTrainingForm.get('courseName')?.touched"  formControlName="courseName">
-                <div *ngIf="createTrainingForm.get('courseName')?.invalid && createTrainingForm.get('courseName')?.touched" class="small">
-                    <small *ngIf="createTrainingForm.get('courseName')?.errors?.['required']" class="smalltxt">Course name is required</small>
-                    <small *ngIf="createTrainingForm.get('courseName')?.errors?.['pattern']" class="smalltxt">Course name must contain only characters</small>
-                  </div>
+                <input type="text"
+                    [class.is-invalid]="createTrainingForm.get('courseName')?.invalid && createTrainingForm.get('courseName')?.touched"
+                    formControlName="courseName">
+                <div *ngIf="createTrainingForm.get('courseName')?.invalid && createTrainingForm.get('courseName')?.touched"
+                    class="small">
+                    <small *ngIf="createTrainingForm.get('courseName')?.errors?.['required']" class="smalltxt">Course
+                        name is required</small>
+                    <small *ngIf="createTrainingForm.get('courseName')?.errors?.['pattern']" class="smalltxt">Course
+                        name must contain only characters</small>
+                </div>
             </div>
             <div class="inputContainer">
                 <label for="">Trainer Name</label>
-                <input type="text" [class.is-invalid]="createTrainingForm.get('trainer')?.invalid && createTrainingForm.get('trainer')?.touched"  formControlName="trainer">
-                <div *ngIf="createTrainingForm.get('trainer')?.invalid && createTrainingForm.get('trainer')?.touched" class="small">
-                    <small *ngIf="createTrainingForm.get('trainer')?.errors?.['required']" class="smalltxt">Trainer name is required</small>
-                    <small *ngIf="createTrainingForm.get('trainer')?.errors?.['pattern']" class="smalltxt">Trainer name must contain only characters</small>
-                  </div>
+                <input type="text"
+                    [class.is-invalid]="createTrainingForm.get('trainer')?.invalid && createTrainingForm.get('trainer')?.touched"
+                    formControlName="trainer">
+                <div *ngIf="createTrainingForm.get('trainer')?.invalid && createTrainingForm.get('trainer')?.touched"
+                    class="small">
+                    <small *ngIf="createTrainingForm.get('trainer')?.errors?.['required']" class="smalltxt">Trainer name
+                        is required</small>
+                    <small *ngIf="createTrainingForm.get('trainer')?.errors?.['pattern']" class="smalltxt">Trainer name
+                        must contain only characters</small>
+                </div>
             </div>
             <div class="choice">
                 <mat-radio-group formControlName="trainingMode">
@@ -54,40 +40,57 @@
             </div>
             <div class="timedateContainer">
                 <div class="dates">
+                   <div class="startdates">
                     <div><label for="">Start date</label><br>
                         <input type="date" class="startdate" formControlName="startDate">
                     </div>
+                   </div>
                     <div>
+                      <div class="enddates">
                         <label for="">End Date</label><br>
                         <input type="date" class="enddate" formControlName="endDate">
-                        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-                        <input type="date" data-date="" data-date-format="DD MMMM YYYY" formControlName="endDate"> -->
+                      </div>
                     </div>
                 </div>
 
                 <div class="timeContainer">
-                    <div class="inputTime">
-                        <div > <label for="">Start Time</label></div>
-                        <div class="startTimeContainerrr"> <input type="number" min="0" max="12" class="timeWidth" placeholder="HH" formControlName="startTime_hrs">
-                            <input type="number" min="0" max="60" class="timeWidth" placeholder="MM" formControlName="startTime_mins">
-                            <input type="text" class="timeWidth" placeholder="AM/PM"  formControlName="startTime_median">
+                    <div class="inputTime1">
+                        <div> <label for="">Start Time</label></div>
+                        <div class="startTimeContainerrr"> <input type="number" min="0" max="12" class="timeWidth"
+                                placeholder="HH" formControlName="startTime_hrs">
+                            <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"
+                                formControlName="startTime_mins">
+                            <input type="text" class="timeWidth" placeholder="AM/PM" formControlName="startTime_median">
+                            <!-- <input type="text"class="meridian">
+                            <mat-icon class="upward">arrow_drop_up</mat-icon>
+                            <mat-icon calss="downward">arrow_drop_down</mat-icon> -->
                         </div>
                     </div>
-                    <div class="inputTime">
+                    <div class="inputTime2">
                         <div><label for="">End Time</label></div>
-                       <div class="startTimeContainerrr"> <input type="number" min="0" max="12" class="timeWidth" placeholder="HH"  formControlName="endTime_hrs">
-                        <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"  formControlName="endTime_mins">
-                        <input type="text" class="timeWidth" placeholder="AM/PM"  formControlName="endTime_median"></div>
+                        <div class="endTimeContainerrr"> <input type="number" min="0" max="12" class="timeWidth"
+                                placeholder="HH" formControlName="endTime_hrs">
+                            <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"
+                                formControlName="endTime_mins">
+                            <input type="text" class="timeWidth" placeholder="AM/PM" formControlName="endTime_median">
+                        </div>
                     </div>
                 </div>
             </div>
-            <p>Duration</p>
-            <div class="timeDuration">
-                <input type="number" min="0" max="12" class="timeWidth" placeholder="HH"  formControlName="durationTime_hrs">
-                <input type="number" min="0" max="60" class="timeWidth" placeholder="MM" formControlName="durationTime_mins">
-                <input type="number" class="timeWidth" placeholder="SS" formControlName="durationTime_seconds">
+           
+            <div class="duration">
+                <div><label for="">Duration</label></div>
+                <div class="timeDuration">
+                    <input type="number" min="0" max="12" class="timedurationWidth" placeholder="HH"
+                        formControlName="durationTime_hrs">
+                    <input type="number" min="0" max="60" class="timedurationWidth" placeholder="MM"
+                        formControlName="durationTime_mins">
+                    <input type="number" class="timedurationWidth" placeholder="SS"
+                        formControlName="durationTime_seconds">
+                </div>
             </div>
+
+
 
             <!-- <div class="ngx-timepicker-field-example">
                 <ngx-timepicker-field></ngx-timepicker-field>
@@ -95,7 +98,7 @@
 
             <div class="meetingStatus">
                 <!-- <input type="textarea" formControlName="meetingInfo"> -->
-                <ckeditor [editor]="Editor"  formControlName="meetingInfo" data=""></ckeditor>
+                <ckeditor [editor]="Editor" formControlName="meetingInfo" data=""></ckeditor>
             </div>
             <div class="buttons">
                 <button class="cancelbtn" (click)="cancelForm()">CANCEL</button>
@@ -107,165 +110,9 @@
     <mat-card class="sidebar">
         <div><span id="attendees">Attendees</span></div>
         <div id="noEmpAdded">No employees added yet</div>
-        <div class="inviteEmp" >Invite Employees</div>
+        <div class="inviteEmp">Invite Employees</div>
     </mat-card>
-
-    <!-- <mat-card class="sidebar">
-        <div class="attendeesContainer">
-            <div><span id="attendees">Attendees</span></div>
-            <div class="inviteEmp" routerLink="/inviteEmp">Invite Employees</div>
-        </div>
-
-        <div class="sidebarContainer">
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-
-
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-            <div class="container">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
-                </div>
-                <div class="empDetails">
-                    <div class="empName">Kyung John</div>
-                    <div class="empDesignation">Senior Project Manager</div>
-                    <div class="empCode">RT00377</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon>do_not_disturb_on</mat-icon>
-                </div>
-            </div>
-
-        </div>
-
-    </mat-card> -->
 </div>
+    <div class="footer">
+        <app-footer></app-footer>
+    </div>

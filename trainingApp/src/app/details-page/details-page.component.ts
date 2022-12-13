@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AddProfileComponent } from '../add-profile/add-profile.component';
+
 import { AdminServiceService } from '../admin-service.service';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { SuperAdminService } from '../super-admin.service';
@@ -86,17 +86,36 @@ export class DetailsPageComponent implements OnInit {
     })
   }
  
-  deleteEmployees(attendeeId:any) {
-    // let data = [attendeeId]
-    // console.log(attendeeId);
-    
-    // let attendeesId=this.attendees.find((data:any)=>{
-    //   return data.empId==attendeeId;
-    // })
-    // this.adminService.inviteEmployees(data).subscribe(data => {
-    //   console.log(data);
-      
-    // })
+
+
+  deleteEmployees(empId: any) {
+
+    let result=confirm("Are you sure to delete invite?")
+
+    if(result==false){
+
+      this.router.navigate(['/detailsPage'])
+
+    }
+
+    else{
+
+       this.arrayAdd.push(empId);
+
+    this.adminService.inviteEmployees(this.arrayAdd).subscribe(data => {
+
+      console.log(data);
+
+      alert(data);
+
+      this. getAttendees();
+
+    })
+
+    }
+
+   
+
   }
   getAttendees(){
 this.superAdmin.getLoginRole();

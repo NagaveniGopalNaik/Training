@@ -99,3 +99,20 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 .mat-hint{
     color:red;
 }
+
+::-webkit-scrollbar {
+    width: 8px;
+    overflow-y: scroll;
+    background: transparent;
+    /* box-shadow: inset 0 0 4px #707070; */
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(216,216,216,1);
+    border-radius: 10px;
+    border-radius: 10px;
+}
+
+
+
+.meetingStatus .ck.ck-editor__editable_inline>:last-child { margin-bottom: var(--ck-spacing-large); height: 20vh !important; }

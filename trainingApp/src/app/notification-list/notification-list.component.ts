@@ -49,14 +49,13 @@ key:any;
   }
 
   clearNotification(){
+   
     this.superAdmin.clearNotification().subscribe({
-      next:(data)=>{
-        alert(data);
-
+      complete:()=>{
+        sessionStorage.setItem('notificationUpdate','true');
       }
     })
   }
 
 
 }
-// /employee/reduceNotificationCount/169

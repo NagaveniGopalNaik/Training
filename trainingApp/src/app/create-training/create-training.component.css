@@ -57,8 +57,6 @@ li {
     font-family: Roboto;
     font-size: 12px;
     font-weight: bold;
-    letter-spacing: 0.32px;
-    line-height: 16px;
     text-align: center;
     border-radius: 4px;
     background-color: #230735;
@@ -74,13 +72,18 @@ hr {
 .parentMain {
     display: flex;
     justify-content: space-between;
+    gap: 1.5rem;
     width: 70%;
-    gap:1.5rem;
+    /* height: 80vh; */
     margin: auto;
+    margin-top: 2%;
 }
 
 .main {
     width: 63%;
+}
+.footer{
+    margin:3% 0;
 }
 
 .sidebar {
@@ -93,14 +96,12 @@ hr {
     font-family: Roboto;
     font-size: 22px;
     font-weight: 900;
-    letter-spacing: 0;
-    line-height: 28px;
 }
 
 .inputContainer {
     display: flex;
     flex-direction: column;
-    margin-top: 1.5rem;
+    margin-top: 5%;
 }
 
 .parentContainer {
@@ -121,10 +122,7 @@ label {
     font-size: 14px;
 }
 
-.choice {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
+.choices{
     padding-top: 5%;
 }
 
@@ -156,6 +154,12 @@ label {
     cursor: pointer;
     text-decoration: underline;
 }
+.inputTime1{
+    margin-top: 0%;
+}
+.inputTime2{
+    margin-top: 9%;
+}
 
 .attendeesContainer {
     display: flex;
@@ -175,29 +179,27 @@ label {
 
 .startdate,
 .enddate {
-    /* width: 120%; */
+    width: 100%;
 }
 
 .dates {
     display: flex;
-    gap: 2%;
-    padding-top: 5%;
-    padding-bottom: 2%;
-    width: 60%;
+    gap: 5%;
+    width: 63%;
     flex-direction: column;
 }
 
 .timedateContainer {
     display: flex;
     justify-content: space-between;
-    gap: 2em;
-    /* width: 122%; */
+    gap:2em;
 }
 
 .timeContainer {
     display: flex;
     flex-direction: column;
-    padding-top: 5%;
+    margin-top: 5%;
+    justify-content: space-between;
 }
 
 .timeDuration {
@@ -208,6 +210,9 @@ label {
 .timeWidth {
     width: 20%;
     margin-right: 3%;
+}
+.timedurationWidth{
+    width: 11.5%;
 }
 
 .meetingStatus {
@@ -231,12 +236,7 @@ label {
     padding: 2% 3% 2% 3%;
     border-radius: 4px;
 }
-.startTimeContainerrr {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-start;
-    width: 100%;
-}
+
 .cancelbtn {
     color: #5A5A5A;
     background-color: #D5D5D5;
@@ -245,12 +245,14 @@ label {
 .sidebarContainer {
     overflow-x: hidden;
     overflow-y: scroll;
-    height: 72vh;
+    max-height: 100vh;
 }
+
 #profileimg {
     height: 50px;
     border-radius: 50%;
 }
+
 .empName {
     color: #373A3C;
     font-family: Roboto;
@@ -280,12 +282,15 @@ label {
     font-size: 24px;
     border-radius: 50%;
 }
-
-.is-invalid{
-    border:red 1px solid;
+.startTimeContainerrr , .endTimeContainerrr{
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    width: 100%;
+    align-self: center;
 }
-.error, .smalltxt{
-    color: red;
+.startTimeContainerrr{
+    margin-bottom: 1%;
 }
 
 .mat-radio-button {
@@ -294,19 +299,13 @@ label {
     outline: 0;
     margin-right: 40px;
 }
- 
-
 input[type=number]::-webkit-inner-spin-button {
-/* -webkit-appearance:block; */
-opacity: 1;
+    opacity: 1;
 }
-@media screen and( max-width:1100px){
-    .dates{
-        width: 30%;
-    }
+.startdates , .enddates{
+    margin-top: 10%;
 }
-@media screen and( max-width:980px){
-    .dates{
-        width: 20%;
-    }
+.duration {
+    margin-top:5%;
+    margin-bottom: 5%;
 }

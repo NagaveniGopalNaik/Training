@@ -21,6 +21,12 @@
     line-height: 2.1rem;
     padding: 10px 10px 10px 0px;
 }
+
+.date-form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 .navContent{
     /* opacity: 0.4; */
     color:  rgba(35, 7, 53, 0.4);

@@ -101,12 +101,12 @@ export class SuperAdminComponent implements OnInit {
     
   }
   onScrollCourseData(event){
-    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
-      // alert("you are in bottom");
-      let course = JSON.parse(sessionStorage.getItem('coursePageNo') || '1');
-      course+=1;
-      this.courseDetail();
-    }
+    // if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+    
+    //   let course = JSON.parse(sessionStorage.getItem('coursePageNo') || '1');
+    //   course+=1;
+    //   this.courseDetail();
+    // }
   
   }
  
@@ -455,10 +455,12 @@ this.dialog.open(AssignEmployeeRoleComponent,{panelClass:'update-employee-role'}
 
   deleteCourse(courseData:any){
     let deleteCourseId = courseData.courseId;
+   if(confirm('Are you sure you want to delete this course')){
     this.admin.deleteCourse(deleteCourseId).subscribe((data)=>{
       alert(data);
       this.courseDetail();
     })
+   }
   }
 
   invites(){
@@ -509,6 +511,13 @@ this.dialog.open(AssignEmployeeRoleComponent,{panelClass:'update-employee-role'}
     sessionStorage.setItem('invites-details',JSON.stringify(data));
     this.router.navigate(['/notifications']);
     
+  }
+
+  assignManager(courseData:any){
+    
+    sessionStorage.setItem('asign-manager-course',JSON.stringify(courseData));
+    this.router.navigate(['/assign-manager']);
+
   }
 
  

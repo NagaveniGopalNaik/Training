@@ -1,0 +1,41 @@
+<div class="inviteEmpParentMain">
+    <mat-card class="inviteEmpMain">
+        <div class="inviteReporteesHeader">
+            <p class="inviteReportees" (click)="back()">Assign Manager</p>
+            <button class="doneButton" (click)="assignCourse()">DONE</button>
+        </div>
+        
+        
+        <div class="searchbar">
+            <input type="text" placeholder="Search Employee#, Name, Designation" matInput class="search-input">
+            <div class="search-button" mat-raised-button>SEARCH</div>
+        </div>
+        
+        <div class="tabHeader">
+            <div class="empCode">Employee#</div>
+            <div class="empName">Name</div>
+            <div class="empDesignation">Designation</div>
+            <!-- <div class="empDesignation">Slect Manager</div>
+            <div class="empDesignation">Assign Reportees</div> -->
+            <!-- <div class="addRemoveIcon">add_circle</div> -->
+        </div>
+        
+        <div class="tabContentParent" *ngFor="let manager of managerList;index as i">
+           <div class="scroll">
+            <div class="tabContent">
+                <div class="empCodeval">{{manager.empId}}</div>
+                <div class="empNameval">{{manager.empName}}</div>
+                <div class="empDesignationval">{{manager.designation}}</div>
+                <div class="removeIcon" *ngIf="manager.status == false"><mat-icon (click)="addManager(manager)"> add_circle</mat-icon></div>
+                <div class="removeIcon selected" *ngIf="manager.status == true" (click)="removeSelect(manager)"><mat-icon >do_not_disturb_on</mat-icon></div>
+                <div  class="assign-reporties tooltip" (click)="assignReportees(manager)"><mat-icon>arrow_right</mat-icon>
+                    <small class="tooltiptext">Assign Remporties</small></div>
+               
+            </div>
+           </div>
+            
+            
+        
+        </div>
+    </mat-card>
+</div>

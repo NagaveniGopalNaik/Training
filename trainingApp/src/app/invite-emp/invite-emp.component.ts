@@ -87,22 +87,42 @@ export class InviteEmpComponent implements OnInit {
   }
 
   inviteEmployees(empId: any) {
-    this.adminService.inviteEmployees(this.arrayAdd).subscribe(data => {
-      console.log(data);
-      alert(data);
-    })
+    
   }
   deleteEmployees(empId:any) {
-    this.adminService.deleteEmployees(this.arrayRemove).subscribe(data => {
-      console.log(data);
-      alert(data);
-
-    })
+   
   }
 
   done(){
-    this.inviteEmployees(this.arrayAdd);
-    this.deleteEmployees(this.arrayRemove);
-    this.router.navigate(['/detailsPage'])
+
+    if(this.arrayAdd.length > 0){
+      this.adminService.inviteEmployees(this.arrayAdd).subscribe({
+        next : (data)=>{
+          
+        },
+        error:(error)=>{
+          alert(error.error);
+        },
+        complete :()=>{
+          this.router.navigate(['/detailsPage'])
+        }
+      })
+    }
+
+    if(this.arrayRemove.length > 0){
+      this.adminService.deleteEmployees(this.arrayRemove).subscribe({
+        next : (data)=>{
+          
+        },
+        error:(error)=>{
+          alert(error.error);
+        },
+        complete :()=>{
+          this.router.navigate(['/detailsPage'])
+        }
+      })
+     }
+    
+    
   }
 }

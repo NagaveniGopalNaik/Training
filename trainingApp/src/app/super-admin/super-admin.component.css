@@ -7,7 +7,7 @@
     
 }
 .scroll{
-    border:1px solid black;
+    /* border:1px solid black; */
     height: 56vh;
     overflow-y: scroll;
 }
@@ -99,6 +99,12 @@
   font-size: 1.4rem;
   letter-spacing: 0.12px;
   line-height: 2.4rem;
+}
+.courseName{
+   
+    display: flex;
+   align-items: center;
+    
 }
 .employee-each-data tr td{
     color: rgba(0,0,0,1);
@@ -192,6 +198,9 @@
 }
 .trainer-name{
     font-weight: 500;
+    width: fit-content;
+    
+    
 }
 .details{
     width: 100%;
@@ -244,6 +253,9 @@ button{
   padding: 1% 2%;
   margin-top: 3%;
 }
+.top{
+    margin-top: -1%;
+}
 
 
 .course-button{
@@ -255,7 +267,7 @@ button{
     font-weight: bold;
     letter-spacing: 0;
     line-height: 1.2rem;
-    padding: 1% 2%;
+    padding: 8% 18%;
     margin-left: 5%;
 }
 
@@ -495,6 +507,7 @@ input:focus{
   font-weight: 400;
   letter-spacing: 0.43px;
   cursor: pointer;
+  pointer-events: all;
   display: flex;
   /* justify-content: left; */
   align-items:center ;

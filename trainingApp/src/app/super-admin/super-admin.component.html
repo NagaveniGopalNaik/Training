@@ -90,9 +90,9 @@
         <mat-card class="each-notification-details"  *ngFor="let courseData of display_course_list">
             <div class="course-time">
                 <div class="courseName">
-                    <p class="trianing-name">{{courseData.courseName}}<button mat-raised-button class="course-button active" *ngIf="courseData.completionStatus=='active'">ACTIVE</button> <button mat-raised-button class="course-button" *ngIf="courseData.completionStatus=='upcoming'">UPCOMING</button><button mat-raised-button class="course-button completed" *ngIf="courseData.completionStatus=='completed'">COMPLETED</button></p>
-                <p class="trainer">Trainer : <span class="trainer-name">{{courseData.trainer}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">{{courseData.trainingMode}}</span>
-                </p>
+                    <p class="trianing-name">{{courseData.courseName}}</p>
+                    <p><button mat-raised-button class="course-button active" *ngIf="courseData.completionStatus=='active'">ACTIVE</button> <button mat-raised-button class="course-button" *ngIf="courseData.completionStatus=='upcoming'">UPCOMING</button><button mat-raised-button class="course-button completed" *ngIf="courseData.completionStatus=='completed'">COMPLETED</button></p>
+              
                 </div>
                 <div class="remaining-time-count">
                  <div class="time-div"*ngIf="courseData.endDate!=null && courseData.completionStatus=='active'">Ends in: {{date | endsIn:courseData.endDate:courseData.endTime}}</div>
@@ -105,6 +105,8 @@
                 </div>
                 </div>
             </div>
+           <p class="top trainer">Trainer : <span class="trainer-name">{{courseData.trainer}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">{{courseData.trainingMode}}</span>
+            </p>
            <div class="course-details">
             <div class="details">
                 <div class="date">
@@ -131,16 +133,16 @@
                     <div class="more-icon" (click)="displayDropdown(courseData)" *ngIf="(courseData.completionStatus=='upcoming' || (courseData.completionStatus=='active' && courseData.trainingMode=='Online sessions')) && role == 'admin'"><mat-icon class="more-vert-icon">more_vert</mat-icon></div>
                     <mat-card class="display-operation" *ngIf="courseData.dropdown == true">
                         <div class="dropdownData" *ngIf="courseData.completionStatus=='upcoming'">
-                            <p><mat-icon>perm_identity</mat-icon></p>
-                            <p>Assign&nbsp;Manager</p>
+                            <p (click)="assignManager(courseData)"><mat-icon>perm_identity</mat-icon></p>
+                            <p (click)="assignManager(courseData)">Assign&nbsp;Manager</p>
                         </div>
-                        <div class="dropdownData" (click)="updatePage(courseData)">
-                            <p><mat-icon class="border">check_box_outline_blank<mat-icon class="edit">edit</mat-icon></mat-icon></p>
-                            <p>Edit</p>
+                        <div class="dropdownData">
+                            <p (click)="updatePage(courseData)"><mat-icon class="border">check_box_outline_blank<mat-icon class="edit">edit</mat-icon></mat-icon></p>
+                            <p (click)="updatePage(courseData)">Edit</p>
                         </div>
-                        <div class="dropdownData" *ngIf="courseData.completionStatus=='upcoming'" (click)="deleteCourse(courseData)">
-                            <p><mat-icon>delete_outline</mat-icon></p>
-                            <p>Delete</p>
+                        <div class="dropdownData" *ngIf="courseData.completionStatus=='upcoming'">
+                            <p (click)="deleteCourse(courseData)"><mat-icon>delete_outline</mat-icon></p>
+                            <p (click)="deleteCourse(courseData)">Delete</p>
                         </div>
                        
                         
@@ -164,21 +166,18 @@
         <mat-card class="each-notification-details"  *ngFor="let courseData of notificationDetails">
             <div class="course-time">
                 <div class="courseName">
-                    <p class="trianing-name">{{courseData.courseName}}<button mat-raised-button class="course-button active" *ngIf="courseData.completionStatus=='active'">ACTIVE</button> <button mat-raised-button class="course-button" *ngIf="courseData.completionStatus=='upcoming'">UPCOMING</button><button mat-raised-button class="course-button completed" *ngIf="courseData.completionStatus=='completed'">COMPLETED</button></p>
-                <p class="trainer">Trainer : <span class="trainer-name">{{courseData.trainer}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">{{courseData.trainingMode}}</span>
-                </p>
+                    <p class="trianing-name">{{courseData.courseName}}</p>
+                    <p><button mat-raised-button class="course-button active" *ngIf="courseData.completionStatus=='active'">ACTIVE</button> <button mat-raised-button class="course-button" *ngIf="courseData.completionStatus=='upcoming'">UPCOMING</button><button mat-raised-button class="course-button completed" *ngIf="courseData.completionStatus=='completed'">COMPLETED</button></p>
                 </div>
                 <div class="remaining-time-count">
                  <div class="time-div"*ngIf="courseData.endDate!=null && courseData.completionStatus=='active'">Ends in: {{date | endsIn:courseData.endDate:courseData.endTime}}</div>
                  <div class="time-div"*ngIf="courseData.completionStatus=='upcoming'">Starts in: {{date | endsIn:courseData.startDate:courseData.startTime}}</div>
                  <div class="time-div" *ngIf="courseData.endDate==null && courseData.completionStatus=='active'">End date will be anounced soon...</div>
-                <!-- <div class="total-attendies-count">
-                    <p class="icon"><mat-icon>groups</mat-icon></p>
-                    
-                    <p class="count">{{courseData.employee_count}}</p>
-                </div> -->
+               
                 </div>
             </div>
+            <p class="top trainer">Trainer : <span class="trainer-name">{{courseData.trainer}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span> Training Type : <span class="trainer-name">{{courseData.trainingMode}}</span>
+            </p>
            <div class="course-details">
             <div class="details">
                 <div class="date">
@@ -201,25 +200,7 @@
             </div>
             <div class="reaction-button">
                 <div mat-raised-button class="details-button" (click)=" inviteDetails(courseData)">DETAILS</div>
-                <div class="more">
-                    <div class="more-icon" (click)="displayDropdown(courseData)" *ngIf="(courseData.completionStatus=='upcoming' || (courseData.completionStatus=='active' && courseData.trainingMode=='Online sessions')) && role == 'admin'"><mat-icon class="more-vert-icon">more_vert</mat-icon></div>
-                    <mat-card class="display-operation" *ngIf="courseData.dropdown == true">
-                        <div class="dropdownData" *ngIf="courseData.completionStatus=='upcoming'">
-                            <p><mat-icon>perm_identity</mat-icon></p>
-                            <p>Assign&nbsp;Manager</p>
-                        </div>
-                        <div class="dropdownData" (click)="updatePage(courseData)">
-                            <p><mat-icon class="border">check_box_outline_blank<mat-icon class="edit">edit</mat-icon></mat-icon></p>
-                            <p>Edit</p>
-                        </div>
-                        <div class="dropdownData" *ngIf="courseData.completionStatus=='upcoming'" (click)="deleteCourse(courseData)">
-                            <p><mat-icon>delete_outline</mat-icon></p>
-                            <p>Delete</p>
-                        </div>
-                       
-                        
-                    </mat-card>
-                </div>
+               
                
             </div>
             

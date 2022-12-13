@@ -28,11 +28,20 @@
 
         <p class="date-text">Date</p>
         <div class="date-picker">
+            
            
               <div class="start-date">
               
-                <input type="text" placeholder="From" onfocus="(this.type='date')" onblur="(this.type='text')" formControlName="downDate" name="downDate">
-                <input type="text" placeholder="To" onfocus="(this.type='date')" onblur="(this.type='text')" formControlName="topDate" name="topDate">
+               
+                    
+                    <input matInput type="date" placeholder="From"  formControlName="downDate" name="downDate">
+                    
+                   
+                        <input type="date" placeholder="To" formControlName="topDate" name="topDate">
+                  
+                
+                   
+                
               </div>
         </div>
            

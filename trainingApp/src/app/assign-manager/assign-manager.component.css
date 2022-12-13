@@ -23,6 +23,7 @@
     font-weight: 900;
     letter-spacing: 0;
     line-height: 28px;
+    cursor: pointer;
 }
 
 .doneButton {
@@ -91,6 +92,10 @@
 
 .tabContentParent{
     overflow-y: auto;
+    position: relative;
+}
+.tabContentParent::-webkit-scrollbar{
+    display: none;
 }
 
 .empCode,
@@ -134,7 +139,8 @@
     font-size: 24px;
     border-radius: 50%;
     color: white;
-    background-color: #EC2C59;
+    background-color: #54A919;
+    cursor: pointer;
     border: none;
     align-self: center;
 }
@@ -145,4 +151,53 @@
     background-color:#54A919;
     border: none;
     align-self: center;
+}
+
+.selected mat-icon{
+    background-color:#EC2C59;
+}
+
+.hint{
+    display: none;
+}
+
+.assign-reporties{
+    display: block;
+    cursor: pointer;
+    color:red;
+}
+.assign-reporties:hover{
+    color:black;
+}
+
+.tooltip {
+    
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+    
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    /* width: fit-content; */
+    color: black;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    /* padding: 5px 0; */
+  
+    position: absolute;
+    z-index: 2;
+    left:90%;
+    top:30%;
+    
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+
+  .scroll::-webkit-scrollbar{
+    display: none;
 }

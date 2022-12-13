@@ -9,25 +9,23 @@ import { MaterialModule } from './material/material.module';
 
 import { LoginComponent } from './login/login.component';
 import { SuperAdminComponent } from './super-admin/super-admin.component';
-import { AdminComponent } from './admin/admin.component';
-import { ManagerComponent } from './manager/manager.component';
-import { EmployeeComponent } from './employee/employee.component';  
+
+ 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginPageHeaderComponent } from './login-page-header/login-page-header.component';
 import { OtpPageComponent } from './otp-page/otp-page.component';
-import { HeaderComponent } from './header/header.component';
+
 import { FooterComponent } from './footer/footer.component';
 import { TrainingCountComponent } from './training-count/training-count.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AddProfileComponent } from './add-profile/add-profile.component';
+
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CreateTrainingComponent } from './create-training/create-training.component';  
 
 
-import { AddEmployeeHeaderComponent } from './add-employee-header/add-employee-header.component';
 import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
-import { AllEmployeeComponent } from './all-employee/all-employee.component';
+
 import { AssignEmployeeRoleComponent } from './assign-employee-role/assign-employee-role.component';
 
 import { InviteEmpComponent } from './invite-emp/invite-emp.component';
@@ -42,7 +40,7 @@ import { RejectReasonComponent } from './reject-reason/reject-reason.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ImageUploadComponent } from './image-upload/image-upload.component';
-import { ManagerTrainingDetailsComponent } from './manager-training-details/manager-training-details.component';
+
 import { InviteReporteesComponent } from './invite-reportees/invite-reportees.component';
 
 // import { AdminTrainingDetailsComponent } from './admin-training-details/admin-training-details.component';
@@ -51,38 +49,40 @@ import { DeleteEmployeeComponent } from './delete-employee/delete-employee.compo
 
 import { UpdateTrainingComponent } from './update-training/update-training.component';
 import { DateChangePipe,DurationPipe,TimePipe,EndsInPipe} from './date.pipe';
-import { CourseDetailsComponent } from './course-details/course-details.component';
+
 import { ProfileZoomComponent } from './profile-zoom/profile-zoom.component';
-import { NotificationListComponent } from './notification-list/notification-list.component';  
+import { NotificationListComponent } from './notification-list/notification-list.component';
+import { AssignManagerComponent } from './assign-manager/assign-manager.component';
+import { AssignReporteesComponent } from './assign-reportees/assign-reportees.component';  
 
 
 // import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+   
     FooterComponent,
     TrainingCountComponent,
     NavbarComponent,
     LoginComponent,
     SuperAdminComponent,
-    AdminComponent,
-    ManagerComponent,
-    EmployeeComponent,
+    
+   
+   
     ChangePasswordComponent,
     LoginPageHeaderComponent,
     OtpPageComponent,
-    AddProfileComponent,
+    
     EditProfileComponent,
     CreateTrainingComponent,
    
-    HeaderComponent,
+
     FooterComponent,
     TrainingCountComponent,
     NavbarComponent,
-    AddEmployeeHeaderComponent,
+    
     EmployeeRegisterComponent,
-    AllEmployeeComponent,
+   
     AssignEmployeeRoleComponent,
 
     InviteEmpComponent,
@@ -93,7 +93,7 @@ import { NotificationListComponent } from './notification-list/notification-list
     ViewProfileComponent,
     RejectReasonComponent,
     ImageUploadComponent,
-    ManagerTrainingDetailsComponent,
+
     InviteReporteesComponent,
 
     // AdminTrainingDetailsComponent,
@@ -106,9 +106,11 @@ import { NotificationListComponent } from './notification-list/notification-list
  TimePipe,
  DurationPipe,
  EndsInPipe,
- CourseDetailsComponent,
+
  ProfileZoomComponent,
- NotificationListComponent
+ NotificationListComponent,
+ AssignManagerComponent,
+ AssignReporteesComponent
  
 
 
