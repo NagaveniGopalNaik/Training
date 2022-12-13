@@ -232,7 +232,56 @@ deleteManager(data:any){
     
         });
 }
-// /admin/unassignCourseFromManager/64
+
+searchManager(data:any){
+  this.superAdmin.getToken();
+  this.token = this.superAdmin.token;
+  let course = JSON.parse(sessionStorage.getItem('asign-manager-course') as any);
+    let courseId = course.courseId;
+    return this.httpClient.get(`${API_URL}/admin/managersToAssignCourse/searchKey/${courseId}`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),
+    params:new HttpParams().set('searchKey',data),
+  responseType:'text'});
+}
+
+searchReportees(data:any){
+  this.superAdmin.getToken();
+  this.token = this.superAdmin.token;
+  let managerData = JSON.parse(sessionStorage.getItem('managerData') as any);
+  let managerId = managerData.empId;
+  
+    return this.httpClient.get(`${API_URL}/admin/employeesToAssignManager/search/${managerId}`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),
+    params:new HttpParams().set('searchKey',data),
+  responseType:'text'});
+}
+
+searchInvitees(data:any){
+  this.superAdmin.getToken();
+  this.token = this.superAdmin.token;
+  this.getDetailsId();
+  console.log(this.details_id);
+  
+    return this.httpClient.get(`${API_URL}/employees/search/${this.details_id}`,
+    {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),
+    params:new HttpParams().set('searchKey',data),
+  responseType:'text'});
+}
+///employees/search
+
+
+getAttendeesCount(){
+  this.getDetailsId();
+  console.log(this.details_id);
+ 
+  this.superAdmin.getToken();
+  this.token = this.superAdmin.token;
+  return this.httpClient.get(`${API_URL}/attendees_nonAttendees_count/${this.details_id}`,
+  {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
+  ,responseType:'text'
+})
+}  
+
 
 getEmployeeList(){
   this.superAdmin.getToken();

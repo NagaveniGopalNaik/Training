@@ -13,9 +13,18 @@ employeeData:any[]=[];
 key:any;
 removeManageList:any[]=[];
 addManageList:any[]=[];
+searchKey='';
   constructor(private router:Router,private admin:AdminServiceService) { }
 
   ngOnInit(): void {
+    this.getEmployeeList();
+  }
+
+  allDatas(){
+    this.getEmployeeList();
+  }
+
+  getEmployeeList(){
     this.admin.getEmployeeList().subscribe({
       next:(data)=>{
         console.log(data);
@@ -118,6 +127,20 @@ return data == datas;
     
   }
 
-  
+  search(){
+    this.admin.searchReportees(this.searchKey).subscribe({
+      next:(data)=>{
+        let datas = data;
+        if(datas[0]=='['){
+          this.employeeData = JSON.parse(data);
+        } else {
+          alert(data);
+        }
+      },
+      error:(error)=>{
+        alert(error.error);
+      }
+    })
+  }
 
 }

@@ -70,6 +70,7 @@ filterForm!:FormGroup;
     sessionStorage.setItem('active','active');
     sessionStorage.setItem('status','true');
     sessionStorage.setItem('filterCourse','false');
+    sessionStorage.removeItem('courseDetails');
     // window.location.reload();
   }
   upcomingFunction(){
@@ -80,6 +81,7 @@ filterForm!:FormGroup;
     sessionStorage.setItem('active','upcoming');
     sessionStorage.setItem('status','true');
     sessionStorage.setItem('filterCourse','false');
+    sessionStorage.removeItem('courseDetails');
     // window.location.reload();
   }
   completeFunction(){
@@ -90,6 +92,7 @@ filterForm!:FormGroup;
     sessionStorage.setItem('active','completed');
     sessionStorage.setItem('status','true');
     sessionStorage.setItem('filterCourse','false');
+    sessionStorage.removeItem('courseDetails');
     // window.location.reload();
   }
 
@@ -103,6 +106,7 @@ filterForm!:FormGroup;
     
     sessionStorage.setItem('flag','false');
     sessionStorage.setItem('status','true');
+    sessionStorage.removeItem('courseDetails');
     // sessionStorage.setItem('page','1');
   }
 filter(){

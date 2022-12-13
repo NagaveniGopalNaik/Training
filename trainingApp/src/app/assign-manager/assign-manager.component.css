@@ -164,7 +164,7 @@
 .assign-reporties{
     display: block;
     cursor: pointer;
-    color:red;
+    
 }
 .assign-reporties:hover{
     color:black;

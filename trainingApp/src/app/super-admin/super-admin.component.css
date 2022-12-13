@@ -3,7 +3,7 @@
     width: 70%;
     height: 52vh;
     margin: auto;
-    margin-top: 2%;
+    /* margin-top: 2%; */
     
 }
 .scroll{
@@ -157,7 +157,7 @@
 .each-notification-details{
     width: 100%;
     margin: auto;
-    margin-top: 0.5%;
+    margin-bottom: 0.5%;
     padding: 2%;
     position: relative;
     
@@ -268,7 +268,7 @@ button{
     letter-spacing: 0;
     line-height: 1.2rem;
     padding: 8% 18%;
-    margin-left: 5%;
+    margin-left: 10%;
 }
 
 .details-button{

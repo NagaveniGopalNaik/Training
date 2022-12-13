@@ -334,9 +334,11 @@ button {
     display: flex;
     align-items: center;
     gap: 3rem;
+    margin-top: 5%;
 }
 
 .endsin {
+    
     box-sizing: border-box;
     border: 1px solid #DDDDDD;
     border-radius: 4px;

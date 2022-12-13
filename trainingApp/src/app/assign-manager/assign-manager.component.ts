@@ -12,6 +12,7 @@ managerList:any;
 addManageList:any[]=[];
 removeManageList:any[]=[];
 key:any;
+searchKey='';
   constructor(private admin:AdminServiceService,private router:Router) { }
 
   ngOnInit(): void {
@@ -38,6 +39,10 @@ key:any;
         
       }
     })
+  }
+
+  allData(){
+    this.getManager();
   }
 
   assignCourse(){
@@ -123,6 +128,22 @@ return data == datas;
   }
   back(){
     this.router.navigate(['/dashboard']);
+  }
+
+  search(){
+    this.admin.searchManager(this.searchKey).subscribe({
+      next:(data)=>{
+        let datas = data;
+        if(datas[0]=='['){
+          this.managerList = JSON.parse(data);
+        } else {
+          alert(data);
+        }
+      },
+      error:(error)=>{
+        alert(error.error);
+      }
+    })
   }
 
 }

@@ -3,14 +3,14 @@
 <div class="inviteEmpParentMain">
     <mat-card class="inviteEmpMain">
         <div class="inviteReporteesHeader">
-            <p class="inviteReportees">Invite Employees</p>
+            <p class="inviteReportees" routerLink="/detailsPage">Invite Employees</p>
             <button class="doneButton"(click)="done()">DONE</button>
         </div>
         
         
         <div class="searchbar">
-            <input type="text" placeholder="Search Employee#, Name, Designation" matInput class="search-input">
-            <div class="search-button" mat-raised-button>SEARCH</div>
+            <input type="text" placeholder="Search Employee#, Name, Designation" [(ngModel)]="searchKey" (click)="allData()" matInput class="search-input">
+            <div class="search-button" mat-raised-button (click)="search()">SEARCH</div>
         </div>
         
         <div class="tabHeader">

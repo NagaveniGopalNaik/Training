@@ -17,10 +17,16 @@ export class InviteEmpComponent implements OnInit {
  arrayRemove:any[]=[];
  arrayAdd:any[]=[];
   allEmployee:any;
+  searchKey='';
   
   constructor(private adminService: AdminServiceService,private router:Router) { }
 
   ngOnInit(): void {
+    this.allInvitees();
+    
+  }
+
+  allInvitees(){
     this.adminService.getEmployeesToInvite().subscribe(data => {
       console.log(data);
       this.empDetails = JSON.parse(data);
@@ -43,7 +49,28 @@ export class InviteEmpComponent implements OnInit {
 
       
     })
-    
+  }
+
+  allData(){
+this.allInvitees;
+  }
+
+  search(){
+    this.adminService.searchInvitees(this.searchKey).subscribe({
+      next:(data)=>{
+        let datas = data;
+        console.log(datas);
+        
+        if(datas[0]=='['){
+          sessionStorage.setItem('empDetails',datas);
+        } else {
+          alert(data);
+        }
+      },
+      error:(error)=>{
+        alert(error.error);
+      }
+    })
   }
 
   getAllEmployee(){

@@ -149,7 +149,18 @@ export class SuperAdminComponent implements OnInit {
           
           // debugger;
           let count = JSON.parse(datas);
-          data.employee_count = count;
+          if(typeof count == 'number'){
+            data.employee_count = count;
+            let object = this.course_list.find((datas)=>{
+              return datas.courseId == data.courseId;
+            })
+            if(object != null){
+              let index = this.course_list.indexOf(object);
+              this.course_list[index]=data;
+              sessionStorage.setItem('courseDetails',JSON.stringify(this.course_list));
+            }
+          }
+          
           this.empCount.push(data.employee_count);
           // console.log(data);
           
@@ -164,18 +175,14 @@ export class SuperAdminComponent implements OnInit {
           data.employee_count = 0;
         })
         
+        
       }
-      
-      console.log(this.empCount);
-      if(typeof this.course_list == 'object'){
-        for(let i=0 ;i<this.empCount.length;i++){
-          // this.course_list[i].employee_count = this.empCount[i];
-        }
-      }
+
+     
      
       console.log(this.course_list);
-      sessionStorage.setItem('courseDetails',JSON.stringify(this.course_list));
-      this.empCount = [];
+      
+    
       
       
     })

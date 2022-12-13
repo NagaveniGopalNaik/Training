@@ -21,6 +21,7 @@ export class DetailsPageComponent implements OnInit {
   nonAttendeesData:any;
   completionStatus:any;
   blank='';
+  attendeesCount:any;
   constructor(private dialog:MatDialog,private adminService:AdminServiceService,private router:Router,private superAdmin:SuperAdminService) { }
   displayCompleted=false;
   displayUpcoming=false;
@@ -29,6 +30,7 @@ export class DetailsPageComponent implements OnInit {
   trainingMode:any;
    arrayAdd:any[]=[];
   allEmployee:any;
+  attendeeCount:any;
   meetingInfo:any;
   ngOnInit(): void {
     this.courseDetail();
@@ -86,7 +88,12 @@ export class DetailsPageComponent implements OnInit {
     })
   }
  
-
+  getAtttendeesCount(){
+    this.adminService.getAttendeesCount().subscribe(data=>{
+      this.attendeesCount =data;
+      this.attendeeCount=this.attendeesCount.slice(11,13);
+    })
+  }
 
   deleteEmployees(empId: any) {
 

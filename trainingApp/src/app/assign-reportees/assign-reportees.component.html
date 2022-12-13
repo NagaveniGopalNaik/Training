@@ -7,8 +7,8 @@
         
         
         <div class="searchbar">
-            <input type="text" placeholder="Search Employee#, Name, Designation" matInput class="search-input">
-            <div class="search-button" mat-raised-button>SEARCH</div>
+            <input type="text" placeholder="Search Employee#, Name, Designation" (click)="allDatas()" [(ngModel)]="searchKey" matInput class="search-input">
+            <div class="search-button" mat-raised-button (click)="search()">SEARCH</div>
         </div>
         
         <div class="tabHeader">
