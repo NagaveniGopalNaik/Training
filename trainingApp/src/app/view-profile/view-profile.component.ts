@@ -15,6 +15,7 @@ attendedData=true;
 nonAttendedData=false;
 courseDetails:any;
 profilePic:any;
+
   ngOnInit(): void {
     // sessionStorage.setItem('notificationUpdate','true');
     this.getCourseDetails();
@@ -33,6 +34,7 @@ profilePic:any;
         this.nonAttendedData = false;
         sessionStorage.setItem('employee-nav','attendedCourse');
         this.getCourseDetails();
+        
       
       }
       nonAttended(){
@@ -40,7 +42,7 @@ profilePic:any;
         this.nonAttendedData = true;
         sessionStorage.setItem('employee-nav','nonAttendedCourse');
         this.getCourseDetails();
-        
+     
       }
 
       getCourseDetails(){

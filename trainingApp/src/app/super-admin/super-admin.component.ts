@@ -61,6 +61,8 @@ export class SuperAdminComponent implements OnInit {
     
   }
   displayCourse(){
+   
+    
     this.display_course_list = JSON.parse(sessionStorage.getItem('courseDetails') || '[]');
   }
   statusCheck(){
@@ -101,12 +103,13 @@ export class SuperAdminComponent implements OnInit {
     
   }
   onScrollCourseData(event){
-    // if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
-    
-    //   let course = JSON.parse(sessionStorage.getItem('coursePageNo') || '1');
-    //   course+=1;
-    //   this.courseDetail();
-    // }
+    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+    alert('next data');
+      let course = JSON.parse(sessionStorage.getItem('coursePageNo') || '1');
+      course+=1;
+      sessionStorage.setItem('coursePageNo',String(course));
+      this.courseDetail();
+    }
   
   }
  
@@ -122,7 +125,12 @@ export class SuperAdminComponent implements OnInit {
       this.course = JSON.parse(data) as any;
       // this.course = data;
       let key = Number(Object.keys(this.course));
-      this.course_list = this.course[key];
+      this.course = this.course[key];
+      let state = sessionStorage.getItem('coursePageNo') || '1';
+      if(state == '1'){
+        this.course_list = [];
+      }
+      this.course_list = [...this.course , ...this.course_list];
       console.log(this.course_list);
       
       

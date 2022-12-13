@@ -68,7 +68,7 @@
          <div class="container" *ngFor="let attendee of attendees">
             <div class="profile-details">
                 <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
+                    <img [src]="attendee.profilePic || image" alt="" id="profileimg">
                 </div>
                 <div class="empDetails">
                     <div class="empName">{{attendee.empName}}</div>
@@ -89,7 +89,7 @@
          <div class="container" *ngFor="let nonAttendee of nonAttendees">
              <div class="profile-details">
                 <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
+                    <img [src]="nonAttendees.profilePic || image" alt="" id="profileimg">
                 </div>
                 <div class="empDetails">
                     <div class="empName">{{nonAttendee.empName}}</div>

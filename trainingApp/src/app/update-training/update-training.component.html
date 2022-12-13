@@ -87,17 +87,19 @@
 
         <div class="sidebarContainer">
             <div class="container" *ngFor="let attendee of attendees">
-                <div class="profileimg">
-                    <img src="/assets/profile.png" alt="" id="profileimg">
+                <div class="profile-details">
+                    <div class="profileimg">
+                        <img [src]="attendee.profilePic || image" alt="" id="profileimg">
+                    </div>
+                    <div class="empDetails">
+                        <div class="empName">{{attendee.empName}}</div>
+                        <div class="empDesignation">{{attendee.designation}}</div>
+                        <div class="empCode">{{attendee.empId}}</div>
+                    </div>
                 </div>
-                <div class="empDetails">
-                    <div class="empName">{{attendee.empName}}</div>
-                    <div class="empDesignation">{{attendee.designation}}</div>
-                    <div class="empCode">{{attendee.empId}}</div>
-                </div>
-                <div class="addIcon">
-                    <mat-icon  (click)="deleteEmployees(attendee.empId)">do_not_disturb_on</mat-icon>
-                </div>
+                 <div class="addIcon">
+                     <mat-icon (click)="deleteEmployees(attendee.empId)">do_not_disturb_on</mat-icon>
+                 </div>
             </div>
 
            

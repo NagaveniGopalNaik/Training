@@ -21,6 +21,7 @@ export class DetailsPageComponent implements OnInit {
   nonAttendeesData:any;
   completionStatus:any;
   blank='';
+  image="/assets/profile.png";
   attendeesCount:any;
   constructor(private dialog:MatDialog,private adminService:AdminServiceService,private router:Router,private superAdmin:SuperAdminService) { }
   displayCompleted=false;
@@ -71,6 +72,7 @@ export class DetailsPageComponent implements OnInit {
               this.nonAttendeesData=this.nonAttendeesData[arraynonAttendees]
               this.nonAttendees=this.nonAttendeesData;
               console.log(this.nonAttendees);
+             
             } else {
               this.nonAttendees = [];
             }
@@ -138,7 +140,7 @@ let role = this.superAdmin.loginRole;
     this.attendeesData=this.attendeesData[arrayAttendees]
     this.attendees=this.attendeesData;
     console.log(this.attendees);
-
+    
     // sessionStorage.setItem('attendees',JSON.stringify(this.attendees));
 
     } else {

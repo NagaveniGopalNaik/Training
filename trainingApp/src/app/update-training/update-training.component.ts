@@ -37,6 +37,7 @@ attendeesData:any;
 attendees:any;
 endTime:any;
 arrayAdd:any[]=[];
+image="/assets/profile.png";
 
 
   constructor(private dialog: MatDialog, private adminService: AdminServiceService,private router : Router,private superAdmin:SuperAdminService) { }

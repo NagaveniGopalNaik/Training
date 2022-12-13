@@ -243,10 +243,15 @@ label {
     overflow-y: scroll;
     max-height: 100vh;
 }
-
+.profile-details{
+    display: flex;
+    justify-content: flex-start;
+    gap:2em;
+}
 
 #profileimg {
-    height: 50px;
+    height: 4.8em;
+    width: 4.8em;
     border-radius: 50%;
 }
 

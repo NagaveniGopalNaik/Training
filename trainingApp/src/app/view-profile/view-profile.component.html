@@ -26,16 +26,17 @@
     
     <div class="employoee-data">
         <mat-card class="employee-each-data">
-            <table class="table" *ngFor="let course of courseDetails">
-                <tr>
+            
+            <table class="table">
+                <tr *ngIf="courseDetails.length > 0">
                     
                     <th>Training Name</th>
                     <th>Date</th>
                     <th>Training Type</th>
-                    <th *ngIf="course.reason">Reason</th>
+                    <th *ngIf="nonAttendedData == true">Reason</th>
                     <!-- <th class="width-5"></th> -->
                 </tr>
-                <tr>
+                <tr  *ngFor="let course of courseDetails">
                     <td>
                         <div class="training-name-details">
                             <p class="name">{{course.courseName}}</p>
