@@ -304,7 +304,7 @@ button {
     flex-direction: column;
     gap: 1.5rem;
     
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 .completed-container{
     justify-content: flex-start;
@@ -363,6 +363,10 @@ button {
     margin-top: 2%;
     width: 100%;
     flex-wrap: wrap;
+    max-height: 30vh;
+    /* border:1px solid red; */
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 

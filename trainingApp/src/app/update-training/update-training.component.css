@@ -111,6 +111,12 @@ input {
     background-color: #FFFFFF;
     padding: 9px;
 }
+.smalltxt{
+    color: red;
+}
+.is-invalid{
+    border-color:red ;
+}
 
 label {
     color: #373A3C;
@@ -164,13 +170,14 @@ label {
 
 .container {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: space-between;
+    /* width: 100%; */
     border-radius: 4px;
     background-color: #FFFFFF;
     padding: 0.5% 2% 0.5% 2%;
     margin-top: 4%;
     align-items: center;
+   
 }
 
 .startdate,
@@ -178,18 +185,13 @@ label {
     width: 100%;
 }
 
-.dates {
-    display: flex;
-    gap: 5%;
-    width: 63%;
-    flex-direction: column;
-}
 
-.timedateContainer {
+
+/* .timedateContainer {
     display: flex;
     justify-content: space-between;
     gap:2em;
-}
+} */
 
 .timeContainer {
     display: flex;
@@ -208,7 +210,7 @@ label {
     margin-right: 3%;
 }
 .timedurationWidth{
-    width: 11.5%;
+    width: 13.5%;
 }
 
 .meetingStatus {
@@ -241,7 +243,8 @@ label {
 .sidebarContainer {
     overflow-x: hidden;
     overflow-y: scroll;
-    max-height: 100vh;
+    max-height: 86vh;
+    /* border:1px solid red; */
 }
 .profile-details{
     display: flex;
@@ -291,6 +294,13 @@ label {
     width: 100%;
     align-self: center;
 }
+select{
+    width:6em;
+     border: 1px solid #CCCCCC;
+     border-radius: 4px;
+     background-color: #FFFFFF;
+     color:rgba(0,0,0,0.6);
+ }
 .startTimeContainerrr{
     margin-bottom: 1%;
 }
@@ -304,10 +314,42 @@ label {
 input[type=number]::-webkit-inner-spin-button {
     opacity: 1;
 }
-.startdates , .enddates{
+/* .startdates , .enddates{
     margin-top: 10%;
+} */
+.duration {
+    margin-top:5%;
+    margin-bottom: 5%;
+}
+.dates {
+    display: flex;
+   
+    width: 100%;
+  
+     gap:12%;
+    align-items: center;
+   
+}
+
+
+.startdates{
+    width: 65%;
+    margin-top: 2%;
+    
+}
+.inputTime1{
+    margin-top: 2%;
+    width: 50%;
+}
+.startdate{
+    width: 100%;
 }
 .duration {
     margin-top:5%;
     margin-bottom: 5%;
+}
+
+.disabled{
+    /* display: none; */
+  opacity: 0.5;
 }

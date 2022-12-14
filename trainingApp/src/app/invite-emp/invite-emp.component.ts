@@ -52,7 +52,7 @@ export class InviteEmpComponent implements OnInit {
   }
 
   allData(){
-this.allInvitees;
+this.allInvitees();
   }
 
   search(){

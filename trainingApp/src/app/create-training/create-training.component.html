@@ -24,17 +24,16 @@
                     formControlName="trainer">
                 <div *ngIf="createTrainingForm.get('trainer')?.invalid && createTrainingForm.get('trainer')?.touched"
                     class="small">
-                    <small *ngIf="createTrainingForm.get('trainer')?.errors?.['required']" class="smalltxt">Trainer name
-                        is required</small>
+                   
                     <small *ngIf="createTrainingForm.get('trainer')?.errors?.['pattern']" class="smalltxt">Trainer name
                         must contain only characters</small>
                 </div>
             </div>
-            <div class="choice">
+            <div class="choices">
                 <mat-radio-group formControlName="trainingMode">
-                    <mat-radio-button class="choices" value="Online sessions">Online Sessions</mat-radio-button>
-                    <mat-radio-button class="choices" value="Off-site">Off-site</mat-radio-button>
-                    <mat-radio-button class="choices" value="At Office">At Office</mat-radio-button>
+                    <mat-radio-button value="Online sessions">Online Sessions</mat-radio-button>
+                    <mat-radio-button value="Off-site">Off-site</mat-radio-button>
+                    <mat-radio-button value="At Office">At Office</mat-radio-button>
                 </mat-radio-group>
 
             </div>
@@ -45,45 +44,48 @@
                         <input type="date" class="startdate" formControlName="startDate">
                     </div>
                    </div>
-                    <div>
-                      <div class="enddates">
-                        <label for="">End Date</label><br>
-                        <input type="date" class="enddate" formControlName="endDate">
-                      </div>
+                   <div class="inputTime1">
+                    <div> <label for="">Start Time</label></div>
+                    <div class="startTimeContainerrr"> <input type="number" min="0" max="12" class="timeWidth"
+                        [class.is-invalid]="createTrainingForm.get('startTime_hrs')?.invalid && createTrainingForm.get('startTime_hrs')?.touched" placeholder="HH" formControlName="startTime_hrs" pattern="^([1-9]|1[012])$" onKeyPress="if(this.value.length==2) return false;">
+                        <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"
+                            formControlName="startTime_mins" pattern="^([0-5]?[0-9]|60)$" onKeyPress="if(this.value.length==2) return false;" [class.is-invalid]="createTrainingForm.get('startTime_mins')?.invalid && createTrainingForm.get('startTime_mins')?.touched">
+                      
+                         <select name="startTime_median" id="startTime_median" formControlName="startTime_median">
+                             <option value="am">AM</option>
+                             <option value="pm">PM</option>
+                         </select>
+                      
                     </div>
+                    
+                </div>
+                </div>
+                <div class="dates">
+                    <div class="startdates">
+                     <div><label for="">End date</label><br>
+                         <input type="date" class="startdate" formControlName="endDate">
+                     </div>
+                    </div>
+                    <div class="inputTime1">
+                     <div> <label for="">End Time</label></div>
+                     <div class="startTimeContainerrr"> <input type="number" min="0" max="12" class="timeWidth"
+                         [class.is-invalid]="createTrainingForm.get('endTime_hrs')?.invalid && createTrainingForm.get('endTime_hrs')?.touched" placeholder="HH" formControlName="startTime_hrs" pattern="^([1-9]|1[012])$" onKeyPress="if(this.value.length==2) return false;">
+                         <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"
+                             formControlName="endTime_mins" pattern="^([0-5]?[0-9]|60)$" onKeyPress="if(this.value.length==2) return false;" [class.is-invalid]="createTrainingForm.get('endTime_mins')?.invalid && createTrainingForm.get('endTime_mins')?.touched">
+                       
+                          <select name="endTime_median" id="startTime_median" formControlName="endTime_median">
+                              <option value="am">AM</option>
+                              <option value="pm">PM</option>
+                          </select>
+                       
+                     </div>
+                     
+                 <!-- </div> -->
+                  
                 </div>
 
-                <div class="timeContainer">
-                    <div class="inputTime1">
-                        <div> <label for="">Start Time</label></div>
-                        <div class="startTimeContainerrr"> <input type="number" min="0" max="12" class="timeWidth"
-                                placeholder="HH" formControlName="startTime_hrs" pattern="^([1-9]|1[012])$" onKeyPress="if(this.value.length==2) return false;">
-                            <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"
-                                formControlName="startTime_mins" pattern="^([0-5]?[0-9]|60)$" onKeyPress="if(this.value.length==2) return false;">
-                            <!-- <input type="text" class="timeWidth" placeholder="AM/PM" formControlName="startTime_median">
-                             -->
-                             <select name="startTime_median" id="startTime_median" class="timeWidth"  formControlName="startTime_median">
-                                 <option value="am">AM</option>
-                                 <option value="pm">PM</option>
-                             </select>
-                            <!-- <input type="text"class="meridian">
-                            <mat-icon class="upward">arrow_drop_up</mat-icon>
-                            <mat-icon calss="downward">arrow_drop_down</mat-icon> -->
-                        </div>
-                        
-                    </div>
-                    <small *ngIf="createTrainingForm.get('startTime_hrs')?.errors?.['pattern']" class="smalltxt">Please enter 12hr format.</small>
-                    <div class="inputTime2">
-                        <div><label for="">End Time</label></div>
-                        <div class="endTimeContainerrr"> <input type="number" min="0" max="12" class="timeWidth"
-                                placeholder="HH" formControlName="endTime_hrs" pattern="^([1-9]|1[012])$" onKeyPress="if(this.value.length==2) return false;">
-                            <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"
-                                formControlName="endTime_mins"  pattern="^([0-5]?[0-9]|60)$" onKeyPress="if(this.value.length==2) return false;">
-                            <input type="text" class="timeWidth" placeholder="AM/PM" formControlName="endTime_median">
-                        </div>
-                    </div>
-                    <small *ngIf="createTrainingForm.get('endTime_hrs')?.errors?.['pattern']" class="smalltxt">Please enter 12hr format.</small>
-                </div>
+                   
+                </div> 
                 
             </div>
             
@@ -112,7 +114,7 @@
             </div>
             <div class="buttons">
                 <button class="cancelbtn" (click)="cancelForm()">CANCEL</button>
-                <button class="createbtn" (click)="createEvent()">CREATE EVENT</button>
+                <button class="createbtn" (click)="createEvent()" [class.disabled]="createTrainingForm.invalid" [disabled]="createTrainingForm.invalid">CREATE EVENT</button>
             </div>
         </form>
 

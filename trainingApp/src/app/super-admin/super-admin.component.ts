@@ -130,8 +130,10 @@ export class SuperAdminComponent implements OnInit {
       if(state == '1'){
         this.course_list = [];
       }
+    
       this.course_list = [...this.course , ...this.course_list];
       console.log(this.course_list);
+     
       
       
      } else {
@@ -394,9 +396,11 @@ onScrollingSearch(event:any){
     })
   }
   employee_data_edit(data:any){
-    console.log(data);
+
+   if(this.role == 'super_admin'){
     sessionStorage.setItem('empData',JSON.stringify(data));
-this.dialog.open(AssignEmployeeRoleComponent,{panelClass:'update-employee-role'});
+    this.dialog.open(AssignEmployeeRoleComponent,{panelClass:'update-employee-role'});
+   }
   }
 
   

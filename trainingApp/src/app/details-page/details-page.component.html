@@ -1,4 +1,4 @@
-<!-- {{getAttendees()}} -->
+
 
 <app-employee-header></app-employee-header>
  <div class="main">
@@ -24,7 +24,7 @@
                 <div class="flexEdit">
                     <div class="endsin" *ngIf="details.completionStatus=='active'">Ends in : {{details.endDate | endsIn:details.endDate:details.endTime}}</div>
                     <div class="endsin" *ngIf="details.completionStatus=='upcoming'">Starts in : {{details.startDate | endsIn:details.startDate:details.startTime}}</div>
-                    <div class="edit" routerLink="/updateTraining"  *ngIf="details.completionStatus=='upcoming' || (details.completionStatus == 'active' && details.trainingMode == 'Online sessions')">
+                    <div class="edit" routerLink="/updateTraining"  *ngIf="(details.completionStatus=='upcoming' || (details.completionStatus == 'active' && details.trainingMode == 'Online sessions')) && role !='employee'">
                         <mat-icon class="border">check_box_outline_blank<mat-icon class="edit-icon">edit</mat-icon></mat-icon>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="date">
                 <p class="tag">End Date</p>
-                <p class="data">{{details.endDate | date:'MMM'}}&nbsp;{{details.endDate | dateChange }},&nbsp;{{details.endDate | date:'YYYY'}} at <span>{{details.endTime | time}}</span></p>
+                <p class="data" *ngIf="details.endDate != null">{{details.endDate | date:'MMM'}}&nbsp;{{details.endDate | dateChange }},&nbsp;{{details.endDate | date:'YYYY'}} at <span>{{details.endTime | time}}</span></p>
                 <p class="data" *ngIf="details.endDate == null"><b>-</b></p>
             </div>
             <div class="date">
@@ -55,7 +55,7 @@
 
                 <p class="tag">Attendees</p>
 
-                <p class="data">{{attendees.length}}/{{(attendees.length + nonAttendees.length)}}</p>
+                <p class="data">{{attendeeCount}}/{{(attendeeCount + nonAttendeeCount)}}</p>
 
                 <p class="data" *ngIf="details.duration == null"><b>-</b></p>
 
@@ -72,9 +72,9 @@
       </div>
     </mat-card>  
     <div class="parentContainer" >
-        <div> <p class="attendees"><span *ngIf="attendees.length>=1"> Attendees ({{attendeeCount}})&nbsp;</span> <span class="inviteEmp" *ngIf="(completionStatus=='active' && trainingMode=='Online sessions') || completionStatus=='upcoming'"routerLink="/inviteEmp">&nbsp;Invite Employees</span></p></div>
-        <div class="contentContainer" *ngIf="attendees.length>=1">
-         <div class="container" *ngFor="let attendee of attendees">
+        <div> <p class="attendees"><span *ngIf="attendees.length>=1"> Attendees ({{attendeeCount}})&nbsp;</span> <span class="inviteEmp" *ngIf="((completionStatus=='active' && trainingMode=='Online sessions') || completionStatus=='upcoming') && role != 'employee'"routerLink="/inviteEmp">&nbsp;Invite Employees</span></p></div>
+        <div class="contentContainer" *ngIf="attendees.length>=1"(scroll) = "onScrollingAttendData($event)">
+         <div class="container"  *ngFor="let attendee of attendees">
             <div class="profile-details">
                 <div class="profileimg">
                     <img [src]="attendee.profilePic || image" alt="" id="profileimg">
@@ -90,15 +90,15 @@
              </div>
         </div>
          </div>
-     </div>
+    </div>
    
      <div class="parentContainer">
-        <div> <p class="attendees"><span *ngIf="((nonAttendees.length >= 1) && details.completionStatus == 'completed')">Non Attendees ({{nonAttendees.length}})</span> </p></div>
-        <div class="contentContainer"  *ngIf="(nonAttendees.length >= 1 && details.completionStatus == 'completed')">
+        <div> <p class="attendees"><span *ngIf="((nonAttendees.length >= 1) && details.completionStatus == 'completed')">Non Attendees ({{nonAttendeeCount}})</span> </p></div>
+        <div class="contentContainer"  *ngIf="(nonAttendees.length >= 1 && details.completionStatus == 'completed')"  (scroll)="onScrollingNon($event)">
          <div class="container" *ngFor="let nonAttendee of nonAttendees">
              <div class="profile-details">
                 <div class="profileimg">
-                    <img [src]="nonAttendees.profilePic || image" alt="" id="profileimg">
+                    <img [src]="nonAttendee.profilePic || image" alt="" id="profileimg">
                 </div>
                 <div class="empDetails">
                     <div class="empName">{{nonAttendee.empName}}</div>

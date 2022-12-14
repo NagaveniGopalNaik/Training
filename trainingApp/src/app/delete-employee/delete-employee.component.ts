@@ -1,3 +1,4 @@
+import { BaseCdkCell } from '@angular/cdk/table';
 import { Component, OnInit } from '@angular/core';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -86,10 +87,14 @@ if(data!= undefined){
 
 
 }
+
 sessionStorage.setItem('allEmployee',JSON.stringify(this.allEmployee))
 this.router.navigate(['/superAdmin']);
 },(error)=>{
   alert(error.error);
 })
+  }
+  backDashBoard(){
+this.router.navigate(['/dashboard']);
   }
 }

@@ -8,7 +8,7 @@ import { SuperAdminService } from '../super-admin.service';
   styleUrls: ['./notification-list.component.css']
 })
 export class NotificationListComponent implements OnInit {
-notificationList:any;
+notificationList:any[]=[];
 key:any;
   constructor(private superAdmin:SuperAdminService,private router:Router) { }
 

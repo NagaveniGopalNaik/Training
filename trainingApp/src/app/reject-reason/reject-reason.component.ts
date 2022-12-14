@@ -31,7 +31,7 @@ if(confirm('Are you sure you want to reject this training?')){
 alert(error.error)
     },
     complete : ()=>{
-      this.router.navigate(['/notifications']);
+      this.router.navigate(['/dashboard']);
     }
   })
 }

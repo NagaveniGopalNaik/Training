@@ -11,6 +11,9 @@
    background-color: white;
    
 }
+.point{
+    cursor: pointer;
+}
 .inviteReporteesHeader {
     display: flex;
     justify-content: space-between;

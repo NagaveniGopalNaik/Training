@@ -109,6 +109,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 
 ::-webkit-scrollbar-thumb {
     background: rgba(216,216,216,1);
+    /* background-color: black; */
     border-radius: 10px;
     border-radius: 10px;
 }
@@ -116,3 +117,17 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 
 
 .meetingStatus .ck.ck-editor__editable_inline>:last-child { margin-bottom: var(--ck-spacing-large); height: 20vh !important; }
+
+.choices .mat-radio-button.mat-accent .mat-radio-inner-circle{
+
+    background-color:white;
+
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+
+  border-color: black;
+
+  border-width: 7px;
+
+}

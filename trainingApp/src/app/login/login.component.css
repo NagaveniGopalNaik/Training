@@ -1,8 +1,8 @@
 .container{
     width: 100%;
     padding: 13% 0;
-    /* height: 70vh; */
-    height: 80%;
+    height: 45vh;
+    /* height: 80%; */
     display: flex;
     justify-content: center;
     align-items: center;

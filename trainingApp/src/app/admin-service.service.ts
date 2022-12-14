@@ -45,10 +45,12 @@ export class AdminServiceService {
   constructor(private httpClient: HttpClient,private superAdmin:SuperAdminService) { }
   createEvent(body:any){
     console.log(body);
-    
+    this.superAdmin.getToken();
+    this.token = this.superAdmin.token;
     return this.httpClient.post(`${API_URL}/admin/createCourse`,
     body,
-     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token)
+     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),
+     responseType:'text'
 
     });
   }
@@ -69,52 +71,7 @@ export class AdminServiceService {
  })
   }
   
-  showCourses(){
-
-    this.course=this.course+1; 
-    this.activeTag=sessionStorage.getItem('active');
-    // console.log(typeof this.activeTag);
-    // return this.httpClient.get(this.url+`${this.data}`, {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',1).set('limit',10)
-    //   ,responseType:'text'
-    // });
-    if(this.activeTag=='active'){
-      return this.httpClient.get(this.url+'active', {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.course).set('limit',10)
-      ,responseType:'text'
-    });
-    }else if(this.activeTag=='upcoming'){
-      return this.httpClient.get(this.url+'upcoming', {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.course).set('limit',10)
-      ,responseType:'text'
-    });
-    }else{
-      return this.httpClient.get(this.url+'completed', {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.course).set('limit',10)
-      ,responseType:'text'
-    });
-    
-    }
-  }
-  showCoursesToManager(){
-    this.course=this.course+1; 
-    this.activeTag=sessionStorage.getItem('active');
-    // console.log(typeof this.activeTag);
-    // return this.httpClient.get(this.url+`${this.data}`, {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',1).set('limit',10)
-    //   ,responseType:'text'
-    // });
-    if(this.activeTag=='active'){
-      return this.httpClient.get(this.ManagerUrl+'active', {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.course).set('limit',10)
-      ,responseType:'text'
-    });
-    }else if(this.activeTag=='upcoming'){
-      return this.httpClient.get(this.ManagerUrl+'upcoming', {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.course).set('limit',10)
-      ,responseType:'text'
-    });
-    }else{
-      return this.httpClient.get(this.ManagerUrl+'completed', {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',this.course).set('limit',10)
-      ,responseType:'text'
-    });
-    
-    }
-  }
-
+  
   
   courseDetailsFn(data:any){
     this.superAdmin.getToken();
@@ -129,21 +86,22 @@ export class AdminServiceService {
     this.superAdmin.getToken();
     this.token = this.superAdmin.token;
    console.log(this.token);
-   
+   let page = sessionStorage.getItem('attend') || '1';
     
     this.getDetailsId();
   
     // this.attendees=this.attendees+1;
     return this.httpClient.get(this.attendeesURL+this.details_id,
       {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),
-      params:new HttpParams().set('page',1).set('limit',10),
+      params:new HttpParams().set('page',page).set('limit',10),
     responseType:'text'});
   }
   getNonAttendees(){
+    let page = sessionStorage.getItem('non-attend') || '1';
     this.getDetailsId();
     console.log(this.details_id);
     this.nonAttendees=this.nonAttendees+1;
-    return this.httpClient.get(this.nonAttendeesURL+this.details_id,{headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',1).set('limit',10),
+    return this.httpClient.get(this.nonAttendeesURL+this.details_id,{headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),params:new HttpParams().set('page',page).set('limit',10),
     responseType:'text'});
   }
   

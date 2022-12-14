@@ -98,19 +98,24 @@ hr {
     font-weight: 900;
 }
 select{
-   
+   width:6em;
     border: 1px solid #CCCCCC;
     border-radius: 4px;
     background-color: #FFFFFF;
+    color:rgba(0,0,0,0.6);
 }
 .inputContainer {
     display: flex;
     flex-direction: column;
     margin-top: 5%;
 }
+.is-invalid{
+    border-color: red;
+}
 
 .parentContainer {
     margin: 0.5rem 1rem 0.5rem 1rem;
+    
 }
 
 input {
@@ -163,12 +168,7 @@ label {
     cursor: pointer;
     text-decoration: underline;
 }
-.inputTime1{
-    margin-top: 0%;
-}
-.inputTime2{
-    margin-top: 9%;
-}
+
 
 .attendeesContainer {
     display: flex;
@@ -186,23 +186,24 @@ label {
     align-items: center;
 }
 
-.startdate,
-.enddate {
-    width: 100%;
-}
+
 
 .dates {
     display: flex;
-    gap: 5%;
-    width: 63%;
-    flex-direction: column;
+    /* gap: 5%; */
+    width: 100%;
+    /* justify-content: space-between;
+     */
+     gap:12%;
+    align-items: center;
+    /* flex-direction: column; */
 }
 
-.timedateContainer {
-    display: flex;
-    justify-content: space-between;
-    gap:2em;
-}
+/* .timedateContainer {
+    display: flex; */
+    /* justify-content: space-between; */
+    /* gap:5em;
+} */
 
 .timeContainer {
     display: flex;
@@ -210,6 +211,7 @@ label {
     margin-top: 5%;
     justify-content: space-between;
 }
+
 
 .timeDuration {
     display: flex;
@@ -222,7 +224,7 @@ label {
 }
 
 .timedurationWidth{
-    width: 11.5%;
+    width: 13.5%;
 }
 
 .meetingStatus {
@@ -247,6 +249,12 @@ label {
     border-radius: 4px;
 }
 
+/* .profile {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+} */
 .cancelbtn {
     color: #5A5A5A;
     background-color: #D5D5D5;
@@ -312,10 +320,25 @@ label {
 input[type=number]::-webkit-inner-spin-button {
     opacity: 1;
 }
-.startdates , .enddates{
-    margin-top: 10%;
+
+.startdates{
+    width: 65%;
+    margin-top: 2%;
+    
+}
+.inputTime1{
+    margin-top: 2%;
+    width: 50%;
+}
+.startdate{
+    width: 100%;
 }
 .duration {
     margin-top:5%;
     margin-bottom: 5%;
+}
+
+.disabled{
+    /* display: none; */
+  opacity: 0.5;
 }

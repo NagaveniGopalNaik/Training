@@ -16,7 +16,7 @@ token :any;
 courseUrl:any;
 loginRole:any;
 loginData:any;
-
+filterApi:any;
 
   constructor(private http:HttpClient) { }
 
@@ -119,9 +119,15 @@ loginData:any;
   filterCourse(data:any){
     let activeData = sessionStorage.getItem('active') as any;
     console.log(activeData);
+    this.getLoginRole();
+    if(this.loginRole == 'employee'){
+this.filterApi = '/employee/acceptedCourses/filter'
+    } else {
+this.filterApi = '/course/filter';
+    }
     
     sessionStorage.setItem('filterCourse','true');
-    return this.http.get(`${API_URL}/course/filter`,
+    return this.http.get(`${API_URL}${this.filterApi}`,
     {headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),observe:'body',params:new HttpParams().set('completionStatus',activeData).set('downDate',data.downDate).set('topDate',data.topDate).set('page',1).set('limit',10),responseType:'text'
   });
   }

@@ -55,28 +55,27 @@ searchKey='';
       this.admin.assignManager(this.addManageList).subscribe({
         next:(data)=>{
           alert(data);
+          this.addManageList = [];
         },
         error:(error)=>{
           console.log(error);
           
         },
-        complete:()=>{
-          this.router.navigate(['/dashboard']);
-        }
+       
       })
     }
-    if(this.removeManageList.length > 0){
+     if(this.removeManageList.length > 0){
       this.admin.deleteManager(this.removeManageList).subscribe({
         next:(data)=>{
           alert(data);
+          this.removeManageList = [];
         },
         error:(error)=>{
           console.log(error);
           
-        },
-        complete:()=>{
-          this.router.navigate(['/dashboard']);
         }
+          
+        
       })
     }
     

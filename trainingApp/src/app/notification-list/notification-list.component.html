@@ -3,9 +3,10 @@
     <!-- <p class="close-width"><mat-icon class="close-icon" mat-dialog-close>close</mat-icon></p> -->
 <div class="note-data">
     <p class="text">You have {{key}} notifications</p>
-    <p class="text point" mat-dialog-close (click)="clearNotification()">Clear All</p>
+    <p class="text point" mat-dialog-close (click)="clearNotification()" *ngIf="notificationList.length > 0">Clear All</p>
 </div>
-<p class="headding">You have been invited to the following courses: </p>
+<p class="headding" *ngIf="notificationList.length > 0">You have been invited to the following courses: </p>
+<!-- <img src="https://www.shutterstock.com/image-illustration/no-bell-icon-prohibition-sign-600w-535078219.jpg" alt="" ngIf="notificationList.length == 0"> -->
 <div class="list">
     
     <ul *ngFor= "let notification of notificationList;index as i">

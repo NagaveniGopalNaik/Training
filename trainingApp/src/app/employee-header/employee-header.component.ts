@@ -49,11 +49,7 @@ loginRole:any;
       
       this.superAdmin.notificationCount().subscribe(data=>{
         this.notificationCount = data;
-        // if(this.notificationCount[0] == '{'){
-        //   this.notificationCount = JSON.parse(this.notificationCount);
-        //   let key = Number(Object.keys(this.notificationCount));
-        //   this.notificationCount = key;
-        // }
+       
         console.log(this.notificationCount);
         
         if(Number(this.notificationCount)<1){
@@ -87,9 +83,9 @@ loginRole:any;
   notification(){
     
       
-      if(this.notificationCount > 0){
+      
         this.dialog.open(NotificationListComponent,{panelClass:'notification-list'});
-      }
+      
       this.alertMsg();
     
 

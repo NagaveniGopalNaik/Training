@@ -32,16 +32,16 @@ export class CreateTrainingComponent implements OnInit {
   createForm() {
     this.createTrainingForm = new FormGroup({
       'courseName': new FormControl('', [Validators.required , Validators.pattern(/^[A-Za-z\s]+$/)]),
-      'trainer': new FormControl('', [Validators.required , Validators.pattern(/^[A-Za-z\s]+$/)]),
+      'trainer': new FormControl('', [Validators.pattern(/^[A-Za-z\s]+$/)]),
       'trainingMode': new FormControl(''),
       'startDate': new FormControl(''),
       'endDate': new FormControl(''),
-      'startTime_hrs':new FormControl('', [Validators.required]),
+      'startTime_hrs':new FormControl('', [Validators.required, Validators.pattern("^([1-9]|1[012])$")]),
       'startTime_mins':new FormControl('', [Validators.required , Validators.pattern("^([0-5]?[0-9]|60)$")]),
       'startTime_median':new FormControl('am',[Validators.required]),
       'endTime_hrs':new FormControl(''),
       'endTime_mins':new FormControl(''),
-      'endTime_median':new FormControl(''),
+      'endTime_median':new FormControl('am'),
       'durationTime_hrs':new FormControl(''),
       'durationTime_mins':new FormControl(''),
       'durationTime_seconds':new FormControl(''),
@@ -104,25 +104,21 @@ export class CreateTrainingComponent implements OnInit {
       endTime: this.endTime,
       meetingInfo: (this.createTrainingForm.get('meetingInfo')?.value),
     }
-    // this.adminService.createEvent(this.body).subscribe((data)=>{
-    //   this.cancelForm();
-      // console.log(data);
+   
+    this.adminService.createEvent(this.body).subscribe({
+      next:(data)=>{
+      alert(data);
+        this.cancelForm();
+      },
+      error:(error)=>{
+      // alert(error.te)
+      alert(error.error);
+        
       
-    //   alert(data);
-    // },(error)=>{
-     
-    //   alert(error.error);
-    // })
-    this.adminService.createEvent(this.body).subscribe(data=>{
-     alert(data);
-    },error=>{
-      alert("Course created successfully");
+        
+      }
     })
 
- 
-
-
-    // this.createTrainingForm.reset();
   }
   cancelForm() {
     this.createTrainingForm.reset();
@@ -130,13 +126,5 @@ export class CreateTrainingComponent implements OnInit {
   display_p_options() {
     this.display = true;
   }
-  // addProfile() {
-  //   this.dialog.open(AddProfileComponent, { height: '40%', width: '40%' });
-  // }
-  // editProfile() {
-  //   this.dialog.open(EditProfileComponent, { height: '40%', width: '40%' });
-  // }
-  // chooseMedian(){
-  //  this.median=true;
-  // }
+  
 }

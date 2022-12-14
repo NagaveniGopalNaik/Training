@@ -18,10 +18,11 @@ export class DetailsPageComponent implements OnInit {
   attendees:any[]=[];
   attendeesData:any;
   nonAttendees:any;
-  nonAttendeesData:any;
+  nonAttendeesData:any[]=[];
   completionStatus:any;
   blank='';
   image="/assets/profile.png";
+  role:any;
   attendeesCount:any;
   constructor(private dialog:MatDialog,private adminService:AdminServiceService,private router:Router,private superAdmin:SuperAdminService) { }
   displayCompleted=false;
@@ -32,11 +33,14 @@ export class DetailsPageComponent implements OnInit {
    arrayAdd:any[]=[];
   allEmployee:any;
   attendeeCount:any;
+  nonAttendeeCount:any;
   meetingInfo:any;
   ngOnInit(): void {
+    sessionStorage.removeItem('non-attend');
+    sessionStorage.removeItem('attend');
     this.courseDetail();
     this.getAttendees();
-   
+    // this.getNonAttendees();   
     
    
   }
@@ -60,72 +64,82 @@ export class DetailsPageComponent implements OnInit {
       this.completionStatus=this.courseDetails.completionStatus;
     
       this.superAdmin.getLoginRole();
-      let role = this.superAdmin.loginRole;
-      if(role == 'admin' || role == 'manager'){
-        this.adminService.getNonAttendees().subscribe(
-          data=>{
-            console.log(data);
-            this.nonAttendeesData=data;
-            if(this.nonAttendeesData[0] == '{'){
-              this.nonAttendeesData=JSON.parse(this.nonAttendeesData);
-              const arraynonAttendees = Object.keys(this.nonAttendeesData)[0];
-              this.nonAttendeesData=this.nonAttendeesData[arraynonAttendees]
-              this.nonAttendees=this.nonAttendeesData;
-              console.log(this.nonAttendees);
-             
-            } else {
-              this.nonAttendees = [];
-            }
-          
-            
-          }
-        )
-      } else {
-        this.nonAttendees = [];
-      }
+      this.role = this.superAdmin.loginRole;
+      this.getNonAttendees();
      
 
       
      
     })
   }
- 
+ getNonAttendees(){
+  if(this.role == 'admin' || this.role == 'manager'){
+    this.adminService.getNonAttendees().subscribe(
+      {
+        next:data=>{
+          console.log(data);
+          let datas = data;
+          if(datas[0] == '{'){
+            this.nonAttendeesData=JSON.parse(data);
+            const arraynonAttendees = Object.keys(this.nonAttendeesData)[0];
+            this.nonAttendeesData=this.nonAttendeesData[arraynonAttendees]
+            this.nonAttendees=this.nonAttendeesData;
+            console.log(this.nonAttendees);
+           
+          } else {
+            this.nonAttendees = [];
+          }
+        
+          
+        },error:(error)=>{
+          this.nonAttendees = [];
+        }
+      }
+    )
+  } else {
+    this.nonAttendees = [];
+  }
+ }
   getAtttendeesCount(){
-    this.adminService.getAttendeesCount().subscribe(data=>{
-      this.attendeesCount =data;
-      this.attendeeCount=this.attendeesCount.slice(11,13);
+    this.adminService.getAttendeesCount().subscribe({
+      next:(data)=>{
+        let datas =data;
+        if(datas[0] == '{'){
+          datas = JSON.parse(datas);
+          this.attendeeCount =datas['attendees'];
+          this.nonAttendeeCount = datas['nonAttendees'];
+            
+          
+        }
+      }
     })
   }
 
   deleteEmployees(empId: any) {
 
-    let result=confirm("Are you sure to delete invite?")
-
-    if(result==false){
-
-      this.router.navigate(['/detailsPage'])
-
-    }
-
-    else{
-
-       this.arrayAdd.push(empId);
-
-    this.adminService.inviteEmployees(this.arrayAdd).subscribe(data => {
-
-      console.log(data);
-
-      alert(data);
-
-      this. getAttendees();
-
+    
+    let data = [empId];
+     
+    this.adminService.inviteEmployees(data).subscribe({
+      next:(data)=>{
+        alert(data);
+      },
+      error:(error)=>{
+        alert(error.error)
+      },
+      complete:()=>{
+        this.attendees = [];
+        this.getAttendees();
+      }
     })
 
-    }
+    
 
    
 
   }
+
+
   getAttendees(){
 this.superAdmin.getLoginRole();
 let role = this.superAdmin.loginRole;
@@ -138,20 +152,17 @@ let role = this.superAdmin.loginRole;
       this.attendeesData=JSON.parse(this.attendeesData);
     const arrayAttendees = Object.keys(this.attendeesData)[0];
     this.attendeesData=this.attendeesData[arrayAttendees]
-    this.attendees=this.attendeesData;
-    console.log(this.attendees);
+    this.attendees=[...this.attendees , ...this.attendeesData];
+    // console.log(this.attendees);
     
     // sessionStorage.setItem('attendees',JSON.stringify(this.attendees));
 
-    } else {
-      this.attendees = [];
     }
     
 
     
   })
-}  else {
-  this.attendees =[];
+
 }   
 this.getAtttendeesCount();
   }
@@ -168,5 +179,26 @@ this.getAtttendeesCount();
     this.router.navigate(['/updateTraining']);
     
   }
+
+  onScrollingAttendData(event:any){
+    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+   
+      let course = JSON.parse(sessionStorage.getItem('attend') || '1');
+      course+=1;
+      sessionStorage.setItem('attend',String(course));
+      this.getAttendees();
+    }
+  }
   
+
+  onScrollingNon(event:any){
+
+    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+   
+      let course = JSON.parse(sessionStorage.getItem('non-attend') || '1');
+      course+=1;
+      sessionStorage.setItem('non-attend',String(course));
+      this.courseDetail();
+    }
+  }
 }

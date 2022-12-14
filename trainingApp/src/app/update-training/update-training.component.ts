@@ -34,7 +34,7 @@ export class UpdateTrainingComponent implements OnInit {
   splitDurationsecs: any;
 trainingModes:any;
 attendeesData:any;
-attendees:any;
+attendees:any[]=[];
 endTime:any;
 arrayAdd:any[]=[];
 image="/assets/profile.png";
@@ -43,6 +43,7 @@ image="/assets/profile.png";
   constructor(private dialog: MatDialog, private adminService: AdminServiceService,private router : Router,private superAdmin:SuperAdminService) { }
 
   ngOnInit(): void {
+    sessionStorage.removeItem('attend');
 
     // this.attendees=JSON.parse(sessionStorage.getItem('attendees') as any);
     // console.log(this.attendees);
@@ -50,7 +51,9 @@ image="/assets/profile.png";
       this.attendeesData=data;
       console.log(this.attendeesData);
       
-      this.attendeesData = JSON.parse(this.attendeesData);
+      if(this.attendeesData[0]=='{'){
+        this.attendeesData = JSON.parse(this.attendeesData);
+      }
       if(typeof this.attendeesData == 'object'){
       const arrayAttendees = Object.keys(this.attendeesData)[0];
       this.attendeesData=this.attendeesData[arrayAttendees]
@@ -83,9 +86,9 @@ image="/assets/profile.png";
       this.startTimemins = '0' + (this.startTimemins);
     }
 
-    let end_time = this.courseDetails.endTime.split(':');
+    if(this.endTime){
+      let end_time = this.courseDetails.endTime.split(':');
     console.log(start_time[0]);
-
     this.endTimehrs = Number(end_time[0]);
     if (this.endTimehrs > 12) {
       this.endTimehrs = (this.endTimehrs - 12);
@@ -103,6 +106,9 @@ image="/assets/profile.png";
     if (this.endTimemins < 10) {
       this.endTimemins = '0' + (this.endTimemins);
     }
+
+    }
+    
     if(this.courseDetails.duration){
       let splitDuration = this.courseDetails.duration.split(':');
     this.splitDurationhrs=Number(splitDuration[0]);
@@ -125,21 +131,21 @@ image="/assets/profile.png";
 
 
     this.updateTrainingForm = new FormGroup({
-      'courseName': new FormControl(String(this.courseDetails.courseName), [Validators.required]),
-      'trainer': new FormControl(String(this.courseDetails.trainer), [Validators.required]),
-      'trainingMode': new FormControl(''),
-      'startDate': new FormControl(String(this.courseDetails.startDate), [Validators.required]),
-      'endDate': new FormControl(String(this.courseDetails.endDate)),
-      'startTime_hrs': new FormControl(this.startTimehrs, [Validators.required]),
-      'startTime_mins': new FormControl(this.startTimemins, [Validators.required]),
-      'startTime_median': new FormControl(this.startTimeMedian, [Validators.required]),
-      'endTime_hrs': new FormControl(this.endTimehrs),
-      'endTime_mins': new FormControl(this.endTimemins),
-      'endTime_median': new FormControl(this.endTimemedian),
-      'durationTime_hrs': new FormControl(this.splitDurationhrs),
-      'durationTime_mins': new FormControl(this.splitDurationmins),
-      'durationTime_seconds': new FormControl(this.splitDurationsecs),
-      'meetingInfo': new FormControl(String(this.courseDetails.meetingInfo))
+      'courseName': new FormControl(String(this.courseDetails.courseName || ''), [ Validators.pattern(/^[A-Za-z\s]+$/)]),
+      'trainer': new FormControl(String(this.courseDetails.trainer || '',),[Validators.pattern(/^[A-Za-z\s]+$/)]),
+      'trainingMode': new FormControl(this.courseDetails.trainingMode || ''),
+      'startDate': new FormControl(String(this.courseDetails.startDate) || ''),
+      'endDate': new FormControl(String(this.courseDetails.endDate) || ''),
+      'startTime_hrs': new FormControl(this.startTimehrs || '', [ Validators.pattern("^([1-9]|1[012])$")]),
+      'startTime_mins': new FormControl(this.startTimemins || '', [ Validators.pattern("^([0-5]?[0-9]|60)$")]),
+      'startTime_median': new FormControl(this.startTimeMedian || ''),
+      'endTime_hrs': new FormControl(this.endTimehrs || ''),
+      'endTime_mins': new FormControl(this.endTimemins || ''),
+      'endTime_median': new FormControl(this.endTimemedian || ''),
+      'durationTime_hrs': new FormControl(this.splitDurationhrs || ''),
+      'durationTime_mins': new FormControl(this.splitDurationmins || ''),
+      'durationTime_seconds': new FormControl(this.splitDurationsecs || ''),
+      'meetingInfo': new FormControl(String(this.courseDetails.meetingInfo || ''))
     })
 
   }
@@ -156,14 +162,12 @@ image="/assets/profile.png";
           this.attendeesData=JSON.parse(this.attendeesData);
         const arrayAttendees = Object.keys(this.attendeesData)[0];
         this.attendeesData=this.attendeesData[arrayAttendees]
-        this.attendees=this.attendeesData;
+        this.attendees=[...this.attendees,...this.attendeesData];
         console.log(this.attendees);
     
         // sessionStorage.setItem('attendees',JSON.stringify(this.attendees));
     
-        } else {
-          this.attendees = [];
-        }
+        } 
         
     
         
@@ -175,46 +179,32 @@ image="/assets/profile.png";
 
   deleteEmployees(empId: any) {
 
-    let result=confirm("Are you sure to delete invite?")
-
-    if(result==false){
-
-      this.router.navigate(['/detailsPage'])
-
-    }
-
-    else{
-
-       this.arrayAdd.push(empId);
-
-    this.adminService.inviteEmployees(this.arrayAdd).subscribe(data => {
-
-      console.log(data);
-
-      alert(data);
-
-      this.getAttendees();
-
+    
+    let data = [empId];
+     
+    this.adminService.inviteEmployees(data).subscribe({
+      next:(data)=>{
+        alert(data);
+      },
+      error:(error)=>{
+        alert(error.error)
+      },
+      complete:()=>{
+        this.attendees = [];
+        this.getAttendees();
+      }
     })
 
-    }
+    
 
    
 
   }
 
 
-
-  display_p_options() {
-    this.display = true;
-  }
-  // addProfile() {
-  //   this.dialog.open(AddProfileComponent, { height: '40%', width: '40%' });
-  // }
-  // editProfile() {
-  //   this.dialog.open(EditProfileComponent, { height: '40%', width: '40%' });
-  // }
   updateEvent() {
+    console.log(this.updateTrainingForm.valid);
+    
     let startTime_hrs = String(this.updateTrainingForm.get('startTime_hrs')?.value)
     if (startTime_hrs.length <= 1) {
       startTime_hrs = "0" + startTime_hrs;
@@ -272,12 +262,16 @@ console.log(this.updateTrainingForm.get('trainingMode')?.value);
       meetingInfo: (this.updateTrainingForm.get('meetingInfo')?.value),
     }
     console.log(this.body);
-    this.adminService.updateEvent(this.body).subscribe(data=>{
-      alert(data);
-      
-     this.router.navigate(['/detailsPage']);
-      
-      // this.cancelForm();
+    this.adminService.updateEvent(this.body).subscribe({
+      next:(data)=>{
+        alert(data);
+      },
+      error:(error)=>{
+        alert(error.error)
+      },
+      complete:()=>{
+        this.router.navigate(['/detailsPage']);
+      }
     })
 
 
@@ -285,6 +279,16 @@ console.log(this.updateTrainingForm.get('trainingMode')?.value);
   }
   cancelForm() {
     this.updateTrainingForm.reset();
+  }
+
+  updateData(event){
+    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+   
+      let course = JSON.parse(sessionStorage.getItem('attend') || '1');
+      course+=1;
+      sessionStorage.setItem('attend',String(course));
+      this.getAttendees();
+    }
   }
 
 

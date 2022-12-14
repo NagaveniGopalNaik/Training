@@ -81,13 +81,12 @@ li{
       padding: 2% 4%;
   }
   
-  .dropdown-option p:hover,.dropdown-option1 p:hover, .active{
-    /* padding: 2% 4%;
-    margin: 0; */
+  /* .dropdown-option p:hover,.dropdown-option1 p:hover, .active{
+    
     width: 100%;
     color:white;
     background-color: rgba(0,0,0,0.2);
-  }
+  } */
   
   .dropdown{
       display: flex;
@@ -100,7 +99,7 @@ li{
       padding: 0 1%;
       z-index: 1;
       position: fixed;
-      top:5em;
+      top:6em;
       background-color: white;
       position: absolute;
       box-shadow: 0 2px 8px 0 rgba(6,35,92,0.08);

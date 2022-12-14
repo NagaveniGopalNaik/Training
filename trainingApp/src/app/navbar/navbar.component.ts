@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminServiceService } from '../admin-service.service';
 import { SuperAdminService } from '../super-admin.service';
 
@@ -23,8 +23,8 @@ filterForm!:FormGroup;
   ngOnInit(): void {
    this.getActive();
    this.filterForm = new FormGroup({
-     'downDate':new FormControl(),
-     'topDate':new FormControl()
+     'downDate':new FormControl('',[Validators.required]),
+     'topDate':new FormControl('',[Validators.required])
    })
 
 
@@ -70,7 +70,7 @@ filterForm!:FormGroup;
     sessionStorage.setItem('active','active');
     sessionStorage.setItem('status','true');
     sessionStorage.setItem('filterCourse','false');
-    // sessionStorage.removeItem('courseDetails');
+    sessionStorage.removeItem('courseDetails');
     sessionStorage.setItem('coursePageNo','1');
     // window.location.reload();
   }
@@ -83,7 +83,7 @@ filterForm!:FormGroup;
     sessionStorage.setItem('status','true');
     sessionStorage.setItem('filterCourse','false');
     sessionStorage.setItem('coursePageNo','1');
-    // sessionStorage.removeItem('courseDetails');
+    sessionStorage.removeItem('courseDetails');
     // sessionStorage.setItem('courseNavigate','true');
     // window.location.reload();
   }
@@ -96,7 +96,7 @@ filterForm!:FormGroup;
     sessionStorage.setItem('status','true');
     sessionStorage.setItem('filterCourse','false');
     sessionStorage.setItem('coursePageNo','1');
-    // sessionStorage.removeItem('courseDetails');
+    sessionStorage.removeItem('courseDetails');
     // sessionStorage.setItem('courseNavigate','true');
     // window.location.reload();
   }
@@ -112,45 +112,40 @@ filterForm!:FormGroup;
     sessionStorage.setItem('flag','false');
     sessionStorage.setItem('status','true');
     sessionStorage.setItem('coursePageNo','1');
-    // sessionStorage.removeItem('courseDetails');
+    sessionStorage.removeItem('courseDetails');
     // sessionStorage.setItem('courseNavigate','true');
     // sessionStorage.setItem('page','1');
   }
 filter(){
-  this.displayFilter=true;
+  this.displayFilter= !this.displayFilter;
 }
 
 apply(){
-  this.displayFilter = false;
-  console.log(this.filterForm.value);
-  this.superAdmin.filterCourse(this.filterForm.value).subscribe(data=>{
-   let fetchData = data;
-   if(fetchData[0] == '{'){
-    fetchData = JSON.parse(fetchData) || data;
-    let key = Number(Object.keys(fetchData)[0]);
-    let filter_course = fetchData[key];
-    console.log(filter_course);
-    
-    
-    // for(let count of filter_course){
-    //   count.employee_count = 0;
-    //   this.superAdmin.getCourseAcceptCount(count.courseId).subscribe((data)=>{
-    //   count.employee_count = JSON.parse(data);
-    //   })
-    // }
-    
-    
+  let status = sessionStorage.getItem('active');
+  if(status == 'allEmployees'){
+    alert('Please apply filter based on completion status');
+  } else {
+    this.displayFilter = false;
+    console.log(this.filterForm.value);
+    this.superAdmin.filterCourse(this.filterForm.value).subscribe(data=>{
+     let fetchData = data;
+     if(fetchData[0] == '{'){
+      fetchData = JSON.parse(fetchData) || data;
+      let key = Number(Object.keys(fetchData)[0]);
+      let filter_course = fetchData[key];
+      console.log(filter_course);
+
     sessionStorage.setItem('courseDetails',JSON.stringify(filter_course));
+    this.clear();
+     }
+    },(error)=>{
+       alert(error.error)
+     })
     
-   }
-   
+  }
+  
     
-  },(error)=>{
-    alert(error);
-    
-    
-  });
-  this.clear();
+ 
 }
 clear(){
   this.filterForm.reset();

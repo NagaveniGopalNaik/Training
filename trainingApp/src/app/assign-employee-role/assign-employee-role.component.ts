@@ -16,16 +16,15 @@ update_employee_role!:FormGroup;
 
   ngOnInit(): void {
     this.employeeData = JSON.parse(sessionStorage.getItem('empData') || '{}');
-    // console.log(this.employeeData.empId);
+   
    if(this.employeeData){
-    console.log(this.employeeData);
+   
     
     
    
     this.employee_code = this.employeeData.empId;
     this.role = this.employeeData.role;
-    console.log(this.employee_code);
-    console.log(this.role);
+  
     
     
    }else{
@@ -46,28 +45,30 @@ update_employee_role!:FormGroup;
     console.log(this.update_employee_role.value);
   
     
-    this.superAdmin.changeRole(this.update_employee_role.value).subscribe((data)=>{
-      alert(data);
-      let allData = JSON.parse(sessionStorage.getItem('allEmployee') as any);
-      let object = allData.find((datas:any)=>{
-        return datas.empId == this.update_employee_role.value.empId;
-      });
-      let index = allData.indexOf(object);
-      allData[index].role = this.update_employee_role.value.roleName;
-      sessionStorage.setItem('allEmployee',JSON.stringify(allData));
-
-      let allsearchData = JSON.parse(sessionStorage.getItem('searchEmployee') as any);
-      let object1 = allsearchData.find((datas:any)=>{
-        return datas.empId == this.update_employee_role.value.empId;
-      });
-     if(object1 != undefined){
-      let index1 = allsearchData.indexOf(object1);
-      allsearchData[index1].role = this.update_employee_role.value.roleName;
-      sessionStorage.setItem('searchEmployee',JSON.stringify(allsearchData));
-      
-     }
-    },(error)=>{
-      alert(error.error);
+    this.superAdmin.changeRole(this.update_employee_role.value).subscribe({
+      next:(data)=>{
+        alert(data);
+        let allData = JSON.parse(sessionStorage.getItem('allEmployee') as any);
+        let object = allData.find((datas:any)=>{
+          return datas.empId == this.update_employee_role.value.empId;
+        });
+        let index = allData.indexOf(object);
+        allData[index].role = this.update_employee_role.value.roleName;
+        sessionStorage.setItem('allEmployee',JSON.stringify(allData));
+  
+        let allsearchData = JSON.parse(sessionStorage.getItem('searchEmployee') as any);
+        let object1 = allsearchData.find((datas:any)=>{
+          return datas.empId == this.update_employee_role.value.empId;
+        });
+       if(object1 != undefined){
+        let index1 = allsearchData.indexOf(object1);
+        allsearchData[index1].role = this.update_employee_role.value.roleName;
+        sessionStorage.setItem('searchEmployee',JSON.stringify(allsearchData));
+        
+       }
+      },error:(error)=>{
+        alert(error.error);
+      }
     })
   }
 
