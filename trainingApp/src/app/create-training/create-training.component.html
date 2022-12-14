@@ -57,26 +57,36 @@
                     <div class="inputTime1">
                         <div> <label for="">Start Time</label></div>
                         <div class="startTimeContainerrr"> <input type="number" min="0" max="12" class="timeWidth"
-                                placeholder="HH" formControlName="startTime_hrs">
+                                placeholder="HH" formControlName="startTime_hrs" pattern="^([1-9]|1[012])$" onKeyPress="if(this.value.length==2) return false;">
                             <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"
-                                formControlName="startTime_mins">
-                            <input type="text" class="timeWidth" placeholder="AM/PM" formControlName="startTime_median">
+                                formControlName="startTime_mins" pattern="^([0-5]?[0-9]|60)$" onKeyPress="if(this.value.length==2) return false;">
+                            <!-- <input type="text" class="timeWidth" placeholder="AM/PM" formControlName="startTime_median">
+                             -->
+                             <select name="startTime_median" id="startTime_median" class="timeWidth"  formControlName="startTime_median">
+                                 <option value="am">AM</option>
+                                 <option value="pm">PM</option>
+                             </select>
                             <!-- <input type="text"class="meridian">
                             <mat-icon class="upward">arrow_drop_up</mat-icon>
                             <mat-icon calss="downward">arrow_drop_down</mat-icon> -->
                         </div>
+                        
                     </div>
+                    <small *ngIf="createTrainingForm.get('startTime_hrs')?.errors?.['pattern']" class="smalltxt">Please enter 12hr format.</small>
                     <div class="inputTime2">
                         <div><label for="">End Time</label></div>
                         <div class="endTimeContainerrr"> <input type="number" min="0" max="12" class="timeWidth"
-                                placeholder="HH" formControlName="endTime_hrs">
+                                placeholder="HH" formControlName="endTime_hrs" pattern="^([1-9]|1[012])$" onKeyPress="if(this.value.length==2) return false;">
                             <input type="number" min="0" max="60" class="timeWidth" placeholder="MM"
-                                formControlName="endTime_mins">
+                                formControlName="endTime_mins"  pattern="^([0-5]?[0-9]|60)$" onKeyPress="if(this.value.length==2) return false;">
                             <input type="text" class="timeWidth" placeholder="AM/PM" formControlName="endTime_median">
                         </div>
                     </div>
+                    <small *ngIf="createTrainingForm.get('endTime_hrs')?.errors?.['pattern']" class="smalltxt">Please enter 12hr format.</small>
                 </div>
+                
             </div>
+            
            
             <div class="duration">
                 <div><label for="">Duration</label></div>

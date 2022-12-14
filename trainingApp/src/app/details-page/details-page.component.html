@@ -51,6 +51,15 @@
                 <p class="tag">Training Type</p>
                 <p class="data">{{details.trainingMode}}</p>
             </div>
+            <div class="date" *ngIf="details.completionStatus=='completed'" >
+
+                <p class="tag">Attendees</p>
+
+                <p class="data">{{attendees.length}}/{{(attendees.length + nonAttendees.length)}}</p>
+
+                <p class="data" *ngIf="details.duration == null"><b>-</b></p>
+
+            </div>
         </div>
         <div class="training-data-details">
             <p class="tag">Details</p>

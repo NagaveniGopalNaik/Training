@@ -104,7 +104,7 @@ export class SuperAdminComponent implements OnInit {
   }
   onScrollCourseData(event){
     if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
-    alert('next data');
+   
       let course = JSON.parse(sessionStorage.getItem('coursePageNo') || '1');
       course+=1;
       sessionStorage.setItem('coursePageNo',String(course));

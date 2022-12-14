@@ -153,6 +153,7 @@ let role = this.superAdmin.loginRole;
 }  else {
   this.attendees =[];
 }   
+this.getAtttendeesCount();
   }
   // display_p_options(){
   //   this.display=true;

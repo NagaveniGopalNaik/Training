@@ -97,7 +97,12 @@ hr {
     font-size: 22px;
     font-weight: 900;
 }
-
+select{
+   
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+}
 .inputContainer {
     display: flex;
     flex-direction: column;
@@ -143,6 +148,10 @@ label {
     letter-spacing: 0.2px;
     line-height: 24px;
 }
+.smalltxt{
+    color:red;
+}
+
 
 .inviteEmp {
     color: #EC2C59;
@@ -211,6 +220,7 @@ label {
     width: 20%;
     margin-right: 3%;
 }
+
 .timedurationWidth{
     width: 11.5%;
 }
