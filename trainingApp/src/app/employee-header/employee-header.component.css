@@ -4,6 +4,9 @@
     padding: 1.5% 15%;
     
 }
+.point{
+    cursor: pointer;
+}
 
 #logo{
     height: 90%;

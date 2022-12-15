@@ -53,9 +53,12 @@ searchKey='';
   "managerId":managerId,
   "empId":this.removeManageList
 }
+console.log(addObject);
+console.log(removeObject);
+
  
  
- if(this.addManageList.length > 0){
+ if(this.addManageList.length > 0 && this.removeManageList.length == 0){
   this.admin.addReportees(addObject).subscribe({
     next:(data)=>{
       alert(data);
@@ -68,8 +71,8 @@ searchKey='';
     }
   })
  }
- if(this.removeManageList.length > 0){
-  this.admin.removeReportees(addObject).subscribe({
+ if(this.removeManageList.length > 0 && this.addManageList.length == 0){
+  this.admin.removeReportees(removeObject).subscribe({
     next:(data)=>{
       alert(data);
     },
@@ -78,6 +81,31 @@ searchKey='';
     },
     complete:()=>{
       this.router.navigate(['/assign-manager']);
+    }
+  })
+ }
+
+ if(this.removeManageList.length > 0 && this.addManageList.length > 0){
+  this.admin.addReportees(addObject).subscribe({
+    next:(data)=>{
+     
+    },
+    error:(error)=>{
+      alert(error.error);
+    },
+    complete:()=>{
+      this.admin.removeReportees(removeObject).subscribe({
+        next:(data)=>{
+          alert("successfully");
+        },
+        error:(error)=>{
+          alert(error.error);
+        },
+        complete:()=>{
+          this.router.navigate(['/assign-manager']);
+        }
+      })
+    
     }
   })
  }
@@ -108,15 +136,25 @@ searchKey='';
   }
 
   removeSelect(employee){
+    
+    
     let datas = employee.empId;
+    
+    
     this.removeManageList.push(datas);
-    let dataObject = this.addManageList.find((data)=>{
-return data == datas;
-    });
-    if(dataObject != null){
-      let index = this.addManageList.indexOf(dataObject);
-      this.addManageList.splice(index,1);
-    }
+
+    
+ 
+    
+//     let dataObject = this.removeManageList.find((data)=>{
+// return data == datas;
+//     });
+    // if(dataObject != null){
+    //   let index = this.removeManageList.indexOf(dataObject);
+    //   this.removeManageList.splice(index,1);
+    //   console.log(this.removeManageList);
+      
+    // }
     let object = this.employeeData.find((eachData)=>{
       return eachData.empId === employee.empId;
     })
@@ -124,6 +162,8 @@ return data == datas;
       let index = this.employeeData.indexOf(object);
       this.employeeData[index].status = false;
     }
+
+    console.log(this.removeManageList);
     
   }
 

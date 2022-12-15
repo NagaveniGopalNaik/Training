@@ -22,7 +22,7 @@
                 <mat-form-field  appearance="outline" class="form-field">
                     <mat-label>Password</mat-label>
                     <input type="password" matInput class="login-input" formControlName="password" name="password">
-                    <mat-hint *ngIf="loginForm.get('password')?.hasError('pattern')">Password include uppercase,lowercase,digit and special charactor</mat-hint>
+                    <mat-hint *ngIf="loginForm.get('password')?.hasError('pattern')">Password must include uppercase,lowercase,digit and special character</mat-hint>
                     <mat-hint *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched && !loginForm.get('password')?.hasError('pattern')">Password minimum length 8 charactors</mat-hint>
                 </mat-form-field>
 

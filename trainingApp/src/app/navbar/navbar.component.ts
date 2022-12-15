@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
 filterForm!:FormGroup;
   activeTag:any;
   role:any;
+  filterCourseData:any[]=[];
     constructor( private adminService: AdminServiceService,private superAdmin:SuperAdminService) { }
 
   ngOnInit(): void {
@@ -58,6 +59,13 @@ filterForm!:FormGroup;
      
       break;
   }
+  let filterStatus = sessionStorage.getItem('filter-call') || 'false';
+  if(filterStatus == 'true'){
+    sessionStorage.setItem('filter-call','false');
+    if(this.filterCourseData.length == 0 || this.filterCourseData.length ==10){
+      this.apply();
+    }
+  }
 }
 
 filterThumbSet(){
@@ -84,8 +92,9 @@ filterThumbSet(){
     sessionStorage.setItem('status','true');
     sessionStorage.setItem('filterCourse','false');
     sessionStorage.setItem('course_pagination','false');
-    
-    
+    sessionStorage.setItem('filter_pagination','false');
+    this.filterCourseData=[];
+    this.clear();
     
 
     sessionStorage.setItem('filter-page-display','false');
@@ -105,6 +114,9 @@ filterThumbSet(){
     sessionStorage.setItem('filterCourse','false');
     sessionStorage.setItem('course_pagination','false');
     sessionStorage.setItem('filter-page-display','false');
+    sessionStorage.setItem('filter_pagination','false');
+    this.filterCourseData =[];
+    this.clear();
     // sessionStorage.setItem('courseNavigate','true');
     // window.location.reload();
   }
@@ -122,6 +134,9 @@ filterThumbSet(){
     sessionStorage.setItem('filterCourse','false');
     sessionStorage.setItem('course_pagination','false');
     sessionStorage.setItem('filter-page-display','false');
+    sessionStorage.setItem('filter_pagination','false');
+    this.filterCourseData =[];
+    this.clear();
     // sessionStorage.setItem('courseNavigate','true');
     // window.location.reload();
   }
@@ -139,8 +154,10 @@ filterThumbSet(){
       sessionStorage.setItem('filter-page-display','false');
     sessionStorage.setItem('flag','false');
     sessionStorage.setItem('status','true');
+    sessionStorage.setItem('filter_pagination','false');
     
-    
+    this.filterCourseData =[];
+    this.clear();
     // sessionStorage.setItem('courseNavigate','true');
     // sessionStorage.setItem('page','1');
   }
@@ -162,10 +179,11 @@ apply(){
       fetchData = JSON.parse(fetchData) || data;
       let key = Number(Object.keys(fetchData)[0]);
       let filter_course = fetchData[key];
-      console.log(filter_course);
+      this.filterCourseData = [...this.filterCourseData,...filter_course];
+      // console.log(filter_course);
 
-    sessionStorage.setItem('courseDetails',JSON.stringify(filter_course));
-    this.clear();
+    sessionStorage.setItem('courseDetails',JSON.stringify(this.filterCourseData));
+    // this.clear();
      }
     },(error)=>{
        alert(error.error)

@@ -8,6 +8,9 @@
 #logo {
     height: 60px;
 }
+.point{
+    cursor: pointer;
+}
 
 .profile {
     display: flex;

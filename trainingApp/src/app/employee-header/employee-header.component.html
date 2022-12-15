@@ -7,12 +7,12 @@
     </div>
     <div class="profile">
         <div class="newTraining" *ngIf="role=='admin'">
-            <button class="training_button" routerLink="/createTraining">NEW TRAINING</button>
+            <button class="training_button point" routerLink="/createTraining">NEW TRAINING</button>
         </div>
         <div class="button-notification">
             <div *ngIf="role=='super_admin'">
                 <div class="add-new-employee">
-                    <button class="new-employee" (click)="addNewEmployee()">EMPLOYEE</button>
+                    <button class="new-employee point" (click)="addNewEmployee()">EMPLOYEE</button>
                 </div>
                 <div class="dropdown-option1" *ngIf="hiddenOption1">
                     <p (click)="register()">Register</p>

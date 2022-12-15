@@ -124,6 +124,21 @@ export class SuperAdminComponent implements OnInit {
     }
   
   }
+
+  onScrollCourseFilter(event){
+    // let scrollStatus = sessionStorage.getItem('pagination') || 'true';
+    // if(scrollStatus == 'true' || scrollStatus == 'null'){
+      let scrollStatus = sessionStorage.getItem('filter_pagination') || 'null';
+      if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+        // alert('How are you'+String(event.target.offsetHeight)+" "+String(event.target.scrollTop)+ " "+ String(event.target.scrollHeight));
+        sessionStorage.setItem('filter_pagination','true');
+
+        // filter data pagination
+        sessionStorage.setItem('filter-call','true');
+      // }
+    }
+  
+  }
  
   courseDetail(){
     

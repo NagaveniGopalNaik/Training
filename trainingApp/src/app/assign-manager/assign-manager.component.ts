@@ -51,7 +51,7 @@ searchKey='';
     ;
     
     // console.log(this.addManageList);
-    if(this.addManageList.length > 0){
+    if(this.addManageList.length > 0 && this.removeManageList.length == 0){
       this.admin.assignManager(this.addManageList).subscribe({
         next:(data)=>{
           alert(data);
@@ -61,10 +61,12 @@ searchKey='';
           console.log(error);
           
         },
-       
+        complete:()=>{
+          this.router.navigate(['/dashboard']);
+        }
       })
     }
-     if(this.removeManageList.length > 0){
+     if(this.removeManageList.length > 0 && this.addManageList.length == 0 ){
       this.admin.deleteManager(this.removeManageList).subscribe({
         next:(data)=>{
           alert(data);
@@ -73,10 +75,46 @@ searchKey='';
         error:(error)=>{
           console.log(error);
           
+        },
+        complete:()=>{
+          this.router.navigate(['/dashboard'])
         }
-          
         
       })
+    }
+    if(this.removeManageList.length > 0 && this.addManageList.length > 0){
+      this.admin.assignManager(this.addManageList).subscribe({
+        next:(data)=>{
+       
+          this.addManageList = [];
+        },
+        error:(error)=>{
+          console.log(error);
+          
+        },
+        complete:()=>{
+          this.admin.deleteManager(this.removeManageList).subscribe({
+            next:(data)=>{
+             alert("Successfull");
+              this.removeManageList = [];
+            },
+            error:(error)=>{
+              console.log(error);
+              
+            },
+            complete:()=>{
+              this.router.navigate(['/dashboard'])
+            }
+              
+            
+          })          
+        }
+       
+      });
+
+      
+
+
     }
     
 

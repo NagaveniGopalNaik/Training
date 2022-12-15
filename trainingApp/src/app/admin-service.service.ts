@@ -268,6 +268,8 @@ addReportees(data:any){
 }
 
 removeReportees(data:any){
+  console.log(data);
+  
   this.superAdmin.getToken();
     this.token = this.superAdmin.token;
     

@@ -42,8 +42,8 @@
                     <mat-hint *ngIf="employee_register_form.get('email')?.invalid && employee_register_form.get('email')?.touched">Email invalid (should contain @ and .)</mat-hint>
                 </mat-form-field>
                 <div class="store-button">
-                    <button type="submit" mat-raised-button color="accent" class="register" [disabled]="employee_register_form.invalid">Register</button>
-                    <button mat-raised-button mat-dialog-close color="accent" class="done" (click)="storeServer()">Done</button>
+                    <button type="submit" mat-raised-button color="accent" class="register" [disabled]="employee_register_form.invalid">ADD+</button>
+                    <button mat-raised-button mat-dialog-close color="accent" class="done" [disabled]="registerDisable" (click)="storeServer()">REGISTER</button>
                 </div>
             </div>
         

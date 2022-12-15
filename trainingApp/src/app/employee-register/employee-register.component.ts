@@ -16,6 +16,7 @@ excelData:any;
 uploadData=false;
 formData=false;
 select=true;
+registerDisable=true;
   constructor(private superAdmin:SuperAdminService,private dialog:MatDialog) { }
 
   ngOnInit(): void {
@@ -39,6 +40,7 @@ this.employee_register_form = new FormGroup({
 }
 
 addEmployee(){
+  this.registerDisable=false;
   console.log(this.employee_register_form.value);
   this.RegisterData.push(this.employee_register_form.value);
   this.reset();
