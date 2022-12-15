@@ -60,6 +60,16 @@ filterForm!:FormGroup;
   }
 }
 
+filterThumbSet(){
+  window.scroll({
+
+    top: 0,
+  
+  behavior: 'smooth'
+  
+  })
+}
+
   
 
   activeFunction(){
@@ -67,11 +77,18 @@ filterForm!:FormGroup;
     this.completed=false;
     this.active=true;
     this.allEmployees=false;
+    this.filterThumbSet();
+    sessionStorage.removeItem('courseDetails');
+    sessionStorage.removeItem('coursePageNo');
     sessionStorage.setItem('active','active');
     sessionStorage.setItem('status','true');
     sessionStorage.setItem('filterCourse','false');
-    sessionStorage.removeItem('courseDetails');
-    sessionStorage.setItem('coursePageNo','1');
+    sessionStorage.setItem('course_pagination','false');
+    
+    
+    
+
+    sessionStorage.setItem('filter-page-display','false');
     // window.location.reload();
   }
   upcomingFunction(){
@@ -79,11 +96,15 @@ filterForm!:FormGroup;
     this.completed=false;
     this.active=false;
     this.allEmployees=false;
+    this.filterThumbSet();
+
+    sessionStorage.removeItem('courseDetails');
+    sessionStorage.removeItem('coursePageNo');
     sessionStorage.setItem('active','upcoming');
     sessionStorage.setItem('status','true');
     sessionStorage.setItem('filterCourse','false');
-    sessionStorage.setItem('coursePageNo','1');
-    sessionStorage.removeItem('courseDetails');
+    sessionStorage.setItem('course_pagination','false');
+    sessionStorage.setItem('filter-page-display','false');
     // sessionStorage.setItem('courseNavigate','true');
     // window.location.reload();
   }
@@ -92,11 +113,15 @@ filterForm!:FormGroup;
     this.completed=true;
     this.active=false;
     this.allEmployees=false;
+    this.filterThumbSet();
+
+    sessionStorage.removeItem('courseDetails');
+    sessionStorage.removeItem('coursePageNo');
     sessionStorage.setItem('active','completed');
     sessionStorage.setItem('status','true');
     sessionStorage.setItem('filterCourse','false');
-    sessionStorage.setItem('coursePageNo','1');
-    sessionStorage.removeItem('courseDetails');
+    sessionStorage.setItem('course_pagination','false');
+    sessionStorage.setItem('filter-page-display','false');
     // sessionStorage.setItem('courseNavigate','true');
     // window.location.reload();
   }
@@ -106,13 +131,16 @@ filterForm!:FormGroup;
     this.completed=false;
     this.active=false;
     this.allEmployees=true;
-    
+    this.filterThumbSet();
+    sessionStorage.setItem('course_pagination','false');
+    sessionStorage.removeItem('courseDetails');
+    sessionStorage.removeItem('coursePageNo');
       sessionStorage.setItem('active','allEmployees');
-    
+      sessionStorage.setItem('filter-page-display','false');
     sessionStorage.setItem('flag','false');
     sessionStorage.setItem('status','true');
-    sessionStorage.setItem('coursePageNo','1');
-    sessionStorage.removeItem('courseDetails');
+    
+    
     // sessionStorage.setItem('courseNavigate','true');
     // sessionStorage.setItem('page','1');
   }
@@ -121,6 +149,7 @@ filter(){
 }
 
 apply(){
+  sessionStorage.setItem('filter-page-display','true');
   let status = sessionStorage.getItem('active');
   if(status == 'allEmployees'){
     alert('Please apply filter based on completion status');

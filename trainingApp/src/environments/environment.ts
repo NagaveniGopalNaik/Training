@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL:"http://coursemanagement-env.eba-tkaxmz2r.ap-south-1.elasticbeanstalk.com"
+  API_URL:"http://coursemanagement-env.eba-mwkigdw2.ap-south-1.elasticbeanstalk.com"
 };
 
 /*

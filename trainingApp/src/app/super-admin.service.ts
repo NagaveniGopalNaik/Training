@@ -70,7 +70,15 @@ filterApi:any;
   
 
   courseDetails():Observable<any>{
+
     let page = sessionStorage.getItem('coursePageNo') || '1';
+    // sessionStorage.setItem('coursePageNo',page);
+    if(page == '1'){
+      sessionStorage.setItem('coursePageNo',page);
+    }
+    console.log(page);
+    
+    
   
     let activeTag =sessionStorage.getItem('active');
     console.log(this.course);

@@ -119,18 +119,34 @@ export class EndsInPipe implements PipeTransform {
    
    let present = currentTime - times;
    let day =0;
-   if(Number(h) > 12){
+   let hour =0;
+   let mins = 0;
+   if(Number(h) >= today.getHours()){
     day = Number((present / 86400000).toFixed(0))-1;
+    if(Number(m)>=today.getMinutes()){
+      let days = day* 86400000;
+      hour = Number((days/(3600000)).toFixed(0));
+      mins = Number(((((present-86400000)% 86400000)%3600000)/60000).toFixed(0))
+    }
+    
    } else {
     day = Number((present / 86400000).toFixed(0));
+    hour = Number(((present% 86400000)/3600000).toFixed(0));
+    mins = Number((((present% 86400000)%3600000)/60000).toFixed(0))
    }
-   let hour = Number(((present% 86400000)/3600000).toFixed(0));
-   let minute = (((present% 86400000)%3600000)/60000).toFixed(0)
+  //  hour = Number(((present% 86400000)/3600000).toFixed(0));
+  //  mins = Number((((present% 86400000)%3600000)/60000).toFixed(0))
+  //  if(hour >= 24){
+  //    day =day+1;
+  //    hour = hour - 24;
+  //  }
+  //  mins = Number((((present% 86400000)%3600000)/60000).toFixed(0))
 
    
    
 
-    return String(day)+" days "+hour+" hours "+minute+" mins";
+    return String(day)+" days "+hour+" hours "+mins+" mins";
+    // return day;
    
 
   }

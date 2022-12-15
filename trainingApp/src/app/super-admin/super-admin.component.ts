@@ -39,6 +39,7 @@ export class SuperAdminComponent implements OnInit {
   empCount:any[]=[];
   invites_list:any[]=[];
   notificationDetails:any[]=[];
+  filter_page_display='false';
   constructor(private dialog:MatDialog,private superAdmin:SuperAdminService,private server:ServerService,private admin:AdminServiceService,private router:Router) { }
 //   @HostListener('scroll') onScroll(e: Event): void {
 //     console.log("scrolling .... ");
@@ -62,6 +63,8 @@ export class SuperAdminComponent implements OnInit {
   }
   displayCourse(){
    
+    this.filter_page_display =sessionStorage.getItem('filter-page-display') || 'false';
+    
     
     this.display_course_list = JSON.parse(sessionStorage.getItem('courseDetails') || '[]');
   }
@@ -103,12 +106,21 @@ export class SuperAdminComponent implements OnInit {
     
   }
   onScrollCourseData(event){
-    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
-   
-      let course = JSON.parse(sessionStorage.getItem('coursePageNo') || '1');
-      course+=1;
-      sessionStorage.setItem('coursePageNo',String(course));
-      this.courseDetail();
+    // let scrollStatus = sessionStorage.getItem('pagination') || 'true';
+    // if(scrollStatus == 'true' || scrollStatus == 'null'){
+      let scrollStatus = sessionStorage.getItem('course_pagination') || 'null';
+      if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+        // alert('How are you'+String(event.target.offsetHeight)+" "+String(event.target.scrollTop)+ " "+ String(event.target.scrollHeight));
+        sessionStorage.setItem('course_pagination','true');
+        let course = JSON.parse(sessionStorage.getItem('coursePageNo') as any);
+       
+       if(course != null && scrollStatus == 'true' || scrollStatus == 'null'){
+  
+        course+=1;
+        sessionStorage.setItem('coursePageNo',String(course));
+        this.courseDetail();
+       }
+      // }
     }
   
   }
@@ -117,6 +129,7 @@ export class SuperAdminComponent implements OnInit {
     
     sessionStorage.setItem('status','false');
     sessionStorage.setItem('courseUpdate','false');
+    
     this.superAdmin.courseDetails().subscribe((data:any)=>{
       // console.log(data);
 
@@ -127,6 +140,9 @@ export class SuperAdminComponent implements OnInit {
       let key = Number(Object.keys(this.course));
       this.course = this.course[key];
       let state = sessionStorage.getItem('coursePageNo') || '1';
+     
+      console.log(state);
+      
       if(state == '1'){
         this.course_list = [];
       }
@@ -138,7 +154,7 @@ export class SuperAdminComponent implements OnInit {
       
      } else {
        let changeRole = sessionStorage.getItem('courseUpdate');
-       console.log(data);
+      
        
        this.course_list = [];
        
@@ -147,17 +163,12 @@ export class SuperAdminComponent implements OnInit {
      
 
       for(let data of this.course_list){
-        console.log(data.courseId);
+        
         data.employee_count = 0;
         data.dropdown = false;
         
         this.superAdmin.getCourseAcceptCount(data.courseId).subscribe((datas:any)=>{
-          
-          console.log(datas);
-          // let value = JSON.parse( datas);
-          // console.log(typeof value);
-          
-          // debugger;
+         
           let count = JSON.parse(datas);
           if(typeof count == 'number'){
             data.employee_count = count;
@@ -167,18 +178,13 @@ export class SuperAdminComponent implements OnInit {
             if(object != null){
               let index = this.course_list.indexOf(object);
               this.course_list[index]=data;
+              
               sessionStorage.setItem('courseDetails',JSON.stringify(this.course_list));
             }
           }
           
           this.empCount.push(data.employee_count);
-          // console.log(data);
           
-          
-          
-          // console.log(typeof count);
-          
-          // console.log(data.employee_count);
           
         },(error)=>{
           // console.log(error);
